@@ -1,5 +1,5 @@
 import 'package:fix_ican/constants/color_constant.dart';
-import 'package:fix_ican/pages/auth/login_page.dart';
+import 'package:fix_ican/pages/home/home_page.dart';
 import 'package:fix_ican/pages/splash/splash_page.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get_navigation/src/root/get_material_app.dart';
@@ -23,7 +23,7 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       theme: ThemeData.light(),
       getPages: AppRoutes.routes(),
-      initialRoute: SplashScreen.routeName,
+      initialRoute: HomeScreen.routeName,
       //initialBinding: AuthBinding(),
     );
     ;

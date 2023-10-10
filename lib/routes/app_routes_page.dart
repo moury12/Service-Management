@@ -7,13 +7,15 @@ import 'package:get/get.dart';
 import '../pages/splash/splash_page.dart';
 
 class AppRoutes {
-  static routes() =>
-      [
-
+  static routes() => [
         GetPage(
           name: '/',
-          page: () => const SplashScreen(),
+          page: () => const HomeScreen(),
         ),
+        // GetPage(
+        //   name: '/',
+        //   page: () => const SplashScreen(),
+        // ),
         GetPage(
           name: LanguageSelectionScreen.routeName,
           page: () => const LanguageSelectionScreen(),
@@ -25,9 +27,10 @@ class AppRoutes {
         GetPage(
           name: LoginScreen.routeName,
           page: () => const LoginScreen(),
-        ), GetPage(
-        name: HomeScreen.routeName,
-        page: () => const HomeScreen(),
-      ),
+        ),
+        GetPage(
+          name: HomeScreen.routeName,
+          page: () => const HomeScreen(),
+        ),
       ];
 }
