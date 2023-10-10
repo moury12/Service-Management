@@ -11,11 +11,13 @@ class AssetsConstant {
   static const String slide_image1 = "assets/images/slide_image1.png";
   static const String slide_image2 = "assets/images/slide_image2.png";
   static const String splash_image = "assets/images/splash_image.png";
+  static const String splash_image_full = "assets/images/splash_image_full.png";
 
   //icons
   static const String account_icon = "assets/icons/account_icon.png";
   static const String bag_icon = "assets/icons/bag_icon.png";
   static const String forward_icon = "assets/icons/forward_icon.png";
+  static const String otpContainer_icon = "assets/icons/otpContainer_icon.png";
   static const String backward_icon = "assets/icons/backWard_icon.png";
   static const String home_service_icon1 =
       "assets/icons/home_service_icon1.png";

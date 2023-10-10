@@ -1,8 +1,10 @@
 import 'package:fix_ican/constants/assets_constant.dart';
 import 'package:fix_ican/constants/color_constant.dart';
+import 'package:fix_ican/pages/auth/login_page.dart';
 import 'package:fix_ican/shared/custom_sized_box.dart';
 import 'package:fix_ican/theme/theme_data.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:mh_core/widgets/button/custom_button.dart';
 
 class OnboardingScreen extends StatefulWidget {
@@ -57,9 +59,12 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
       appBar: AppBar(
         backgroundColor: AppColors.kBackgroundColor,
         elevation: 0,
+        leading: SizedBox.shrink(),
         actions: [
           TextButton(
-              onPressed: () {},
+              onPressed: () {
+                Get.offAndToNamed(LoginScreen.routeName);
+              },
               child: Text(
                 'Skip',
                 style: AppTheme.textStyleMediumPrimary12,
@@ -151,9 +156,9 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                     : GestureDetector(
                         onTap: () {
                           if (currentIndex < contents.length - 1) {
-                            pageController.nextPage(
-                                duration: Duration(milliseconds: 200),
-                                curve: Curves.bounceIn);
+                            pageController.previousPage(
+                                duration: Duration(seconds: 1),
+                                curve: Curves.easeIn);
                           }
                         },
                         child: Image.asset(
@@ -171,15 +176,17 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                           marginVertical: 0,
                           marginHorizontal: 0,
                           contentHorizontalPadding: 0,
-                          onPressed: () {},
+                          onPressed: () {
+                            Get.offAndToNamed(LoginScreen.routeName);
+                          },
                         ),
                       )
                     : GestureDetector(
                         onTap: () {
                           if (currentIndex < contents.length - 1) {
                             pageController.nextPage(
-                                duration: Duration(milliseconds: 200),
-                                curve: Curves.bounceIn);
+                                duration: Duration(seconds: 1),
+                                curve: Curves.easeIn);
                           }
                         },
                         child: Image.asset(

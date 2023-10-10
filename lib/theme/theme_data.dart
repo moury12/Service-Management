@@ -6,7 +6,7 @@ class AppTheme {
     backgroundColor: AppColors.kBackgroundColor,
     primaryColor: AppColors.kPrimaryColor,
     colorScheme:
-    ColorScheme.fromSwatch().copyWith(secondary: AppColors.kAccentColor),
+        ColorScheme.fromSwatch().copyWith(secondary: AppColors.kAccentColor),
     floatingActionButtonTheme: const FloatingActionButtonThemeData(
       backgroundColor: AppColors.kPrimaryColor,
     ),
@@ -70,6 +70,8 @@ class AppTheme {
     fontSize: 12,
     fontWeight: FontWeight.w500,
   );
+  static const textStyleMediumRed12 = TextStyle(
+      fontSize: 12, fontWeight: FontWeight.w500, color: Color(0xffFF394C));
   static const textStyleMediumFadeBlack12 = TextStyle(
     fontSize: 12,
     color: Colors.black54,
@@ -89,6 +91,8 @@ class AppTheme {
     fontSize: 12,
     fontWeight: FontWeight.w600,
   );
+  static const textStyleSemiBoldWhite12 =
+      TextStyle(fontSize: 12, fontWeight: FontWeight.w600, color: Colors.white);
   static const textStyleBoldBlack12 = TextStyle(
     fontSize: 12,
     fontWeight: FontWeight.bold,
