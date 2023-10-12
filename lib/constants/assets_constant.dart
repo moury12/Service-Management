@@ -33,4 +33,8 @@ class AssetsConstant {
   static const String service_icon = "assets/icons/service_icon.png";
   static const String settings_icon = "assets/icons/settings_icon.png";
   static const String home_icon = "assets/icons/home_icon.png";
+  static const String middlebottomIcon2 = "assets/icons/middlebottomIcon2.png";
+  static const String plus_button = "assets/icons/plus_button.png";
+  static const String iconBox = "assets/icons/iconBox.png";
+  static const String cross_icon = "assets/icons/cross_icon.png";
 }
