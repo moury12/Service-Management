@@ -292,9 +292,9 @@ class _LoginScreenState extends State<LoginScreen>
                       !_otpVisible
                   ? false
                   : true,
-              loadingStrokeWidth: 2,
-              loadingHeight: 20,
-              loadingWidth: 20,
+              // loadingStrokeWidth: 2,
+              // loadingHeight: 20,
+              // loadingWidth: 20,
               borderRadiusAll: 22,
               isDisable: !enterNumber ? true : false,
               primary: !enterNumber

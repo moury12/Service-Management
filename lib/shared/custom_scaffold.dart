@@ -1,18 +1,18 @@
 import 'package:fix_ican/theme/theme_data.dart';
 import 'package:flutter/material.dart';
+import 'package:mh_core/utils/global.dart';
 
 import '../constants/assets_constant.dart';
 import '../constants/color_constant.dart';
 
 class CustomScaffold extends StatelessWidget {
-  const CustomScaffold(
-      {super.key,
-      this.leading,
-      this.leadingIcon,
-      this.action,
-      this.actionIcon,
-      this.title,
-      required this.body});
+  const CustomScaffold({super.key,
+    this.leading,
+    this.leadingIcon,
+    this.action,
+    this.actionIcon,
+    this.title,
+    required this.body});
 
   final Widget? leading;
   final String? leadingIcon;
@@ -63,7 +63,10 @@ class CustomScaffold extends StatelessWidget {
       body: Padding(
         padding: const EdgeInsets.only(top: 20),
         child: Container(
-          height: MediaQuery.of(context).size.height,
+          height: MediaQuery
+              .of(context)
+              .size
+              .height,
           decoration: BoxDecoration(
               color: Colors.white,
               borderRadius: BorderRadius.vertical(top: Radius.circular(20))),

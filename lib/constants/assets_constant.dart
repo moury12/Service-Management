@@ -11,7 +11,10 @@ class AssetsConstant {
   static const String slide_image1 = "assets/images/slide_image1.png";
   static const String slide_image2 = "assets/images/slide_image2.png";
   static const String splash_image = "assets/images/splash_image.png";
+  static const String dummy_service = "assets/images/dummy_service.png";
   static const String splash_image_full = "assets/images/splash_image_full.png";
+  static const String service_item_shade =
+      "assets/images/service_item_shade.png";
 
   //icons
   static const String account_icon = "assets/icons/account_icon.png";

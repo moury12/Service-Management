@@ -91,6 +91,10 @@ class AppTheme {
     fontSize: 12,
     fontWeight: FontWeight.w600,
   );
+  static const textStyleSemiBoldPrimary12 = TextStyle(
+      fontSize: 12,
+      fontWeight: FontWeight.w600,
+      color: AppColors.kPrimaryColor);
   static const textStyleSemiBoldWhite12 =
       TextStyle(fontSize: 12, fontWeight: FontWeight.w600, color: Colors.white);
   static const textStyleBoldBlack12 = TextStyle(
@@ -229,6 +233,11 @@ class AppTheme {
     color: AppColors.kWhiteColor,
     fontSize: 20,
     fontWeight: FontWeight.w600,
+  );
+  static const textStyleBoldWhite20 = TextStyle(
+    color: AppColors.kWhiteColor,
+    fontSize: 20,
+    fontWeight: FontWeight.bold,
   );
   static const textStyleBoldBlack20 = TextStyle(
     fontSize: 20,
