@@ -1,7 +1,11 @@
 import 'package:fix_ican/pages/auth/login_page.dart';
+import 'package:fix_ican/pages/home/all_services_offers.dart';
 import 'package:fix_ican/pages/home/home_page.dart';
+import 'package:fix_ican/pages/services/service_offer_details.dart';
+import 'package:fix_ican/pages/services/service_page.dart';
 import 'package:fix_ican/pages/splash/language_selection_page.dart';
 import 'package:fix_ican/pages/splash/onboarding_page.dart';
+import 'package:fix_ican/shared/custom_scaffold.dart';
 import 'package:get/get.dart';
 
 import '../pages/splash/splash_page.dart';
@@ -31,6 +35,18 @@ class AppRoutes {
         GetPage(
           name: HomeScreen.routeName,
           page: () => const HomeScreen(),
+        ),
+        GetPage(
+          name: ServicesScreen.routeName,
+          page: () => const ServicesScreen(),
+        ),
+        GetPage(
+          name: AllServicesOffers.routeName,
+          page: () => const AllServicesOffers(),
+        ),
+        GetPage(
+          name: ServiceOfferDetails.routeName,
+          page: () => const ServiceOfferDetails(),
         ),
       ];
 }

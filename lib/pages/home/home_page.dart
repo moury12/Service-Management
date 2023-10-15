@@ -1,13 +1,15 @@
 import 'package:fix_ican/constants/assets_constant.dart';
 import 'package:fix_ican/constants/color_constant.dart';
+import 'package:fix_ican/pages/home/all_services_offers.dart';
 import 'package:fix_ican/shared/custom_scaffold.dart';
 import 'package:fix_ican/shared/custom_sized_box.dart';
 import 'package:fix_ican/theme/theme_data.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class HomeScreen extends StatefulWidget {
-  static const String routeName = '/';
+  static const String routeName = '/home';
 
   const HomeScreen({super.key});
 
@@ -24,6 +26,7 @@ class _HomeScreenState extends State<HomeScreen>
   Widget build(BuildContext context) {
     return CustomScaffold(
       body: Stack(
+        clipBehavior: Clip.none,
         children: [
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -38,7 +41,7 @@ class _HomeScreenState extends State<HomeScreen>
               ),
               GridView.builder(
                 padding:
-                    const EdgeInsets.symmetric(horizontal: 8, vertical: 12),
+                const EdgeInsets.symmetric(horizontal: 8, vertical: 12),
                 gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                     crossAxisCount: 4,
                     mainAxisSpacing: 24,
@@ -58,7 +61,7 @@ class _HomeScreenState extends State<HomeScreen>
                 height: showMore ? 200 : 0,
                 child: GridView.builder(
                   padding:
-                      const EdgeInsets.symmetric(horizontal: 8, vertical: 12),
+                  const EdgeInsets.symmetric(horizontal: 8, vertical: 12),
                   gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                       crossAxisCount: 4,
                       mainAxisSpacing: 24,
@@ -90,6 +93,7 @@ class _HomeScreenState extends State<HomeScreen>
                   color: showMore ? null : Colors.white.withOpacity(.6),
                   width: double.infinity,
                   height: 90,
+                  clipBehavior: Clip.none,
                   child: FittedBox(
                     child: Container(
                       margin: const EdgeInsets.symmetric(vertical: 20),
@@ -165,7 +169,8 @@ class _HomeScreenState extends State<HomeScreen>
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: List.generate(
                       3,
-                      (index) => Container(
+                          (index) =>
+                          Container(
                             margin: const EdgeInsets.all(4),
                             width: currentIndex == index ? 20 : 10,
                             decoration: BoxDecoration(
@@ -174,7 +179,7 @@ class _HomeScreenState extends State<HomeScreen>
                                     color: currentIndex == index
                                         ? AppColors.kPrimaryColor
                                         : AppColors.kPrimaryColor
-                                            .withOpacity(.5)),
+                                        .withOpacity(.5)),
                                 borderRadius: BorderRadius.circular(20)),
                           )),
                 ),
@@ -189,7 +194,15 @@ class _HomeScreenState extends State<HomeScreen>
                         style: AppTheme.textStyleSemiBoldBlack16,
                       ),
                       TextButton(
-                          onPressed: () {},
+                          onPressed: () {
+                            // Navigator.push(context, MaterialPageRoute(
+                            //   builder: (context) {
+                            //     return AllServicesOffers();
+                            //   },
+                            // ));
+                            Get.toNamed(AllServicesOffers.routeName,
+                                arguments: 'service');
+                          },
                           child: const Text(
                             'See All',
                             style: AppTheme.textStyleSemiBoldPrimary12,
@@ -206,45 +219,87 @@ class _HomeScreenState extends State<HomeScreen>
                     itemBuilder: (context, index) {
                       currentIndex = index;
 
-                      return Container(
-                        width: MediaQuery.of(context).size.width * .4,
-                        margin: EdgeInsets.symmetric(horizontal: 8),
-                        decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(8),
-                            color: Colors.white,
-                            boxShadow: [
-                              BoxShadow(
-                                  blurRadius: 10,
-                                  color: Colors.black.withOpacity(.06))
-                            ]),
-                        child: Column(
-                          children: [
-                            ClipRRect(
-                              borderRadius: BorderRadius.vertical(
-                                  top: Radius.circular(8)),
-                              child: Image.asset(
-                                AssetsConstant.dummy_service,
-                                fit: BoxFit.cover,
-                                height: 99,
-                                width: MediaQuery.of(context).size.width * .4,
-                              ),
-                            ),
-                            Padding(
-                              padding: const EdgeInsets.all(8.0),
-                              child: Text(
-                                'Basic Cleaning Service',
-                                style: AppTheme.textStyleSemiBoldBlack16,
-                              ),
-                            )
-                          ],
-                        ),
-                      );
+                      return OfferAndServicesWidget();
                     },
                   ),
                 ),
-                // AnimatedButtonContainer()
-                // SlideAnimationIcons()
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 16.0)
+                      .copyWith(right: 6),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      const Text(
+                        'Offers',
+                        style: AppTheme.textStyleSemiBoldBlack16,
+                      ),
+                      TextButton(
+                          onPressed: () {
+                            Get.toNamed(AllServicesOffers.routeName,
+                                arguments: 'offer');
+                          },
+                          child: const Text(
+                            'See All',
+                            style: AppTheme.textStyleSemiBoldPrimary12,
+                          ))
+                    ],
+                  ),
+                ),
+                SizedBox(
+                  height: 160,
+                  child: ListView.builder(
+                    scrollDirection: Axis.horizontal,
+                    itemCount: 3,
+                    padding: EdgeInsets.symmetric(horizontal: 8),
+                    itemBuilder: (context, index) {
+                      return OfferAndServicesWidget();
+                    },
+                  ),
+                ),
               ],
+            ),
+          )
+        ],
+      ),
+    );
+  }
+}
+
+class OfferAndServicesWidget extends StatelessWidget {
+  const OfferAndServicesWidget({
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      width: MediaQuery
+          .of(context)
+          .size
+          .width * .4,
+      margin: EdgeInsets.symmetric(
+        horizontal: 8,
+      ),
+      decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(8),
+          color: Colors.white,
+          boxShadow: [
+            BoxShadow(blurRadius: 10, color: Colors.black.withOpacity(.06))
+          ]),
+      child: Column(
+        children: [
+          ClipRRect(
+            borderRadius: BorderRadius.vertical(top: Radius.circular(8)),
+            child: Image.asset(
+              AssetsConstant.dummy_service,
+              fit: BoxFit.cover,
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Text(
+              'Basic Cleaning Service',
+              style: AppTheme.textStyleSemiBoldBlack16,
             ),
           )
         ],
@@ -261,7 +316,10 @@ class OfferItemWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: MediaQuery.of(context).size.width * .9,
+      width: MediaQuery
+          .of(context)
+          .size
+          .width * .9,
       margin: const EdgeInsets.symmetric(horizontal: 8),
       decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(6),
@@ -275,6 +333,7 @@ class OfferItemWidget extends StatelessWidget {
               end: Alignment.centerRight),
           color: Colors.red),
       child: Stack(
+        clipBehavior: Clip.none,
         children: [
           Positioned(
             bottom: 0,
@@ -297,7 +356,7 @@ class OfferItemWidget extends StatelessWidget {
             children: [
               Padding(
                 padding:
-                    const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+                const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -347,7 +406,12 @@ class OfferItemWidget extends StatelessWidget {
 class HomeServiceItemWidget extends StatelessWidget {
   const HomeServiceItemWidget({
     super.key,
+    this.label,
+    this.height,
   });
+
+  final Widget? label;
+  final double? height;
 
   @override
   Widget build(BuildContext context) {
@@ -368,7 +432,10 @@ class HomeServiceItemWidget extends StatelessWidget {
               alignment: Alignment.bottomCenter,
               children: [
                 Positioned(
-                  child: Image.asset(AssetsConstant.service_item_shade),
+                  child: Image.asset(
+                    AssetsConstant.service_item_shade,
+
+                  ),
                   bottom: 0,
                   left: 0,
                   right: 0,
@@ -376,170 +443,24 @@ class HomeServiceItemWidget extends StatelessWidget {
                 Padding(
                   padding: const EdgeInsets.all(12),
                   child: Center(
-                    child: Image.asset(AssetsConstant.home_service_icon1),
+                    child: Image.asset(AssetsConstant.home_service_icon1,
+                        height:
+                        height ?? 25),
                   ),
                 ),
               ],
             ),
           ),
-          const Padding(
-            padding: EdgeInsets.symmetric(horizontal: 8),
-            child: Text(
-              'Basic Cleaning',
-              style: AppTheme.textStyleSemiBoldBlack10,
-            ),
-          )
+          label ??
+              Padding(
+                padding: EdgeInsets.symmetric(horizontal: 8),
+                child: Text(
+                  'Basic Cleaning',
+                  style: AppTheme.textStyleSemiBoldBlack10,
+                ),
+              )
         ],
       ),
-    );
-  }
-}
-
-class SlideAnimationIcons extends StatefulWidget {
-  @override
-  _SlideAnimationIconsState createState() => _SlideAnimationIconsState();
-}
-
-class _SlideAnimationIconsState extends State<SlideAnimationIcons>
-    with TickerProviderStateMixin {
-  bool areIconsVisible = false;
-
-  void toggleIconsVisibility() {
-    setState(() {
-      areIconsVisible = !areIconsVisible;
-    });
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return Column(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: [
-        Center(
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              if (areIconsVisible)
-                AnimatedPositioned(
-                  left: areIconsVisible ? 0 : 50,
-                  duration: const Duration(seconds: 1),
-                  child: const Icon(Icons.star, size: 50, color: Colors.blue),
-                ),
-              if (areIconsVisible)
-                ScaleTransition(
-                  scale: Tween<double>(begin: 1.0, end: 0.5)
-                      .animate(CurvedAnimation(
-                          parent: AnimationController(
-                            duration: const Duration(milliseconds: 500),
-                            vsync: this,
-                          ),
-                          curve: Curves.easeIn)),
-                  child: const Icon(Icons.star, size: 50, color: Colors.blue),
-                ),
-              GestureDetector(
-                onTap: toggleIconsVisibility,
-                child: Container(
-                  padding: const EdgeInsets.all(10.0),
-                  color: Colors.green,
-                  child: Text(
-                    areIconsVisible ? "Hide Icons" : "Show Icons",
-                    style: const TextStyle(color: Colors.white),
-                  ),
-                ),
-              ),
-              if (areIconsVisible)
-                SlideTransition(
-                  position: Tween<Offset>(
-                    begin: const Offset(0.0, 0.0),
-                    end: const Offset(1.0, 0.0),
-                  ).animate(
-                    CurvedAnimation(
-                      parent: AnimationController(
-                        duration: const Duration(milliseconds: 500),
-                        vsync: this,
-                      ),
-                      curve: Curves.linear,
-                    ),
-                  ),
-                  child: const Icon(Icons.star, size: 50, color: Colors.red),
-                ),
-              if (areIconsVisible)
-                SlideTransition(
-                  position: Tween<Offset>(
-                    begin: const Offset(0.0, 0.0),
-                    end: const Offset(1.0, 0.0),
-                  ).animate(
-                    CurvedAnimation(
-                      parent: AnimationController(
-                        duration: const Duration(milliseconds: 500),
-                        vsync: this,
-                      ),
-                      curve: Curves.linear,
-                    ),
-                  ),
-                  child: const Icon(Icons.star, size: 50, color: Colors.red),
-                ),
-            ],
-          ),
-        ),
-      ],
-    );
-  }
-}
-
-class AnimatedButtonContainer extends StatefulWidget {
-  @override
-  _AnimatedButtonContainerState createState() =>
-      _AnimatedButtonContainerState();
-}
-
-class _AnimatedButtonContainerState extends State<AnimatedButtonContainer> {
-  bool isContainerVisible = false;
-  double containerWidth = 100.0;
-
-  void toggleContainerVisibility() {
-    setState(() {
-      isContainerVisible = !isContainerVisible;
-      if (isContainerVisible) {
-        containerWidth = 200.0;
-      } else {
-        containerWidth = 0.0;
-      }
-    });
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return Column(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: [
-        AnimatedContainer(
-          duration: Duration(milliseconds: 500),
-          width: containerWidth,
-          height: 50.0,
-          color: Colors.blue,
-          child: isContainerVisible
-              ? Center(
-                  child: Text(
-                    'Content inside the container',
-                    style: TextStyle(color: Colors.white),
-                  ),
-                )
-              : null,
-        ),
-        SizedBox(height: 20.0),
-        GestureDetector(
-          onTap: toggleContainerVisibility,
-          child: Container(
-            padding: EdgeInsets.all(10.0),
-            color: Colors.green,
-            child: Text(
-              isContainerVisible ? "Hide" : "Show",
-              style: TextStyle(color: Colors.white),
-            ),
-          ),
-        ),
-      ],
     );
   }
 }

@@ -18,6 +18,11 @@ class AppTheme {
     fontSize: 10,
     fontWeight: FontWeight.normal,
   );
+  static const textStyleNormalFadeBlack10 = TextStyle(
+    fontSize: 10,
+    color: Colors.black54,
+    fontWeight: FontWeight.normal,
+  );
   static const textStyleNormalWhite10 = TextStyle(
     color: Colors.white,
     fontSize: 10,

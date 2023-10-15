@@ -22,6 +22,10 @@ class AssetsConstant {
   static const String forward_icon = "assets/icons/forward_icon.png";
   static const String otpContainer_icon = "assets/icons/otpContainer_icon.png";
   static const String backward_icon = "assets/icons/backWard_icon.png";
+  static const String check_icon = "assets/icons/check_icon.png";
+  static const String cart_icon = "assets/icons/cart_icon.png";
+  static const String info_icon = "assets/icons/info_icon.png";
+  static const String arrow_icon = "assets/icons/arrow.png";
   static const String home_service_icon1 =
       "assets/icons/home_service_icon1.png";
   static const String home_service_icon2 =
