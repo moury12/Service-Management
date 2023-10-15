@@ -1,6 +1,7 @@
 import 'package:fix_ican/constants/assets_constant.dart';
 import 'package:fix_ican/constants/color_constant.dart';
 import 'package:fix_ican/pages/home/home_page.dart';
+import 'package:fix_ican/pages/services/basic_cleaning_page.dart';
 import 'package:fix_ican/shared/custom_scaffold.dart';
 import 'package:fix_ican/theme/theme_data.dart';
 import 'package:flutter/material.dart';
@@ -148,7 +149,11 @@ class _ServiceOfferDetailsState extends State<ServiceOfferDetails> {
             ),
             CustomButton(
               label: argument == 'service' ? 'Continue' : 'Okay',
-              onPressed: argument == 'service' ? () {} : null,
+              onPressed: argument == 'service'
+                  ? () {
+                      Get.toNamed(BasicCleaningScreen.routeName);
+                    }
+                  : () {},
               marginHorizontal: 0,
               marginVertical: 0,
               suffixImage:

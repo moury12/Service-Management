@@ -12,15 +12,16 @@ import 'enums.dart';
 class CustomScaffold extends StatefulWidget {
   static const String routeName = '/custom';
 
-  const CustomScaffold({super.key,
-    this.leading,
-    this.leadingIcon,
-    this.action,
-    this.actionIcon,
-    this.title,
-    this.body,
-    this.bottom,
-    this.appBar});
+  const CustomScaffold(
+      {super.key,
+      this.leading,
+      this.leadingIcon,
+      this.action,
+      this.actionIcon,
+      this.title,
+      this.body,
+      this.bottom,
+      this.appBar});
 
   final Widget? leading;
   final String? leadingIcon;
@@ -70,7 +71,8 @@ class _CustomScaffoldState extends State<CustomScaffold> {
   void toggleContainerVisibility() {
     setState(() {
       isContainerVisible = !isContainerVisible;
-      if (isContainerVisible) {} else {
+      if (isContainerVisible) {
+      } else {
         containerWidth = 0.0;
       }
     });
@@ -126,15 +128,12 @@ class _CustomScaffoldState extends State<CustomScaffold> {
                 Padding(
                   padding: const EdgeInsets.only(top: 20),
                   child: Container(
-                      height: MediaQuery
-                          .of(context)
-                          .size
-                          .height,
-
+                      height: MediaQuery.of(context).size.height -
+                          (kToolbarHeight + 45),
                       decoration: const BoxDecoration(
                           color: Colors.white,
                           borderRadius:
-                          BorderRadius.vertical(top: Radius.circular(20))),
+                              BorderRadius.vertical(top: Radius.circular(20))),
                       child: widget.body),
                 ),
                 // SizedBox(
@@ -148,25 +147,16 @@ class _CustomScaffoldState extends State<CustomScaffold> {
                 bottom: 0,
                 child: SizedBox(
                   height: 56,
-                  width: MediaQuery
-                      .of(context)
-                      .size
-                      .width,
+                  width: MediaQuery.of(context).size.width,
                   child: Stack(
                     children: [
                       AnimatedPositioned(
                           left: isContainerVisible
                               ? 0
-                              : MediaQuery
-                              .of(context)
-                              .size
-                              .width / 2,
+                              : MediaQuery.of(context).size.width / 2,
                           right: isContainerVisible
                               ? 0
-                              : MediaQuery
-                              .of(context)
-                              .size
-                              .width / 2,
+                              : MediaQuery.of(context).size.width / 2,
                           top: isContainerVisible ? 0 : 40,
                           bottom: isContainerVisible ? 0 : 40,
                           duration: const Duration(milliseconds: 500),
@@ -189,7 +179,7 @@ class _CustomScaffoldState extends State<CustomScaffold> {
                                 AnimatedContainer(
                                     decoration: BoxDecoration(
                                         color: _navigationType ==
-                                            NavigationType.home
+                                                NavigationType.home
                                             ? AppColors.kPrimaryColor
                                             : null,
                                         borderRadius: BorderRadius.circular(33),
@@ -197,15 +187,15 @@ class _CustomScaffoldState extends State<CustomScaffold> {
                                           BoxShadow(
                                               blurRadius: 10,
                                               color: _navigationType ==
-                                                  NavigationType.home
+                                                      NavigationType.home
                                                   ? Colors.black
-                                                  .withOpacity(.16)
+                                                      .withOpacity(.16)
                                                   : Colors.transparent)
                                         ]),
                                     padding:
-                                    _navigationType == NavigationType.home
-                                        ? const EdgeInsets.all(8)
-                                        : EdgeInsets.all(6.0),
+                                        _navigationType == NavigationType.home
+                                            ? const EdgeInsets.all(8)
+                                            : EdgeInsets.all(6.0),
                                     margin: EdgeInsets.symmetric(
                                         horizontal: 8, vertical: 8),
                                     curve: Curves.fastLinearToSlowEaseIn,
@@ -221,25 +211,25 @@ class _CustomScaffoldState extends State<CustomScaffold> {
                                             Image.asset(
                                               AssetsConstant.home_icon,
                                               color: _navigationType ==
-                                                  NavigationType.home
+                                                      NavigationType.home
                                                   ? Colors.white
                                                   : null,
                                             ),
                                             CustomSizedBox.space4W,
                                             _navigationType ==
-                                                NavigationType.home
+                                                    NavigationType.home
                                                 ? const Text(
-                                              'Home',
-                                              style: AppTheme
-                                                  .textStyleMediumWhite10,
-                                            )
+                                                    'Home',
+                                                    style: AppTheme
+                                                        .textStyleMediumWhite10,
+                                                  )
                                                 : const SizedBox.shrink()
                                           ],
                                         ))),
                                 AnimatedContainer(
                                     decoration: BoxDecoration(
                                         color: _navigationType ==
-                                            NavigationType.service
+                                                NavigationType.service
                                             ? AppColors.kPrimaryColor
                                             : null,
                                         borderRadius: BorderRadius.circular(33),
@@ -247,13 +237,13 @@ class _CustomScaffoldState extends State<CustomScaffold> {
                                           BoxShadow(
                                             blurRadius: 10,
                                             color: _navigationType ==
-                                                NavigationType.service
+                                                    NavigationType.service
                                                 ? Colors.black.withOpacity(.16)
                                                 : Colors.transparent,
                                           )
                                         ]),
                                     padding: _navigationType ==
-                                        NavigationType.service
+                                            NavigationType.service
                                         ? const EdgeInsets.all(8)
                                         : EdgeInsets.all(6.0),
                                     margin: const EdgeInsets.symmetric(
@@ -272,31 +262,28 @@ class _CustomScaffoldState extends State<CustomScaffold> {
                                             Image.asset(
                                               AssetsConstant.service_icon,
                                               color: _navigationType ==
-                                                  NavigationType.service
+                                                      NavigationType.service
                                                   ? Colors.white
                                                   : null,
                                             ),
                                             CustomSizedBox.space4W,
                                             _navigationType ==
-                                                NavigationType.service
+                                                    NavigationType.service
                                                 ? const Text(
-                                              'Service',
-                                              style: AppTheme
-                                                  .textStyleMediumWhite10,
-                                            )
+                                                    'Service',
+                                                    style: AppTheme
+                                                        .textStyleMediumWhite10,
+                                                  )
                                                 : const SizedBox.shrink()
                                           ],
                                         ))),
                                 SizedBox(
-                                  width: MediaQuery
-                                      .of(context)
-                                      .size
-                                      .width / 9,
+                                  width: MediaQuery.of(context).size.width / 9,
                                 ),
                                 AnimatedContainer(
                                     decoration: BoxDecoration(
                                         color: _navigationType ==
-                                            NavigationType.settings
+                                                NavigationType.settings
                                             ? AppColors.kPrimaryColor
                                             : null,
                                         borderRadius: BorderRadius.circular(33),
@@ -304,13 +291,13 @@ class _CustomScaffoldState extends State<CustomScaffold> {
                                           BoxShadow(
                                               blurRadius: 10,
                                               color: _navigationType ==
-                                                  NavigationType.settings
+                                                      NavigationType.settings
                                                   ? Colors.black
-                                                  .withOpacity(.16)
+                                                      .withOpacity(.16)
                                                   : Colors.transparent)
                                         ]),
                                     padding: _navigationType ==
-                                        NavigationType.settings
+                                            NavigationType.settings
                                         ? const EdgeInsets.all(8)
                                         : EdgeInsets.all(6.0),
                                     margin: EdgeInsets.symmetric(
@@ -328,25 +315,25 @@ class _CustomScaffoldState extends State<CustomScaffold> {
                                             Image.asset(
                                               AssetsConstant.settings_icon,
                                               color: _navigationType ==
-                                                  NavigationType.settings
+                                                      NavigationType.settings
                                                   ? Colors.white
                                                   : null,
                                             ),
                                             CustomSizedBox.space4W,
                                             _navigationType ==
-                                                NavigationType.settings
+                                                    NavigationType.settings
                                                 ? const Text(
-                                              'Setting',
-                                              style: AppTheme
-                                                  .textStyleMediumWhite10,
-                                            )
+                                                    'Setting',
+                                                    style: AppTheme
+                                                        .textStyleMediumWhite10,
+                                                  )
                                                 : const SizedBox.shrink()
                                           ],
                                         ))),
                                 AnimatedContainer(
                                     decoration: BoxDecoration(
                                         color: _navigationType ==
-                                            NavigationType.profile
+                                                NavigationType.profile
                                             ? AppColors.kPrimaryColor
                                             : null,
                                         borderRadius: BorderRadius.circular(33),
@@ -354,13 +341,13 @@ class _CustomScaffoldState extends State<CustomScaffold> {
                                           BoxShadow(
                                             blurRadius: 10,
                                             color: _navigationType ==
-                                                NavigationType.profile
+                                                    NavigationType.profile
                                                 ? Colors.black.withOpacity(.16)
                                                 : Colors.transparent,
                                           )
                                         ]),
                                     padding: _navigationType ==
-                                        NavigationType.profile
+                                            NavigationType.profile
                                         ? const EdgeInsets.all(8)
                                         : EdgeInsets.all(6.0),
                                     margin: const EdgeInsets.symmetric(
@@ -378,18 +365,18 @@ class _CustomScaffoldState extends State<CustomScaffold> {
                                             Image.asset(
                                               AssetsConstant.account_icon,
                                               color: _navigationType ==
-                                                  NavigationType.profile
+                                                      NavigationType.profile
                                                   ? Colors.white
                                                   : null,
                                             ),
                                             CustomSizedBox.space4W,
                                             _navigationType ==
-                                                NavigationType.profile
+                                                    NavigationType.profile
                                                 ? const Text(
-                                              'Profile',
-                                              style: AppTheme
-                                                  .textStyleMediumWhite10,
-                                            )
+                                                    'Profile',
+                                                    style: AppTheme
+                                                        .textStyleMediumWhite10,
+                                                  )
                                                 : const SizedBox.shrink()
                                           ],
                                         ))),
@@ -397,10 +384,7 @@ class _CustomScaffoldState extends State<CustomScaffold> {
                             ),
                           )),
                       Positioned(
-                          left: (MediaQuery
-                              .of(context)
-                              .size
-                              .width / 2) - 31,
+                          left: (MediaQuery.of(context).size.width / 2) - 31,
                           child: GestureDetector(
                             onTap: () {
                               setState(() {

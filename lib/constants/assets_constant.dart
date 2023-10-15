@@ -26,6 +26,8 @@ class AssetsConstant {
   static const String cart_icon = "assets/icons/cart_icon.png";
   static const String info_icon = "assets/icons/info_icon.png";
   static const String arrow_icon = "assets/icons/arrow.png";
+  static const String add_icon = "assets/icons/add_icon.png";
+  static const String minimize_icon = "assets/icons/minimize_icon.png";
   static const String home_service_icon1 =
       "assets/icons/home_service_icon1.png";
   static const String home_service_icon2 =

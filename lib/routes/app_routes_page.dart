@@ -1,6 +1,7 @@
 import 'package:fix_ican/pages/auth/login_page.dart';
 import 'package:fix_ican/pages/home/all_services_offers.dart';
 import 'package:fix_ican/pages/home/home_page.dart';
+import 'package:fix_ican/pages/services/basic_cleaning_page.dart';
 import 'package:fix_ican/pages/services/service_offer_details.dart';
 import 'package:fix_ican/pages/services/service_page.dart';
 import 'package:fix_ican/pages/splash/language_selection_page.dart';
@@ -47,6 +48,10 @@ class AppRoutes {
         GetPage(
           name: ServiceOfferDetails.routeName,
           page: () => const ServiceOfferDetails(),
+        ),
+        GetPage(
+          name: BasicCleaningScreen.routeName,
+          page: () => const BasicCleaningScreen(),
         ),
       ];
 }
