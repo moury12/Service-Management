@@ -27,21 +27,21 @@ class AllServicesOffers extends StatelessWidget {
       bottom: SizedBox.shrink(),
       body: ClipRRect(
         borderRadius: BorderRadius.vertical(top: Radius.circular(8)),
-        child: Expanded(
-          child: GridView.builder(
-            padding: EdgeInsets.symmetric(vertical: 16, horizontal: 8),
-            gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                crossAxisCount: 2, mainAxisSpacing: 16, crossAxisSpacing: 5),
-            itemCount: 10,
-            itemBuilder: (context, index) {
-              return GestureDetector(
-                  onTap: () {
-                    Get.toNamed(ServiceOfferDetails.routeName,
-                        arguments: argument);
-                  },
-                  child: OfferAndServicesWidget());
-            },
-          ),
+        child: GridView.builder(
+          shrinkWrap: true,
+          primary: false,
+          padding: EdgeInsets.symmetric(vertical: 16, horizontal: 8),
+          gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+              crossAxisCount: 2, mainAxisSpacing: 16, crossAxisSpacing: 5),
+          itemCount: 10,
+          itemBuilder: (context, index) {
+            return GestureDetector(
+                onTap: () {
+                  Get.toNamed(ServiceOfferDetails.routeName,
+                      arguments: argument);
+                },
+                child: OfferAndServicesWidget());
+          },
         ),
       ),
     );

@@ -7,6 +7,7 @@ import 'package:fix_ican/theme/theme_data.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:mh_core/utils/constant.dart';
 
 class HomeScreen extends StatefulWidget {
   static const String routeName = '/home';
@@ -21,246 +22,268 @@ class _HomeScreenState extends State<HomeScreen>
     with SingleTickerProviderStateMixin {
   bool showMore = false;
   int currentIndex = 0;
+  int gridItem = 8;
+
+  Color? containerColor = Colors.white.withOpacity(.6);
 
   @override
   Widget build(BuildContext context) {
-    return CustomScaffold(
-      body: Stack(
-        clipBehavior: Clip.none,
-        children: [
-          Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              CustomSizedBox.space12H,
-              const Padding(
-                padding: EdgeInsets.symmetric(horizontal: 16.0),
-                child: Text(
-                  'Service Category',
-                  style: AppTheme.textStyleSemiBoldBlack16,
-                ),
-              ),
-              GridView.builder(
-                padding:
-                const EdgeInsets.symmetric(horizontal: 8, vertical: 12),
-                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                    crossAxisCount: 4,
-                    mainAxisSpacing: 24,
-                    crossAxisSpacing: 24),
-                itemCount: showMore ? 8 : 8,
-                shrinkWrap: true,
-                physics: const NeverScrollableScrollPhysics(),
-                itemBuilder: (context, index) {
-                  return const HomeServiceItemWidget();
-                },
-              ),
-              // Show More Button
+    return Column(
+      children: [
+        Stack(
+          clipBehavior: Clip.none,
+          children: [
+            Padding(
+              padding: EdgeInsets.only(bottom: showMore ? 72 : 12),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  CustomSizedBox.space12H,
+                  const Padding(
+                    padding: EdgeInsets.symmetric(horizontal: 16.0),
+                    child: Text(
+                      'Service Category',
+                      style: AppTheme.textStyleSemiBoldBlack16,
+                    ),
+                  ),
+                  // GridView.builder(
+                  //   padding: const EdgeInsets.symmetric(
+                  //       horizontal: 8, vertical: 12),
+                  //   gridDelegate:
+                  //       const SliverGridDelegateWithFixedCrossAxisCount(
+                  //           crossAxisCount: 4,
+                  //           mainAxisSpacing: 24,
+                  //           crossAxisSpacing: 24),
+                  //   itemCount: showMore ? 8 : 8,
+                  //   shrinkWrap: true,
+                  //   physics: const NeverScrollableScrollPhysics(),
+                  //   itemBuilder: (context, index) {
+                  //     return const HomeServiceItemWidget();
+                  //   },
+                  // ),
+                  // Show More Button
 
-              // Last 2 Rows (Hidden)
-              AnimatedContainer(
-                duration: const Duration(milliseconds: 200),
-                height: showMore ? 200 : 0,
-                child: GridView.builder(
-                  padding:
-                  const EdgeInsets.symmetric(horizontal: 8, vertical: 12),
-                  gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                      crossAxisCount: 4,
-                      mainAxisSpacing: 24,
-                      crossAxisSpacing: 24),
-                  itemCount: 8,
-                  shrinkWrap: true,
-                  physics: const NeverScrollableScrollPhysics(),
-                  itemBuilder: (context, index) {
-                    return const HomeServiceItemWidget();
-                  },
-                ),
+                  // Last 2 Rows (Hidden)
+                  AnimatedContainer(
+                    duration: const Duration(milliseconds: 300),
+                    // height: showMore ? 400 : 200,
+                    onEnd: () {
+                      // if (showMore) {
+                      //   gridItem = 32;
+                      //   setState(() {});
+                      // }
+                    },
+                    child: GridView.builder(
+                      padding: const EdgeInsets.symmetric(
+                          horizontal: 8, vertical: 12),
+                      gridDelegate:
+                          const SliverGridDelegateWithFixedCrossAxisCount(
+                              crossAxisCount: 4,
+                              mainAxisSpacing: 24,
+                              crossAxisSpacing: 24),
+                      itemCount: showMore ? 16 : 8,
+                      // itemCount: gridItem,
+                      shrinkWrap: true,
+                      physics: const NeverScrollableScrollPhysics(),
+                      itemBuilder: (context, index) {
+                        return const HomeServiceItemWidget();
+                      },
+                    ),
+                  ),
+                  // ElevatedButton(
+                  //   onPressed: () {
+                  //
+                  //   },
+                  //   child: Text('Show More'),
+                  // ),
+                ],
               ),
-              // ElevatedButton(
-              //   onPressed: () {
-              //
-              //   },
-              //   child: Text('Show More'),
-              // ),
-            ],
-          ),
-          AnimatedPositioned(
-            top: showMore ? 100 * 4 : 150,
-            left: 0,
-            right: 0,
-            duration: const Duration(milliseconds: 200),
-            child: Column(
-              children: [
-                Container(
-                  color: showMore ? null : Colors.white.withOpacity(.6),
-                  width: double.infinity,
-                  height: 90,
-                  clipBehavior: Clip.none,
-                  child: FittedBox(
-                    child: Container(
-                      margin: const EdgeInsets.symmetric(vertical: 20),
-                      decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(20),
-                          boxShadow: [
-                            BoxShadow(
-                                color: Colors.black.withOpacity(.2),
-                                blurRadius: 5)
-                          ],
-                          gradient: const LinearGradient(
-                              colors: [
-                                AppColors.kPrimaryColor,
-                                Color(0xffFFA0A9)
-                              ],
-                              begin: Alignment.centerLeft,
-                              end: Alignment.centerRight),
-                          color: Colors.red),
-                      child: Material(
-                        type: MaterialType.transparency,
+            ),
+            AnimatedPositioned(
+              onEnd: () {
+                if (showMore) {
+                  containerColor = null;
+                  setState(() {});
+                }
+              },
+              top: showMore ? 100 * 4 : 150,
+              left: 0,
+              right: 0,
+              duration: const Duration(milliseconds: 300),
+              child: Container(
+                color: containerColor,
+                width: double.infinity,
+                height: 90,
+                clipBehavior: Clip.none,
+                child: FittedBox(
+                  child: Container(
+                    margin: const EdgeInsets.symmetric(vertical: 20),
+                    decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(20),
-                        child: InkWell(
-                          borderRadius: BorderRadius.circular(20),
-                          onTap: () {
-                            if (!showMore) {
-                              setState(() {
-                                showMore = true;
-                              });
-                            } else {
-                              setState(() {
-                                showMore = false;
-                              });
-                            }
-                          },
-                          child: const Padding(
-                            padding: EdgeInsets.symmetric(
-                                horizontal: 12, vertical: 8),
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                Text(
-                                  'Show More',
-                                  style: AppTheme.textStyleMediumWhite12,
-                                ),
-                                Icon(
-                                  Icons.keyboard_arrow_down_rounded,
-                                  color: Colors.white,
-                                  size: 17,
-                                )
-                              ],
-                            ),
+                        boxShadow: [
+                          BoxShadow(
+                              color: Colors.black.withOpacity(.2),
+                              blurRadius: 5)
+                        ],
+                        gradient: const LinearGradient(
+                            colors: [
+                              AppColors.kPrimaryColor,
+                              Color(0xffFFA0A9)
+                            ],
+                            begin: Alignment.centerLeft,
+                            end: Alignment.centerRight),
+                        color: Colors.red),
+                    child: Material(
+                      type: MaterialType.transparency,
+                      borderRadius: BorderRadius.circular(20),
+                      child: InkWell(
+                        borderRadius: BorderRadius.circular(20),
+                        onTap: () {
+                          if (!showMore) {
+                            setState(() {
+                              containerColor = Colors.white.withOpacity(.6);
+                              gridItem = 8;
+                              showMore = true;
+                            });
+                          } else {
+                            setState(() {
+                              containerColor = Colors.white.withOpacity(.6);
+                              gridItem = 8;
+                              showMore = false;
+                            });
+                          }
+                        },
+                        child: const Padding(
+                          padding:
+                              EdgeInsets.symmetric(horizontal: 12, vertical: 8),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Text(
+                                'Show More',
+                                style: AppTheme.textStyleMediumWhite12,
+                              ),
+                              Icon(
+                                Icons.keyboard_arrow_down_rounded,
+                                color: Colors.white,
+                                size: 17,
+                              )
+                            ],
                           ),
                         ),
                       ),
                     ),
                   ),
                 ),
-                SizedBox(
-                  height: 130,
-                  child: ListView.builder(
-                    scrollDirection: Axis.horizontal,
-                    itemCount: 3,
-                    padding: const EdgeInsets.symmetric(horizontal: 8),
-                    itemBuilder: (context, index) {
-                      currentIndex = index;
+              ),
+            )
+          ],
+        ),
+        if (!showMore) space6C,
+        SizedBox(
+          height: 130,
+          child: ListView.builder(
+            scrollDirection: Axis.horizontal,
+            itemCount: 3,
+            padding: const EdgeInsets.symmetric(horizontal: 8),
+            itemBuilder: (context, index) {
+              currentIndex = index;
 
-                      return const OfferItemWidget();
-                    },
-                  ),
-                ),
-                CustomSizedBox.space4H,
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: List.generate(
-                      3,
-                          (index) =>
-                          Container(
-                            margin: const EdgeInsets.all(4),
-                            width: currentIndex == index ? 20 : 10,
-                            decoration: BoxDecoration(
-                                border: Border.all(
-                                    width: 3,
-                                    color: currentIndex == index
-                                        ? AppColors.kPrimaryColor
-                                        : AppColors.kPrimaryColor
-                                        .withOpacity(.5)),
-                                borderRadius: BorderRadius.circular(20)),
-                          )),
-                ),
-                Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 16.0)
-                      .copyWith(right: 6),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      const Text(
-                        'Popular Services',
-                        style: AppTheme.textStyleSemiBoldBlack16,
-                      ),
-                      TextButton(
-                          onPressed: () {
-                            // Navigator.push(context, MaterialPageRoute(
-                            //   builder: (context) {
-                            //     return AllServicesOffers();
-                            //   },
-                            // ));
-                            Get.toNamed(AllServicesOffers.routeName,
-                                arguments: 'service');
-                          },
-                          child: const Text(
-                            'See All',
-                            style: AppTheme.textStyleSemiBoldPrimary12,
-                          ))
-                    ],
-                  ),
-                ),
-                SizedBox(
-                  height: 160,
-                  child: ListView.builder(
-                    scrollDirection: Axis.horizontal,
-                    itemCount: 3,
-                    padding: EdgeInsets.symmetric(horizontal: 8),
-                    itemBuilder: (context, index) {
-                      currentIndex = index;
+              return const OfferItemWidget();
+            },
+          ),
+        ),
+        CustomSizedBox.space4H,
+        Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: List.generate(
+              3,
+              (index) => Container(
+                    margin: const EdgeInsets.all(4),
+                    width: currentIndex == index ? 20 : 10,
+                    decoration: BoxDecoration(
+                        border: Border.all(
+                            width: 3,
+                            color: currentIndex == index
+                                ? AppColors.kPrimaryColor
+                                : AppColors.kPrimaryColor.withOpacity(.5)),
+                        borderRadius: BorderRadius.circular(20)),
+                  )),
+        ),
+        Padding(
+          padding:
+              const EdgeInsets.symmetric(horizontal: 16.0).copyWith(right: 6),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              const Text(
+                'Popular Services',
+                style: AppTheme.textStyleSemiBoldBlack16,
+              ),
+              TextButton(
+                  onPressed: () {
+                    // Navigator.push(context, MaterialPageRoute(
+                    //   builder: (context) {
+                    //     return AllServicesOffers();
+                    //   },
+                    // ));
+                    Get.toNamed(AllServicesOffers.routeName,
+                        arguments: 'service');
+                  },
+                  child: const Text(
+                    'See All',
+                    style: AppTheme.textStyleSemiBoldPrimary12,
+                  ))
+            ],
+          ),
+        ),
+        SizedBox(
+          height: 160,
+          child: ListView.builder(
+            scrollDirection: Axis.horizontal,
+            itemCount: 3,
+            padding: EdgeInsets.symmetric(horizontal: 8),
+            itemBuilder: (context, index) {
+              currentIndex = index;
 
-                      return OfferAndServicesWidget();
-                    },
-                  ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 16.0)
-                      .copyWith(right: 6),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      const Text(
-                        'Offers',
-                        style: AppTheme.textStyleSemiBoldBlack16,
-                      ),
-                      TextButton(
-                          onPressed: () {
-                            Get.toNamed(AllServicesOffers.routeName,
-                                arguments: 'offer');
-                          },
-                          child: const Text(
-                            'See All',
-                            style: AppTheme.textStyleSemiBoldPrimary12,
-                          ))
-                    ],
-                  ),
-                ),
-                SizedBox(
-                  height: 160,
-                  child: ListView.builder(
-                    scrollDirection: Axis.horizontal,
-                    itemCount: 3,
-                    padding: EdgeInsets.symmetric(horizontal: 8),
-                    itemBuilder: (context, index) {
-                      return OfferAndServicesWidget();
-                    },
-                  ),
-                ),
-              ],
-            ),
-          )
-        ],
-      ),
+              return OfferAndServicesWidget();
+            },
+          ),
+        ),
+        Padding(
+          padding:
+              const EdgeInsets.symmetric(horizontal: 16.0).copyWith(right: 6),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              const Text(
+                'Offers',
+                style: AppTheme.textStyleSemiBoldBlack16,
+              ),
+              TextButton(
+                  onPressed: () {
+                    Get.toNamed(AllServicesOffers.routeName,
+                        arguments: 'offer');
+                  },
+                  child: const Text(
+                    'See All',
+                    style: AppTheme.textStyleSemiBoldPrimary12,
+                  ))
+            ],
+          ),
+        ),
+        SizedBox(
+          height: 160,
+          child: ListView.builder(
+            scrollDirection: Axis.horizontal,
+            itemCount: 3,
+            padding: EdgeInsets.symmetric(horizontal: 8),
+            itemBuilder: (context, index) {
+              return OfferAndServicesWidget();
+            },
+          ),
+        ),
+      ],
     );
   }
 }
@@ -273,10 +296,8 @@ class OfferAndServicesWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: MediaQuery
-          .of(context)
-          .size
-          .width * .4,
+      width: MediaQuery.of(context).size.width * .4,
+      height: 150,
       margin: EdgeInsets.symmetric(
         horizontal: 8,
       ),
@@ -316,17 +337,13 @@ class OfferItemWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: MediaQuery
-          .of(context)
-          .size
-          .width * .9,
+      width: MediaQuery.of(context).size.width * .9,
       margin: const EdgeInsets.symmetric(horizontal: 8),
       decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(6),
-          // boxShadow: [
-          //   BoxShadow(
-          //       color: Colors.black.withOpacity(.2), blurRadius: 5)
-          // ],
+          boxShadow: [
+            BoxShadow(color: Colors.black.withOpacity(.2), blurRadius: 5)
+          ],
           gradient: const LinearGradient(
               colors: [AppColors.kPrimaryColor, Color(0xffFFA0A9)],
               begin: Alignment.centerLeft,
@@ -356,7 +373,7 @@ class OfferItemWidget extends StatelessWidget {
             children: [
               Padding(
                 padding:
-                const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+                    const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -434,7 +451,6 @@ class HomeServiceItemWidget extends StatelessWidget {
                 Positioned(
                   child: Image.asset(
                     AssetsConstant.service_item_shade,
-
                   ),
                   bottom: 0,
                   left: 0,
@@ -444,8 +460,7 @@ class HomeServiceItemWidget extends StatelessWidget {
                   padding: const EdgeInsets.all(12),
                   child: Center(
                     child: Image.asset(AssetsConstant.home_service_icon1,
-                        height:
-                        height ?? 25),
+                        height: height ?? 25),
                   ),
                 ),
               ],

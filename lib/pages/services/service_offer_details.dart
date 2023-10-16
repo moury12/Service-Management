@@ -34,133 +34,125 @@ class _ServiceOfferDetailsState extends State<ServiceOfferDetails> {
         ),
       ),
       title: Text(argument == 'offer' ? 'Offer Details' : 'Service Details'),
-      bottom: SizedBox.shrink(),
+      bottom: CustomButton(
+        label: argument == 'service' ? 'Continue' : 'Okay',
+        onPressed: argument == 'service'
+            ? () {
+                Get.toNamed(BasicCleaningScreen.routeName);
+              }
+            : () {},
+        marginHorizontal: 16,
+        marginVertical: 12,
+        suffixImage: argument == 'service' ? AssetsConstant.arrow_icon : null,
+        suffixImageHeight: 11,
+        borderRadiusAll: 22,
+      ),
       body: Padding(
         padding: const EdgeInsets.symmetric(vertical: 16, horizontal: 16.0),
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                ClipRRect(
-                    borderRadius: BorderRadius.circular(6),
-                    child: Image.asset(AssetsConstant.dummy_service)),
-                Padding(
-                  padding: const EdgeInsets.symmetric(vertical: 12.0),
-                  child: Text(
-                    'Catering Service',
-                    style: AppTheme.textStyleSemiBoldBlack20,
-                  ),
-                ),
-                Text(
-                  'Details: Lorem ipsum dolor sit amet consectetur. Elementum integer a sit euismod nunc id. Nec consequat aliquam blandit ullamcorper id nunc augue.',
-                  style: AppTheme.textStyleNormalBlack12,
-                ),
-                argument == 'service'
-                    ? Padding(
-                        padding: const EdgeInsets.symmetric(vertical: 12.0),
-                        child: Text(
-                          'Services',
-                          style: AppTheme.textStyleSemiBoldBlack20,
-                        ),
-                      )
-                    : SizedBox.shrink(),
-                argument == 'service'
-                    ? Column(
-                        children: [
-                          ...List.generate(
-                              2,
-                              (index) => Row(
-                                    mainAxisAlignment:
-                                        MainAxisAlignment.spaceBetween,
-                                    children: [
-                                      GestureDetector(
-                                        onTap: () {
-                                          setState(() {
-                                            isChecked = !isChecked;
-                                          });
-                                        },
-                                        child: Container(
-                                          padding: EdgeInsets.all(2),
-                                          height: 20,
-                                          width: 20,
-                                          decoration: BoxDecoration(
-                                              color: isChecked
-                                                  ? AppColors.kPrimaryColor
-                                                  : Colors.transparent,
-                                              border: Border.all(
-                                                color: Color(0xffFFD9D9),
-                                                width: 1.4,
-                                              ),
-                                              borderRadius:
-                                                  BorderRadius.circular(3)),
-                                          child: isChecked
-                                              ? Image.asset(
-                                                  AssetsConstant.check_icon,
-                                                  height: 12,
-                                                )
-                                              : SizedBox.shrink(),
-                                        ),
-                                      ),
-                                      Padding(
-                                        padding: const EdgeInsets.all(6.0),
-                                        child: HomeServiceItemWidget(
-                                          label: SizedBox.shrink(),
-                                          height: 33,
-                                        ),
-                                      ),
-                                      Column(
-                                        crossAxisAlignment:
-                                            CrossAxisAlignment.start,
-                                        children: [
-                                          Text(
-                                            'Breakfast, Lunch, Dinner',
-                                            style: AppTheme
-                                                .textStyleSemiBoldBlack12,
+            ClipRRect(
+                borderRadius: BorderRadius.circular(6),
+                child: Image.asset(AssetsConstant.dummy_service)),
+            Padding(
+              padding: const EdgeInsets.symmetric(vertical: 12.0),
+              child: Text(
+                'Catering Service',
+                style: AppTheme.textStyleSemiBoldBlack20,
+              ),
+            ),
+            Text(
+              'Details: Lorem ipsum dolor sit amet consectetur. Elementum integer a sit euismod nunc id. Nec consequat aliquam blandit ullamcorper id nunc augue.',
+              style: AppTheme.textStyleNormalBlack12,
+            ),
+            argument == 'service'
+                ? Padding(
+                    padding: const EdgeInsets.symmetric(vertical: 12.0),
+                    child: Text(
+                      'Services',
+                      style: AppTheme.textStyleSemiBoldBlack20,
+                    ),
+                  )
+                : SizedBox.shrink(),
+            argument == 'service'
+                ? Column(
+                    children: [
+                      ...List.generate(
+                          2,
+                          (index) => Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: [
+                                  GestureDetector(
+                                    onTap: () {
+                                      setState(() {
+                                        isChecked = !isChecked;
+                                      });
+                                    },
+                                    child: Container(
+                                      padding: EdgeInsets.all(2),
+                                      height: 20,
+                                      width: 20,
+                                      decoration: BoxDecoration(
+                                          color: isChecked
+                                              ? AppColors.kPrimaryColor
+                                              : Colors.transparent,
+                                          border: Border.all(
+                                            color: Color(0xffFFD9D9),
+                                            width: 1.4,
                                           ),
-                                          Text.rich(
-                                            TextSpan(
-                                                text: 'Estimated time:',
-                                                style: AppTheme
-                                                    .textStyleMediumBlack10,
-                                                children: [
-                                                  TextSpan(
-                                                    text: ' 2:30 hrs',
-                                                  )
-                                                ]),
-                                            style: AppTheme
-                                                .textStyleNormalFadeBlack10,
-                                          )
-                                        ],
-                                      ),
-                                      Spacer(),
+                                          borderRadius:
+                                              BorderRadius.circular(3)),
+                                      child: isChecked
+                                          ? Image.asset(
+                                              AssetsConstant.check_icon,
+                                              height: 12,
+                                            )
+                                          : SizedBox.shrink(),
+                                    ),
+                                  ),
+                                  Padding(
+                                    padding: const EdgeInsets.all(6.0),
+                                    child: HomeServiceItemWidget(
+                                      label: SizedBox.shrink(),
+                                      height: 33,
+                                    ),
+                                  ),
+                                  Column(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
                                       Text(
-                                        'Tk.1299',
+                                        'Breakfast, Lunch, Dinner',
                                         style:
                                             AppTheme.textStyleSemiBoldBlack12,
+                                      ),
+                                      Text.rich(
+                                        TextSpan(
+                                            text: 'Estimated time:',
+                                            style:
+                                                AppTheme.textStyleMediumBlack10,
+                                            children: [
+                                              TextSpan(
+                                                text: ' 2:30 hrs',
+                                              )
+                                            ]),
+                                        style:
+                                            AppTheme.textStyleNormalFadeBlack10,
                                       )
                                     ],
-                                  ))
-                        ],
-                      )
-                    : SizedBox.shrink(),
-              ],
-            ),
-            CustomButton(
-              label: argument == 'service' ? 'Continue' : 'Okay',
-              onPressed: argument == 'service'
-                  ? () {
-                      Get.toNamed(BasicCleaningScreen.routeName);
-                    }
-                  : () {},
-              marginHorizontal: 0,
-              marginVertical: 0,
-              suffixImage:
-                  argument == 'service' ? AssetsConstant.arrow_icon : null,
-              suffixImageHeight: 11,
-              borderRadiusAll: 22,
-            )
+                                  ),
+                                  Spacer(),
+                                  Text(
+                                    'Tk.1299',
+                                    style: AppTheme.textStyleSemiBoldBlack12,
+                                  )
+                                ],
+                              ))
+                    ],
+                  )
+                : SizedBox.shrink(),
           ],
         ),
       ),

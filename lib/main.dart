@@ -24,7 +24,7 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       theme: ThemeData.light(),
       getPages: AppRoutes.routes(),
-      initialRoute: HomeScreen.routeName,
+      initialRoute: CustomScaffold.routeName,
       //initialBinding: AuthBinding(),
     );
     ;

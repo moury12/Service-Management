@@ -42,6 +42,12 @@ class _CustomScaffoldState extends State<CustomScaffold> {
   NavigationType _navigationType = NavigationType.home;
   Widget? _body;
 
+  @override
+  void initState() {
+    _body = widget.body ?? HomeScreen();
+    super.initState();
+  }
+
   // set body(Widget? newBody) {
   //   _body = newBody;
   //   // _updateCurrentBody();
@@ -120,26 +126,15 @@ class _CustomScaffoldState extends State<CustomScaffold> {
       backgroundColor: AppColors.kAppbarColor,
       body: Stack(
         clipBehavior: Clip.none,
+        alignment: Alignment.bottomCenter,
         children: [
-          SingleChildScrollView(
-            child: Column(
-              mainAxisSize: MainAxisSize.max,
-              children: [
-                Padding(
-                  padding: const EdgeInsets.only(top: 20),
-                  child: Container(
-                      height: MediaQuery.of(context).size.height -
-                          (kToolbarHeight + 45),
-                      decoration: const BoxDecoration(
-                          color: Colors.white,
-                          borderRadius:
-                              BorderRadius.vertical(top: Radius.circular(20))),
-                      child: widget.body),
-                ),
-                // SizedBox(
-                //   height: 80,
-                // ),
-              ],
+          Container(
+            height: MediaQuery.of(context).size.height - (kToolbarHeight + 30),
+            decoration: const BoxDecoration(
+                color: Colors.white,
+                borderRadius: BorderRadius.vertical(top: Radius.circular(20))),
+            child: SingleChildScrollView(
+              child: _body,
             ),
           ),
           widget.bottom ??
@@ -203,7 +198,7 @@ class _CustomScaffoldState extends State<CustomScaffold> {
                                     child: InkWell(
                                         onTap: () {
                                           _navigationType = NavigationType.home;
-                                          // _currentBody = HomeScreen();
+                                          _body = HomeScreen();
                                           setState(() {});
                                         },
                                         child: Row(
@@ -254,7 +249,8 @@ class _CustomScaffoldState extends State<CustomScaffold> {
                                         onTap: () {
                                           _navigationType =
                                               NavigationType.service;
-                                          Get.toNamed(ServicesScreen.routeName);
+                                          _body = ServicesScreen();
+
                                           setState(() {});
                                         },
                                         child: Row(

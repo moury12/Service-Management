@@ -1,6 +1,7 @@
 import 'package:fix_ican/pages/auth/login_page.dart';
 import 'package:fix_ican/pages/home/all_services_offers.dart';
 import 'package:fix_ican/pages/home/home_page.dart';
+import 'package:fix_ican/pages/services/basic-cleaning/monthly_cleaning.dart';
 import 'package:fix_ican/pages/services/basic_cleaning_page.dart';
 import 'package:fix_ican/pages/services/service_offer_details.dart';
 import 'package:fix_ican/pages/services/service_page.dart';
@@ -14,8 +15,8 @@ import '../pages/splash/splash_page.dart';
 class AppRoutes {
   static routes() => [
         GetPage(
-          name: '/',
-          page: () => const HomeScreen(),
+          name: CustomScaffold.routeName,
+          page: () => const CustomScaffold(),
         ),
         // GetPage(
         //   name: '/',
@@ -52,6 +53,10 @@ class AppRoutes {
         GetPage(
           name: BasicCleaningScreen.routeName,
           page: () => const BasicCleaningScreen(),
+        ),
+        GetPage(
+          name: WeeklyCleaning.routeName,
+          page: () => const WeeklyCleaning(),
         ),
       ];
 }
