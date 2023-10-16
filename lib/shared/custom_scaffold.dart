@@ -168,214 +168,262 @@ class _CustomScaffoldState extends State<CustomScaffold> {
                                       blurRadius: 10,
                                       color: Colors.black.withOpacity(.16))
                                 ]),
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            child: Stack(
+                              // mainAxisAlignment: MainAxisAlignment.spaceAround,
                               children: [
-                                AnimatedContainer(
-                                    decoration: BoxDecoration(
-                                        color: _navigationType ==
-                                                NavigationType.home
-                                            ? AppColors.kPrimaryColor
-                                            : null,
-                                        borderRadius: BorderRadius.circular(33),
-                                        boxShadow: [
-                                          BoxShadow(
+                                SizedBox(
+                                  height: 80,
+                                  width: MediaQuery.of(context).size.width,
+                                ),
+                                Positioned(
+                                  left: 0,
+                                  top: 0,
+                                  child: AnimatedContainer(
+                                      decoration: BoxDecoration(
+                                          color: _navigationType ==
+                                                  NavigationType.home
+                                              ? AppColors.kPrimaryColor
+                                              : null,
+                                          borderRadius:
+                                              BorderRadius.circular(33),
+                                          boxShadow: [
+                                            BoxShadow(
+                                                blurRadius: 10,
+                                                color: _navigationType ==
+                                                        NavigationType.home
+                                                    ? Colors.black
+                                                        .withOpacity(.16)
+                                                    : Colors.transparent)
+                                          ]),
+                                      padding:
+                                          _navigationType == NavigationType.home
+                                              ? const EdgeInsets.all(8)
+                                              : EdgeInsets.all(6.0),
+                                      margin: EdgeInsets.symmetric(
+                                          horizontal: 8, vertical: 8),
+                                      curve: Curves.fastLinearToSlowEaseIn,
+                                      duration:
+                                          const Duration(milliseconds: 800),
+                                      child: InkWell(
+                                          onTap: () {
+                                            _navigationType =
+                                                NavigationType.home;
+                                            _body = HomeScreen();
+                                            setState(() {});
+                                          },
+                                          child: Row(
+                                            mainAxisSize: MainAxisSize.min,
+                                            children: [
+                                              Image.asset(
+                                                AssetsConstant.home_icon,
+                                                color: _navigationType ==
+                                                        NavigationType.home
+                                                    ? Colors.white
+                                                    : null,
+                                                height: 15,
+                                              ),
+                                              CustomSizedBox.space4W,
+                                              _navigationType ==
+                                                      NavigationType.home
+                                                  ? const Text(
+                                                      'Home',
+                                                      style: AppTheme
+                                                          .textStyleMediumWhite10,
+                                                    )
+                                                  : const SizedBox.shrink()
+                                            ],
+                                          ))),
+                                ),
+                                Positioned(
+                                  left: (MediaQuery.of(context).size.width *
+                                          .2) -
+                                      (_navigationType == NavigationType.service
+                                          ? (MediaQuery.of(context).size.width *
+                                              .08)
+                                          : 0),
+                                  top: 0,
+                                  child: AnimatedContainer(
+                                      decoration: BoxDecoration(
+                                          color: _navigationType ==
+                                                  NavigationType.service
+                                              ? AppColors.kPrimaryColor
+                                              : null,
+                                          borderRadius:
+                                              BorderRadius.circular(33),
+                                          boxShadow: [
+                                            BoxShadow(
                                               blurRadius: 10,
-                                              color: _navigationType ==
-                                                      NavigationType.home
-                                                  ? Colors.black
-                                                      .withOpacity(.16)
-                                                  : Colors.transparent)
-                                        ]),
-                                    padding:
-                                        _navigationType == NavigationType.home
-                                            ? const EdgeInsets.all(8)
-                                            : EdgeInsets.all(6.0),
-                                    margin: EdgeInsets.symmetric(
-                                        horizontal: 8, vertical: 8),
-                                    curve: Curves.fastLinearToSlowEaseIn,
-                                    duration: const Duration(milliseconds: 800),
-                                    child: InkWell(
-                                        onTap: () {
-                                          _navigationType = NavigationType.home;
-                                          _body = HomeScreen();
-                                          setState(() {});
-                                        },
-                                        child: Row(
-                                          children: [
-                                            Image.asset(
-                                              AssetsConstant.home_icon,
-                                              color: _navigationType ==
-                                                      NavigationType.home
-                                                  ? Colors.white
-                                                  : null,
-                                            ),
-                                            CustomSizedBox.space4W,
-                                            _navigationType ==
-                                                    NavigationType.home
-                                                ? const Text(
-                                                    'Home',
-                                                    style: AppTheme
-                                                        .textStyleMediumWhite10,
-                                                  )
-                                                : const SizedBox.shrink()
-                                          ],
-                                        ))),
-                                AnimatedContainer(
-                                    decoration: BoxDecoration(
-                                        color: _navigationType ==
-                                                NavigationType.service
-                                            ? AppColors.kPrimaryColor
-                                            : null,
-                                        borderRadius: BorderRadius.circular(33),
-                                        boxShadow: [
-                                          BoxShadow(
-                                            blurRadius: 10,
-                                            color: _navigationType ==
-                                                    NavigationType.service
-                                                ? Colors.black.withOpacity(.16)
-                                                : Colors.transparent,
-                                          )
-                                        ]),
-                                    padding: _navigationType ==
-                                            NavigationType.service
-                                        ? const EdgeInsets.all(8)
-                                        : EdgeInsets.all(6.0),
-                                    margin: const EdgeInsets.symmetric(
-                                        horizontal: 6, vertical: 8),
-                                    curve: Curves.fastLinearToSlowEaseIn,
-                                    duration: const Duration(milliseconds: 800),
-                                    child: InkWell(
-                                        onTap: () {
-                                          _navigationType =
-                                              NavigationType.service;
-                                          _body = ServicesScreen();
-
-                                          setState(() {});
-                                        },
-                                        child: Row(
-                                          children: [
-                                            Image.asset(
-                                              AssetsConstant.service_icon,
                                               color: _navigationType ==
                                                       NavigationType.service
-                                                  ? Colors.white
-                                                  : null,
-                                            ),
-                                            CustomSizedBox.space4W,
-                                            _navigationType ==
-                                                    NavigationType.service
-                                                ? const Text(
-                                                    'Service',
-                                                    style: AppTheme
-                                                        .textStyleMediumWhite10,
-                                                  )
-                                                : const SizedBox.shrink()
-                                          ],
-                                        ))),
-                                SizedBox(
-                                  width: MediaQuery.of(context).size.width / 9,
-                                ),
-                                AnimatedContainer(
-                                    decoration: BoxDecoration(
-                                        color: _navigationType ==
-                                                NavigationType.settings
-                                            ? AppColors.kPrimaryColor
-                                            : null,
-                                        borderRadius: BorderRadius.circular(33),
-                                        boxShadow: [
-                                          BoxShadow(
-                                              blurRadius: 10,
-                                              color: _navigationType ==
-                                                      NavigationType.settings
                                                   ? Colors.black
                                                       .withOpacity(.16)
-                                                  : Colors.transparent)
-                                        ]),
-                                    padding: _navigationType ==
-                                            NavigationType.settings
-                                        ? const EdgeInsets.all(8)
-                                        : EdgeInsets.all(6.0),
-                                    margin: EdgeInsets.symmetric(
-                                        horizontal: 8, vertical: 8),
-                                    curve: Curves.fastLinearToSlowEaseIn,
-                                    duration: const Duration(milliseconds: 800),
-                                    child: InkWell(
-                                        onTap: () {
-                                          _navigationType =
-                                              NavigationType.settings;
-                                          setState(() {});
-                                        },
-                                        child: Row(
-                                          children: [
-                                            Image.asset(
-                                              AssetsConstant.settings_icon,
-                                              color: _navigationType ==
+                                                  : Colors.transparent,
+                                            )
+                                          ]),
+                                      padding: _navigationType ==
+                                              NavigationType.service
+                                          ? const EdgeInsets.all(8)
+                                          : EdgeInsets.all(6.0),
+                                      margin: const EdgeInsets.symmetric(
+                                          horizontal: 6, vertical: 8),
+                                      curve: Curves.fastLinearToSlowEaseIn,
+                                      duration:
+                                          const Duration(milliseconds: 800),
+                                      child: InkWell(
+                                          onTap: () {
+                                            _navigationType =
+                                                NavigationType.service;
+                                            _body = ServicesScreen();
+
+                                            setState(() {});
+                                          },
+                                          child: Row(
+                                            children: [
+                                              Image.asset(
+                                                AssetsConstant.service_icon,
+                                                color: _navigationType ==
+                                                        NavigationType.service
+                                                    ? Colors.white
+                                                    : null,
+                                                height: 15,
+                                              ),
+                                              CustomSizedBox.space4W,
+                                              _navigationType ==
+                                                      NavigationType.service
+                                                  ? const Text(
+                                                      'Service',
+                                                      style: AppTheme
+                                                          .textStyleMediumWhite10,
+                                                    )
+                                                  : const SizedBox.shrink()
+                                            ],
+                                          ))),
+                                ),
+                                // SizedBox(
+                                //   width:
+                                //       MediaQuery.of(context).size.width / 9,
+                                // ),
+                                Positioned(
+                                  right: (MediaQuery.of(context).size.width *
+                                          .2) -
+                                      (_navigationType ==
+                                              NavigationType.settings
+                                          ? (MediaQuery.of(context).size.width *
+                                              .08)
+                                          : 0),
+                                  top: 0,
+                                  child: AnimatedContainer(
+                                      decoration: BoxDecoration(
+                                          color: _navigationType ==
+                                                  NavigationType.settings
+                                              ? AppColors.kPrimaryColor
+                                              : null,
+                                          borderRadius:
+                                              BorderRadius.circular(33),
+                                          boxShadow: [
+                                            BoxShadow(
+                                                blurRadius: 10,
+                                                color: _navigationType ==
+                                                        NavigationType.settings
+                                                    ? Colors.black
+                                                        .withOpacity(.16)
+                                                    : Colors.transparent)
+                                          ]),
+                                      padding: _navigationType ==
+                                              NavigationType.settings
+                                          ? const EdgeInsets.all(8)
+                                          : EdgeInsets.all(6.0),
+                                      margin: EdgeInsets.symmetric(
+                                          horizontal: 8, vertical: 8),
+                                      curve: Curves.fastLinearToSlowEaseIn,
+                                      duration:
+                                          const Duration(milliseconds: 800),
+                                      child: InkWell(
+                                          onTap: () {
+                                            _navigationType =
+                                                NavigationType.settings;
+                                            setState(() {});
+                                          },
+                                          child: Row(
+                                            children: [
+                                              Image.asset(
+                                                AssetsConstant.settings_icon,
+                                                color: _navigationType ==
+                                                        NavigationType.settings
+                                                    ? Colors.white
+                                                    : null,
+                                                height: 15,
+                                              ),
+                                              CustomSizedBox.space4W,
+                                              _navigationType ==
                                                       NavigationType.settings
-                                                  ? Colors.white
-                                                  : null,
-                                            ),
-                                            CustomSizedBox.space4W,
-                                            _navigationType ==
-                                                    NavigationType.settings
-                                                ? const Text(
-                                                    'Setting',
-                                                    style: AppTheme
-                                                        .textStyleMediumWhite10,
-                                                  )
-                                                : const SizedBox.shrink()
-                                          ],
-                                        ))),
-                                AnimatedContainer(
-                                    decoration: BoxDecoration(
-                                        color: _navigationType ==
-                                                NavigationType.profile
-                                            ? AppColors.kPrimaryColor
-                                            : null,
-                                        borderRadius: BorderRadius.circular(33),
-                                        boxShadow: [
-                                          BoxShadow(
-                                            blurRadius: 10,
-                                            color: _navigationType ==
-                                                    NavigationType.profile
-                                                ? Colors.black.withOpacity(.16)
-                                                : Colors.transparent,
-                                          )
-                                        ]),
-                                    padding: _navigationType ==
-                                            NavigationType.profile
-                                        ? const EdgeInsets.all(8)
-                                        : EdgeInsets.all(6.0),
-                                    margin: const EdgeInsets.symmetric(
-                                        horizontal: 6, vertical: 8),
-                                    curve: Curves.fastLinearToSlowEaseIn,
-                                    duration: const Duration(milliseconds: 800),
-                                    child: InkWell(
-                                        onTap: () {
-                                          _navigationType =
-                                              NavigationType.profile;
-                                          setState(() {});
-                                        },
-                                        child: Row(
-                                          children: [
-                                            Image.asset(
-                                              AssetsConstant.account_icon,
+                                                  ? const Text(
+                                                      'Setting',
+                                                      style: AppTheme
+                                                          .textStyleMediumWhite10,
+                                                    )
+                                                  : const SizedBox.shrink()
+                                            ],
+                                          ))),
+                                ),
+                                Positioned(
+                                  right: 0,
+                                  top: 0,
+                                  child: AnimatedContainer(
+                                      decoration: BoxDecoration(
+                                          color: _navigationType ==
+                                                  NavigationType.profile
+                                              ? AppColors.kPrimaryColor
+                                              : null,
+                                          borderRadius:
+                                              BorderRadius.circular(33),
+                                          boxShadow: [
+                                            BoxShadow(
+                                              blurRadius: 10,
                                               color: _navigationType ==
                                                       NavigationType.profile
-                                                  ? Colors.white
-                                                  : null,
-                                            ),
-                                            CustomSizedBox.space4W,
-                                            _navigationType ==
-                                                    NavigationType.profile
-                                                ? const Text(
-                                                    'Profile',
-                                                    style: AppTheme
-                                                        .textStyleMediumWhite10,
-                                                  )
-                                                : const SizedBox.shrink()
-                                          ],
-                                        ))),
+                                                  ? Colors.black
+                                                      .withOpacity(.16)
+                                                  : Colors.transparent,
+                                            )
+                                          ]),
+                                      padding: _navigationType ==
+                                              NavigationType.profile
+                                          ? const EdgeInsets.all(8)
+                                          : EdgeInsets.all(6.0),
+                                      margin: const EdgeInsets.symmetric(
+                                          horizontal: 6, vertical: 8),
+                                      curve: Curves.fastLinearToSlowEaseIn,
+                                      duration:
+                                          const Duration(milliseconds: 800),
+                                      child: InkWell(
+                                          onTap: () {
+                                            _navigationType =
+                                                NavigationType.profile;
+                                            setState(() {});
+                                          },
+                                          child: Row(
+                                            children: [
+                                              Image.asset(
+                                                AssetsConstant.account_icon,
+                                                color: _navigationType ==
+                                                        NavigationType.profile
+                                                    ? Colors.white
+                                                    : null,
+                                                height: 15,
+                                              ),
+                                              CustomSizedBox.space4W,
+                                              _navigationType ==
+                                                      NavigationType.profile
+                                                  ? const Text(
+                                                      'Profile',
+                                                      style: AppTheme
+                                                          .textStyleMediumWhite10,
+                                                    )
+                                                  : const SizedBox.shrink()
+                                            ],
+                                          ))),
+                                ),
                               ],
                             ),
                           )),

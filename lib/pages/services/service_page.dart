@@ -18,6 +18,7 @@ class ServicesScreen extends StatefulWidget {
 
 class _ServicesScreenState extends State<ServicesScreen> {
   ServicesType servicesType = ServicesType.Upcoming;
+  bool openInfo = false;
 
   @override
   Widget build(BuildContext context) {
@@ -195,14 +196,27 @@ class _ServicesScreenState extends State<ServicesScreen> {
                                   )
                                 ],
                               ),
-                              Divider(
-                                thickness: 0.5,
-                                color: Color(0xffF1B2BF),
-                              ),
-                              Image.asset(
-                                AssetsConstant.arrow_down_icon,
-                                height: 10,
-                              ),
+                              servicesType == ServicesType.Cancelled
+                                  ? SizedBox.shrink()
+                                  : InkWell(
+                                      onTap: () {
+                                        setState(() {
+                                          openInfo = !openInfo;
+                                        });
+                                      },
+                                      child: Column(
+                                        children: [
+                                          Divider(
+                                            thickness: 0.5,
+                                            color: Color(0xffF1B2BF),
+                                          ),
+                                          Image.asset(
+                                            AssetsConstant.arrow_down_icon,
+                                            height: 10,
+                                          )
+                                        ],
+                                      ),
+                                    ),
                               CustomSizedBox.space12H,
                             ],
                           ),
