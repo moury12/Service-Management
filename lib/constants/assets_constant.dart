@@ -13,6 +13,7 @@ class AssetsConstant {
   static const String splash_image = "assets/images/splash_image.png";
   static const String dummy_service = "assets/images/dummy_service.png";
   static const String custom_stack_img = "assets/images/custom_stack_img.png";
+  static const String map_img = "assets/images/map_img.png";
   static const String splash_image_full = "assets/images/splash_image_full.png";
   static const String service_item_shade =
       "assets/images/service_item_shade.png";
@@ -29,6 +30,15 @@ class AssetsConstant {
   static const String info_icon = "assets/icons/info_icon.png";
   static const String arrow_icon = "assets/icons/arrow.png";
   static const String add_icon = "assets/icons/add_icon.png";
+  static const String arrow_up_icon = "assets/icons/arrow_up_icon.png";
+  static const String cancel_icon = "assets/icons/cancel_icon.png";
+  static const String edit_icon = "assets/icons/edit_icon.png";
+  static const String logout_icon = "assets/icons/logout_icon.png";
+  static const String map_icon = "assets/icons/map_icon.png";
+  static const String profile_icon = "assets/icons/profile_icon.png";
+  static const String profile_icon2 = "assets/icons/profile_icon2.png";
+  static const String profile_icon3 = "assets/icons/profile_icon3.png";
+  static const String scan_icon = "assets/icons/scan_icon.png";
   static const String auto_assign_icon = "assets/icons/auto_assign_icon.png";
   static const String minimize_icon = "assets/icons/minimize_icon.png";
   static const String home_service_icon1 =

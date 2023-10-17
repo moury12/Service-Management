@@ -244,10 +244,10 @@ class AppTheme {
     fontWeight: FontWeight.w600,
   );
   static const textStyleSemiBoldPrimary20 = TextStyle(
-    color: AppColors.kPrimaryColor,
-    fontSize: 20,
-    fontWeight: FontWeight.w600,
-  );
+      fontSize: 20,
+      fontWeight: FontWeight.w600,
+      color: AppColors.kPrimaryColor);
+
   static const textStyleSemiBoldWhite20 = TextStyle(
     color: AppColors.kWhiteColor,
     fontSize: 20,
