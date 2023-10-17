@@ -1,4 +1,3 @@
-import 'package:fix_ican/constants/assets_constant.dart';
 import 'package:fix_ican/pages/home/home_page.dart';
 import 'package:fix_ican/pages/services/service_offer_details.dart';
 import 'package:fix_ican/shared/custom_scaffold.dart';

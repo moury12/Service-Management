@@ -1,5 +1,7 @@
 import 'package:fix_ican/pages/home/home_page.dart';
+import 'package:fix_ican/pages/profile/profile_page.dart';
 import 'package:fix_ican/pages/services/service_page.dart';
+import 'package:fix_ican/pages/settings/setting_page.dart';
 import 'package:fix_ican/shared/custom_sized_box.dart';
 import 'package:fix_ican/theme/theme_data.dart';
 import 'package:flutter/material.dart';
@@ -51,32 +53,6 @@ class _CustomScaffoldState extends State<CustomScaffold> {
     super.initState();
   }
 
-  // set body(Widget? newBody) {
-  //   _body = newBody;
-  //   // _updateCurrentBody();
-  // // }
-
-  // void _updateCurrentBody() {
-  //   switch (_navigationType) {
-  //     case NavigationType.home:
-  //       _currentBody = HomeScreen(); // Replace with your home screen widget.
-  //       break;
-  //     case NavigationType.service:
-  //       _currentBody =
-  //           ServicesScreen(); // Replace with your service screen widget.
-  //       break;
-  //     // Add cases for other navigation types.
-  //     default:
-  //       _currentBody =
-  //           Container(); // Default to an empty container or your choice.
-  //       break;
-  //   }
-  // }
-  // void _updateCurrentBody() {
-  //   _currentBody = _body ??
-  //       Container(); // Use _body value if it's set, otherwise use a default value.
-  // }
-
   void toggleContainerVisibility() {
     setState(() {
       isContainerVisible = !isContainerVisible;
@@ -110,14 +86,25 @@ class _CustomScaffoldState extends State<CustomScaffold> {
                         text: 'My Services',
                         style: AppTheme.textStyleSemiBoldWhite18,
                       )
-                    : TextSpan(
-                        text: 'Mustafijur Rahman',
-                        style: AppTheme.textStyleSemiBoldWhite18,
-                        children: [
-                            TextSpan(
-                                text: '\nHome: 52/A, Kalabagan, Dhaka.',
-                                style: AppTheme.textStyleSemiBoldWhite12)
-                          ])),
+                    : _navigationType == NavigationType.settings
+                        ? TextSpan(
+                            text: 'Settings',
+                            style: AppTheme.textStyleSemiBoldWhite18,
+                          )
+                        : _navigationType == NavigationType.profile
+                            ? TextSpan(
+                                text: 'My Profile',
+                                style: AppTheme.textStyleSemiBoldWhite18,
+                              )
+                            : TextSpan(
+                                text: 'Mustafijur Rahman',
+                                style: AppTheme.textStyleSemiBoldWhite18,
+                                children: [
+                                    TextSpan(
+                                        text: '\nHome: 52/A, Kalabagan, Dhaka.',
+                                        style:
+                                            AppTheme.textStyleSemiBoldWhite12)
+                                  ])),
             actions: widget.action ??
                 [
                   Center(
@@ -138,6 +125,7 @@ class _CustomScaffoldState extends State<CustomScaffold> {
         children: [
           Container(
             height: MediaQuery.of(context).size.height - (kToolbarHeight + 30),
+            clipBehavior: Clip.none,
             decoration: const BoxDecoration(
                 color: Colors.white,
                 borderRadius: BorderRadius.vertical(top: Radius.circular(20))),
@@ -152,6 +140,7 @@ class _CustomScaffoldState extends State<CustomScaffold> {
                   height: 56,
                   width: MediaQuery.of(context).size.width,
                   child: Stack(
+                    clipBehavior: Clip.none,
                     children: [
                       AnimatedPositioned(
                           left: isContainerVisible
@@ -350,6 +339,7 @@ class _CustomScaffoldState extends State<CustomScaffold> {
                                           onTap: () {
                                             _navigationType =
                                                 NavigationType.settings;
+                                            _body = SettingScreen();
                                             setState(() {});
                                           },
                                           child: Row(
@@ -408,6 +398,7 @@ class _CustomScaffoldState extends State<CustomScaffold> {
                                           onTap: () {
                                             _navigationType =
                                                 NavigationType.profile;
+                                            _body = ProfileScreen();
                                             setState(() {});
                                           },
                                           child: Row(

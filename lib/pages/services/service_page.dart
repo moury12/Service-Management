@@ -391,6 +391,9 @@ class _ServicesScreenState extends State<ServicesScreen> {
                       ],
                     ))
           ],
+        ),
+        SizedBox(
+          height: 80,
         )
       ],
     );
@@ -459,11 +462,21 @@ class CenterDialogWidget extends StatelessWidget {
     this.content,
     this.title,
     this.padding,
+    this.image,
+    this.headtitle,
+    this.subtitle,
+    this.stacked = false,
+    this.buttonText,
   });
 
   final Widget? content;
   final Widget? title;
+  final Widget? image;
+  final String? headtitle;
+  final String? subtitle;
   final EdgeInsets? padding;
+  final bool? stacked;
+  final String? buttonText;
 
   @override
   Widget build(BuildContext context) {
@@ -482,11 +495,12 @@ class CenterDialogWidget extends StatelessWidget {
                 children: [
                   GestureDetector(
                     child: Align(
-                      child: Image.asset(
-                        AssetsConstant.cancel_icon,
-                        color: Colors.black,
-                        height: 15,
-                      ),
+                      child: image ??
+                          Image.asset(
+                            AssetsConstant.cancel_icon,
+                            color: Colors.black,
+                            height: 15,
+                          ),
                       alignment: Alignment.topRight,
                     ),
                     onTap: () {
@@ -516,14 +530,15 @@ class CenterDialogWidget extends StatelessWidget {
                     ),
                   ),
                   CustomSizedBox.space16H,
-                  const Text(
-                    'Cancel Order!',
+                  Text(
+                    headtitle ?? 'Cancel Order!',
                     style: AppTheme.textStyleSemiBoldPrimary20,
                   ),
                   Padding(
                     padding: const EdgeInsets.all(8.0),
-                    child: const Text(
-                      'Are you sure want to cancel your service order?',
+                    child: Text(
+                      subtitle ??
+                          'Are you sure want to cancel your service order?',
                       style: AppTheme.textStyleNormalBlack14,
                       textAlign: TextAlign.center,
                     ),
@@ -536,20 +551,22 @@ class CenterDialogWidget extends StatelessWidget {
                       marginVertical: 6,
                       marginHorizontal: 0,
                       borderRadiusAll: 22,
-                      label: 'Yes, Cancel Order'),
-                  CustomButton(
-                      onPressed: () {
-                        Navigator.pop(context);
-                      },
-                      labelColor: AppColors.kPrimaryColor,
-                      boxShadowColor: Colors.transparent,
-                      isBorder: true,
-                      borderColor: AppColors.kPrimaryColor,
-                      primary: Colors.white,
-                      marginVertical: 6,
-                      marginHorizontal: 0,
-                      borderRadiusAll: 22,
-                      label: 'Cancel'),
+                      label: buttonText ?? 'Yes, Cancel Order'),
+                  stacked == false
+                      ? SizedBox.shrink()
+                      : CustomButton(
+                          onPressed: () {
+                            Navigator.pop(context);
+                          },
+                          labelColor: AppColors.kPrimaryColor,
+                          boxShadowColor: Colors.transparent,
+                          isBorder: true,
+                          borderColor: AppColors.kPrimaryColor,
+                          primary: Colors.white,
+                          marginVertical: 6,
+                          marginHorizontal: 0,
+                          borderRadiusAll: 22,
+                          label: 'Cancel'),
                 ],
               ),
         );

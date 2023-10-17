@@ -1,5 +1,6 @@
 import 'package:fix_ican/constants/assets_constant.dart';
 import 'package:fix_ican/constants/color_constant.dart';
+import 'package:fix_ican/pages/order/place_order_page.dart';
 import 'package:fix_ican/shared/custom_scaffold.dart';
 import 'package:fix_ican/shared/custom_sized_box.dart';
 import 'package:fix_ican/theme/theme_data.dart';
@@ -7,12 +8,13 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:mh_core/widgets/button/custom_button.dart';
 
-class WeeklyCleaning extends StatelessWidget {
+class AllCleaningProcessScreen extends StatelessWidget {
   final String? title;
   final bool? isCustom;
   static const String routeName = '/weekly';
 
-  const WeeklyCleaning({super.key, this.title, this.isCustom = false});
+  const AllCleaningProcessScreen(
+      {super.key, this.title, this.isCustom = false});
 
   @override
   Widget build(BuildContext context) {
@@ -403,7 +405,9 @@ class WeeklyCleaning extends StatelessWidget {
             CustomSizedBox.space16H,
             CustomButton(
               label: 'Continue',
-              onPressed: () {},
+              onPressed: () {
+                Get.toNamed(PlaceOrderScreen.routeName);
+              },
               marginHorizontal: 0,
               marginVertical: 0,
               suffixImage: AssetsConstant.arrow_icon,

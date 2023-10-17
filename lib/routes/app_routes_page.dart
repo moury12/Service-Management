@@ -1,10 +1,17 @@
 import 'package:fix_ican/pages/auth/login_page.dart';
 import 'package:fix_ican/pages/home/all_services_offers.dart';
 import 'package:fix_ican/pages/home/home_page.dart';
-import 'package:fix_ican/pages/services/basic-cleaning/monthly_cleaning.dart';
+import 'package:fix_ican/pages/order/checkout_page.dart';
+import 'package:fix_ican/pages/order/payment_method_page.dart';
+import 'package:fix_ican/pages/order/place_order_page.dart';
+import 'package:fix_ican/pages/profile/edit_profile_page.dart';
+import 'package:fix_ican/pages/profile/profile_page.dart';
+import 'package:fix_ican/pages/services/basic-cleaning/all_cleaning_process_page.dart';
 import 'package:fix_ican/pages/services/basic_cleaning_page.dart';
 import 'package:fix_ican/pages/services/service_offer_details.dart';
 import 'package:fix_ican/pages/services/service_page.dart';
+import 'package:fix_ican/pages/settings/add_debit_card_page.dart';
+import 'package:fix_ican/pages/settings/payment_setting_page.dart';
 import 'package:fix_ican/pages/splash/language_selection_page.dart';
 import 'package:fix_ican/pages/splash/onboarding_page.dart';
 import 'package:fix_ican/shared/custom_scaffold.dart';
@@ -55,8 +62,36 @@ class AppRoutes {
           page: () => const BasicCleaningScreen(),
         ),
         GetPage(
-          name: WeeklyCleaning.routeName,
-          page: () => const WeeklyCleaning(),
+          name: AllCleaningProcessScreen.routeName,
+          page: () => const AllCleaningProcessScreen(),
+        ),
+        GetPage(
+          name: PlaceOrderScreen.routeName,
+          page: () => const PlaceOrderScreen(),
+        ),
+        GetPage(
+          name: CheckoutScreen.routeName,
+          page: () => const CheckoutScreen(),
+        ),
+        GetPage(
+          name: PaymentMethodSelectionScreen.routeName,
+          page: () => const PaymentMethodSelectionScreen(),
+        ),
+        GetPage(
+          name: PaymentSettingScreen.routeName,
+          page: () => const PaymentSettingScreen(),
+        ),
+        GetPage(
+          name: AddDebitScreen.routeName,
+          page: () => const AddDebitScreen(),
+        ),
+        GetPage(
+          name: ProfileScreen.routeName,
+          page: () => const ProfileScreen(),
+        ),
+        GetPage(
+          name: EditProfileScreen.routeName,
+          page: () => const EditProfileScreen(),
         ),
       ];
 }

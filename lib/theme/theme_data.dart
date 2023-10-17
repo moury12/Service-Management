@@ -42,6 +42,11 @@ class AppTheme {
     fontWeight: FontWeight.w500,
     color: AppColors.kPrimaryColor,
   );
+  static const textStyleMediumPrimaryShade10 = TextStyle(
+    fontSize: 10,
+    fontWeight: FontWeight.w500,
+    color: AppColors.kAppbarColor,
+  );
   static const textStyleSemiBoldBlack10 = TextStyle(
     fontSize: 10,
     fontWeight: FontWeight.w600,
@@ -82,6 +87,11 @@ class AppTheme {
     color: Colors.black54,
     fontWeight: FontWeight.w500,
   );
+  static const textStyleMediumFadeBlack14 = TextStyle(
+    fontSize: 14,
+    color: Colors.black54,
+    fontWeight: FontWeight.w500,
+  );
   static const textStyleMediumWhite12 = TextStyle(
     fontSize: 12,
     fontWeight: FontWeight.w500,
@@ -89,6 +99,11 @@ class AppTheme {
   );
   static const textStyleMediumPrimary12 = TextStyle(
     fontSize: 12,
+    fontWeight: FontWeight.w500,
+    color: AppColors.kPrimaryColor,
+  );
+  static const textStyleMediumPrimary16 = TextStyle(
+    fontSize: 16,
     fontWeight: FontWeight.w500,
     color: AppColors.kPrimaryColor,
   );
@@ -128,6 +143,11 @@ class AppTheme {
   );
   static const textStyleMediumWhite14 = TextStyle(
     fontSize: 15,
+    fontWeight: FontWeight.w500,
+    color: AppColors.kWhiteColor,
+  );
+  static const textStyleMediumWhite18 = TextStyle(
+    fontSize: 18,
     fontWeight: FontWeight.w500,
     color: AppColors.kWhiteColor,
   );

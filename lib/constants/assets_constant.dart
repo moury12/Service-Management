@@ -15,6 +15,8 @@ class AssetsConstant {
   static const String custom_stack_img = "assets/images/custom_stack_img.png";
   static const String map_img = "assets/images/map_img.png";
   static const String splash_image_full = "assets/images/splash_image_full.png";
+  static const String visa_card = "assets/images/visa_card.png";
+  static const String order_stack = "assets/images/order_stack.png";
   static const String service_item_shade =
       "assets/images/service_item_shade.png";
 
@@ -22,6 +24,13 @@ class AssetsConstant {
   static const String account_icon = "assets/icons/account_icon.png";
   static const String arrow_down_icon = "assets/icons/arrow_down_icon.png";
   static const String bag_icon = "assets/icons/bag_icon.png";
+  static const String card_icon = "assets/icons/card_icon.png";
+  static const String bkash_icon = "assets/icons/bkash_icon.png";
+  static const String cash_icon = "assets/icons/cash_icon.png";
+  static const String delete_icon = "assets/icons/delete_icon.png";
+  static const String edit_icon2 = "assets/icons/edit_icon2.png";
+  static const String nagad_icon = "assets/icons/nagad_icon.png";
+  static const String wallet_icon = "assets/icons/wallet_icon.png";
   static const String forward_icon = "assets/icons/forward_icon.png";
   static const String otpContainer_icon = "assets/icons/otpContainer_icon.png";
   static const String backward_icon = "assets/icons/backWard_icon.png";

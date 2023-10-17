@@ -1,6 +1,6 @@
 import 'package:fix_ican/constants/assets_constant.dart';
 import 'package:fix_ican/constants/color_constant.dart';
-import 'package:fix_ican/pages/services/basic-cleaning/monthly_cleaning.dart';
+import 'package:fix_ican/pages/services/basic-cleaning/all_cleaning_process_page.dart';
 import 'package:fix_ican/shared/custom_scaffold.dart';
 import 'package:fix_ican/shared/custom_sized_box.dart';
 import 'package:fix_ican/theme/theme_data.dart';
@@ -776,13 +776,13 @@ class _BasicCleaningScreenState extends State<BasicCleaningScreen>
                                     onPressed: () {
                                       Navigator.pop(context);
                                       groupValue == 'Weekly'
-                                          ? Get.toNamed(
-                                              WeeklyCleaning.routeName)
+                                          ? Get.toNamed(AllCleaningProcessScreen
+                                              .routeName)
                                           : groupValue == 'One Time'
                                               ? Navigator.push(context,
                                                   MaterialPageRoute(
                                                   builder: (context) {
-                                                    return const WeeklyCleaning(
+                                                    return const AllCleaningProcessScreen(
                                                       title: 'One Time',
                                                       isCustom: false,
                                                     );
@@ -792,7 +792,7 @@ class _BasicCleaningScreenState extends State<BasicCleaningScreen>
                                                   ? Navigator.push(context,
                                                       MaterialPageRoute(
                                                       builder: (context) {
-                                                        return const WeeklyCleaning(
+                                                        return const AllCleaningProcessScreen(
                                                           title: 'Custom',
                                                           isCustom: true,
                                                         );
@@ -1176,7 +1176,7 @@ class _BasicCleaningScreenState extends State<BasicCleaningScreen>
                                                                               Navigator.pop(context);
                                                                               Navigator.push(context, MaterialPageRoute(
                                                                                 builder: (context) {
-                                                                                  return const WeeklyCleaning(
+                                                                                  return const AllCleaningProcessScreen(
                                                                                     title: 'Monthly',
                                                                                     isCustom: false,
                                                                                   );

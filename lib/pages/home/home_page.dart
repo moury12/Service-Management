@@ -1,7 +1,6 @@
 import 'package:fix_ican/constants/assets_constant.dart';
 import 'package:fix_ican/constants/color_constant.dart';
 import 'package:fix_ican/pages/home/all_services_offers.dart';
-import 'package:fix_ican/shared/custom_scaffold.dart';
 import 'package:fix_ican/shared/custom_sized_box.dart';
 import 'package:fix_ican/theme/theme_data.dart';
 import 'package:flutter/material.dart';
@@ -425,10 +424,12 @@ class HomeServiceItemWidget extends StatelessWidget {
     super.key,
     this.label,
     this.height,
+    this.padding,
   });
 
   final Widget? label;
   final double? height;
+  final EdgeInsets? padding;
 
   @override
   Widget build(BuildContext context) {
@@ -457,7 +458,7 @@ class HomeServiceItemWidget extends StatelessWidget {
                   right: 0,
                 ),
                 Padding(
-                  padding: const EdgeInsets.all(12),
+                  padding: padding ?? const EdgeInsets.all(12),
                   child: Center(
                     child: Image.asset(AssetsConstant.home_service_icon1,
                         height: height ?? 25),
