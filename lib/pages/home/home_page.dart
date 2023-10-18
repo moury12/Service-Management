@@ -63,7 +63,7 @@ class _HomeScreenState extends State<HomeScreen>
                               crossAxisCount: 4,
                               mainAxisSpacing: 24,
                               crossAxisSpacing: 24),
-                      itemCount: showMore ? 16 : 8,
+                      itemCount: showMore ? 101 : 8,
                       // itemCount: gridItem,
                       shrinkWrap: true,
                       physics: const NeverScrollableScrollPhysics(),

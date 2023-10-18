@@ -30,12 +30,17 @@ class AllServicesOffers extends StatelessWidget {
           shrinkWrap: true,
           primary: false,
           padding: EdgeInsets.symmetric(vertical: 16, horizontal: 8),
-          gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 2, mainAxisSpacing: 16, crossAxisSpacing: 5),
+          gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+              crossAxisCount: 2,
+              mainAxisSpacing: 16,
+              crossAxisSpacing: 5,
+              childAspectRatio: .95),
           itemCount: 10,
           itemBuilder: (context, index) {
             return GestureDetector(
                 onTap: () {
-                  Get.toNamed(ServiceOfferDetails.routeName, arguments: argument);
+                  Get.toNamed(ServiceOfferDetails.routeName,
+                      arguments: argument);
                 },
                 child: OfferAndServicesWidget());
           },
