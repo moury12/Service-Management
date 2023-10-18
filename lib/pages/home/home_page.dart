@@ -7,6 +7,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:mh_core/utils/constant.dart';
+import 'package:mh_core/utils/global.dart';
 
 class HomeScreen extends StatefulWidget {
   static const String routeName = '/home';
@@ -20,9 +21,35 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> with SingleTickerProviderStateMixin {
   bool showMore = false;
   int currentIndex = 0;
-  int gridItem = 8;
+  int gridItem = 17;
 
   Color? containerColor = Colors.white.withOpacity(.6);
+
+  AnimationController? _controller;
+  Animation<double>? _animation;
+  void _up() {
+    setState(() {
+      if (showMore) {
+        _controller!.forward(from: 0.0);
+      } else {
+        _controller!.reverse(from: 1.0);
+      }
+    });
+  }
+
+  @override
+  void initState() {
+    _controller = AnimationController(
+      vsync: this,
+      duration: const Duration(milliseconds: 300),
+    );
+
+    _animation = CurvedAnimation(
+      parent: _controller!,
+      curve: Interval(0.0, 1.0, curve: Curves.linear),
+    );
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -44,27 +71,38 @@ class _HomeScreenState extends State<HomeScreen> with SingleTickerProviderStateM
                       style: AppTheme.textStyleSemiBoldBlack16,
                     ),
                   ),
-                  AnimatedContainer(
-                    duration: const Duration(milliseconds: 300),
-                    // height: showMore ? 400 : 200,
-                    onEnd: () {
-                      // if (showMore) {
-                      //   gridItem = 32;
-                      //   setState(() {});
-                      // }
-                    },
-                    child: GridView.builder(
-                      padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 12),
-                      gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 4, mainAxisSpacing: 24, crossAxisSpacing: 24),
-                      itemCount: showMore ? 16 : 8,
-                      // itemCount: gridItem,
-                      shrinkWrap: true,
-                      physics: const NeverScrollableScrollPhysics(),
-                      itemBuilder: (context, index) {
-                        return const HomeServiceItemWidget();
-                      },
-                    ),
-                  ),
+                  AnimatedBuilder(
+                      animation: _animation!,
+                      builder: (context, child) {
+                        globalLogger.d(_animation!.value);
+                        return Container(
+                          // duration: const Duration(milliseconds: 300),
+                          // height: showMore ? 400 : 200,
+                          // onEnd: () {
+                          //   // if (showMore) {
+                          //   //   gridItem = 32;
+                          //   //   setState(() {});
+                          //   // }
+                          // },
+                          child: GridView.builder(
+                            padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 12),
+                            gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 4, mainAxisSpacing: 24, crossAxisSpacing: 24),
+                            itemCount: /*showMore
+                                ?*/
+                                gridItem >= 8 ? 8 + ((gridItem - 8) ~/ 4 * (_animation!.value * 4).floor().toInt()) + (_animation!.value == 1 ? (gridItem % 4) : 0) : gridItem
+                            /*: gridItem >= 8
+                                    ? 8
+                                    : gridItem*/
+                            ,
+                            // itemCount: gridItem,
+                            shrinkWrap: true,
+                            physics: const NeverScrollableScrollPhysics(),
+                            itemBuilder: (context, index) {
+                              return const HomeServiceItemWidget();
+                            },
+                          ),
+                        );
+                      }),
                 ],
               ),
             ),
@@ -75,10 +113,15 @@ class _HomeScreenState extends State<HomeScreen> with SingleTickerProviderStateM
                   setState(() {});
                 }
               },
-              top: showMore ? 100 * 4 : 150,
+              top: 32 +
+                  (showMore
+                      ? (90.0 * (gridItem / 4.0).ceil())
+                      : gridItem > 4
+                          ? 105
+                          : 25),
               left: 0,
               right: 0,
-              duration: const Duration(milliseconds: 300),
+              duration: Duration(milliseconds: 300),
               child: Container(
                 color: containerColor,
                 width: double.infinity,
@@ -101,16 +144,15 @@ class _HomeScreenState extends State<HomeScreen> with SingleTickerProviderStateM
                           if (!showMore) {
                             setState(() {
                               containerColor = Colors.white.withOpacity(.6);
-                              gridItem = 8;
                               showMore = true;
                             });
                           } else {
                             setState(() {
                               containerColor = Colors.white.withOpacity(.6);
-                              gridItem = 8;
                               showMore = false;
                             });
                           }
+                          _up();
                         },
                         child: const Padding(
                           padding: EdgeInsets.symmetric(horizontal: 12, vertical: 8),
@@ -137,7 +179,10 @@ class _HomeScreenState extends State<HomeScreen> with SingleTickerProviderStateM
             )
           ],
         ),
-        if (!showMore) space6C,
+        if (!showMore)
+          SizedBox(
+            height: 24,
+          ),
         SizedBox(
           height: 130,
           child: ListView.builder(
