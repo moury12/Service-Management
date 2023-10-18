@@ -1209,6 +1209,14 @@ class _CountWidgetState extends State<CountWidget> {
                 }),
                 Draggable<int>(
                   hitTestBehavior: HitTestBehavior.translucent,
+                  axis: Axis.horizontal,
+                  affinity: Axis.horizontal,
+                  dragAnchorStrategy: (draggable, context, position) {
+                    final RenderBox render =
+                        context.findRenderObject()! as RenderBox;
+                    return Offset(
+                        render.size.width / 2, render.size.height / 2);
+                  },
                   data: 1,
                   feedback: Material(
                     type: MaterialType.transparency,
