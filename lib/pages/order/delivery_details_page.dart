@@ -42,13 +42,7 @@ class _DeliveryDetailsScreenState extends State<DeliveryDetailsScreen> {
           Container(
             margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
             padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
-            decoration: BoxDecoration(
-                color: Colors.white,
-                boxShadow: [
-                  BoxShadow(
-                      blurRadius: 10, color: Colors.black.withOpacity(.15))
-                ],
-                borderRadius: BorderRadius.circular(10)),
+            decoration: BoxDecoration(color: Colors.white, boxShadow: [BoxShadow(blurRadius: 10, color: Colors.black.withOpacity(.15))], borderRadius: BorderRadius.circular(10)),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
@@ -198,9 +192,7 @@ class _DeliveryDetailsScreenState extends State<DeliveryDetailsScreen> {
                     height: 20,
                     width: 20,
                     decoration: BoxDecoration(
-                        color: isChecked
-                            ? AppColors.kPrimaryColor
-                            : Colors.transparent,
+                        color: isChecked ? AppColors.kPrimaryColor : Colors.transparent,
                         border: Border.all(
                           color: Color(0xffFFD9D9),
                           width: 1.4,

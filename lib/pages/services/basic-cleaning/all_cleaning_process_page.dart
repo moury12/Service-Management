@@ -13,8 +13,7 @@ class AllCleaningProcessScreen extends StatelessWidget {
   final bool? isCustom;
   static const String routeName = '/weekly';
 
-  const AllCleaningProcessScreen(
-      {super.key, this.title, this.isCustom = false});
+  const AllCleaningProcessScreen({super.key, this.title, this.isCustom = false});
 
   @override
   Widget build(BuildContext context) {
@@ -34,9 +33,7 @@ class AllCleaningProcessScreen extends StatelessWidget {
           Container(
             margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
             padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
-            decoration: BoxDecoration(
-                color: const Color(0xffFFE5E5),
-                borderRadius: BorderRadius.circular(10)),
+            decoration: BoxDecoration(color: const Color(0xffFFE5E5), borderRadius: BorderRadius.circular(10)),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
@@ -50,24 +47,17 @@ class AllCleaningProcessScreen extends StatelessWidget {
                     CustomSizedBox.space4H,
                     Text(
                       'Change',
-                      style: TextStyle(
-                          color: AppColors.kPrimaryColor, fontSize: 13),
+                      style: TextStyle(color: AppColors.kPrimaryColor, fontSize: 13),
                     )
                   ],
                 ),
                 Container(
                   // margin: EdgeInsets.symmetric(horizontal: 16, vertical: 12),
-                  padding:
-                      const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
-                  decoration: BoxDecoration(
-                      color: const Color(0xffFFF9F9),
-                      borderRadius: BorderRadius.circular(5)),
+                  padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+                  decoration: BoxDecoration(color: const Color(0xffFFF9F9), borderRadius: BorderRadius.circular(5)),
                   child: Text(
                     title ?? 'Weekly',
-                    style: const TextStyle(
-                        color: AppColors.kPrimaryColor,
-                        fontSize: 16,
-                        fontWeight: FontWeight.w600),
+                    style: const TextStyle(color: AppColors.kPrimaryColor, fontSize: 16, fontWeight: FontWeight.w600),
                   ),
                 ),
               ],
@@ -90,15 +80,10 @@ class AllCleaningProcessScreen extends StatelessWidget {
                 return index == 0
                     ? Container(
                         width: MediaQuery.of(context).size.width / 2.5,
-                        margin: const EdgeInsets.symmetric(
-                            horizontal: 6, vertical: 12),
-                        padding: const EdgeInsets.symmetric(
-                            vertical: 12, horizontal: 16),
-                        decoration: BoxDecoration(
-                            color: const Color(0xffFFE6EB),
-                            borderRadius: BorderRadius.circular(6),
-                            border: Border.all(
-                                width: 1, color: const Color(0xffFC8E99))),
+                        margin: const EdgeInsets.symmetric(horizontal: 6, vertical: 12),
+                        padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 16),
+                        decoration:
+                            BoxDecoration(color: const Color(0xffFFE6EB), borderRadius: BorderRadius.circular(6), border: Border.all(width: 1, color: const Color(0xffFC8E99))),
                         child: Column(
                           children: [
                             Container(
@@ -142,14 +127,9 @@ class AllCleaningProcessScreen extends StatelessWidget {
                         children: [
                           Container(
                             width: MediaQuery.of(context).size.width / 2.5,
-                            margin: const EdgeInsets.symmetric(
-                                horizontal: 6, vertical: 12),
-                            padding: const EdgeInsets.symmetric(
-                                vertical: 12, horizontal: 16),
-                            decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(6),
-                                border: Border.all(
-                                    width: 1, color: const Color(0xffFC8E99))),
+                            margin: const EdgeInsets.symmetric(horizontal: 6, vertical: 12),
+                            padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 16),
+                            decoration: BoxDecoration(borderRadius: BorderRadius.circular(6), border: Border.all(width: 1, color: const Color(0xffFC8E99))),
                             child: Column(
                               children: [
                                 ClipRRect(
@@ -178,9 +158,7 @@ class AllCleaningProcessScreen extends StatelessWidget {
                           ),
                           Positioned.fill(
                             child: Container(
-                              color: title == 'One Time' || title == 'Custom'
-                                  ? Colors.white.withOpacity(.5)
-                                  : null,
+                              color: title == 'One Time' || title == 'Custom' ? Colors.white.withOpacity(.5) : null,
                             ),
                           )
                         ],
@@ -227,13 +205,9 @@ class AllCleaningProcessScreen extends StatelessWidget {
               itemCount: 15,
               itemBuilder: (context, index) {
                 return Container(
-                  padding:
-                      const EdgeInsets.symmetric(vertical: 12, horizontal: 16),
+                  padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 16),
                   margin: const EdgeInsets.symmetric(horizontal: 6),
-                  decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(26),
-                      border:
-                          Border.all(width: 1, color: const Color(0xffFC8E99))),
+                  decoration: BoxDecoration(borderRadius: BorderRadius.circular(26), border: Border.all(width: 1, color: const Color(0xffFC8E99))),
                   child: const Column(
                     children: [
                       Padding(
@@ -268,45 +242,28 @@ class AllCleaningProcessScreen extends StatelessWidget {
                         (index) => Stack(
                               children: [
                                 Container(
-                                  padding: EdgeInsets.symmetric(
-                                      horizontal: 16, vertical: 8),
-                                  margin: EdgeInsets.symmetric(
-                                      horizontal: 16, vertical: 8),
+                                  padding: EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+                                  margin: EdgeInsets.symmetric(horizontal: 16, vertical: 8),
                                   decoration: BoxDecoration(
-                                      color: const Color(0xffFFE6EB),
-                                      borderRadius: BorderRadius.circular(6),
-                                      border: Border.all(
-                                          width: 0.5,
-                                          color: const Color(0xffFC8E99))),
+                                      color: const Color(0xffFFE6EB), borderRadius: BorderRadius.circular(6), border: Border.all(width: 0.5, color: const Color(0xffFC8E99))),
                                   child: Row(
-                                    mainAxisAlignment:
-                                        MainAxisAlignment.spaceBetween,
+                                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                     children: [
                                       CustomSizedBox.space4W,
                                       const Text(
                                         'Sun 25',
-                                        style:
-                                            AppTheme.textStyleSemiBoldBlack16,
+                                        style: AppTheme.textStyleSemiBoldBlack16,
                                       ),
                                       Container(
-                                        padding: const EdgeInsets.symmetric(
-                                            vertical: 10, horizontal: 16),
-                                        margin: const EdgeInsets.symmetric(
-                                            horizontal: 6),
+                                        padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 16),
+                                        margin: const EdgeInsets.symmetric(horizontal: 6),
                                         decoration: BoxDecoration(
-                                            color: Colors.white,
-                                            borderRadius:
-                                                BorderRadius.circular(26),
-                                            border: Border.all(
-                                                width: 1,
-                                                color:
-                                                    const Color(0xffFC8E99))),
+                                            color: Colors.white, borderRadius: BorderRadius.circular(26), border: Border.all(width: 1, color: const Color(0xffFC8E99))),
                                         child: Row(
                                           children: [
                                             const Text(
                                               '12:30 - 01:00',
-                                              style: AppTheme
-                                                  .textStyleSemiBoldBlack16,
+                                              style: AppTheme.textStyleSemiBoldBlack16,
                                             ),
                                             CustomSizedBox.space8W,
                                             Image.asset(
@@ -319,12 +276,7 @@ class AllCleaningProcessScreen extends StatelessWidget {
                                     ],
                                   ),
                                 ),
-                                Positioned(
-                                    top: 8,
-                                    bottom: 8,
-                                    left: 16,
-                                    child: Image.asset(
-                                        AssetsConstant.custom_stack_img))
+                                Positioned(top: 8, bottom: 8, left: 16, child: Image.asset(AssetsConstant.custom_stack_img))
                               ],
                             )),
                     SizedBox(
@@ -342,13 +294,9 @@ class AllCleaningProcessScreen extends StatelessWidget {
                     itemCount: 15,
                     itemBuilder: (context, index) {
                       return Container(
-                        padding: const EdgeInsets.symmetric(
-                            vertical: 10, horizontal: 16),
+                        padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 16),
                         margin: const EdgeInsets.symmetric(horizontal: 6),
-                        decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(26),
-                            border: Border.all(
-                                width: 1, color: const Color(0xffFC8E99))),
+                        decoration: BoxDecoration(borderRadius: BorderRadius.circular(26), border: Border.all(width: 1, color: const Color(0xffFC8E99))),
                         child: const Text(
                           '12:30 - 01:00',
                           style: AppTheme.textStyleSemiBoldBlack16,
@@ -365,11 +313,7 @@ class AllCleaningProcessScreen extends StatelessWidget {
         width: double.infinity,
         padding: const EdgeInsets.all(16),
         decoration: BoxDecoration(
-            color: Colors.white,
-            borderRadius: const BorderRadius.vertical(top: Radius.circular(22)),
-            boxShadow: [
-              BoxShadow(blurRadius: 10, color: Colors.black.withOpacity(.1))
-            ]),
+            color: Colors.white, borderRadius: const BorderRadius.vertical(top: Radius.circular(22)), boxShadow: [BoxShadow(blurRadius: 10, color: Colors.black.withOpacity(.1))]),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [

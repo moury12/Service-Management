@@ -12,12 +12,10 @@ class PaymentMethodSelectionScreen extends StatefulWidget {
   const PaymentMethodSelectionScreen({super.key});
 
   @override
-  State<PaymentMethodSelectionScreen> createState() =>
-      _PaymentMethodSelectionScreenState();
+  State<PaymentMethodSelectionScreen> createState() => _PaymentMethodSelectionScreenState();
 }
 
-class _PaymentMethodSelectionScreenState
-    extends State<PaymentMethodSelectionScreen> {
+class _PaymentMethodSelectionScreenState extends State<PaymentMethodSelectionScreen> {
   String groupValue = 'Cash';
 
   @override
@@ -42,12 +40,7 @@ class _PaymentMethodSelectionScreenState
           Container(
             margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
             padding: EdgeInsets.symmetric(vertical: 12, horizontal: 12),
-            decoration: BoxDecoration(
-                color: Colors.white,
-                boxShadow: [
-                  BoxShadow(blurRadius: 2, color: Colors.black.withOpacity(.04))
-                ],
-                borderRadius: BorderRadius.circular(10)),
+            decoration: BoxDecoration(color: Colors.white, boxShadow: [BoxShadow(blurRadius: 2, color: Colors.black.withOpacity(.04))], borderRadius: BorderRadius.circular(10)),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
@@ -71,12 +64,7 @@ class _PaymentMethodSelectionScreenState
           Container(
             margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
             padding: EdgeInsets.symmetric(vertical: 12, horizontal: 12),
-            decoration: BoxDecoration(
-                color: Colors.white,
-                boxShadow: [
-                  BoxShadow(blurRadius: 2, color: Colors.black.withOpacity(.04))
-                ],
-                borderRadius: BorderRadius.circular(10)),
+            decoration: BoxDecoration(color: Colors.white, boxShadow: [BoxShadow(blurRadius: 2, color: Colors.black.withOpacity(.04))], borderRadius: BorderRadius.circular(10)),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
@@ -113,12 +101,7 @@ class _PaymentMethodSelectionScreenState
           Container(
             margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
             padding: EdgeInsets.symmetric(vertical: 12, horizontal: 12),
-            decoration: BoxDecoration(
-                color: Colors.white,
-                boxShadow: [
-                  BoxShadow(blurRadius: 2, color: Colors.black.withOpacity(.04))
-                ],
-                borderRadius: BorderRadius.circular(10)),
+            decoration: BoxDecoration(color: Colors.white, boxShadow: [BoxShadow(blurRadius: 2, color: Colors.black.withOpacity(.04))], borderRadius: BorderRadius.circular(10)),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
@@ -155,12 +138,7 @@ class _PaymentMethodSelectionScreenState
           Container(
             margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
             padding: EdgeInsets.symmetric(vertical: 12, horizontal: 12),
-            decoration: BoxDecoration(
-                color: Colors.white,
-                boxShadow: [
-                  BoxShadow(blurRadius: 2, color: Colors.black.withOpacity(.04))
-                ],
-                borderRadius: BorderRadius.circular(10)),
+            decoration: BoxDecoration(color: Colors.white, boxShadow: [BoxShadow(blurRadius: 2, color: Colors.black.withOpacity(.04))], borderRadius: BorderRadius.circular(10)),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [

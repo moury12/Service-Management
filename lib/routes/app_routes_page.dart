@@ -14,16 +14,15 @@ import 'package:fix_ican/pages/settings/add_debit_card_page.dart';
 import 'package:fix_ican/pages/settings/payment_setting_page.dart';
 import 'package:fix_ican/pages/splash/language_selection_page.dart';
 import 'package:fix_ican/pages/splash/onboarding_page.dart';
-import 'package:fix_ican/shared/custom_scaffold.dart';
 import 'package:get/get.dart';
 
-import '../pages/splash/splash_page.dart';
+import '../shared/main_home_page.dart';
 
 class AppRoutes {
   static routes() => [
         GetPage(
-          name: CustomScaffold.routeName,
-          page: () => const CustomScaffold(),
+          name: MainHomeScreen.routeName,
+          page: () => const MainHomeScreen(),
         ),
         // GetPage(
         //   name: '/',
