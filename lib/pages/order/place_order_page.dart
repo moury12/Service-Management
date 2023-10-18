@@ -9,6 +9,7 @@ import 'package:fix_ican/theme/theme_data.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:mh_core/widgets/button/custom_button.dart';
+import 'package:mh_core/widgets/divider/custom_divider.dart';
 
 class PlaceOrderScreen extends StatefulWidget {
   static const String routeName = '/placeorder';
@@ -98,6 +99,11 @@ class _PlaceOrderScreenState extends State<PlaceOrderScreen> {
                 );
               },
             ),
+          ),
+          ProcessWidget(
+            holdingProcess: 3,
+            processNameList: processes.map((e) => e.topic).toList(),
+            contentHeight: 50,
           ),
           placedOrder
               ? Column(
@@ -589,12 +595,18 @@ class _PlaceOrderScreenState extends State<PlaceOrderScreen> {
               ],
             ),
             CustomSizedBox.space16H,
-            StatefulBuilder(
-              builder: (context, setState) => CustomButton(
-                label: placedOrder ? 'Confirm' : 'Place Order',
-                onPressed: () {
-                  placedOrder
-                      ? showDialog(
+            CustomButton(
+              label: placedOrder ? 'Confirm' : 'Place Order',
+              onPressed: () {
+                // if(!placedOrder){
+                //   placedOrder = true;
+                //   setState
+                // }
+                placedOrder
+                    ? {
+                        confirm = true,
+                        setState(() {}),
+                        showDialog(
                           context: context,
                           builder: (context) {
                             return StatefulBuilder(builder: (context, setState) {
@@ -613,15 +625,15 @@ class _PlaceOrderScreenState extends State<PlaceOrderScreen> {
                             });
                           },
                         )
-                      : setState(() {
-                          placedOrder = true;
-                        });
-                  // Get.toNamed(PlaceOrderScreen.routeName);
-                },
-                marginHorizontal: 0,
-                marginVertical: 0,
-                borderRadiusAll: 22,
-              ),
+                      }
+                    : setState(() {
+                        placedOrder = true;
+                      });
+                // Get.toNamed(PlaceOrderScreen.routeName);
+              },
+              marginHorizontal: 0,
+              marginVertical: 0,
+              borderRadiusAll: 22,
             )
           ],
         ),
@@ -636,4 +648,157 @@ class Process {
   bool isComplete;
 
   Process({required this.name, required this.isComplete, required this.topic});
+}
+
+class ProcessWidget extends StatelessWidget {
+  const ProcessWidget({
+    super.key,
+    required this.holdingProcess,
+    required this.processNameList,
+    this.contentHeight,
+  });
+
+  final int holdingProcess;
+  final double? contentHeight;
+  final List<String> processNameList;
+
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      children: processNameList.map((e) {
+        // GlobalMethods.globalLogger.d('original list', processNameList);
+        final newList = processNameList.sublist(holdingProcess);
+        var index = processNameList.indexOf(e);
+        // GlobalMethods.globalLogger.d('done list', newList);
+        //
+        // GlobalMethods.globalLogger.d('index', index);
+        // GlobalMethods.globalLogger.d('holding', holdingProcess);
+        // GlobalMethods.globalLogger.d('element', e);
+
+        return Expanded(
+          child: Column(
+            children: [
+              Row(
+                children: [
+                  if (processNameList.length > 3)
+                    Expanded(
+                      child: CustomDivider(
+                        thickness: 5,
+                        color: index == 0
+                            ? Colors.transparent
+                            : holdingProcess > index || index == holdingProcess
+                                ? AppColors.kAppbarColor
+                                : AppColors.kAccentColor,
+                      ),
+                    ),
+                  Expanded(
+                    child: CustomDivider(
+                      thickness: 5,
+                      color: holdingProcess > index ? AppColors.kAppbarColor : AppColors.kAccentColor,
+                    ),
+                  ),
+                  Container(
+                    height: 36,
+                    width: 36,
+                    decoration: BoxDecoration(
+                      color: index == holdingProcess
+                          ? Colors.white
+                          : !newList.contains(e)
+                              ? AppColors.kAppbarColor
+                              : Colors.white,
+                      border: Border.all(
+                        color: AppColors.kAppbarColor,
+                        width: 5,
+                      ),
+                      borderRadius: BorderRadius.circular(100),
+                    ),
+                    child: Center(
+                      child: /*!newList.contains(e)
+                          ? const Icon(
+                              Icons.check,
+                              color: AppColors.kWhiteColor,
+                              size: 30,
+                            )
+                          :*/
+                          Text(
+                        (index + 1).toString(),
+                        style: TextStyle(
+                            fontSize: 22,
+                            fontWeight: FontWeight.bold,
+                            color: index == holdingProcess
+                                ? AppColors.kAppbarColor
+                                : !newList.contains(e)
+                                    ? Colors.white
+                                    : AppColors.kAppbarColor),
+                      ),
+                    ),
+                  ),
+                  if (processNameList.length > 3)
+                    Expanded(
+                      child: CustomDivider(
+                        thickness: 5,
+                        color: holdingProcess > index ? AppColors.kAppbarColor : AppColors.kAccentColor,
+                      ),
+                    ),
+                  Expanded(
+                    child: CustomDivider(
+                      thickness: 5,
+                      color: holdingProcess > index + (holdingProcess == processNameList.length ? 0 : 1) ? AppColors.kAppbarColor : AppColors.kAccentColor,
+                    ),
+                  ),
+                  // Expanded(
+                  //   child: CustomDivider(
+                  //     thickness: 5,
+                  //     color: index == processNameList.length - 1
+                  //         ? AppColors.kWhiteColor
+                  //         : holdingProcess > index
+                  //             ? AppColors.kAppbarColor
+                  //             : AppColors.kGreyColor,
+                  //   ),
+                  // ),
+                ],
+              ),
+              Align(
+                alignment: index == 0 && processNameList.length < 4
+                    ? Alignment.centerLeft
+                    : index == processNameList.length - 1 && processNameList.length < 4
+                        ? Alignment.centerRight
+                        : Alignment.center,
+                child: Container(
+                  height: contentHeight ?? 50,
+                  padding: const EdgeInsets.all(8.0).copyWith(
+                    left: index == 0 && processNameList.length < 4 ? 42 : 8,
+                    right: index == processNameList.length - 1 && processNameList.length < 4 ? 42 : 8,
+                  ),
+                  child: Text(
+                    e,
+                    textAlign: TextAlign.center,
+                    maxLines: 3,
+                    style: TextStyle(fontSize: 12, fontWeight: FontWeight.normal, color: AppColors.kAppbarColor),
+                  ),
+                ),
+              ),
+            ],
+          ),
+        );
+      }).toList(),
+    );
+  }
+}
+
+class CustomDivider extends StatelessWidget {
+  const CustomDivider({Key? key, this.color, this.thickness, this.indent, this.endIndent}) : super(key: key);
+
+  final Color? color;
+  final double? thickness, indent, endIndent;
+
+  @override
+  Widget build(BuildContext context) {
+    return Divider(
+      color: color ?? AppColors.kAppbarColor,
+      thickness: thickness ?? 0.5,
+      indent: indent ?? 0,
+      endIndent: endIndent ?? 0,
+    );
+  }
 }

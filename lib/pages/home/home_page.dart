@@ -230,7 +230,7 @@ class _HomeScreenState extends State<HomeScreen> with SingleTickerProviderStateM
           ),
         ),
         SizedBox(
-          height: 162,
+          height: MediaQuery.of(context).size.width / 2,
           child: ListView.builder(
             scrollDirection: Axis.horizontal,
             itemCount: 3,
@@ -263,7 +263,7 @@ class _HomeScreenState extends State<HomeScreen> with SingleTickerProviderStateM
           ),
         ),
         SizedBox(
-          height: 162,
+          height: MediaQuery.of(context).size.width / 2,
           child: ListView.builder(
             scrollDirection: Axis.horizontal,
             itemCount: 3,
