@@ -7,6 +7,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:mh_core/utils/constant.dart';
+import 'package:mh_core/utils/global.dart';
 
 class HomeScreen extends StatefulWidget {
   static const String routeName = '/home';
@@ -17,7 +18,8 @@ class HomeScreen extends StatefulWidget {
   State<HomeScreen> createState() => _HomeScreenState();
 }
 
-class _HomeScreenState extends State<HomeScreen> with SingleTickerProviderStateMixin {
+class _HomeScreenState extends State<HomeScreen>
+    with SingleTickerProviderStateMixin {
   bool showMore = false;
   int currentIndex = 0;
   int gridItem = 8;
@@ -54,8 +56,13 @@ class _HomeScreenState extends State<HomeScreen> with SingleTickerProviderStateM
                       // }
                     },
                     child: GridView.builder(
-                      padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 12),
-                      gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 4, mainAxisSpacing: 24, crossAxisSpacing: 24),
+                      padding: const EdgeInsets.symmetric(
+                          horizontal: 8, vertical: 12),
+                      gridDelegate:
+                          const SliverGridDelegateWithFixedCrossAxisCount(
+                              crossAxisCount: 4,
+                              mainAxisSpacing: 24,
+                              crossAxisSpacing: 24),
                       itemCount: showMore ? 16 : 8,
                       // itemCount: gridItem,
                       shrinkWrap: true,
@@ -75,23 +82,29 @@ class _HomeScreenState extends State<HomeScreen> with SingleTickerProviderStateM
                   setState(() {});
                 }
               },
-              top: showMore ? 100 * 4 : 150,
+              top: showMore ? 100 * 4 : 130,
               left: 0,
               right: 0,
-              duration: const Duration(milliseconds: 300),
+              duration: const Duration(milliseconds: 100),
               child: Container(
                 color: containerColor,
                 width: double.infinity,
-                height: 90,
+                height: 100,
                 clipBehavior: Clip.none,
                 child: FittedBox(
                   child: Container(
-                    margin: const EdgeInsets.symmetric(vertical: 20),
+                    margin: const EdgeInsets.symmetric(vertical: 25),
                     decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(20),
-                        boxShadow: [BoxShadow(color: Colors.black.withOpacity(.2), blurRadius: 5)],
-                        gradient: const LinearGradient(colors: [AppColors.kPrimaryColor, Color(0xffFFA0A9)], begin: Alignment.centerLeft, end: Alignment.centerRight),
-                        color: Colors.red),
+                      borderRadius: BorderRadius.circular(20),
+                      boxShadow: [
+                        BoxShadow(
+                            color: Colors.black.withOpacity(.2), blurRadius: 5)
+                      ],
+                      gradient: const LinearGradient(
+                          colors: [AppColors.kPrimaryColor, Color(0xffFFA0A9)],
+                          begin: Alignment.centerLeft,
+                          end: Alignment.centerRight),
+                    ),
                     child: Material(
                       type: MaterialType.transparency,
                       borderRadius: BorderRadius.circular(20),
@@ -112,17 +125,20 @@ class _HomeScreenState extends State<HomeScreen> with SingleTickerProviderStateM
                             });
                           }
                         },
-                        child: const Padding(
-                          padding: EdgeInsets.symmetric(horizontal: 12, vertical: 8),
+                        child: Padding(
+                          padding:
+                              EdgeInsets.symmetric(horizontal: 12, vertical: 8),
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
                               Text(
-                                'Show More',
+                                showMore ? "Show Less" : 'Show More',
                                 style: AppTheme.textStyleMediumWhite12,
                               ),
                               Icon(
-                                Icons.keyboard_arrow_down_rounded,
+                                showMore
+                                    ? Icons.keyboard_arrow_up_rounded
+                                    : Icons.keyboard_arrow_down_rounded,
                                 color: Colors.white,
                                 size: 17,
                               )
@@ -137,7 +153,13 @@ class _HomeScreenState extends State<HomeScreen> with SingleTickerProviderStateM
             )
           ],
         ),
-        if (!showMore) space6C,
+        showMore
+            ? SizedBox(
+                height: MediaQuery.of(context).size.width / 16,
+              )
+            : SizedBox(
+                height: MediaQuery.of(context).size.width / 16,
+              ),
         SizedBox(
           height: 130,
           child: ListView.builder(
@@ -160,12 +182,17 @@ class _HomeScreenState extends State<HomeScreen> with SingleTickerProviderStateM
                     margin: const EdgeInsets.all(4),
                     width: currentIndex == index ? 20 : 10,
                     decoration: BoxDecoration(
-                        border: Border.all(width: 3, color: currentIndex == index ? AppColors.kPrimaryColor : AppColors.kPrimaryColor.withOpacity(.5)),
+                        border: Border.all(
+                            width: 3,
+                            color: currentIndex == index
+                                ? AppColors.kPrimaryColor
+                                : AppColors.kPrimaryColor.withOpacity(.5)),
                         borderRadius: BorderRadius.circular(20)),
                   )),
         ),
         Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 16.0).copyWith(right: 6),
+          padding:
+              const EdgeInsets.symmetric(horizontal: 16.0).copyWith(right: 6),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
@@ -175,7 +202,8 @@ class _HomeScreenState extends State<HomeScreen> with SingleTickerProviderStateM
               ),
               TextButton(
                   onPressed: () {
-                    Get.toNamed(AllServicesOffers.routeName, arguments: 'service');
+                    Get.toNamed(AllServicesOffers.routeName,
+                        arguments: 'service');
                   },
                   child: const Text(
                     'See All',
@@ -185,7 +213,7 @@ class _HomeScreenState extends State<HomeScreen> with SingleTickerProviderStateM
           ),
         ),
         SizedBox(
-          height: 162,
+          height: MediaQuery.of(context).size.width / 2,
           child: ListView.builder(
             scrollDirection: Axis.horizontal,
             itemCount: 3,
@@ -198,7 +226,8 @@ class _HomeScreenState extends State<HomeScreen> with SingleTickerProviderStateM
           ),
         ),
         Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 16.0).copyWith(right: 6),
+          padding:
+              const EdgeInsets.symmetric(horizontal: 16.0).copyWith(right: 6),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
@@ -208,7 +237,8 @@ class _HomeScreenState extends State<HomeScreen> with SingleTickerProviderStateM
               ),
               TextButton(
                   onPressed: () {
-                    Get.toNamed(AllServicesOffers.routeName, arguments: 'offer');
+                    Get.toNamed(AllServicesOffers.routeName,
+                        arguments: 'offer');
                   },
                   child: const Text(
                     'See All',
@@ -218,7 +248,7 @@ class _HomeScreenState extends State<HomeScreen> with SingleTickerProviderStateM
           ),
         ),
         SizedBox(
-          height: 162,
+          height: MediaQuery.of(context).size.width / 2,
           child: ListView.builder(
             scrollDirection: Axis.horizontal,
             itemCount: 3,
@@ -249,7 +279,12 @@ class OfferAndServicesWidget extends StatelessWidget {
         horizontal: 8,
         vertical: 8,
       ),
-      decoration: BoxDecoration(borderRadius: BorderRadius.circular(8), color: Colors.white, boxShadow: [BoxShadow(blurRadius: 10, color: Colors.black.withOpacity(.06))]),
+      decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(8),
+          color: Colors.white,
+          boxShadow: [
+            BoxShadow(blurRadius: 10, color: Colors.black.withOpacity(.06))
+          ]),
       child: Column(
         children: [
           ClipRRect(
@@ -284,8 +319,13 @@ class OfferItemWidget extends StatelessWidget {
       margin: const EdgeInsets.symmetric(horizontal: 8),
       decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(6),
-          boxShadow: [BoxShadow(color: Colors.black.withOpacity(.2), blurRadius: 5)],
-          gradient: const LinearGradient(colors: [AppColors.kPrimaryColor, Color(0xffFFA0A9)], begin: Alignment.centerLeft, end: Alignment.centerRight),
+          boxShadow: [
+            BoxShadow(color: Colors.black.withOpacity(.2), blurRadius: 5)
+          ],
+          gradient: const LinearGradient(
+              colors: [AppColors.kPrimaryColor, Color(0xffFFA0A9)],
+              begin: Alignment.centerLeft,
+              end: Alignment.centerRight),
           color: Colors.red),
       child: Stack(
         clipBehavior: Clip.none,
@@ -310,13 +350,15 @@ class OfferItemWidget extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: [
                     Container(
-                      padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+                      padding: const EdgeInsets.symmetric(
+                          horizontal: 16, vertical: 8),
                       margin: const EdgeInsets.only(bottom: 8),
                       decoration: BoxDecoration(
                         color: const Color(0xffFC8E99),
@@ -330,7 +372,10 @@ class OfferItemWidget extends StatelessWidget {
                           )),
                     ),
                     const Text.rich(
-                      TextSpan(text: 'Get Discount\nUp to ', children: [TextSpan(text: '25%', style: AppTheme.textStyleBoldWhite20)]),
+                      TextSpan(text: 'Get Discount\nUp to ', children: [
+                        TextSpan(
+                            text: '25%', style: AppTheme.textStyleBoldWhite20)
+                      ]),
                       style: AppTheme.textStyleSemiBoldWhite20,
                     )
                   ],
@@ -372,7 +417,13 @@ class HomeServiceItemWidget extends StatelessWidget {
         children: [
           Container(
             decoration: BoxDecoration(
-                color: const Color(0xffFFF1F2), borderRadius: BorderRadius.circular(6), boxShadow: [BoxShadow(color: AppColors.kPrimaryColor.withOpacity(.5), blurRadius: 2)]),
+                color: const Color(0xffFFF1F2),
+                borderRadius: BorderRadius.circular(6),
+                boxShadow: [
+                  BoxShadow(
+                      color: AppColors.kPrimaryColor.withOpacity(.5),
+                      blurRadius: 2)
+                ]),
             margin: const EdgeInsets.all(8),
             child: Stack(
               alignment: Alignment.bottomCenter,
@@ -388,7 +439,8 @@ class HomeServiceItemWidget extends StatelessWidget {
                 Padding(
                   padding: padding ?? const EdgeInsets.all(12),
                   child: Center(
-                    child: Image.asset(AssetsConstant.home_service_icon1, height: height ?? 25),
+                    child: Image.asset(AssetsConstant.home_service_icon1,
+                        height: height ?? 25),
                   ),
                 ),
               ],
