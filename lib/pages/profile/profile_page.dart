@@ -1,7 +1,9 @@
 import 'package:fix_ican/constants/assets_constant.dart';
 import 'package:fix_ican/constants/color_constant.dart';
-import 'package:fix_ican/pages/order/checkout_page.dart';
+import 'package:fix_ican/pages/order/delivery_details_page.dart';
+import 'package:fix_ican/pages/order/payment_method_page.dart';
 import 'package:fix_ican/pages/profile/edit_profile_page.dart';
+import 'package:fix_ican/pages/settings/payment_setting_page.dart';
 import 'package:fix_ican/shared/custom_sized_box.dart';
 import 'package:fix_ican/theme/theme_data.dart';
 import 'package:flutter/material.dart';
@@ -94,7 +96,7 @@ class ProfileScreen extends StatelessWidget {
               ListTile(
                 onTap: () {
                   // Get.toNamed(PaymentSettingScreen.routeName);
-                  Get.toNamed(CheckoutScreen.routeName);
+                  Get.toNamed(DeliveryDetailsScreen.routeName);
                 },
                 leading: Image.asset(
                   AssetsConstant.profile_icon2,
@@ -112,7 +114,7 @@ class ProfileScreen extends StatelessWidget {
               ),
               ListTile(
                 onTap: () {
-                  // Get.toNamed(PaymentSettingScreen.routeName);
+                  Get.toNamed(PaymentMethodSelectionScreen.routeName);
                   //Get.toNamed(AddDebitScreen.routeName);
                 },
                 leading: Image.asset(

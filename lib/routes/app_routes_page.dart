@@ -1,7 +1,7 @@
 import 'package:fix_ican/pages/auth/login_page.dart';
 import 'package:fix_ican/pages/home/all_services_offers.dart';
 import 'package:fix_ican/pages/home/home_page.dart';
-import 'package:fix_ican/pages/order/checkout_page.dart';
+import 'package:fix_ican/pages/order/delivery_details_page.dart';
 import 'package:fix_ican/pages/order/payment_method_page.dart';
 import 'package:fix_ican/pages/order/place_order_page.dart';
 import 'package:fix_ican/pages/profile/edit_profile_page.dart';
@@ -70,8 +70,8 @@ class AppRoutes {
           page: () => const PlaceOrderScreen(),
         ),
         GetPage(
-          name: CheckoutScreen.routeName,
-          page: () => const CheckoutScreen(),
+          name: DeliveryDetailsScreen.routeName,
+          page: () => const DeliveryDetailsScreen(),
         ),
         GetPage(
           name: PaymentMethodSelectionScreen.routeName,
