@@ -30,6 +30,7 @@ class _PlaceOrderScreenState extends State<PlaceOrderScreen> {
   @override
   Widget build(BuildContext context) {
     return CustomScaffold(
+      action: [],
       title: const Text.rich(TextSpan(
           text: 'Order Review',
           style: AppTheme.textStyleSemiBoldWhite18,
@@ -676,7 +677,18 @@ class _PlaceOrderScreenState extends State<PlaceOrderScreen> {
                       ? showDialog(
                           context: context,
                           builder: (context) {
-                            return CenterDialogWidget();
+                            return CenterDialogWidget(
+                              headtitle: 'Order Successful!',
+                              buttonText: 'View Details',
+                              paddingOfICon: 24.00,
+                              stacked: true,
+                              image: Image.asset(
+                                AssetsConstant.check_icon,
+                                color: AppColors.kPrimaryColor,
+                              ),
+                              subtitle:
+                                  'Your order has been placed successfully. Within very short time  you can enjoy your service',
+                            );
                           },
                         )
                       : setState(() {

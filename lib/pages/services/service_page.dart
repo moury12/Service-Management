@@ -298,7 +298,9 @@ class _ServicesScreenState extends State<ServicesScreen> {
                                                                                 context,
                                                                             builder:
                                                                                 (context) {
-                                                                              return CenterDialogWidget();
+                                                                              return CenterDialogWidget(
+                                                                                stacked: false,
+                                                                              );
                                                                             },
                                                                           );
                                                                         },
@@ -465,8 +467,9 @@ class CenterDialogWidget extends StatelessWidget {
     this.image,
     this.headtitle,
     this.subtitle,
-    this.stacked = false,
+    required this.stacked,
     this.buttonText,
+    this.paddingOfICon,
   });
 
   final Widget? content;
@@ -475,8 +478,9 @@ class CenterDialogWidget extends StatelessWidget {
   final String? headtitle;
   final String? subtitle;
   final EdgeInsets? padding;
-  final bool? stacked;
+  final bool stacked;
   final String? buttonText;
+  final double? paddingOfICon;
 
   @override
   Widget build(BuildContext context) {
@@ -495,40 +499,73 @@ class CenterDialogWidget extends StatelessWidget {
                 children: [
                   GestureDetector(
                     child: Align(
-                      child: image ??
-                          Image.asset(
-                            AssetsConstant.cancel_icon,
-                            color: Colors.black,
-                            height: 15,
-                          ),
+                      child: Image.asset(
+                        AssetsConstant.cancel_icon,
+                        color: Colors.black,
+                        height: 15,
+                      ),
                       alignment: Alignment.topRight,
                     ),
                     onTap: () {
                       Navigator.pop(context);
                     },
                   ),
-                  Container(
-                    decoration: BoxDecoration(
-                      gradient: LinearGradient(colors: [
-                        AppColors.kAppbarColor,
-                        AppColors.kPrimaryColor,
-                      ]),
-                      color: AppColors.kPrimaryColor,
-                      borderRadius: BorderRadius.circular(90),
-                    ),
-                    padding: const EdgeInsets.all(36),
-                    child: Container(
-                      padding: const EdgeInsets.all(16),
-                      decoration: BoxDecoration(
-                        color: Colors.white,
-                        borderRadius: BorderRadius.circular(12),
-                      ),
-                      child: Image.asset(
-                        AssetsConstant.cancel_icon,
-                        height: 20,
-                      ),
-                    ),
-                  ),
+                  stacked
+                      ? Stack(
+                          alignment: Alignment.center,
+                          children: [
+                            Image.asset(
+                              AssetsConstant.order_stack,
+                              height: 200,
+                            ),
+                            Container(
+                              decoration: BoxDecoration(
+                                gradient: LinearGradient(colors: [
+                                  AppColors.kAppbarColor,
+                                  AppColors.kPrimaryColor,
+                                ]),
+                                color: AppColors.kPrimaryColor,
+                                borderRadius: BorderRadius.circular(90),
+                              ),
+                              padding: const EdgeInsets.all(36),
+                              child: Container(
+                                padding: EdgeInsets.all(paddingOfICon ?? 16),
+                                decoration: BoxDecoration(
+                                  color: Colors.white,
+                                  borderRadius: BorderRadius.circular(12),
+                                ),
+                                child: image ??
+                                    Image.asset(
+                                      AssetsConstant.cancel_icon,
+                                      height: 20,
+                                    ),
+                              ),
+                            ),
+                          ],
+                        )
+                      : Container(
+                          decoration: BoxDecoration(
+                            gradient: LinearGradient(colors: [
+                              AppColors.kAppbarColor,
+                              AppColors.kPrimaryColor,
+                            ]),
+                            color: AppColors.kPrimaryColor,
+                            borderRadius: BorderRadius.circular(90),
+                          ),
+                          padding: const EdgeInsets.all(36),
+                          child: Container(
+                            padding: EdgeInsets.all(paddingOfICon ?? 16),
+                            decoration: BoxDecoration(
+                              color: Colors.white,
+                              borderRadius: BorderRadius.circular(12),
+                            ),
+                            child: image ??
+                                Image.asset(
+                                  AssetsConstant.cancel_icon,
+                                  height: 20,
+                                ),
+                          ),
+                        ),
                   CustomSizedBox.space16H,
                   Text(
                     headtitle ?? 'Cancel Order!',
@@ -552,7 +589,7 @@ class CenterDialogWidget extends StatelessWidget {
                       marginHorizontal: 0,
                       borderRadiusAll: 22,
                       label: buttonText ?? 'Yes, Cancel Order'),
-                  stacked == false
+                  stacked
                       ? SizedBox.shrink()
                       : CustomButton(
                           onPressed: () {

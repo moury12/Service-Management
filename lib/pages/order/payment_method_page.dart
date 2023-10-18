@@ -23,6 +23,7 @@ class _PaymentMethodSelectionScreenState
   @override
   Widget build(BuildContext context) {
     return CustomScaffold(
+      action: [],
       leading: InkWell(
           onTap: () {
             Get.back();

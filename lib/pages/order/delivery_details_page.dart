@@ -24,6 +24,7 @@ class _DeliveryDetailsScreenState extends State<DeliveryDetailsScreen> {
   Widget build(BuildContext context) {
     return CustomScaffold(
       bottom: SizedBox.shrink(),
+      action: [],
       leading: InkWell(
         onTap: () {
           Get.back();

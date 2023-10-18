@@ -457,6 +457,7 @@ class _CustomScaffoldState extends State<CustomScaffold> {
                         context: context,
                         builder: (context) {
                           return CenterDialogWidget(
+                            stacked: false,
                             padding: EdgeInsets.only(top: 16),
                             title: Column(
                               mainAxisSize: MainAxisSize.min,
