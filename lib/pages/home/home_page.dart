@@ -1,6 +1,7 @@
 import 'package:fix_ican/constants/assets_constant.dart';
 import 'package:fix_ican/constants/color_constant.dart';
 import 'package:fix_ican/pages/home/all_services_offers.dart';
+import 'package:fix_ican/pages/services/service_offer_details.dart';
 import 'package:fix_ican/shared/custom_sized_box.dart';
 import 'package:fix_ican/theme/theme_data.dart';
 import 'package:flutter/material.dart';
@@ -18,15 +19,17 @@ class HomeScreen extends StatefulWidget {
   State<HomeScreen> createState() => _HomeScreenState();
 }
 
-class _HomeScreenState extends State<HomeScreen> with SingleTickerProviderStateMixin {
+class _HomeScreenState extends State<HomeScreen>
+    with SingleTickerProviderStateMixin {
   bool showMore = false;
   int currentIndex = 0;
-  int gridItem = 17;
+  int gridItem = 16;
 
   Color? containerColor = Colors.white.withOpacity(.6);
 
   AnimationController? _controller;
   Animation<double>? _animation;
+
   void _up() {
     setState(() {
       if (showMore) {
@@ -76,25 +79,27 @@ class _HomeScreenState extends State<HomeScreen> with SingleTickerProviderStateM
                       builder: (context, child) {
                         globalLogger.d(_animation!.value);
                         return Container(
-                          // duration: const Duration(milliseconds: 300),
-                          // height: showMore ? 400 : 200,
-                          // onEnd: () {
-                          //   // if (showMore) {
-                          //   //   gridItem = 32;
-                          //   //   setState(() {});
-                          //   // }
-                          // },
                           child: GridView.builder(
-                            padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 12),
-                            gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 4, mainAxisSpacing: 24, crossAxisSpacing: 24),
+                            padding: const EdgeInsets.symmetric(
+                                horizontal: 8, vertical: 12),
+                            gridDelegate:
+                                const SliverGridDelegateWithFixedCrossAxisCount(
+                                    crossAxisCount: 4,
+                                    mainAxisSpacing: 24,
+                                    crossAxisSpacing: 24),
                             itemCount: /*showMore
                                 ?*/
-                                gridItem >= 8 ? 8 + ((gridItem - 8) ~/ 4 * (_animation!.value * 4).floor().toInt()) + (_animation!.value == 1 ? (gridItem % 4) : 0) : gridItem
-                            /*: gridItem >= 8
-                                    ? 8
-                                    : gridItem*/
-                            ,
-                            // itemCount: gridItem,
+                                gridItem >= 8
+                                    ? 8 +
+                                        ((gridItem - 8) ~/
+                                            4 *
+                                            (_animation!.value * 4)
+                                                .floor()
+                                                .toInt()) +
+                                        (_animation!.value == 1
+                                            ? (gridItem % 4)
+                                            : 0)
+                                    : gridItem,
                             shrinkWrap: true,
                             physics: const NeverScrollableScrollPhysics(),
                             itemBuilder: (context, index) {
@@ -132,8 +137,18 @@ class _HomeScreenState extends State<HomeScreen> with SingleTickerProviderStateM
                     margin: const EdgeInsets.symmetric(vertical: 20),
                     decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(20),
-                        boxShadow: [BoxShadow(color: Colors.black.withOpacity(.2), blurRadius: 5)],
-                        gradient: const LinearGradient(colors: [AppColors.kPrimaryColor, Color(0xffFFA0A9)], begin: Alignment.centerLeft, end: Alignment.centerRight),
+                        boxShadow: [
+                          BoxShadow(
+                              color: Colors.black.withOpacity(.2),
+                              blurRadius: 5)
+                        ],
+                        gradient: const LinearGradient(
+                            colors: [
+                              AppColors.kPrimaryColor,
+                              Color(0xffFFA0A9)
+                            ],
+                            begin: Alignment.centerLeft,
+                            end: Alignment.centerRight),
                         color: Colors.red),
                     child: Material(
                       type: MaterialType.transparency,
@@ -154,17 +169,20 @@ class _HomeScreenState extends State<HomeScreen> with SingleTickerProviderStateM
                           }
                           _up();
                         },
-                        child: const Padding(
-                          padding: EdgeInsets.symmetric(horizontal: 12, vertical: 8),
+                        child: Padding(
+                          padding:
+                              EdgeInsets.symmetric(horizontal: 12, vertical: 8),
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
                               Text(
-                                'Show More',
+                                showMore ? "Show Less" : 'Show More',
                                 style: AppTheme.textStyleMediumWhite12,
                               ),
                               Icon(
-                                Icons.keyboard_arrow_down_rounded,
+                                showMore
+                                    ? Icons.keyboard_arrow_up_rounded
+                                    : Icons.keyboard_arrow_down_rounded,
                                 color: Colors.white,
                                 size: 17,
                               )
@@ -179,10 +197,9 @@ class _HomeScreenState extends State<HomeScreen> with SingleTickerProviderStateM
             )
           ],
         ),
-        if (!showMore)
-          SizedBox(
-            height: 24,
-          ),
+        SizedBox(
+          height: MediaQuery.of(context).size.width / 12,
+        ),
         SizedBox(
           height: 130,
           child: ListView.builder(
@@ -205,12 +222,17 @@ class _HomeScreenState extends State<HomeScreen> with SingleTickerProviderStateM
                     margin: const EdgeInsets.all(4),
                     width: currentIndex == index ? 20 : 10,
                     decoration: BoxDecoration(
-                        border: Border.all(width: 3, color: currentIndex == index ? AppColors.kPrimaryColor : AppColors.kPrimaryColor.withOpacity(.5)),
+                        border: Border.all(
+                            width: 3,
+                            color: currentIndex == index
+                                ? AppColors.kPrimaryColor
+                                : AppColors.kPrimaryColor.withOpacity(.5)),
                         borderRadius: BorderRadius.circular(20)),
                   )),
         ),
         Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 16.0).copyWith(right: 6),
+          padding:
+              const EdgeInsets.symmetric(horizontal: 16.0).copyWith(right: 6),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
@@ -220,7 +242,8 @@ class _HomeScreenState extends State<HomeScreen> with SingleTickerProviderStateM
               ),
               TextButton(
                   onPressed: () {
-                    Get.toNamed(AllServicesOffers.routeName, arguments: 'service');
+                    Get.toNamed(AllServicesOffers.routeName,
+                        arguments: 'service');
                   },
                   child: const Text(
                     'See All',
@@ -238,12 +261,18 @@ class _HomeScreenState extends State<HomeScreen> with SingleTickerProviderStateM
             itemBuilder: (context, index) {
               currentIndex = index;
 
-              return OfferAndServicesWidget();
+              return InkWell(
+                  onTap: () {
+                    Get.toNamed(ServiceOfferDetails.routeName,
+                        arguments: 'service');
+                  },
+                  child: OfferAndServicesWidget());
             },
           ),
         ),
         Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 16.0).copyWith(right: 6),
+          padding:
+              const EdgeInsets.symmetric(horizontal: 16.0).copyWith(right: 6),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
@@ -253,7 +282,8 @@ class _HomeScreenState extends State<HomeScreen> with SingleTickerProviderStateM
               ),
               TextButton(
                   onPressed: () {
-                    Get.toNamed(AllServicesOffers.routeName, arguments: 'offer');
+                    Get.toNamed(AllServicesOffers.routeName,
+                        arguments: 'offer');
                   },
                   child: const Text(
                     'See All',
@@ -269,7 +299,12 @@ class _HomeScreenState extends State<HomeScreen> with SingleTickerProviderStateM
             itemCount: 3,
             padding: EdgeInsets.symmetric(horizontal: 8),
             itemBuilder: (context, index) {
-              return OfferAndServicesWidget();
+              return InkWell(
+                  onTap: () {
+                    Get.toNamed(ServiceOfferDetails.routeName,
+                        arguments: 'offer');
+                  },
+                  child: OfferAndServicesWidget());
             },
           ),
         ),
@@ -294,7 +329,12 @@ class OfferAndServicesWidget extends StatelessWidget {
         horizontal: 8,
         vertical: 8,
       ),
-      decoration: BoxDecoration(borderRadius: BorderRadius.circular(8), color: Colors.white, boxShadow: [BoxShadow(blurRadius: 10, color: Colors.black.withOpacity(.06))]),
+      decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(8),
+          color: Colors.white,
+          boxShadow: [
+            BoxShadow(blurRadius: 10, color: Colors.black.withOpacity(.06))
+          ]),
       child: Column(
         children: [
           ClipRRect(
@@ -329,8 +369,13 @@ class OfferItemWidget extends StatelessWidget {
       margin: const EdgeInsets.symmetric(horizontal: 8),
       decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(6),
-          boxShadow: [BoxShadow(color: Colors.black.withOpacity(.2), blurRadius: 5)],
-          gradient: const LinearGradient(colors: [AppColors.kPrimaryColor, Color(0xffFFA0A9)], begin: Alignment.centerLeft, end: Alignment.centerRight),
+          boxShadow: [
+            BoxShadow(color: Colors.black.withOpacity(.2), blurRadius: 5)
+          ],
+          gradient: const LinearGradient(
+              colors: [AppColors.kPrimaryColor, Color(0xffFFA0A9)],
+              begin: Alignment.centerLeft,
+              end: Alignment.centerRight),
           color: Colors.red),
       child: Stack(
         clipBehavior: Clip.none,
@@ -355,13 +400,15 @@ class OfferItemWidget extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: [
                     Container(
-                      padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+                      padding: const EdgeInsets.symmetric(
+                          horizontal: 16, vertical: 8),
                       margin: const EdgeInsets.only(bottom: 8),
                       decoration: BoxDecoration(
                         color: const Color(0xffFC8E99),
@@ -375,7 +422,10 @@ class OfferItemWidget extends StatelessWidget {
                           )),
                     ),
                     const Text.rich(
-                      TextSpan(text: 'Get Discount\nUp to ', children: [TextSpan(text: '25%', style: AppTheme.textStyleBoldWhite20)]),
+                      TextSpan(text: 'Get Discount\nUp to ', children: [
+                        TextSpan(
+                            text: '25%', style: AppTheme.textStyleBoldWhite20)
+                      ]),
                       style: AppTheme.textStyleSemiBoldWhite20,
                     )
                   ],
@@ -417,7 +467,13 @@ class HomeServiceItemWidget extends StatelessWidget {
         children: [
           Container(
             decoration: BoxDecoration(
-                color: const Color(0xffFFF1F2), borderRadius: BorderRadius.circular(6), boxShadow: [BoxShadow(color: AppColors.kPrimaryColor.withOpacity(.5), blurRadius: 2)]),
+                color: const Color(0xffFFF1F2),
+                borderRadius: BorderRadius.circular(6),
+                boxShadow: [
+                  BoxShadow(
+                      color: AppColors.kPrimaryColor.withOpacity(.5),
+                      blurRadius: 2)
+                ]),
             margin: const EdgeInsets.all(8),
             child: Stack(
               alignment: Alignment.bottomCenter,
@@ -433,7 +489,8 @@ class HomeServiceItemWidget extends StatelessWidget {
                 Padding(
                   padding: padding ?? const EdgeInsets.all(12),
                   child: Center(
-                    child: Image.asset(AssetsConstant.home_service_icon1, height: height ?? 25),
+                    child: Image.asset(AssetsConstant.home_service_icon1,
+                        height: height ?? 25),
                   ),
                 ),
               ],

@@ -6,17 +6,43 @@ import 'package:fix_ican/shared/custom_sized_box.dart';
 import 'package:fix_ican/theme/theme_data.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:intl/intl.dart';
 import 'package:mh_core/widgets/button/custom_button.dart';
 
-class AllCleaningProcessScreen extends StatelessWidget {
+class AllCleaningProcessScreen extends StatefulWidget {
   final String? title;
   final bool? isCustom;
   static const String routeName = '/weekly';
 
-  const AllCleaningProcessScreen({super.key, this.title, this.isCustom = false});
+  const AllCleaningProcessScreen(
+      {super.key, this.title, this.isCustom = false});
+
+  @override
+  State<AllCleaningProcessScreen> createState() =>
+      _AllCleaningProcessScreenState();
+}
+
+class _AllCleaningProcessScreenState extends State<AllCleaningProcessScreen> {
+  DateTime _currentMonth = DateTime.now();
+  bool dateSelected = false;
+  bool timeSelected = false;
+
+  void _next() {
+    setState(() {
+      _currentMonth = DateTime(_currentMonth.year, _currentMonth.month + 1);
+    });
+  }
+
+  void _before() {
+    setState(() {
+      _currentMonth = DateTime(_currentMonth.year, _currentMonth.month - 1);
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
+    String month = DateFormat.MMMM().format(_currentMonth);
+    List<DateTime> dates = getDatesForCurrentMonth(_currentMonth);
     return CustomScaffold(
       leading: InkWell(
         onTap: () {
@@ -33,7 +59,9 @@ class AllCleaningProcessScreen extends StatelessWidget {
           Container(
             margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
             padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
-            decoration: BoxDecoration(color: const Color(0xffFFE5E5), borderRadius: BorderRadius.circular(10)),
+            decoration: BoxDecoration(
+                color: const Color(0xffFFE5E5),
+                borderRadius: BorderRadius.circular(10)),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
@@ -47,17 +75,24 @@ class AllCleaningProcessScreen extends StatelessWidget {
                     CustomSizedBox.space4H,
                     Text(
                       'Change',
-                      style: TextStyle(color: AppColors.kPrimaryColor, fontSize: 13),
+                      style: TextStyle(
+                          color: AppColors.kPrimaryColor, fontSize: 13),
                     )
                   ],
                 ),
                 Container(
                   // margin: EdgeInsets.symmetric(horizontal: 16, vertical: 12),
-                  padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
-                  decoration: BoxDecoration(color: const Color(0xffFFF9F9), borderRadius: BorderRadius.circular(5)),
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+                  decoration: BoxDecoration(
+                      color: const Color(0xffFFF9F9),
+                      borderRadius: BorderRadius.circular(5)),
                   child: Text(
-                    title ?? 'Weekly',
-                    style: const TextStyle(color: AppColors.kPrimaryColor, fontSize: 16, fontWeight: FontWeight.w600),
+                    widget.title ?? 'Weekly',
+                    style: const TextStyle(
+                        color: AppColors.kPrimaryColor,
+                        fontSize: 16,
+                        fontWeight: FontWeight.w600),
                   ),
                 ),
               ],
@@ -80,10 +115,15 @@ class AllCleaningProcessScreen extends StatelessWidget {
                 return index == 0
                     ? Container(
                         width: MediaQuery.of(context).size.width / 2.5,
-                        margin: const EdgeInsets.symmetric(horizontal: 6, vertical: 12),
-                        padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 16),
-                        decoration:
-                            BoxDecoration(color: const Color(0xffFFE6EB), borderRadius: BorderRadius.circular(6), border: Border.all(width: 1, color: const Color(0xffFC8E99))),
+                        margin: const EdgeInsets.symmetric(
+                            horizontal: 6, vertical: 12),
+                        padding: const EdgeInsets.symmetric(
+                            vertical: 12, horizontal: 16),
+                        decoration: BoxDecoration(
+                            color: const Color(0xffFFE6EB),
+                            borderRadius: BorderRadius.circular(6),
+                            border: Border.all(
+                                width: 1, color: const Color(0xffFC8E99))),
                         child: Column(
                           children: [
                             Container(
@@ -127,9 +167,14 @@ class AllCleaningProcessScreen extends StatelessWidget {
                         children: [
                           Container(
                             width: MediaQuery.of(context).size.width / 2.5,
-                            margin: const EdgeInsets.symmetric(horizontal: 6, vertical: 12),
-                            padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 16),
-                            decoration: BoxDecoration(borderRadius: BorderRadius.circular(6), border: Border.all(width: 1, color: const Color(0xffFC8E99))),
+                            margin: const EdgeInsets.symmetric(
+                                horizontal: 6, vertical: 12),
+                            padding: const EdgeInsets.symmetric(
+                                vertical: 12, horizontal: 16),
+                            decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(6),
+                                border: Border.all(
+                                    width: 1, color: const Color(0xffFC8E99))),
                             child: Column(
                               children: [
                                 ClipRRect(
@@ -158,7 +203,10 @@ class AllCleaningProcessScreen extends StatelessWidget {
                           ),
                           Positioned.fill(
                             child: Container(
-                              color: title == 'One Time' || title == 'Custom' ? Colors.white.withOpacity(.5) : null,
+                              color: widget.title == 'One Time' ||
+                                      widget.title == 'Custom'
+                                  ? Colors.white.withOpacity(.5)
+                                  : null,
                             ),
                           )
                         ],
@@ -177,20 +225,39 @@ class AllCleaningProcessScreen extends StatelessWidget {
                 ),
                 Row(
                   children: [
-                    Image.asset(
-                      AssetsConstant.date_back_icon,
-                      height: 15,
+                    GestureDetector(
+                      child: Image.asset(
+                        AssetsConstant.date_back_icon,
+                        height: 15,
+                        color:
+                            month == 'January' ? null : AppColors.kPrimaryColor,
+                      ),
+                      onTap: () {
+                        if (month != 'January') {
+                          _before();
+                        } else {}
+                      },
                     ),
-                    const Padding(
+                    Padding(
                       padding: EdgeInsets.symmetric(horizontal: 8.0),
                       child: Text(
-                        'January',
+                        month,
                         style: AppTheme.textStyleSemiBoldBlack14,
                       ),
                     ),
-                    Image.asset(
-                      AssetsConstant.date_forward_icon,
-                      height: 15,
+                    GestureDetector(
+                      onTap: () {
+                        if (month != 'December') {
+                          _next();
+                        } else {}
+                      },
+                      child: Image.asset(
+                        AssetsConstant.date_forward_icon,
+                        height: 15,
+                        color: month != 'December'
+                            ? null
+                            : AppColors.kPrimaryColor.withOpacity(.5),
+                      ),
                     )
                   ],
                 ),
@@ -202,26 +269,42 @@ class AllCleaningProcessScreen extends StatelessWidget {
             child: ListView.builder(
               padding: const EdgeInsets.only(left: 10, top: 12),
               scrollDirection: Axis.horizontal,
-              itemCount: 15,
+              itemCount: dates.length,
               itemBuilder: (context, index) {
-                return Container(
-                  padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 16),
-                  margin: const EdgeInsets.symmetric(horizontal: 6),
-                  decoration: BoxDecoration(borderRadius: BorderRadius.circular(26), border: Border.all(width: 1, color: const Color(0xffFC8E99))),
-                  child: const Column(
-                    children: [
-                      Padding(
-                        padding: EdgeInsets.symmetric(vertical: 12.0),
-                        child: Text(
-                          'Wed',
-                          style: AppTheme.textStyleSemiBoldBlack16,
+                return GestureDetector(
+                  onTap: () {
+                    setState(() {
+                      dateSelected = !dateSelected;
+                    });
+                  },
+                  child: Container(
+                    padding: const EdgeInsets.symmetric(
+                        vertical: 12, horizontal: 16),
+                    margin: const EdgeInsets.symmetric(horizontal: 6),
+                    decoration: BoxDecoration(
+                        color: dateSelected ? AppColors.kPrimaryColor : null,
+                        borderRadius: BorderRadius.circular(26),
+                        border: Border.all(
+                            width: 1, color: const Color(0xffFC8E99))),
+                    child: Column(
+                      children: [
+                        Padding(
+                          padding: EdgeInsets.symmetric(vertical: 12.0),
+                          child: Text(
+                            DateFormat('EEE').format(dates[index]),
+                            style: dateSelected
+                                ? AppTheme.textStyleSemiBoldWhite16
+                                : AppTheme.textStyleSemiBoldBlack16,
+                          ),
                         ),
-                      ),
-                      Text(
-                        '28',
-                        style: AppTheme.textStyleSemiBoldBlack14,
-                      ),
-                    ],
+                        Text(
+                          DateFormat('dd').format(dates[index]),
+                          style: dateSelected
+                              ? AppTheme.textStyleSemiBoldWhite14
+                              : AppTheme.textStyleSemiBoldBlack14,
+                        ),
+                      ],
+                    ),
                   ),
                 );
               },
@@ -234,7 +317,7 @@ class AllCleaningProcessScreen extends StatelessWidget {
               style: AppTheme.textStyleSemiBoldBlack16,
             ),
           ),
-          isCustom == true
+          widget.isCustom == true
               ? Column(
                   children: [
                     ...List.generate(
@@ -242,28 +325,48 @@ class AllCleaningProcessScreen extends StatelessWidget {
                         (index) => Stack(
                               children: [
                                 Container(
-                                  padding: EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-                                  margin: EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+                                  padding: EdgeInsets.symmetric(
+                                      horizontal: 16, vertical: 8),
+                                  margin: EdgeInsets.symmetric(
+                                      horizontal: 16, vertical: 8),
                                   decoration: BoxDecoration(
-                                      color: const Color(0xffFFE6EB), borderRadius: BorderRadius.circular(6), border: Border.all(width: 0.5, color: const Color(0xffFC8E99))),
+                                      color: const Color(0xffFFE6EB),
+                                      borderRadius: BorderRadius.circular(6),
+                                      border: Border.all(
+                                          width: 0.5,
+                                          color: const Color(0xffFC8E99))),
                                   child: Row(
-                                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceBetween,
                                     children: [
-                                      CustomSizedBox.space4W,
-                                      const Text(
-                                        'Sun 25',
-                                        style: AppTheme.textStyleSemiBoldBlack16,
+                                      Padding(
+                                        padding:
+                                            const EdgeInsets.only(left: 16.0),
+                                        child: const Text(
+                                          'Sun 25',
+                                          style:
+                                              AppTheme.textStyleSemiBoldBlack16,
+                                        ),
                                       ),
                                       Container(
-                                        padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 16),
-                                        margin: const EdgeInsets.symmetric(horizontal: 6),
+                                        padding: const EdgeInsets.symmetric(
+                                            vertical: 10, horizontal: 16),
+                                        margin: const EdgeInsets.symmetric(
+                                            horizontal: 6),
                                         decoration: BoxDecoration(
-                                            color: Colors.white, borderRadius: BorderRadius.circular(26), border: Border.all(width: 1, color: const Color(0xffFC8E99))),
+                                            color: Colors.white,
+                                            borderRadius:
+                                                BorderRadius.circular(26),
+                                            border: Border.all(
+                                                width: 1,
+                                                color:
+                                                    const Color(0xffFC8E99))),
                                         child: Row(
                                           children: [
-                                            const Text(
+                                            Text(
                                               '12:30 - 01:00',
-                                              style: AppTheme.textStyleSemiBoldBlack16,
+                                              style: AppTheme
+                                                  .textStyleSemiBoldBlack16,
                                             ),
                                             CustomSizedBox.space8W,
                                             Image.asset(
@@ -276,7 +379,12 @@ class AllCleaningProcessScreen extends StatelessWidget {
                                     ],
                                   ),
                                 ),
-                                Positioned(top: 8, bottom: 8, left: 16, child: Image.asset(AssetsConstant.custom_stack_img))
+                                Positioned(
+                                    top: 8,
+                                    bottom: 8,
+                                    left: 16,
+                                    child: Image.asset(
+                                        AssetsConstant.custom_stack_img))
                               ],
                             )),
                     SizedBox(
@@ -293,13 +401,28 @@ class AllCleaningProcessScreen extends StatelessWidget {
                     scrollDirection: Axis.horizontal,
                     itemCount: 15,
                     itemBuilder: (context, index) {
-                      return Container(
-                        padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 16),
-                        margin: const EdgeInsets.symmetric(horizontal: 6),
-                        decoration: BoxDecoration(borderRadius: BorderRadius.circular(26), border: Border.all(width: 1, color: const Color(0xffFC8E99))),
-                        child: const Text(
-                          '12:30 - 01:00',
-                          style: AppTheme.textStyleSemiBoldBlack16,
+                      return GestureDetector(
+                        onTap: () {
+                          setState(() {
+                            timeSelected = !timeSelected;
+                          });
+                        },
+                        child: Container(
+                          padding: const EdgeInsets.symmetric(
+                              vertical: 10, horizontal: 16),
+                          margin: const EdgeInsets.symmetric(horizontal: 6),
+                          decoration: BoxDecoration(
+                              color:
+                                  timeSelected ? AppColors.kPrimaryColor : null,
+                              borderRadius: BorderRadius.circular(26),
+                              border: Border.all(
+                                  width: 1, color: const Color(0xffFC8E99))),
+                          child: Text(
+                            '12:30 - 01:00',
+                            style: timeSelected
+                                ? AppTheme.textStyleSemiBoldWhite16
+                                : AppTheme.textStyleSemiBoldBlack16,
+                          ),
                         ),
                       );
                     },
@@ -313,7 +436,11 @@ class AllCleaningProcessScreen extends StatelessWidget {
         width: double.infinity,
         padding: const EdgeInsets.all(16),
         decoration: BoxDecoration(
-            color: Colors.white, borderRadius: const BorderRadius.vertical(top: Radius.circular(22)), boxShadow: [BoxShadow(blurRadius: 10, color: Colors.black.withOpacity(.1))]),
+            color: Colors.white,
+            borderRadius: const BorderRadius.vertical(top: Radius.circular(22)),
+            boxShadow: [
+              BoxShadow(blurRadius: 10, color: Colors.black.withOpacity(.1))
+            ]),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
@@ -363,5 +490,21 @@ class AllCleaningProcessScreen extends StatelessWidget {
       ),
       title: const Text('Basic Cleaning'),
     );
+  }
+
+  List<DateTime> getDatesForCurrentMonth(DateTime currentMonth) {
+    DateTime firstDayOfMonth =
+        DateTime(currentMonth.year, currentMonth.month, 1);
+    DateTime lastDayOfMonth =
+        DateTime(currentMonth.year, currentMonth.month + 1, 0);
+
+    List<DateTime> dates = [];
+    for (var i = firstDayOfMonth;
+        i.isBefore(lastDayOfMonth) || i.isAtSameMomentAs(lastDayOfMonth);
+        i = i.add(Duration(days: 1))) {
+      dates.add(i);
+    }
+
+    return dates;
   }
 }

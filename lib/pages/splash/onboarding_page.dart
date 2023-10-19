@@ -157,7 +157,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                         onTap: () {
                           if (currentIndex < contents.length - 1) {
                             pageController.previousPage(
-                                duration: Duration(seconds: 1),
+                                duration: Duration(milliseconds: 500),
                                 curve: Curves.easeIn);
                           }
                         },
@@ -185,7 +185,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                         onTap: () {
                           if (currentIndex < contents.length - 1) {
                             pageController.nextPage(
-                                duration: Duration(seconds: 1),
+                                duration: Duration(milliseconds: 500),
                                 curve: Curves.easeIn);
                           }
                         },

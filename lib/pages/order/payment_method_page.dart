@@ -1,5 +1,6 @@
 import 'package:fix_ican/constants/assets_constant.dart';
 import 'package:fix_ican/constants/color_constant.dart';
+import 'package:fix_ican/pages/settings/add_debit_card_page.dart';
 import 'package:fix_ican/shared/custom_scaffold.dart';
 import 'package:fix_ican/shared/custom_sized_box.dart';
 import 'package:fix_ican/theme/theme_data.dart';
@@ -12,10 +13,12 @@ class PaymentMethodSelectionScreen extends StatefulWidget {
   const PaymentMethodSelectionScreen({super.key});
 
   @override
-  State<PaymentMethodSelectionScreen> createState() => _PaymentMethodSelectionScreenState();
+  State<PaymentMethodSelectionScreen> createState() =>
+      _PaymentMethodSelectionScreenState();
 }
 
-class _PaymentMethodSelectionScreenState extends State<PaymentMethodSelectionScreen> {
+class _PaymentMethodSelectionScreenState
+    extends State<PaymentMethodSelectionScreen> {
   String groupValue = 'Cash';
 
   @override
@@ -40,31 +43,45 @@ class _PaymentMethodSelectionScreenState extends State<PaymentMethodSelectionScr
           Container(
             margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
             padding: EdgeInsets.symmetric(vertical: 12, horizontal: 12),
-            decoration: BoxDecoration(color: Colors.white, boxShadow: [BoxShadow(blurRadius: 2, color: Colors.black.withOpacity(.04))], borderRadius: BorderRadius.circular(10)),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Image.asset(AssetsConstant.card_icon, height: 15),
-                const Padding(
-                  padding: EdgeInsets.all(12),
-                  child: Text(
-                    'Credit Card',
-                    style: AppTheme.textStyleMediumBlack16,
+            decoration: BoxDecoration(
+                color: Colors.white,
+                boxShadow: [
+                  BoxShadow(blurRadius: 2, color: Colors.black.withOpacity(.04))
+                ],
+                borderRadius: BorderRadius.circular(10)),
+            child: InkWell(
+              onTap: () =>
+                  Get.toNamed(AddDebitScreen.routeName, arguments: 'edit'),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Image.asset(AssetsConstant.card_icon, height: 15),
+                  const Padding(
+                    padding: EdgeInsets.all(12),
+                    child: Text(
+                      'Credit Card',
+                      style: AppTheme.textStyleMediumBlack16,
+                    ),
                   ),
-                ),
-                Spacer(),
-                Image.asset(
-                  AssetsConstant.date_forward_icon,
-                  color: AppColors.kAppbarColor,
-                  height: 10,
-                )
-              ],
+                  Spacer(),
+                  Image.asset(
+                    AssetsConstant.date_forward_icon,
+                    color: AppColors.kAppbarColor,
+                    height: 10,
+                  )
+                ],
+              ),
             ),
           ),
           Container(
             margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
             padding: EdgeInsets.symmetric(vertical: 12, horizontal: 12),
-            decoration: BoxDecoration(color: Colors.white, boxShadow: [BoxShadow(blurRadius: 2, color: Colors.black.withOpacity(.04))], borderRadius: BorderRadius.circular(10)),
+            decoration: BoxDecoration(
+                color: Colors.white,
+                boxShadow: [
+                  BoxShadow(blurRadius: 2, color: Colors.black.withOpacity(.04))
+                ],
+                borderRadius: BorderRadius.circular(10)),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
@@ -101,16 +118,31 @@ class _PaymentMethodSelectionScreenState extends State<PaymentMethodSelectionScr
           Container(
             margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
             padding: EdgeInsets.symmetric(vertical: 12, horizontal: 12),
-            decoration: BoxDecoration(color: Colors.white, boxShadow: [BoxShadow(blurRadius: 2, color: Colors.black.withOpacity(.04))], borderRadius: BorderRadius.circular(10)),
+            decoration: BoxDecoration(
+                color: Colors.white,
+                boxShadow: [
+                  BoxShadow(blurRadius: 2, color: Colors.black.withOpacity(.04))
+                ],
+                borderRadius: BorderRadius.circular(10)),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Image.asset(AssetsConstant.bkash_icon, height: 20),
                 const Padding(
                   padding: EdgeInsets.all(12),
-                  child: Text(
-                    'Bkash',
-                    style: AppTheme.textStyleMediumBlack16,
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        'Bkash',
+                        style: AppTheme.textStyleMediumBlack16,
+                      ),
+                      CustomSizedBox.space4H,
+                      Text(
+                        'Get 5% discount on Bkash payment ',
+                        style: AppTheme.textStyleNormalBlack10,
+                      ),
+                    ],
                   ),
                 ),
                 Spacer(),
@@ -138,16 +170,31 @@ class _PaymentMethodSelectionScreenState extends State<PaymentMethodSelectionScr
           Container(
             margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
             padding: EdgeInsets.symmetric(vertical: 12, horizontal: 12),
-            decoration: BoxDecoration(color: Colors.white, boxShadow: [BoxShadow(blurRadius: 2, color: Colors.black.withOpacity(.04))], borderRadius: BorderRadius.circular(10)),
+            decoration: BoxDecoration(
+                color: Colors.white,
+                boxShadow: [
+                  BoxShadow(blurRadius: 2, color: Colors.black.withOpacity(.04))
+                ],
+                borderRadius: BorderRadius.circular(10)),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Image.asset(AssetsConstant.nagad_icon, height: 20),
                 const Padding(
                   padding: EdgeInsets.all(12),
-                  child: Text(
-                    'Nagad',
-                    style: AppTheme.textStyleMediumBlack16,
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        'Nagad',
+                        style: AppTheme.textStyleMediumBlack16,
+                      ),
+                      CustomSizedBox.space4H,
+                      Text(
+                        'Get 5% discount on Bkash payment ',
+                        style: AppTheme.textStyleNormalBlack10,
+                      ),
+                    ],
                   ),
                 ),
                 Spacer(),

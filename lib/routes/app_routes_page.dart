@@ -16,7 +16,8 @@ import 'package:fix_ican/pages/splash/language_selection_page.dart';
 import 'package:fix_ican/pages/splash/onboarding_page.dart';
 import 'package:get/get.dart';
 
-import '../shared/main_home_page.dart';
+import '../pages/home/main_home_page.dart';
+import '../pages/splash/splash_page.dart';
 
 class AppRoutes {
   static routes() => [

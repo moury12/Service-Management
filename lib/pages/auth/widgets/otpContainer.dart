@@ -41,6 +41,21 @@ class _OtpContainerState extends State<OtpContainer> {
                 keyboardType: TextInputType.number,
                 width: 50,
                 height: 40,
+                onChanged: (value) {
+                  if (value.length == 1) {
+                    FocusScope.of(context).nextFocus();
+                    setState(() {});
+                  }
+                  if (value.isEmpty) {
+                    FocusScope.of(context).previousFocus();
+                    setState(() {});
+                  }
+                },
+               
+                // inputFormatters: [
+                //   LengthLimitingTextInputFormatter(1),
+                //   FilteringTextInputFormatter.digitsOnly,
+                // ],
                 borderRadius: 6,
                 borderWidth: 1.2,
                 enableBorderColor: AppColors.kPrimaryColor,

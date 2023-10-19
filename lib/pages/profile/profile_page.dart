@@ -1,5 +1,6 @@
 import 'package:fix_ican/constants/assets_constant.dart';
 import 'package:fix_ican/constants/color_constant.dart';
+import 'package:fix_ican/pages/auth/login_page.dart';
 import 'package:fix_ican/pages/order/delivery_details_page.dart';
 import 'package:fix_ican/pages/order/payment_method_page.dart';
 import 'package:fix_ican/pages/profile/edit_profile_page.dart';
@@ -17,7 +18,10 @@ class ProfileScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: MediaQuery.of(context).size.width,
+      width: MediaQuery
+          .of(context)
+          .size
+          .width,
       child: Column(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
@@ -96,7 +100,7 @@ class ProfileScreen extends StatelessWidget {
               ListTile(
                 onTap: () {
                   // Get.toNamed(PaymentSettingScreen.routeName);
-                  Get.toNamed(DeliveryDetailsScreen.routeName);
+                 
                 },
                 leading: Image.asset(
                   AssetsConstant.profile_icon2,
@@ -114,7 +118,6 @@ class ProfileScreen extends StatelessWidget {
               ),
               ListTile(
                 onTap: () {
-                  Get.toNamed(PaymentMethodSelectionScreen.routeName);
                   //Get.toNamed(AddDebitScreen.routeName);
                 },
                 leading: Image.asset(
@@ -134,6 +137,7 @@ class ProfileScreen extends StatelessWidget {
             ],
           ),
           ListTile(
+            onTap: () => Get.toNamed(LoginScreen.routeName),
             leading: Image.asset(
               AssetsConstant.logout_icon,
               height: 18,

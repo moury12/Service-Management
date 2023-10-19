@@ -42,7 +42,13 @@ class _DeliveryDetailsScreenState extends State<DeliveryDetailsScreen> {
           Container(
             margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
             padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
-            decoration: BoxDecoration(color: Colors.white, boxShadow: [BoxShadow(blurRadius: 10, color: Colors.black.withOpacity(.15))], borderRadius: BorderRadius.circular(10)),
+            decoration: BoxDecoration(
+                color: Colors.white,
+                boxShadow: [
+                  BoxShadow(
+                      blurRadius: 10, color: Colors.black.withOpacity(.15))
+                ],
+                borderRadius: BorderRadius.circular(10)),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
@@ -80,7 +86,7 @@ class _DeliveryDetailsScreenState extends State<DeliveryDetailsScreen> {
                   children: [
                     Expanded(
                       child: CustomTextField(
-                        keyboardType: TextInputType.phone,
+                        borderRadius: 10,
                         maxLine: 2,
                         onSubmitted: (p0) {},
                         labelFontWeight: FontWeight.w500,
@@ -97,7 +103,7 @@ class _DeliveryDetailsScreenState extends State<DeliveryDetailsScreen> {
                     CustomSizedBox.space8W,
                     Expanded(
                       child: CustomTextField(
-                        keyboardType: TextInputType.phone,
+                        borderRadius: 10,
                         maxLine: 2,
                         onSubmitted: (p0) {},
                         labelFontWeight: FontWeight.w500,
@@ -114,7 +120,7 @@ class _DeliveryDetailsScreenState extends State<DeliveryDetailsScreen> {
                   ],
                 ),
                 CustomTextField(
-                  keyboardType: TextInputType.phone,
+                  borderRadius: 10,
                   maxLine: 2,
                   onSubmitted: (p0) {},
                   labelFontWeight: FontWeight.w500,
@@ -128,7 +134,7 @@ class _DeliveryDetailsScreenState extends State<DeliveryDetailsScreen> {
                   focusColor: AppColors.kAppbarColor,
                 ),
                 CustomTextField(
-                  keyboardType: TextInputType.phone,
+                  borderRadius: 10,
                   maxLine: 2,
                   onSubmitted: (p0) {},
                   labelFontWeight: FontWeight.w500,
@@ -161,8 +167,8 @@ class _DeliveryDetailsScreenState extends State<DeliveryDetailsScreen> {
             ),
           ),
           CustomTextField(
-            keyboardType: TextInputType.phone,
             maxLine: 2,
+            borderRadius: 10,
             onSubmitted: (p0) {},
             labelFontWeight: FontWeight.w500,
             labelSize: 16,
@@ -192,7 +198,9 @@ class _DeliveryDetailsScreenState extends State<DeliveryDetailsScreen> {
                     height: 20,
                     width: 20,
                     decoration: BoxDecoration(
-                        color: isChecked ? AppColors.kPrimaryColor : Colors.transparent,
+                        color: isChecked
+                            ? AppColors.kPrimaryColor
+                            : Colors.transparent,
                         border: Border.all(
                           color: Color(0xffFFD9D9),
                           width: 1.4,

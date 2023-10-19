@@ -3,6 +3,7 @@ import 'package:fix_ican/constants/color_constant.dart';
 import 'package:fix_ican/pages/auth/widgets/otpContainer.dart';
 import 'package:fix_ican/pages/home/home_page.dart';
 import 'package:fix_ican/shared/custom_sized_box.dart';
+import 'package:fix_ican/pages/home/main_home_page.dart';
 import 'package:fix_ican/theme/theme_data.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
@@ -319,7 +320,7 @@ class _LoginScreenState extends State<LoginScreen>
                     clear();
                     _controller.reverse();
                   });
-                  Get.toNamed(HomeScreen.routeName);
+                  Get.toNamed(MainHomeScreen.routeName);
                 } else {
                   setState(() {
                     _otpVisible = !_otpVisible;

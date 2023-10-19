@@ -2,6 +2,7 @@ import 'package:fix_ican/constants/assets_constant.dart';
 import 'package:fix_ican/constants/color_constant.dart';
 import 'package:fix_ican/pages/home/home_page.dart';
 import 'package:fix_ican/pages/order/delivery_details_page.dart';
+import 'package:fix_ican/pages/order/payment_method_page.dart';
 import 'package:fix_ican/pages/services/service_page.dart';
 import 'package:fix_ican/shared/custom_scaffold.dart';
 import 'package:fix_ican/shared/custom_sized_box.dart';
@@ -35,83 +36,35 @@ class _PlaceOrderScreenState extends State<PlaceOrderScreen> {
   Widget build(BuildContext context) {
     return CustomScaffold(
       action: [],
-      title: const Text.rich(
-          TextSpan(text: 'Order Review', style: AppTheme.textStyleSemiBoldWhite18, children: [TextSpan(text: '\nCustomer ID: CA56589', style: AppTheme.textStyleSemiBoldWhite10)])),
+      title: const Text.rich(TextSpan(
+          text: 'Order Review',
+          style: AppTheme.textStyleSemiBoldWhite18,
+          children: [
+            TextSpan(
+                text: '\nCustomer ID: CA56589',
+                style: AppTheme.textStyleSemiBoldWhite10)
+          ])),
       body: Column(
         children: [
-          SizedBox(
-            height: 60,
-            child: ListView.builder(
-              // shrinkWrap: true,
-              // primary: false,
-              scrollDirection: Axis.horizontal,
-              itemCount: processes.length,
-              itemBuilder: (context, index) {
-                final process = processes[index];
-                return Row(
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    Container(
-                      padding: const EdgeInsets.all(8),
-                      alignment: Alignment.center,
-                      height: 4,
-                      width: 45,
-                      decoration: BoxDecoration(
-                        color: index == 0 || (index == 1 && placedOrder) || (index == 2 && confirm) ? AppColors.kAppbarColor : AppColors.kAccentColor,
-                      ),
-                    ),
-                    Column(
-                      mainAxisSize: MainAxisSize.min,
-                      children: [
-                        Container(
-                          padding: const EdgeInsets.all(8),
-                          alignment: Alignment.center,
-                          height: 35,
-                          width: 35,
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(90),
-                            border: Border.all(width: 2, color: AppColors.kAppbarColor),
-                            color: index == 0 || (index == 1 && placedOrder) || (index == 2 && confirm) ? AppColors.kAppbarColor : Colors.white,
-                          ),
-                          child: Text(
-                            process.name,
-                            style: index == 0 || (index == 1 && placedOrder) || (index == 2 && confirm) ? AppTheme.textStyleSemiBoldWhite16 : AppTheme.textStyleSemiBoldPrimary16,
-                            textAlign: TextAlign.center,
-                          ),
-                        ),
-                        CustomSizedBox.space4H,
-                        Text(
-                          process.topic,
-                          style: AppTheme.textStyleMediumPrimaryShade10,
-                        )
-                      ],
-                    ),
-                    Container(
-                      padding: const EdgeInsets.all(8),
-                      alignment: Alignment.center,
-                      height: 4,
-                      width: 45,
-                      decoration: BoxDecoration(
-                        color: (index == 0 && placedOrder) || (index == 1 && confirm) || (index == 2 && confirm) ? AppColors.kAppbarColor : AppColors.kAccentColor,
-                      ),
-                    ),
-                  ],
-                );
-              },
-            ),
-          ),
+          CustomSizedBox.space12H,
           ProcessWidget(
-            holdingProcess: 3,
+            holdingProcess: placedOrder ? 3 : 2,
             processNameList: processes.map((e) => e.topic).toList(),
-            contentHeight: 50,
+            contentHeight: 40,
           ),
           placedOrder
               ? Column(
                   children: [
                     Container(
                       margin: const EdgeInsets.symmetric(horizontal: 16),
-                      decoration:
-                          BoxDecoration(color: Colors.white, boxShadow: [BoxShadow(blurRadius: 10, color: Colors.black.withOpacity(.15))], borderRadius: BorderRadius.circular(10)),
+                      decoration: BoxDecoration(
+                          color: Colors.white,
+                          boxShadow: [
+                            BoxShadow(
+                                blurRadius: 10,
+                                color: Colors.black.withOpacity(.15))
+                          ],
+                          borderRadius: BorderRadius.circular(10)),
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
@@ -127,7 +80,8 @@ class _PlaceOrderScreenState extends State<PlaceOrderScreen> {
                               borderRadius: BorderRadius.circular(10),
                               color: AppColors.kPrimaryColor,
                             ),
-                            padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 12),
+                            padding: const EdgeInsets.symmetric(
+                                horizontal: 24, vertical: 12),
                             child: const Text(
                               '05',
                               style: AppTheme.textStyleMediumWhite18,
@@ -137,10 +91,18 @@ class _PlaceOrderScreenState extends State<PlaceOrderScreen> {
                       ),
                     ),
                     Container(
-                      margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
-                      padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
-                      decoration:
-                          BoxDecoration(color: Colors.white, boxShadow: [BoxShadow(blurRadius: 10, color: Colors.black.withOpacity(.15))], borderRadius: BorderRadius.circular(10)),
+                      margin: const EdgeInsets.symmetric(
+                          horizontal: 16, vertical: 12),
+                      padding: const EdgeInsets.symmetric(
+                          horizontal: 16, vertical: 12),
+                      decoration: BoxDecoration(
+                          color: Colors.white,
+                          boxShadow: [
+                            BoxShadow(
+                                blurRadius: 10,
+                                color: Colors.black.withOpacity(.15))
+                          ],
+                          borderRadius: BorderRadius.circular(10)),
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
@@ -188,14 +150,23 @@ class _PlaceOrderScreenState extends State<PlaceOrderScreen> {
                       ),
                     ),
                     Container(
-                      margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
-                      decoration:
-                          BoxDecoration(color: Colors.white, boxShadow: [BoxShadow(blurRadius: 10, color: Colors.black.withOpacity(.15))], borderRadius: BorderRadius.circular(10)),
+                      margin: const EdgeInsets.symmetric(
+                          horizontal: 16, vertical: 12),
+                      decoration: BoxDecoration(
+                          color: Colors.white,
+                          boxShadow: [
+                            BoxShadow(
+                                blurRadius: 10,
+                                color: Colors.black.withOpacity(.15))
+                          ],
+                          borderRadius: BorderRadius.circular(10)),
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Padding(
-                            padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12).copyWith(bottom: 0),
+                            padding: const EdgeInsets.symmetric(
+                                    horizontal: 16, vertical: 12)
+                                .copyWith(bottom: 0),
                             child: Row(
                               children: [
                                 Container(
@@ -214,9 +185,14 @@ class _PlaceOrderScreenState extends State<PlaceOrderScreen> {
                                   style: AppTheme.textStyleSemiBoldFadeBlack14,
                                 ),
                                 const Spacer(),
-                                Image.asset(
-                                  AssetsConstant.edit_icon2,
-                                  height: 18,
+                                InkWell(
+                                  onTap: () => Get.toNamed(
+                                      PaymentMethodSelectionScreen.routeName),
+                                  borderRadius: BorderRadius.circular(90),
+                                  child: Image.asset(
+                                    AssetsConstant.edit_icon2,
+                                    height: 18,
+                                  ),
                                 )
                               ],
                             ),
@@ -240,10 +216,18 @@ class _PlaceOrderScreenState extends State<PlaceOrderScreen> {
                       ),
                     ),
                     Container(
-                      padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
-                      margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
-                      decoration:
-                          BoxDecoration(color: Colors.white, boxShadow: [BoxShadow(blurRadius: 10, color: Colors.black.withOpacity(.15))], borderRadius: BorderRadius.circular(10)),
+                      padding: const EdgeInsets.symmetric(
+                          horizontal: 16, vertical: 12),
+                      margin: const EdgeInsets.symmetric(
+                          horizontal: 16, vertical: 12),
+                      decoration: BoxDecoration(
+                          color: Colors.white,
+                          boxShadow: [
+                            BoxShadow(
+                                blurRadius: 10,
+                                color: Colors.black.withOpacity(.15))
+                          ],
+                          borderRadius: BorderRadius.circular(10)),
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
@@ -314,10 +298,16 @@ class _PlaceOrderScreenState extends State<PlaceOrderScreen> {
                     SizedBox(height: 130)
                   ],
                 )
-              : Column(children: [
+              : Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
                   Container(
-                    decoration:
-                        BoxDecoration(color: Colors.white, borderRadius: BorderRadius.circular(22), boxShadow: [BoxShadow(color: Colors.black.withOpacity(0.06), blurRadius: 10)]),
+                    decoration: BoxDecoration(
+                        color: Colors.white,
+                        borderRadius: BorderRadius.circular(22),
+                        boxShadow: [
+                          BoxShadow(
+                              color: Colors.black.withOpacity(0.06),
+                              blurRadius: 10)
+                        ]),
                     child: Padding(
                       padding: const EdgeInsets.symmetric(vertical: 12.0),
                       child: Column(
@@ -330,9 +320,11 @@ class _PlaceOrderScreenState extends State<PlaceOrderScreen> {
                                 (index) => Column(
                                   children: [
                                     Padding(
-                                      padding: const EdgeInsets.symmetric(horizontal: 16.0),
+                                      padding: const EdgeInsets.symmetric(
+                                          horizontal: 16.0),
                                       child: Row(
-                                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.spaceBetween,
                                         children: [
                                           InkWell(
                                             onTap: () {
@@ -345,12 +337,16 @@ class _PlaceOrderScreenState extends State<PlaceOrderScreen> {
                                               height: 20,
                                               width: 20,
                                               decoration: BoxDecoration(
-                                                  color: isChecked ? AppColors.kPrimaryColor : Colors.transparent,
+                                                  color: isChecked
+                                                      ? AppColors.kPrimaryColor
+                                                      : Colors.transparent,
                                                   border: Border.all(
-                                                    color: const Color(0xffFFD9D9),
+                                                    color:
+                                                        const Color(0xffFFD9D9),
                                                     width: 1.4,
                                                   ),
-                                                  borderRadius: BorderRadius.circular(3)),
+                                                  borderRadius:
+                                                      BorderRadius.circular(3)),
                                               child: isChecked
                                                   ? Image.asset(
                                                       AssetsConstant.check_icon,
@@ -364,32 +360,41 @@ class _PlaceOrderScreenState extends State<PlaceOrderScreen> {
                                             label: SizedBox.shrink(),
                                           ),
                                           const Column(
-                                            crossAxisAlignment: CrossAxisAlignment.start,
+                                            crossAxisAlignment:
+                                                CrossAxisAlignment.start,
                                             children: [
                                               Text(
                                                 'Basic Cleaning',
-                                                style: AppTheme.textStyleSemiBoldBlack16,
+                                                style: AppTheme
+                                                    .textStyleSemiBoldBlack16,
                                               ),
                                               CustomSizedBox.space8H,
-                                              Text.rich(TextSpan(text: 'Estimated time: ', style: AppTheme.textStyleMediumFadeBlack12, children: [
-                                                TextSpan(
-                                                  text: ' 2:30 hrs',
-                                                  style: TextStyle(
-                                                    color: Colors.black,
-                                                    fontSize: 12,
-                                                    fontWeight: FontWeight.w600,
-                                                  ),
-                                                )
-                                              ])),
+                                              Text.rich(TextSpan(
+                                                  text: 'Estimated time: ',
+                                                  style: AppTheme
+                                                      .textStyleMediumFadeBlack12,
+                                                  children: [
+                                                    TextSpan(
+                                                      text: ' 2:30 hrs',
+                                                      style: TextStyle(
+                                                        color: Colors.black,
+                                                        fontSize: 12,
+                                                        fontWeight:
+                                                            FontWeight.w600,
+                                                      ),
+                                                    )
+                                                  ])),
                                               CustomSizedBox.space4H,
                                               Text(
                                                 'Tk.1299',
-                                                style: AppTheme.textStyleSemiBoldBlack16,
+                                                style: AppTheme
+                                                    .textStyleSemiBoldBlack16,
                                               ),
                                             ],
                                           ),
                                           Column(
-                                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.spaceBetween,
                                             children: [
                                               Image.asset(
                                                 AssetsConstant.edit_icon,
@@ -407,7 +412,8 @@ class _PlaceOrderScreenState extends State<PlaceOrderScreen> {
                                       ),
                                     ),
                                     const Padding(
-                                      padding: EdgeInsets.symmetric(horizontal: 16.0),
+                                      padding: EdgeInsets.symmetric(
+                                          horizontal: 16.0),
                                       child: Divider(
                                         thickness: 0.5,
                                         color: Color(0xffF1B2BF),
@@ -438,23 +444,35 @@ class _PlaceOrderScreenState extends State<PlaceOrderScreen> {
                       ),
                     ),
                   ),
-                  const Text(
-                    'Popular Services',
-                    style: AppTheme.textStyleSemiBoldBlack18,
+                  Padding(
+                    padding: const EdgeInsets.symmetric(
+                        horizontal: 16.0, vertical: 6),
+                    child: const Text(
+                      'Popular Services',
+                      style: AppTheme.textStyleSemiBoldBlack18,
+                    ),
                   ),
-                  const Text(
-                    'Check out what’s popular now',
-                    style: AppTheme.textStyleMediumFadeBlack12,
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 16.0),
+                    child: const Text(
+                      'Check out what’s popular now',
+                      style: AppTheme.textStyleMediumFadeBlack12,
+                    ),
                   ),
                   SizedBox(
                     height: 135,
                     child: ListView.builder(
-                      padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 12),
+                      padding: const EdgeInsets.symmetric(
+                          horizontal: 10, vertical: 12),
                       scrollDirection: Axis.horizontal,
                       itemBuilder: (context, index) => Stack(
                         alignment: Alignment.center,
                         children: [
-                          HomeServiceItemWidget(height: 38, label: const SizedBox.shrink(), padding: const EdgeInsets.all(34).copyWith(bottom: 45, top: 25)),
+                          HomeServiceItemWidget(
+                              height: 30,
+                              label: const SizedBox.shrink(),
+                              padding: const EdgeInsets.all(34)
+                                  .copyWith(bottom: 45, top: 25)),
                           const Positioned(
                             bottom: 16,
                             child: Text(
@@ -463,18 +481,22 @@ class _PlaceOrderScreenState extends State<PlaceOrderScreen> {
                             ),
                           ),
                           Positioned(
-                              bottom: 12,
-                              right: 16,
+                              bottom: 10,
+                              right: 10,
                               child: Container(
                                 padding: const EdgeInsets.all(10),
                                 decoration: BoxDecoration(
                                     color: AppColors.kPrimaryColor,
-                                    boxShadow: [BoxShadow(blurRadius: 8, color: Colors.black.withOpacity(.15))],
+                                    boxShadow: [
+                                      BoxShadow(
+                                          blurRadius: 8,
+                                          color: Colors.black.withOpacity(.15))
+                                    ],
                                     borderRadius: BorderRadius.circular(90)),
                                 child: Image.asset(
                                   AssetsConstant.add_icon,
                                   color: Colors.white,
-                                  height: 15,
+                                  height: 10,
                                 ),
                               ))
                         ],
@@ -486,8 +508,14 @@ class _PlaceOrderScreenState extends State<PlaceOrderScreen> {
                   Container(
                     padding: const EdgeInsets.all(12),
                     margin: const EdgeInsets.symmetric(horizontal: 16),
-                    decoration:
-                        BoxDecoration(color: Colors.white, boxShadow: [BoxShadow(blurRadius: 10, color: Colors.black.withOpacity(.15))], borderRadius: BorderRadius.circular(10)),
+                    decoration: BoxDecoration(
+                        color: Colors.white,
+                        boxShadow: [
+                          BoxShadow(
+                              blurRadius: 10,
+                              color: Colors.black.withOpacity(.15))
+                        ],
+                        borderRadius: BorderRadius.circular(10)),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
@@ -511,7 +539,11 @@ class _PlaceOrderScreenState extends State<PlaceOrderScreen> {
         width: double.infinity,
         padding: const EdgeInsets.all(16),
         decoration: BoxDecoration(
-            color: Colors.white, borderRadius: const BorderRadius.vertical(top: Radius.circular(22)), boxShadow: [BoxShadow(blurRadius: 10, color: Colors.black.withOpacity(.1))]),
+            color: Colors.white,
+            borderRadius: const BorderRadius.vertical(top: Radius.circular(22)),
+            boxShadow: [
+              BoxShadow(blurRadius: 10, color: Colors.black.withOpacity(.1))
+            ]),
         child: Column(
           children: [
             placedOrder
@@ -609,7 +641,8 @@ class _PlaceOrderScreenState extends State<PlaceOrderScreen> {
                         showDialog(
                           context: context,
                           builder: (context) {
-                            return StatefulBuilder(builder: (context, setState) {
+                            return StatefulBuilder(
+                                builder: (context, setState) {
                               confirm == true;
                               return CenterDialogWidget(
                                 headtitle: 'Order Successful!',
@@ -620,7 +653,8 @@ class _PlaceOrderScreenState extends State<PlaceOrderScreen> {
                                   AssetsConstant.check_icon,
                                   color: AppColors.kPrimaryColor,
                                 ),
-                                subtitle: 'Your order has been placed successfully. Within very short time  you can enjoy your service',
+                                subtitle:
+                                    'Your order has been placed successfully. Within very short time  you can enjoy your service',
                               );
                             });
                           },
@@ -666,14 +700,8 @@ class ProcessWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Row(
       children: processNameList.map((e) {
-        // GlobalMethods.globalLogger.d('original list', processNameList);
         final newList = processNameList.sublist(holdingProcess);
         var index = processNameList.indexOf(e);
-        // GlobalMethods.globalLogger.d('done list', newList);
-        //
-        // GlobalMethods.globalLogger.d('index', index);
-        // GlobalMethods.globalLogger.d('holding', holdingProcess);
-        // GlobalMethods.globalLogger.d('element', e);
 
         return Expanded(
           child: Column(
@@ -683,7 +711,7 @@ class ProcessWidget extends StatelessWidget {
                   if (processNameList.length > 3)
                     Expanded(
                       child: CustomDivider(
-                        thickness: 5,
+                        thickness: 3,
                         color: index == 0
                             ? Colors.transparent
                             : holdingProcess > index || index == holdingProcess
@@ -694,12 +722,14 @@ class ProcessWidget extends StatelessWidget {
                   Expanded(
                     child: CustomDivider(
                       thickness: 5,
-                      color: holdingProcess > index ? AppColors.kAppbarColor : AppColors.kAccentColor,
+                      color: holdingProcess > index
+                          ? AppColors.kAppbarColor
+                          : AppColors.kAccentColor,
                     ),
                   ),
                   Container(
-                    height: 36,
-                    width: 36,
+                    height: 30,
+                    width: 30,
                     decoration: BoxDecoration(
                       color: index == holdingProcess
                           ? Colors.white
@@ -708,23 +738,16 @@ class ProcessWidget extends StatelessWidget {
                               : Colors.white,
                       border: Border.all(
                         color: AppColors.kAppbarColor,
-                        width: 5,
+                        width: 2.5,
                       ),
                       borderRadius: BorderRadius.circular(100),
                     ),
                     child: Center(
-                      child: /*!newList.contains(e)
-                          ? const Icon(
-                              Icons.check,
-                              color: AppColors.kWhiteColor,
-                              size: 30,
-                            )
-                          :*/
-                          Text(
+                      child: Text(
                         (index + 1).toString(),
                         style: TextStyle(
-                            fontSize: 22,
-                            fontWeight: FontWeight.bold,
+                            fontSize: 16,
+                            fontWeight: FontWeight.w600,
                             color: index == holdingProcess
                                 ? AppColors.kAppbarColor
                                 : !newList.contains(e)
@@ -737,44 +760,49 @@ class ProcessWidget extends StatelessWidget {
                     Expanded(
                       child: CustomDivider(
                         thickness: 5,
-                        color: holdingProcess > index ? AppColors.kAppbarColor : AppColors.kAccentColor,
+                        color: holdingProcess > index
+                            ? AppColors.kAppbarColor
+                            : AppColors.kAccentColor,
                       ),
                     ),
                   Expanded(
                     child: CustomDivider(
                       thickness: 5,
-                      color: holdingProcess > index + (holdingProcess == processNameList.length ? 0 : 1) ? AppColors.kAppbarColor : AppColors.kAccentColor,
+                      color: holdingProcess >
+                              index +
+                                  (holdingProcess == processNameList.length
+                                      ? 0
+                                      : 1)
+                          ? AppColors.kAppbarColor
+                          : AppColors.kAccentColor,
                     ),
                   ),
-                  // Expanded(
-                  //   child: CustomDivider(
-                  //     thickness: 5,
-                  //     color: index == processNameList.length - 1
-                  //         ? AppColors.kWhiteColor
-                  //         : holdingProcess > index
-                  //             ? AppColors.kAppbarColor
-                  //             : AppColors.kGreyColor,
-                  //   ),
-                  // ),
                 ],
               ),
               Align(
                 alignment: index == 0 && processNameList.length < 4
                     ? Alignment.centerLeft
-                    : index == processNameList.length - 1 && processNameList.length < 4
+                    : index == processNameList.length - 1 &&
+                            processNameList.length < 4
                         ? Alignment.centerRight
                         : Alignment.center,
                 child: Container(
                   height: contentHeight ?? 50,
                   padding: const EdgeInsets.all(8.0).copyWith(
                     left: index == 0 && processNameList.length < 4 ? 42 : 8,
-                    right: index == processNameList.length - 1 && processNameList.length < 4 ? 42 : 8,
+                    right: index == processNameList.length - 1 &&
+                            processNameList.length < 4
+                        ? 42
+                        : 8,
                   ),
                   child: Text(
                     e,
                     textAlign: TextAlign.center,
                     maxLines: 3,
-                    style: TextStyle(fontSize: 12, fontWeight: FontWeight.normal, color: AppColors.kAppbarColor),
+                    style: TextStyle(
+                        fontSize: 12,
+                        fontWeight: FontWeight.normal,
+                        color: AppColors.kAppbarColor),
                   ),
                 ),
               ),
@@ -787,7 +815,9 @@ class ProcessWidget extends StatelessWidget {
 }
 
 class CustomDivider extends StatelessWidget {
-  const CustomDivider({Key? key, this.color, this.thickness, this.indent, this.endIndent}) : super(key: key);
+  const CustomDivider(
+      {Key? key, this.color, this.thickness, this.indent, this.endIndent})
+      : super(key: key);
 
   final Color? color;
   final double? thickness, indent, endIndent;

@@ -50,11 +50,13 @@ class PaymentSettingScreen extends StatelessWidget {
               ],
             ),
             CustomSizedBox.space12H,
-            ClipRRect(borderRadius: BorderRadius.circular(9), child: Image.asset(AssetsConstant.visa_card)),
+            ClipRRect(
+                borderRadius: BorderRadius.circular(9),
+                child: Image.asset(AssetsConstant.visa_card)),
             CustomSizedBox.space12H,
             InkWell(
               onTap: () {
-                Get.toNamed(AddDebitScreen.routeName);
+                Get.toNamed(AddDebitScreen.routeName, arguments: 'add');
               },
               child: Row(
                 children: [

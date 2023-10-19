@@ -13,7 +13,7 @@ class SettingScreen extends StatelessWidget {
     return ListTile(
       onTap: () {
         // Get.toNamed(PaymentSettingScreen.routeName);
-        Get.toNamed(AddDebitScreen.routeName);
+        Get.toNamed(AddDebitScreen.routeName, arguments: 'add');
       },
       leading: Image.asset(
         AssetsConstant.profile_icon,

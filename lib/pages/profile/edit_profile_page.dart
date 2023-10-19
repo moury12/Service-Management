@@ -18,7 +18,7 @@ class EditProfileScreen extends StatelessWidget {
         child: Column(
           children: [
             CustomTextField(
-              keyboardType: TextInputType.phone,
+              borderRadius: 10,
               maxLine: 2,
               labelText: 'Full Name',
               onSubmitted: (p0) {},
@@ -32,6 +32,7 @@ class EditProfileScreen extends StatelessWidget {
               focusColor: AppColors.kAppbarColor,
             ),
             CustomTextField(
+              borderRadius: 10,
               keyboardType: TextInputType.phone,
               maxLine: 2,
               labelText: 'Mobile Number',
@@ -46,7 +47,7 @@ class EditProfileScreen extends StatelessWidget {
               focusColor: AppColors.kAppbarColor,
             ),
             CustomTextField(
-              keyboardType: TextInputType.phone,
+              borderRadius: 10,
               maxLine: 2,
               labelText: 'Location',
               onSubmitted: (p0) {},
