@@ -1184,9 +1184,14 @@ class CountWidget extends StatefulWidget {
 }
 
 class _CountWidgetState extends State<CountWidget> {
-  int acceptedData = 0;
-  double top = 0;
-  double left = 0;
+  // int acceptedData = 0;
+  // double top = 0;
+  // double left = 0;
+  bool isinc = false;
+  bool isdec = false;
+  int value = 5;
+  bool hasIncremented = false; // Track if increment has occurred
+  bool hasDecremented = false;
 
   @override
   Widget build(BuildContext context) {
@@ -1204,122 +1209,224 @@ class _CountWidgetState extends State<CountWidget> {
               Image.asset(
                 AssetsConstant.info_icon,
                 height: 12,
-              )
+              ),
             ],
           ),
           Container(
-            padding: const EdgeInsets.symmetric(horizontal: 12),
+            width: 98,
+            height: 35,
+            // padding: const EdgeInsets.symmetric(horizontal: 12),
             decoration: BoxDecoration(
                 color: Colors.white,
                 borderRadius: BorderRadius.circular(33),
                 boxShadow: [
                   BoxShadow(blurRadius: 6, color: Colors.black.withOpacity(.15))
                 ]),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              crossAxisAlignment: CrossAxisAlignment.center,
+            child: Stack(
               children: [
-                DragTarget<int>(builder: (
-                  BuildContext context,
-                  List<dynamic> accepted,
-                  List<dynamic> rejected,
-                ) {
-                  return Padding(
-                    padding: const EdgeInsets.all(6.0),
-                    child: Image.asset(
-                      AssetsConstant.minimize_icon,
-                      color: acceptedData < 1 ? null : AppColors.kPrimaryColor,
-                      height: 15,
-                      width: 15,
-                    ),
-                  );
-                }, onAccept: (int data) {
-                  if (acceptedData >= 1) {
-                    setState(() {
-                      acceptedData -= data;
-                    });
-                  } else {}
-                }),
-                Draggable<int>(
-                  hitTestBehavior: HitTestBehavior.translucent,
-                  axis: Axis.horizontal,
-                  affinity: Axis.horizontal,
-                  dragAnchorStrategy: (draggable, context, position) {
-                    final RenderBox render =
-                        context.findRenderObject()! as RenderBox;
-                    return Offset(
-                        render.size.width / 2, render.size.height / 2);
-                  },
-                  data: 1,
-                  feedback: Material(
-                    type: MaterialType.transparency,
-                    child: Container(
-                      margin: const EdgeInsets.symmetric(horizontal: 8),
-                      decoration: BoxDecoration(
-                        color: AppColors.kPrimaryColor,
-                        borderRadius: BorderRadius.circular(180),
-                      ),
-                      padding: const EdgeInsets.symmetric(
-                          vertical: 10, horizontal: 16),
-                      child: Text(
-                        '$acceptedData',
-                        style: AppTheme.textStyleSemiBoldWhite14,
-                      ),
-                    ),
-                  ),
-                  childWhenDragging: Container(
-                    margin: const EdgeInsets.symmetric(horizontal: 8),
-                    decoration: BoxDecoration(
-                      color: Colors.transparent,
-                      borderRadius: BorderRadius.circular(180),
-                    ),
-                    padding: const EdgeInsets.symmetric(
-                        vertical: 10, horizontal: 16),
-                    child: Text(
-                      '$acceptedData',
-                      style: AppTheme.textStyleSemiBoldWhite14,
-                    ),
-                  ),
-                  child: Material(
-                    child: Container(
-                      margin: const EdgeInsets.symmetric(horizontal: 8),
-                      decoration: BoxDecoration(
-                        color: AppColors.kPrimaryColor,
-                        borderRadius: BorderRadius.circular(180),
-                      ),
-                      padding: const EdgeInsets.symmetric(
-                          vertical: 10, horizontal: 16),
-                      child: Text(
-                        acceptedData.toString(),
-                        style: AppTheme.textStyleSemiBoldWhite14,
-                      ),
-                    ),
+                Positioned(
+                  left: 8,
+                  top: 5,
+                  bottom: 5,
+                  child: Image.asset(
+                    AssetsConstant.minimize_icon,
+                    height: 15,
+                    width: 15,
                   ),
                 ),
-                DragTarget<int>(
-                  builder: (
-                    BuildContext context,
-                    List<dynamic> accepted,
-                    List<dynamic> rejected,
-                  ) {
-                    return Padding(
-                      padding: const EdgeInsets.all(6),
-                      child: Image.asset(
-                        AssetsConstant.add_icon,
-                        height: 15,
-                        width: 15,
+                Positioned(
+                  right: 8,
+                  top: 5,
+                  bottom: 5,
+                  child: Image.asset(
+                    AssetsConstant.add_icon,
+                    height: 15,
+                    width: 15,
+                  ),
+                ),
+                AnimatedPositioned(
+                  duration: Duration(milliseconds: 200),
+                  left: !isinc && !isdec
+                      ? 25
+                      : isinc
+                          ? 53.0
+                          : (isdec ? -6 : 25.0),
+                  child: GestureDetector(
+                    onHorizontalDragUpdate: (details) {
+                      if (details.localPosition.dx >= -6 &&
+                          details.localPosition.dx <= 56.0) {
+                        setState(() {
+                          if (details.localPosition.dx <= 25.0) {
+                            isinc = false;
+                            isdec = true;
+                            if (!hasIncremented && value != 0) {
+                              value--;
+                              hasIncremented = true;
+                              hasDecremented = false;
+                            }
+                          } else {
+                            isinc = true;
+                            isdec = false;
+
+                            if (!hasDecremented) {
+                              value++;
+                              hasDecremented = true;
+                              hasIncremented = false;
+                            }
+                          }
+                        });
+                      }
+                    },
+                    onHorizontalDragStart: (details) {
+                      hasIncremented = false;
+                      isinc = false;
+                      isdec = false;
+                      hasDecremented = false;
+                      value = 5;
+                    },
+                    onHorizontalDragEnd: (details) {
+                      hasIncremented = false;
+                      isinc = false;
+                      isdec = false;
+                      hasDecremented = false;
+                      value = 5;
+                    },
+                    child: Container(
+                      width: 35.0,
+                      height: 35.0,
+                      alignment: Alignment.center,
+                      margin: const EdgeInsets.symmetric(horizontal: 8),
+                      decoration: BoxDecoration(
+                        color: AppColors.kPrimaryColor,
+                        borderRadius: BorderRadius.circular(180),
                       ),
-                    );
-                  },
-                  onAccept: (int data) {
-                    setState(() {
-                      acceptedData += data;
-                    });
-                  },
+                      // padding: const EdgeInsets.symmetric(
+                      //     vertical: 10, horizontal: 16),
+                      child: Text(
+                        '$value',
+                        textAlign: TextAlign.center,
+                        style: AppTheme.textStyleSemiBoldWhite14,
+                      ),
+                    ),
+                  ),
                 ),
               ],
             ),
-          )
+          ),
+          //*******************************************************************
+          // Container(
+          //   padding: const EdgeInsets.symmetric(horizontal: 12),
+          //   decoration: BoxDecoration(
+          //       color: Colors.white,
+          //       borderRadius: BorderRadius.circular(33),
+          //       boxShadow: [
+          //         BoxShadow(blurRadius: 6, color: Colors.black.withOpacity(.15))
+          //       ]),
+          //   child: Row(
+          //     mainAxisAlignment: MainAxisAlignment.center,
+          //     crossAxisAlignment: CrossAxisAlignment.center,
+          //     children: [
+          //       DragTarget<int>(builder: (
+          //         BuildContext context,
+          //         List<dynamic> accepted,
+          //         List<dynamic> rejected,
+          //       ) {
+          //         return Padding(
+          //           padding: const EdgeInsets.all(6.0),
+          //           child: Image.asset(
+          //             AssetsConstant.minimize_icon,
+          //             color: acceptedData < 1 ? null : AppColors.kPrimaryColor,
+          //             height: 15,
+          //             width: 15,
+          //           ),
+          //         );
+          //       }, onAccept: (int data) {
+          //         if (acceptedData >= 1) {
+          //           setState(() {
+          //             acceptedData -= data;
+          //           });
+          //         } else {}
+          //       }),
+          //       Draggable<int>(
+          //         hitTestBehavior: HitTestBehavior.translucent,
+          //         axis: Axis.horizontal,
+          //         affinity: Axis.horizontal,
+          //         dragAnchorStrategy: (draggable, context, position) {
+          //           final RenderBox render =
+          //               context.findRenderObject()! as RenderBox;
+          //           return Offset(
+          //               render.size.width / 2, render.size.height / 2);
+          //         },
+          //         data: 1,
+          //         feedback: Material(
+          //           type: MaterialType.transparency,
+          //           child: Container(
+          //             margin: const EdgeInsets.symmetric(horizontal: 8),
+          //             decoration: BoxDecoration(
+          //               color: AppColors.kPrimaryColor,
+          //               borderRadius: BorderRadius.circular(180),
+          //             ),
+          //             padding: const EdgeInsets.symmetric(
+          //                 vertical: 10, horizontal: 16),
+          //             child: Text(
+          //               '$acceptedData',
+          //               style: AppTheme.textStyleSemiBoldWhite14,
+          //             ),
+          //           ),
+          //         ),
+          //         childWhenDragging: Container(
+          //           margin: const EdgeInsets.symmetric(horizontal: 8),
+          //           decoration: BoxDecoration(
+          //             color: Colors.transparent,
+          //             borderRadius: BorderRadius.circular(180),
+          //           ),
+          //           padding: const EdgeInsets.symmetric(
+          //               vertical: 10, horizontal: 16),
+          //           child: Text(
+          //             '$acceptedData',
+          //             style: AppTheme.textStyleSemiBoldWhite14,
+          //           ),
+          //         ),
+          //         child: Material(
+          //           child: Container(
+          //             margin: const EdgeInsets.symmetric(horizontal: 8),
+          //             decoration: BoxDecoration(
+          //               color: AppColors.kPrimaryColor,
+          //               borderRadius: BorderRadius.circular(180),
+          //             ),
+          //             padding: const EdgeInsets.symmetric(
+          //                 vertical: 10, horizontal: 16),
+          //             child: Text(
+          //               acceptedData.toString(),
+          //               style: AppTheme.textStyleSemiBoldWhite14,
+          //             ),
+          //           ),
+          //         ),
+          //       ),
+          //       DragTarget<int>(
+          //         builder: (
+          //           BuildContext context,
+          //           List<dynamic> accepted,
+          //           List<dynamic> rejected,
+          //         ) {
+          //           return Padding(
+          //             padding: const EdgeInsets.all(6),
+          //             child: Image.asset(
+          //               AssetsConstant.add_icon,
+          //               height: 15,
+          //               width: 15,
+          //             ),
+          //           );
+          //         },
+          //         onAccept: (int data) {
+          //           setState(() {
+          //             acceptedData += data;
+          //           });
+          //         },
+          //       ),
+          //     ],
+          //   ),
+          // )
         ],
       ),
     );

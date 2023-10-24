@@ -128,6 +128,7 @@ class _HomeScreenState extends State<HomeScreen>
               right: 0,
               duration: Duration(milliseconds: 300),
               child: Container(
+                margin: EdgeInsets.symmetric(horizontal: 15, vertical: 2),
                 color: containerColor,
                 width: double.infinity,
                 height: 90,

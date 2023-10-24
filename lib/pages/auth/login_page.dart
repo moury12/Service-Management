@@ -8,6 +8,7 @@ import 'package:fix_ican/theme/theme_data.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:mh_core/utils/global.dart';
 import 'package:mh_core/widgets/button/custom_button.dart';
 import 'package:mh_core/widgets/textfield/custom_textfield.dart';
 
@@ -45,6 +46,7 @@ class _LoginScreenState extends State<LoginScreen>
     text5 = FocusNode();
     text6 = FocusNode();
     text1.requestFocus();
+
     super.initState();
 
     _controller = AnimationController(
@@ -85,6 +87,7 @@ class _LoginScreenState extends State<LoginScreen>
 
   @override
   Widget build(BuildContext context) {
+    globalLogger.d(MediaQuery.of(context).size.width / 8);
     return Scaffold(
       body: SingleChildScrollView(
         child: Column(
@@ -117,70 +120,83 @@ class _LoginScreenState extends State<LoginScreen>
                   ),
                   AnimatedPositioned(
                     top: _otpVisible ? 60 : 25,
-                    left: 40,
-                    child: Container(
-                      color: Colors.red,
-                      width: _otpVisible ? 2 : 0,
-                      height: _otpVisible ? 53.5 : 0,
+                    left: 0,
+                    child: Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 16.0),
+                      child: Row(
+                        children: [
+                          ...List.generate(
+                            6,
+                            (index) => Container(
+                              margin: EdgeInsets.symmetric(
+                                  horizontal:
+                                      MediaQuery.of(context).size.width / 13.7),
+                              color: Colors.red,
+                              width: _otpVisible ? 2 : 0,
+                              height: _otpVisible ? 53.5 : 0,
+                            ),
+                          )
+                        ],
+                      ),
                     ),
                     duration: Duration(milliseconds: 550),
                     curve: Curves.easeInOut,
                   ),
-                  AnimatedPositioned(
-                    top: _otpVisible ? 60 : 25,
-                    left: 97,
-                    child: Container(
-                      color: Colors.red,
-                      width: _otpVisible ? 2 : 0,
-                      height: _otpVisible ? 53.5 : 0,
-                    ),
-                    duration: Duration(milliseconds: 550),
-                    curve: Curves.easeInOut,
-                  ),
-                  AnimatedPositioned(
-                    top: _otpVisible ? 60 : 25,
-                    left: 150,
-                    child: Container(
-                      color: Colors.red,
-                      width: _otpVisible ? 2 : 0,
-                      height: _otpVisible ? 53.5 : 0,
-                    ),
-                    duration: Duration(milliseconds: 550),
-                    curve: Curves.easeInOut,
-                  ),
-                  AnimatedPositioned(
-                    top: _otpVisible ? 60 : 25,
-                    right: 150,
-                    child: Container(
-                      color: Colors.red,
-                      width: _otpVisible ? 2 : 0,
-                      height: _otpVisible ? 53.5 : 0,
-                    ),
-                    duration: Duration(milliseconds: 550),
-                    curve: Curves.easeInOut,
-                  ),
-                  AnimatedPositioned(
-                    top: _otpVisible ? 60 : 25,
-                    right: 97,
-                    child: Container(
-                      color: Colors.red,
-                      width: _otpVisible ? 2 : 0,
-                      height: _otpVisible ? 53.5 : 0,
-                    ),
-                    duration: Duration(milliseconds: 550),
-                    curve: Curves.easeInOut,
-                  ),
-                  AnimatedPositioned(
-                    top: _otpVisible ? 60 : 25,
-                    right: 40,
-                    child: Container(
-                      color: Colors.red,
-                      width: _otpVisible ? 2 : 0,
-                      height: _otpVisible ? 53.5 : 0,
-                    ),
-                    duration: Duration(milliseconds: 550),
-                    curve: Curves.easeInOut,
-                  ),
+                  // AnimatedPositioned(
+                  //   top: _otpVisible ? 60 : 25,
+                  //   left: 97,
+                  //   child: Container(
+                  //     color: Colors.red,
+                  //     width: _otpVisible ? 2 : 0,
+                  //     height: _otpVisible ? 53.5 : 0,
+                  //   ),
+                  //   duration: Duration(milliseconds: 550),
+                  //   curve: Curves.easeInOut,
+                  // ),
+                  // AnimatedPositioned(
+                  //   top: _otpVisible ? 60 : 25,
+                  //   left: 150,
+                  //   child: Container(
+                  //     color: Colors.red,
+                  //     width: _otpVisible ? 2 : 0,
+                  //     height: _otpVisible ? 53.5 : 0,
+                  //   ),
+                  //   duration: Duration(milliseconds: 550),
+                  //   curve: Curves.easeInOut,
+                  // ),
+                  // AnimatedPositioned(
+                  //   top: _otpVisible ? 60 : 25,
+                  //   right: 150,
+                  //   child: Container(
+                  //     color: Colors.red,
+                  //     width: _otpVisible ? 2 : 0,
+                  //     height: _otpVisible ? 53.5 : 0,
+                  //   ),
+                  //   duration: Duration(milliseconds: 550),
+                  //   curve: Curves.easeInOut,
+                  // ),
+                  // AnimatedPositioned(
+                  //   top: _otpVisible ? 60 : 25,
+                  //   right: 97,
+                  //   child: Container(
+                  //     color: Colors.red,
+                  //     width: _otpVisible ? 2 : 0,
+                  //     height: _otpVisible ? 53.5 : 0,
+                  //   ),
+                  //   duration: Duration(milliseconds: 550),
+                  //   curve: Curves.easeInOut,
+                  // ),
+                  // AnimatedPositioned(
+                  //   top: _otpVisible ? 60 : 25,
+                  //   right: 40,
+                  //   child: Container(
+                  //     color: Colors.red,
+                  //     width: _otpVisible ? 2 : 0,
+                  //     height: _otpVisible ? 53.5 : 0,
+                  //   ),
+                  //   duration: Duration(milliseconds: 550),
+                  //   curve: Curves.easeInOut,
+                  // ),
                   Positioned(
                     top: 0,
                     left: 0,
@@ -338,10 +354,7 @@ class _LoginScreenState extends State<LoginScreen>
                 style: AppTheme.textStyleSemiBoldBlack12,
                 children: [
                   TextSpan(
-                      recognizer: TapGestureRecognizer()
-                        ..onTap = () {
-                          Get.toNamed(HomeScreen.routeName);
-                        },
+                      recognizer: TapGestureRecognizer()..onTap = () {},
                       text: 'Resend again',
                       style: AppTheme.textStyleMediumRed12)
                 ])),
