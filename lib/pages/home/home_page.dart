@@ -455,11 +455,13 @@ class HomeServiceItemWidget extends StatelessWidget {
     this.label,
     this.height,
     this.padding,
+    this.margin,
   });
 
   final Widget? label;
   final double? height;
   final EdgeInsets? padding;
+  final EdgeInsets? margin;
 
   @override
   Widget build(BuildContext context) {
@@ -475,7 +477,7 @@ class HomeServiceItemWidget extends StatelessWidget {
                       color: AppColors.kPrimaryColor.withOpacity(.5),
                       blurRadius: 2)
                 ]),
-            margin: const EdgeInsets.all(8).copyWith(left: 0, right: 0),
+            margin: margin ?? const EdgeInsets.symmetric(vertical: 8),
             child: Stack(
               alignment: Alignment.bottomCenter,
               children: [
@@ -483,7 +485,7 @@ class HomeServiceItemWidget extends StatelessWidget {
                   child: Image.asset(
                     AssetsConstant.service_item_shade,
                   ),
-                  bottom: 0,
+                  bottom: -2,
                   left: -1.5,
                   right: 0,
                 ),

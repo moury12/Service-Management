@@ -8,7 +8,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class PaymentMethodSelectionScreen extends StatefulWidget {
-  static const String routeName = '/payment';
+  static const String routeName = '/paymentMethodSelection';
 
   const PaymentMethodSelectionScreen({super.key});
 

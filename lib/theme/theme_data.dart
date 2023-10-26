@@ -111,6 +111,8 @@ class AppTheme {
     fontSize: 12,
     fontWeight: FontWeight.w600,
   );
+  static const textStyleSemiBoldFadeBlack10 = TextStyle(
+      fontSize: 12, fontWeight: FontWeight.w600, color: Colors.black87);
   static const textStyleSemiBoldBlack14 = TextStyle(
     fontSize: 14,
     fontWeight: FontWeight.w600,
@@ -198,6 +200,8 @@ class AppTheme {
     fontSize: 16,
     fontWeight: FontWeight.w600,
   );
+  static const textStyleSemiBoldFBlack16 = TextStyle(
+      fontSize: 16, fontWeight: FontWeight.w600, color: Colors.black87);
   static const textStyleSemiBoldGreen16 = TextStyle(
     color: Color(0xff09AB4A),
     fontSize: 14,

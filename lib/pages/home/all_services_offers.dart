@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class AllServicesOffers extends StatelessWidget {
-  static const String routeName = '/serviceoffers';
+  static const String routeName = '/SeeAllserviceoffers';
 
   const AllServicesOffers({super.key});
 
@@ -29,10 +29,10 @@ class AllServicesOffers extends StatelessWidget {
         child: GridView.builder(
           shrinkWrap: true,
           primary: false,
-          padding: EdgeInsets.symmetric(vertical: 16, horizontal: 8),
+          padding: EdgeInsets.symmetric(vertical: 12, horizontal: 8),
           gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
               crossAxisCount: 2,
-              mainAxisSpacing: 16,
+              mainAxisSpacing: 8,
               crossAxisSpacing: 5,
               childAspectRatio: .95),
           itemCount: 10,

@@ -9,7 +9,7 @@ import 'package:get/get.dart';
 import 'package:mh_core/widgets/button/custom_button.dart';
 
 class ServiceOfferDetails extends StatefulWidget {
-  static const String routeName = '/servicedetails';
+  static const String routeName = '/serviceOfferDetails';
 
   const ServiceOfferDetails({super.key});
 
@@ -52,7 +52,9 @@ class _ServiceOfferDetailsState extends State<ServiceOfferDetails> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            ClipRRect(borderRadius: BorderRadius.circular(6), child: Image.asset(AssetsConstant.dummy_service)),
+            ClipRRect(
+                borderRadius: BorderRadius.circular(6),
+                child: Image.asset(AssetsConstant.dummy_service)),
             Padding(
               padding: const EdgeInsets.symmetric(vertical: 12.0),
               child: Text(
@@ -80,7 +82,8 @@ class _ServiceOfferDetailsState extends State<ServiceOfferDetails> {
                         ...List.generate(
                             2,
                             (index) => Row(
-                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
                                   children: [
                                     GestureDetector(
                                       onTap: () {
@@ -96,12 +99,15 @@ class _ServiceOfferDetailsState extends State<ServiceOfferDetails> {
                                         height: 20,
                                         width: 20,
                                         decoration: BoxDecoration(
-                                            color: isChecked ? AppColors.kPrimaryColor : Colors.transparent,
+                                            color: isChecked
+                                                ? AppColors.kPrimaryColor
+                                                : Colors.transparent,
                                             border: Border.all(
                                               color: Color(0xffFFD9D9),
                                               width: 1.4,
                                             ),
-                                            borderRadius: BorderRadius.circular(3)),
+                                            borderRadius:
+                                                BorderRadius.circular(3)),
                                         child: isChecked
                                             ? Image.asset(
                                                 AssetsConstant.check_icon,
@@ -118,19 +124,26 @@ class _ServiceOfferDetailsState extends State<ServiceOfferDetails> {
                                       ),
                                     ),
                                     Column(
-                                      crossAxisAlignment: CrossAxisAlignment.start,
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
                                       children: [
                                         Text(
                                           'Breakfast, Lunch, Dinner',
-                                          style: AppTheme.textStyleSemiBoldBlack12,
+                                          style:
+                                              AppTheme.textStyleSemiBoldBlack12,
                                         ),
                                         Text.rich(
-                                          TextSpan(text: 'Estimated time:', style: AppTheme.textStyleMediumBlack10, children: [
-                                            TextSpan(
-                                              text: ' 2:30 hrs',
-                                            )
-                                          ]),
-                                          style: AppTheme.textStyleNormalFadeBlack10,
+                                          TextSpan(
+                                              text: 'Estimated time:',
+                                              style: AppTheme
+                                                  .textStyleMediumBlack10,
+                                              children: [
+                                                TextSpan(
+                                                  text: ' 2:30 hrs',
+                                                )
+                                              ]),
+                                          style: AppTheme
+                                              .textStyleNormalFadeBlack10,
                                         )
                                       ],
                                     ),

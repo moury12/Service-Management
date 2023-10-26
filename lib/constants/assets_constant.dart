@@ -42,6 +42,7 @@ class AssetsConstant {
   static const String arrow_up_icon = "assets/icons/arrow_up_icon.png";
   static const String cancel_icon = "assets/icons/cancel_icon.png";
   static const String edit_icon = "assets/icons/edit_icon.png";
+  static const String edit_icon3 = "assets/icons/edit_icon3.png";
   static const String logout_icon = "assets/icons/logout_icon.png";
   static const String map_icon = "assets/icons/map_icon.png";
   static const String profile_icon = "assets/icons/profile_icon.png";

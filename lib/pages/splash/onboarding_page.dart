@@ -8,7 +8,7 @@ import 'package:get/get.dart';
 import 'package:mh_core/widgets/button/custom_button.dart';
 
 class OnboardingScreen extends StatefulWidget {
-  static const String routeName = '/boarding';
+  static const String routeName = '/Onboarding';
 
   const OnboardingScreen({super.key});
 

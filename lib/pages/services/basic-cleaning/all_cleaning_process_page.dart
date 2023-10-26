@@ -12,7 +12,7 @@ import 'package:mh_core/widgets/button/custom_button.dart';
 class AllCleaningProcessScreen extends StatefulWidget {
   final String? title;
   final bool? isCustom;
-  static const String routeName = '/weekly';
+  static const String routeName = '/allCleaningProcess';
 
   const AllCleaningProcessScreen(
       {super.key, this.title, this.isCustom = false});

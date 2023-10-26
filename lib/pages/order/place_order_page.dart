@@ -46,490 +46,510 @@ class _PlaceOrderScreenState extends State<PlaceOrderScreen> {
           ])),
       body: Column(
         children: [
-          CustomSizedBox.space12H,
-          ProcessWidget(
-            holdingProcess: placedOrder ? 3 : 2,
-            processNameList: processes.map((e) => e.topic).toList(),
-            contentHeight: 40,
+          Container(
+            padding: EdgeInsets.only(top: 12),
+            decoration: BoxDecoration(
+                color: Colors.white,
+                borderRadius: BorderRadius.circular(22),
+                boxShadow: [
+                  BoxShadow(
+                      color: !placedOrder
+                          ? Colors.black.withOpacity(0.06)
+                          : Colors.transparent,
+                      blurRadius: 10)
+                ]),
+            child: Column(
+              children: [
+                ProcessWidget(
+                  holdingProcess: placedOrder ? 3 : 2,
+                  processNameList: processes.map((e) => e.topic).toList(),
+                  contentHeight: 40,
+                ),
+                ...List.generate(
+                  placedOrder ? 0 : 3,
+                  (index) => placedOrder
+                      ? SizedBox.shrink()
+                      : Column(
+                          children: [
+                            Padding(
+                              padding:
+                                  const EdgeInsets.symmetric(horizontal: 16.0),
+                              child: Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: [
+                                  InkWell(
+                                    onTap: () {
+                                      setState(() {
+                                        isChecked = !isChecked;
+                                      });
+                                    },
+                                    child: Container(
+                                      padding: const EdgeInsets.all(2),
+                                      height: 20,
+                                      width: 20,
+                                      decoration: BoxDecoration(
+                                          color: isChecked
+                                              ? AppColors.kPrimaryColor
+                                              : Colors.transparent,
+                                          border: Border.all(
+                                            color: const Color(0xffFFD9D9),
+                                            width: 1.4,
+                                          ),
+                                          borderRadius:
+                                              BorderRadius.circular(3)),
+                                      child: isChecked
+                                          ? Image.asset(
+                                              AssetsConstant.check_icon,
+                                              height: 12,
+                                            )
+                                          : const SizedBox.shrink(),
+                                    ),
+                                  ),
+                                  const HomeServiceItemWidget(
+                                    height: 37,
+                                    label: SizedBox.shrink(),
+                                  ),
+                                  const Column(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      Text(
+                                        'Basic Cleaning',
+                                        style:
+                                            AppTheme.textStyleSemiBoldBlack16,
+                                      ),
+                                      CustomSizedBox.space8H,
+                                      Text.rich(TextSpan(
+                                          text: 'Estimated time: ',
+                                          style: AppTheme
+                                              .textStyleMediumFadeBlack12,
+                                          children: [
+                                            TextSpan(
+                                              text: ' 2:30 hrs',
+                                              style: TextStyle(
+                                                color: Colors.black,
+                                                fontSize: 12,
+                                                fontWeight: FontWeight.w600,
+                                              ),
+                                            )
+                                          ])),
+                                      CustomSizedBox.space4H,
+                                      Text(
+                                        'Tk.1299',
+                                        style:
+                                            AppTheme.textStyleSemiBoldFBlack16,
+                                      ),
+                                    ],
+                                  ),
+                                  Column(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceBetween,
+                                    children: [
+                                      Image.asset(
+                                        AssetsConstant.edit_icon3,
+                                        height: 15,
+                                      ),
+                                      CustomSizedBox.space20H,
+                                      Image.asset(
+                                        AssetsConstant.delete_icon,
+                                        height: 15,
+                                      )
+                                    ],
+                                  )
+                                ],
+                              ),
+                            ),
+                            Padding(
+                              padding: EdgeInsets.symmetric(horizontal: 16.0),
+                              child: Divider(
+                                thickness: 0.5,
+                                color: Color(0xffF1B2BF).withOpacity(.6),
+                              ),
+                            ),
+                          ],
+                        ),
+                ),
+                placedOrder
+                    ? SizedBox.shrink()
+                    : Padding(
+                        padding: EdgeInsets.symmetric(
+                            horizontal: 16.0, vertical: 12),
+                        child: Row(
+                          children: [
+                            Icon(
+                              Icons.add,
+                              color: AppColors.kPrimaryColor,
+                            ),
+                            CustomSizedBox.space4W,
+                            Text(
+                              'Add More Service',
+                              style: AppTheme.textStyleMediumPrimary14,
+                            )
+                          ],
+                        ),
+                      )
+              ],
+            ),
           ),
           placedOrder
               ? Column(
-            children: [
-              Container(
-                margin: const EdgeInsets.symmetric(horizontal: 16),
-                decoration: BoxDecoration(
-                    color: Colors.white,
-                    boxShadow: [
-                      BoxShadow(
-                          blurRadius: 10,
-                          color: Colors.black.withOpacity(.15))
-                    ],
-                    borderRadius: BorderRadius.circular(10)),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    const Padding(
-                      padding: EdgeInsets.all(12),
-                      child: Text(
-                        'Available Maid',
-                        style: AppTheme.textStyleMediumBlack14,
+                    CustomSizedBox.space12H,
+                    Container(
+                      margin: const EdgeInsets.symmetric(horizontal: 16),
+                      decoration: BoxDecoration(
+                          color: Colors.white,
+                          boxShadow: [
+                            BoxShadow(
+                                blurRadius: 10,
+                                color: Colors.black.withOpacity(.15))
+                          ],
+                          borderRadius: BorderRadius.circular(10)),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          const Padding(
+                            padding: EdgeInsets.all(12),
+                            child: Text(
+                              'Available Maid',
+                              style: AppTheme.textStyleMediumBlack14,
+                            ),
+                          ),
+                          Container(
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(10),
+                              color: AppColors.kPrimaryColor,
+                            ),
+                            padding: const EdgeInsets.symmetric(
+                                horizontal: 24, vertical: 12),
+                            child: const Text(
+                              '05',
+                              style: AppTheme.textStyleMediumWhite18,
+                            ),
+                          )
+                        ],
                       ),
                     ),
                     Container(
+                      margin: const EdgeInsets.symmetric(
+                          horizontal: 16, vertical: 12),
+                      padding: const EdgeInsets.symmetric(
+                          horizontal: 16, vertical: 12),
                       decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(10),
-                        color: AppColors.kPrimaryColor,
-                      ),
-                      padding: const EdgeInsets.symmetric(
-                          horizontal: 24, vertical: 12),
-                      child: const Text(
-                        '05',
-                        style: AppTheme.textStyleMediumWhite18,
-                      ),
-                    )
-                  ],
-                ),
-              ),
-              Container(
-                margin: const EdgeInsets.symmetric(
-                    horizontal: 16, vertical: 12),
-                padding: const EdgeInsets.symmetric(
-                    horizontal: 16, vertical: 12),
-                decoration: BoxDecoration(
-                    color: Colors.white,
-                    boxShadow: [
-                      BoxShadow(
-                          blurRadius: 10,
-                          color: Colors.black.withOpacity(.15))
-                    ],
-                    borderRadius: BorderRadius.circular(10)),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Row(
-                      children: [
-                        Container(
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(90),
-                            color: AppColors.kAppbarColor,
-                          ),
-                          padding: const EdgeInsets.all(6),
-                          child: const Icon(
-                            Icons.location_pin,
-                            color: Colors.white,
-                          ),
-                        ),
-                        CustomSizedBox.space8W,
-                        Text(
-                          'Location',
-                          style: AppTheme.textStyleSemiBoldFadeBlack14,
-                        ),
-                        const Spacer(),
-                        InkWell(
-                          onTap: () {
-                            Get.toNamed(DeliveryDetailsScreen.routeName);
-                          },
-                          child: Image.asset(
-                            AssetsConstant.edit_icon2,
-                            height: 18,
-                          ),
-                        )
-                      ],
-                    ),
-                    CustomSizedBox.space12H,
-                    ClipRRect(
-                      borderRadius: BorderRadius.circular(8),
-                      child: Image.asset(AssetsConstant.map_img),
-                    ),
-                    CustomSizedBox.space12H,
-                    const Text(
-                      '52/A, Kalabagan, Dhanmondi-32',
-                      style: AppTheme.textStyleSemiBoldBlack12,
-                    )
-                  ],
-                ),
-              ),
-              Container(
-                margin: const EdgeInsets.symmetric(
-                    horizontal: 16, vertical: 12),
-                decoration: BoxDecoration(
-                    color: Colors.white,
-                    boxShadow: [
-                      BoxShadow(
-                          blurRadius: 10,
-                          color: Colors.black.withOpacity(.15))
-                    ],
-                    borderRadius: BorderRadius.circular(10)),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Padding(
-                      padding: const EdgeInsets.symmetric(
-                          horizontal: 16, vertical: 12)
-                          .copyWith(bottom: 0),
-                      child: Row(
+                          color: Colors.white,
+                          boxShadow: [
+                            BoxShadow(
+                                blurRadius: 10,
+                                color: Colors.black.withOpacity(.15))
+                          ],
+                          borderRadius: BorderRadius.circular(10)),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Container(
-                              decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(90),
-                                color: AppColors.kAppbarColor,
+                          Row(
+                            children: [
+                              Container(
+                                decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(90),
+                                  color: AppColors.kAppbarColor,
+                                ),
+                                padding: const EdgeInsets.all(6),
+                                child: const Icon(
+                                  Icons.location_pin,
+                                  color: Colors.white,
+                                ),
                               ),
-                              padding: const EdgeInsets.all(8),
-                              child: Image.asset(
-                                AssetsConstant.wallet_icon,
-                                height: 18,
-                              )),
-                          CustomSizedBox.space8W,
-                          Text(
-                            'Payment Method',
-                            style: AppTheme.textStyleSemiBoldFadeBlack14,
+                              CustomSizedBox.space8W,
+                              Text(
+                                'Location',
+                                style: AppTheme.textStyleSemiBoldFadeBlack14,
+                              ),
+                              const Spacer(),
+                              InkWell(
+                                onTap: () {
+                                  Get.toNamed(DeliveryDetailsScreen.routeName);
+                                },
+                                child: Image.asset(
+                                  AssetsConstant.edit_icon2,
+                                  height: 18,
+                                ),
+                              )
+                            ],
                           ),
-                          const Spacer(),
-                          InkWell(
-                            onTap: () =>
-                                Get.toNamed(
-                                    PaymentMethodSelectionScreen.routeName),
-                            borderRadius: BorderRadius.circular(90),
-                            child: Image.asset(
-                              AssetsConstant.edit_icon2,
-                              height: 18,
+                          CustomSizedBox.space12H,
+                          ClipRRect(
+                            borderRadius: BorderRadius.circular(8),
+                            child: Image.asset(AssetsConstant.map_img),
+                          ),
+                          CustomSizedBox.space12H,
+                          const Text(
+                            '52/A, Kalabagan, Dhanmondi-32',
+                            style: AppTheme.textStyleSemiBoldFadeBlack10,
+                          ),
+                          CustomSizedBox.space8H,
+                          Divider(
+                            thickness: 0.5,
+                            color: Color(0xffF1B2BF).withOpacity(.6),
+                          ),
+                          Padding(
+                            padding: EdgeInsets.symmetric(vertical: 8),
+                            child: Row(
+                              children: [
+                                Icon(
+                                  Icons.add,
+                                  color: AppColors.kPrimaryColor,
+                                ),
+                                CustomSizedBox.space4W,
+                                Text(
+                                  'Add Location Instruction',
+                                  style: AppTheme.textStyleMediumPrimary14,
+                                )
+                              ],
                             ),
                           )
                         ],
                       ),
                     ),
-                    CustomSizedBox.space12H,
-                    ListTile(
-                      leading: Image.asset(
-                        AssetsConstant.cash_icon,
-                        height: 18,
-                      ),
-                      title: const Text(
-                        'Cash',
-                        style: AppTheme.textStyleSemiBoldBlack16,
-                      ),
-                      trailing: const Text(
-                        'Tk. 2598',
-                        style: AppTheme.textStyleSemiBoldBlack16,
-                      ),
-                    )
-                  ],
-                ),
-              ),
-              Container(
-                padding: const EdgeInsets.symmetric(
-                    horizontal: 16, vertical: 12),
-                margin: const EdgeInsets.symmetric(
-                    horizontal: 16, vertical: 12),
-                decoration: BoxDecoration(
-                    color: Colors.white,
-                    boxShadow: [
-                      BoxShadow(
-                          blurRadius: 10,
-                          color: Colors.black.withOpacity(.15))
-                    ],
-                    borderRadius: BorderRadius.circular(10)),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Row(
-                      children: [
-                        Container(
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(90),
-                              color: AppColors.kAppbarColor,
+                    Container(
+                      margin: const EdgeInsets.symmetric(
+                          horizontal: 16, vertical: 12),
+                      decoration: BoxDecoration(
+                          color: Colors.white,
+                          boxShadow: [
+                            BoxShadow(
+                                blurRadius: 10,
+                                color: Colors.black.withOpacity(.15))
+                          ],
+                          borderRadius: BorderRadius.circular(10)),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Padding(
+                            padding: const EdgeInsets.symmetric(
+                                    horizontal: 16, vertical: 12)
+                                .copyWith(bottom: 0),
+                            child: Row(
+                              children: [
+                                Container(
+                                    decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(90),
+                                      color: AppColors.kAppbarColor,
+                                    ),
+                                    padding: const EdgeInsets.all(8),
+                                    child: Image.asset(
+                                      AssetsConstant.wallet_icon,
+                                      height: 18,
+                                    )),
+                                CustomSizedBox.space8W,
+                                Text(
+                                  'Payment Method',
+                                  style: AppTheme.textStyleSemiBoldBlack18,
+                                ),
+                                const Spacer(),
+                                InkWell(
+                                  onTap: () => Get.toNamed(
+                                      PaymentMethodSelectionScreen.routeName),
+                                  borderRadius: BorderRadius.circular(90),
+                                  child: Image.asset(
+                                    AssetsConstant.edit_icon2,
+                                    height: 18,
+                                  ),
+                                )
+                              ],
                             ),
-                            padding: const EdgeInsets.all(8),
-                            child: Image.asset(
-                              AssetsConstant.wallet_icon,
+                          ),
+                          CustomSizedBox.space12H,
+                          ListTile(
+                            leading: Image.asset(
+                              AssetsConstant.cash_icon,
                               height: 18,
-                            )),
-                        CustomSizedBox.space8W,
-                        Text(
-                          'Order Summary',
-                          style: AppTheme.textStyleSemiBoldFadeBlack14,
-                        ),
-                      ],
+                            ),
+                            title: const Text(
+                              'Cash',
+                              style: AppTheme.textStyleSemiBoldBlack16,
+                            ),
+                            trailing: const Text(
+                              'Tk. 2598',
+                              style: AppTheme.textStyleSemiBoldFBlack16,
+                            ),
+                          )
+                        ],
+                      ),
                     ),
-                    CustomSizedBox.space12H,
-                    const Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Text(
-                          'Rate Per Work (1299*2)',
-                          style: AppTheme.textStyleMediumFadeBlack14,
-                        ),
-                        Text(
-                          'Tk. 2598',
-                          style: AppTheme.textStyleMediumBlack16,
-                        ),
-                      ],
-                    ),
-                    CustomSizedBox.space4H,
-                    const Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Text(
-                          'Service Charge (15%)',
-                          style: AppTheme.textStyleMediumFadeBlack14,
-                        ),
-                        Text(
-                          'Tk. 2598',
-                          style: AppTheme.textStyleMediumBlack16,
-                        ),
-                      ],
-                    ),
-                    CustomSizedBox.space4H,
-                    const Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Text(
-                          'Discount',
-                          style: AppTheme.textStyleMediumFadeBlack14,
-                        ),
-                        Text(
-                          'Tk. 0',
-                          style: AppTheme.textStyleMediumBlack16,
-                        )
-                      ],
-                    ),
-                  ],
-                ),
-              ),
-              SizedBox(height: 130)
-            ],
-          )
-              : Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-            Container(
-              decoration: BoxDecoration(
-                  color: Colors.white,
-                  borderRadius: BorderRadius.circular(22),
-                  boxShadow: [
-                    BoxShadow(
-                        color: Colors.black.withOpacity(0.06),
-                        blurRadius: 10)
-                  ]),
-              child: Padding(
-                padding: const EdgeInsets.symmetric(vertical: 12.0),
-                child: Column(
-                  children: [
-                    ...List.generate(
-                      3,
-                          (index) =>
-                          Column(
+                    Container(
+                      padding: const EdgeInsets.symmetric(
+                          horizontal: 16, vertical: 12),
+                      margin: const EdgeInsets.symmetric(
+                          horizontal: 16, vertical: 12),
+                      decoration: BoxDecoration(
+                          color: Colors.white,
+                          boxShadow: [
+                            BoxShadow(
+                                blurRadius: 10,
+                                color: Colors.black.withOpacity(.15))
+                          ],
+                          borderRadius: BorderRadius.circular(10)),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Row(
                             children: [
-                              Padding(
-                                padding: const EdgeInsets.symmetric(
-                                    horizontal: 16.0),
-                                child: Row(
-                                  mainAxisAlignment:
-                                  MainAxisAlignment.spaceBetween,
-                                  children: [
-                                    InkWell(
-                                      onTap: () {
-                                        setState(() {
-                                          isChecked = !isChecked;
-                                        });
-                                      },
-                                      child: Container(
-                                        padding: const EdgeInsets.all(2),
-                                        height: 20,
-                                        width: 20,
-                                        decoration: BoxDecoration(
-                                            color: isChecked
-                                                ? AppColors.kPrimaryColor
-                                                : Colors.transparent,
-                                            border: Border.all(
-                                              color:
-                                              const Color(0xffFFD9D9),
-                                              width: 1.4,
-                                            ),
-                                            borderRadius:
-                                            BorderRadius.circular(3)),
-                                        child: isChecked
-                                            ? Image.asset(
-                                          AssetsConstant.check_icon,
-                                          height: 12,
-                                        )
-                                            : const SizedBox.shrink(),
-                                      ),
-                                    ),
-                                    const HomeServiceItemWidget(
-                                      height: 37,
-                                      label: SizedBox.shrink(),
-                                    ),
-                                    const Column(
-                                      crossAxisAlignment:
-                                      CrossAxisAlignment.start,
-                                      children: [
-                                        Text(
-                                          'Basic Cleaning',
-                                          style: AppTheme
-                                              .textStyleSemiBoldBlack16,
-                                        ),
-                                        CustomSizedBox.space8H,
-                                        Text.rich(TextSpan(
-                                            text: 'Estimated time: ',
-                                            style: AppTheme
-                                                .textStyleMediumFadeBlack12,
-                                            children: [
-                                              TextSpan(
-                                                text: ' 2:30 hrs',
-                                                style: TextStyle(
-                                                  color: Colors.black,
-                                                  fontSize: 12,
-                                                  fontWeight:
-                                                  FontWeight.w600,
-                                                ),
-                                              )
-                                            ])),
-                                        CustomSizedBox.space4H,
-                                        Text(
-                                          'Tk.1299',
-                                          style: AppTheme
-                                              .textStyleSemiBoldBlack16,
-                                        ),
-                                      ],
-                                    ),
-                                    Column(
-                                      mainAxisAlignment:
-                                      MainAxisAlignment.spaceBetween,
-                                      children: [
-                                        Image.asset(
-                                          AssetsConstant.edit_icon,
-                                          color: AppColors.kAppbarColor,
-                                          height: 15,
-                                        ),
-                                        CustomSizedBox.space20H,
-                                        Image.asset(
-                                          AssetsConstant.delete_icon,
-                                          height: 15,
-                                        )
-                                      ],
-                                    )
-                                  ],
-                                ),
-                              ),
-                              const Padding(
-                                padding: EdgeInsets.symmetric(
-                                    horizontal: 16.0),
-                                child: Divider(
-                                  thickness: 0.5,
-                                  color: Color(0xffF1B2BF),
-                                ),
+                              Container(
+                                  decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(90),
+                                    color: AppColors.kAppbarColor,
+                                  ),
+                                  padding: const EdgeInsets.all(8),
+                                  child: Image.asset(
+                                    AssetsConstant.wallet_icon,
+                                    height: 18,
+                                  )),
+                              CustomSizedBox.space8W,
+                              Text(
+                                'Order Summary',
+                                style: AppTheme.textStyleSemiBoldBlack18,
                               ),
                             ],
                           ),
-                    ),
-                    const Padding(
-                      padding: EdgeInsets.symmetric(horizontal: 16.0),
-                      child: Row(
-                        children: [
-                          Icon(
-                            Icons.add,
-                            color: AppColors.kPrimaryColor,
+                          CustomSizedBox.space12H,
+                          const Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Text(
+                                'Rate Per Work (1299*2)',
+                                style: AppTheme.textStyleMediumFadeBlack14,
+                              ),
+                              Text(
+                                'Tk. 2598',
+                                style: AppTheme.textStyleMediumBlack16,
+                              ),
+                            ],
                           ),
-                          CustomSizedBox.space4W,
-                          Text(
-                            'Add More Service',
-                            style: AppTheme.textStyleMediumPrimary14,
-                          )
+                          CustomSizedBox.space4H,
+                          const Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Text(
+                                'Service Charge (15%)',
+                                style: AppTheme.textStyleMediumFadeBlack14,
+                              ),
+                              Text(
+                                'Tk. 2598',
+                                style: AppTheme.textStyleMediumBlack16,
+                              ),
+                            ],
+                          ),
+                          CustomSizedBox.space4H,
+                          const Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Text(
+                                'Discount',
+                                style: AppTheme.textStyleMediumFadeBlack14,
+                              ),
+                              Text(
+                                'Tk. 0',
+                                style: AppTheme.textStyleMediumBlack16,
+                              )
+                            ],
+                          ),
                         ],
                       ),
-                    )
+                    ),
+                    SizedBox(height: 130)
                   ],
-                ),
-              ),
-            ),
-            Padding(
-              padding: const EdgeInsets.symmetric(
-                  horizontal: 16.0, vertical: 6),
-              child: const Text(
-                'Popular Services',
-                style: AppTheme.textStyleSemiBoldBlack18,
-              ),
-            ),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 16.0),
-              child: const Text(
-                'Check out what’s popular now',
-                style: AppTheme.textStyleMediumFadeBlack12,
-              ),
-            ),
-            SizedBox(
-              height: 135,
-              child: ListView.builder(
-                padding: const EdgeInsets.symmetric(
-                    horizontal: 10, vertical: 12),
-                scrollDirection: Axis.horizontal,
-                itemBuilder: (context, index) =>
-                    Stack(
-                      alignment: Alignment.center,
-                      children: [
-                        HomeServiceItemWidget(
-                            height: 30,
-                            label: const SizedBox.shrink(),
-                            padding: const EdgeInsets.all(34)
-                                .copyWith(bottom: 45, top: 25)),
-                        const Positioned(
-                          bottom: 16,
-                          child: Text(
-                            'Basic Cleaning',
-                            style: AppTheme.textStyleMediumFadeBlack12,
+                )
+              : Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+                  Padding(
+                    padding: const EdgeInsets.symmetric(
+                        horizontal: 16.0, vertical: 6),
+                    child: const Text(
+                      'Popular Services',
+                      style: AppTheme.textStyleSemiBoldBlack18,
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 16.0),
+                    child: const Text(
+                      'Check out what’s popular now',
+                      style: AppTheme.textStyleMediumFadeBlack12,
+                    ),
+                  ),
+                  SizedBox(
+                    height: 135,
+                    child: ListView.builder(
+                      padding: const EdgeInsets.symmetric(
+                          horizontal: 10, vertical: 12),
+                      scrollDirection: Axis.horizontal,
+                      itemBuilder: (context, index) => Stack(
+                        alignment: Alignment.center,
+                        children: [
+                          HomeServiceItemWidget(
+                              height: 30,
+                              margin: EdgeInsets.symmetric(horizontal: 8),
+                              label: const SizedBox.shrink(),
+                              padding: const EdgeInsets.all(34)
+                                  .copyWith(bottom: 45, top: 25)),
+                          const Positioned(
+                            bottom: 16,
+                            child: Text(
+                              'Basic Cleaning',
+                              style: AppTheme.textStyleMediumFadeBlack12,
+                            ),
                           ),
+                          Positioned(
+                              bottom: 10,
+                              right: 10,
+                              child: Container(
+                                padding: const EdgeInsets.all(10),
+                                decoration: BoxDecoration(
+                                    color: AppColors.kPrimaryColor,
+                                    boxShadow: [
+                                      BoxShadow(
+                                          blurRadius: 8,
+                                          color: Colors.black.withOpacity(.15))
+                                    ],
+                                    borderRadius: BorderRadius.circular(90)),
+                                child: Image.asset(
+                                  AssetsConstant.add_icon,
+                                  color: Colors.white,
+                                  height: 10,
+                                ),
+                              ))
+                        ],
+                      ),
+                      itemCount: 5,
+                    ),
+                  ),
+                  CustomSizedBox.space8H,
+                  Container(
+                    padding: const EdgeInsets.all(12),
+                    margin: const EdgeInsets.symmetric(horizontal: 16),
+                    decoration: BoxDecoration(
+                        color: Colors.white,
+                        boxShadow: [
+                          BoxShadow(
+                              blurRadius: 10,
+                              color: Colors.black.withOpacity(.15))
+                        ],
+                        borderRadius: BorderRadius.circular(10)),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        const Text(
+                          'Apply Promo Code',
+                          style: AppTheme.textStyleSemiBoldPrimary14,
                         ),
-                        Positioned(
-                            bottom: 10,
-                            right: 10,
-                            child: Container(
-                              padding: const EdgeInsets.all(10),
-                              decoration: BoxDecoration(
-                                  color: AppColors.kPrimaryColor,
-                                  boxShadow: [
-                                    BoxShadow(
-                                        blurRadius: 8,
-                                        color: Colors.black.withOpacity(.15))
-                                  ],
-                                  borderRadius: BorderRadius.circular(90)),
-                              child: Image.asset(
-                                AssetsConstant.add_icon,
-                                color: Colors.white,
-                                height: 10,
-                              ),
-                            ))
+                        Image.asset(
+                          AssetsConstant.date_forward_icon,
+                          height: 10,
+                        )
                       ],
                     ),
-                itemCount: 5,
-              ),
-            ),
-            CustomSizedBox.space8H,
-            Container(
-              padding: const EdgeInsets.all(12),
-              margin: const EdgeInsets.symmetric(horizontal: 16),
-              decoration: BoxDecoration(
-                  color: Colors.white,
-                  boxShadow: [
-                    BoxShadow(
-                        blurRadius: 10,
-                        color: Colors.black.withOpacity(.15))
-                  ],
-                  borderRadius: BorderRadius.circular(10)),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  const Text(
-                    'Apply Promo Code',
-                    style: AppTheme.textStyleMediumPrimary14,
                   ),
-                  Image.asset(
-                    AssetsConstant.date_forward_icon,
-                    height: 10,
-                  )
-                ],
-              ),
-            ),
-            SizedBox(height: 220)
-          ])
+                  SizedBox(height: 220)
+                ])
         ],
       ),
       bottom: Container(
@@ -546,55 +566,55 @@ class _PlaceOrderScreenState extends State<PlaceOrderScreen> {
           children: [
             placedOrder
                 ? const SizedBox.shrink()
-                : const Column(
-              children: [
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Text(
-                      'Rate Per Work (1299*2)',
-                      style: AppTheme.textStyleMediumFadeBlack14,
-                    ),
-                    Text(
-                      'Tk. 2598',
-                      style: AppTheme.textStyleMediumBlack16,
-                    ),
-                  ],
-                ),
-                CustomSizedBox.space4H,
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Text(
-                      'Service Charge (15%)',
-                      style: AppTheme.textStyleMediumFadeBlack14,
-                    ),
-                    Text(
-                      'Tk. 2598',
-                      style: AppTheme.textStyleMediumBlack16,
-                    ),
-                  ],
-                ),
-                CustomSizedBox.space4H,
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Text(
-                      'Discount',
-                      style: AppTheme.textStyleMediumFadeBlack14,
-                    ),
-                    Text(
-                      'Tk. 0',
-                      style: AppTheme.textStyleMediumBlack16,
-                    )
-                  ],
-                ),
-                const Divider(
-                  thickness: 0.3,
-                  color: Color(0xffFFD9D9),
-                ),
-              ],
-            ),
+                : Column(
+                    children: [
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Text(
+                            'Rate Per Work (1299*2)',
+                            style: AppTheme.textStyleMediumFadeBlack14,
+                          ),
+                          Text(
+                            'Tk. 2598',
+                            style: AppTheme.textStyleMediumBlack16,
+                          ),
+                        ],
+                      ),
+                      CustomSizedBox.space4H,
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Text(
+                            'Service Charge (15%)',
+                            style: AppTheme.textStyleMediumFadeBlack14,
+                          ),
+                          Text(
+                            'Tk. 2598',
+                            style: AppTheme.textStyleMediumBlack16,
+                          ),
+                        ],
+                      ),
+                      CustomSizedBox.space4H,
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Text(
+                            'Discount',
+                            style: AppTheme.textStyleMediumFadeBlack14,
+                          ),
+                          Text(
+                            'Tk. 0',
+                            style: AppTheme.textStyleMediumBlack16,
+                          )
+                        ],
+                      ),
+                      Divider(
+                        thickness: 3,
+                        color: Color(0xffFFD9D9).withOpacity(.6),
+                      ),
+                    ],
+                  ),
             const Row(
               crossAxisAlignment: CrossAxisAlignment.start,
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -609,7 +629,7 @@ class _PlaceOrderScreenState extends State<PlaceOrderScreen> {
                     ),
                     children: <TextSpan>[
                       TextSpan(
-                        text: '(Inc. VAT)',
+                        text: '  (Inc. VAT)',
                         style: TextStyle(
                           color: Colors.black54,
                           fontSize: 10,
@@ -634,33 +654,33 @@ class _PlaceOrderScreenState extends State<PlaceOrderScreen> {
                 // }
                 placedOrder
                     ? {
-                  confirm = true,
-                  setState(() {}),
-                  showDialog(
-                    context: context,
-                    builder: (context) {
-                      return StatefulBuilder(
-                          builder: (context, setState) {
-                            confirm == true;
-                            return CenterDialogWidget(
-                              headtitle: 'Order Successful!',
-                              buttonText: 'View Details',
-                              paddingOfICon: 24.00,
-                              stacked: true,
-                              image: Image.asset(
-                                AssetsConstant.check_icon,
-                                color: AppColors.kPrimaryColor,
-                              ),
-                              subtitle:
-                              'Your order has been placed successfully. Within very short time  you can enjoy your service',
-                            );
-                          });
-                    },
-                  )
-                }
+                        confirm = true,
+                        setState(() {}),
+                        showDialog(
+                          context: context,
+                          builder: (context) {
+                            return StatefulBuilder(
+                                builder: (context, setState) {
+                              confirm == true;
+                              return CenterDialogWidget(
+                                headtitle: 'Order Successful!',
+                                buttonText: 'View Details',
+                                paddingOfICon: 24.00,
+                                stacked: true,
+                                image: Image.asset(
+                                  AssetsConstant.check_icon,
+                                  color: AppColors.kPrimaryColor,
+                                ),
+                                subtitle:
+                                    'Your order has been placed successfully. Within very short time  you can enjoy your service',
+                              );
+                            });
+                          },
+                        )
+                      }
                     : setState(() {
-                  placedOrder = true;
-                });
+                        placedOrder = true;
+                      });
                 // Get.toNamed(PlaceOrderScreen.routeName);
               },
               marginHorizontal: 0,
@@ -713,8 +733,8 @@ class ProcessWidget extends StatelessWidget {
                         color: index == 0
                             ? Colors.transparent
                             : holdingProcess > index || index == holdingProcess
-                            ? AppColors.kAppbarColor
-                            : AppColors.kAccentColor,
+                                ? AppColors.kAppbarColor
+                                : AppColors.kAccentColor,
                       ),
                     ),
                   Expanded(
@@ -732,8 +752,8 @@ class ProcessWidget extends StatelessWidget {
                       color: index == holdingProcess
                           ? Colors.white
                           : !newList.contains(e)
-                          ? AppColors.kAppbarColor
-                          : Colors.white,
+                              ? AppColors.kAppbarColor
+                              : Colors.white,
                       border: Border.all(
                         color: AppColors.kAppbarColor,
                         width: 2.5,
@@ -749,8 +769,8 @@ class ProcessWidget extends StatelessWidget {
                             color: index == holdingProcess
                                 ? AppColors.kAppbarColor
                                 : !newList.contains(e)
-                                ? Colors.white
-                                : AppColors.kAppbarColor),
+                                    ? Colors.white
+                                    : AppColors.kAppbarColor),
                       ),
                     ),
                   ),
@@ -767,10 +787,10 @@ class ProcessWidget extends StatelessWidget {
                     child: CustomDivider(
                       thickness: 5,
                       color: holdingProcess >
-                          index +
-                              (holdingProcess == processNameList.length
-                                  ? 0
-                                  : 1)
+                              index +
+                                  (holdingProcess == processNameList.length
+                                      ? 0
+                                      : 1)
                           ? AppColors.kAppbarColor
                           : AppColors.kAccentColor,
                     ),
@@ -781,22 +801,22 @@ class ProcessWidget extends StatelessWidget {
                 alignment: index == 0 && processNameList.length < 4
                     ? Alignment.centerLeft
                     : index == processNameList.length - 1 &&
-                    processNameList.length < 4
-                    ? Alignment.centerRight
-                    : Alignment.center,
+                            processNameList.length < 4
+                        ? Alignment.centerRight
+                        : Alignment.center,
                 child: Container(
                   height: contentHeight ?? 50,
                   padding: const EdgeInsets.all(8.0).copyWith(
                     left: index == 0 && processNameList.length < 4 ? 42 : 8,
                     right: index == processNameList.length - 1 &&
-                        processNameList.length < 4
-                        ? 42
+                            processNameList.length < 4
+                        ? 35
                         : 8,
                   ),
                   child: Text(
                     e,
                     textAlign: TextAlign.center,
-                    maxLines: 3,
+                    maxLines: 1,
                     style: TextStyle(
                         fontSize: 12,
                         fontWeight: FontWeight.normal,

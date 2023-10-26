@@ -8,7 +8,7 @@ import 'package:get/get.dart';
 import 'package:mh_core/widgets/button/custom_button.dart';
 
 class LanguageSelectionScreen extends StatelessWidget {
-  static const String routeName = '/language';
+  static const String routeName = '/languageSelection';
 
   const LanguageSelectionScreen({super.key});
 
