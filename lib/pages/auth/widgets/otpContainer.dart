@@ -37,7 +37,7 @@ class _OtpContainerState extends State<OtpContainer> {
             // ),
             CustomTextField(
               keyboardType: TextInputType.number,
-              width: MediaQuery.of(context).size.width / 8,
+              width: 40,
               height: 40,
               onChanged: (value) {
                 if (value.length == 1) {
@@ -65,13 +65,15 @@ class _OtpContainerState extends State<OtpContainer> {
             ),
 
             Positioned(
-                bottom: 1.2,
-                left: 1.2,
-                right: 1.2,
-                child: Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 1.2),
-                  child: Image.asset(AssetsConstant.otpContainer_icon),
-                )),
+              bottom: 1.2,
+              left: 1.2,
+              right: 1.2,
+              child: Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 1.2),
+                child: Image.asset(AssetsConstant.otpContainer_icon,),
+              ),
+            ),
+
           ],
         ),
       ),

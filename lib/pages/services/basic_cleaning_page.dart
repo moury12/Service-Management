@@ -26,8 +26,7 @@ class _BasicCleaningScreenState extends State<BasicCleaningScreen>
   bool isSelected = false;
   String groupValue = 'Weekly';
   double cartHeight = 50;
-  List<bool> chimney = [false, false, false, false];
-  List<bool> chimney2 = [false, false, false, false];
+
   String groupValueMonthly = 'With Instalment';
 
   void onTapButton() {
@@ -50,80 +49,18 @@ class _BasicCleaningScreenState extends State<BasicCleaningScreen>
         ),
       ),
       title: const Text('Basic Cleaning'),
-      body: Column(
-        children: [
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
-            child: Column(
-              children: [
-                Column(
-                  children: [...List.generate(4, (index) => CountWidget())],
-                ),
-                Row(
-                  children: [
-                    const Text(
-                      'How many dishes?',
-                      style: AppTheme.textStyleSemiBoldBlack16,
-                    ),
-                    Image.asset(
-                      AssetsConstant.info_icon,
-                      height: 12,
-                    )
-                  ],
-                ),
-                Wrap(
-                  children: [
-                    ...List.generate(
-                        3,
-                        (index) => FittedBox(
-                              child: DisheshWidget(
-                                index: index,
-                                chimney: chimney[index],
-                                onToggleChimney: (newChimneyValue) {
-                                  setState(() {
-                                    chimney[index] =
-                                        newChimneyValue; // Update the list with the new value
-                                  });
-                                },
-                              ),
-                            ))
-                  ],
-                ),
-                CustomSizedBox.space8H,
-                Row(
-                  children: [
-                    const Text(
-                      'How many dishes?',
-                      style: AppTheme.textStyleSemiBoldBlack16,
-                    ),
-                    Image.asset(
-                      AssetsConstant.info_icon,
-                      height: 12,
-                    )
-                  ],
-                ),
-                Wrap(
-                  children: [
-                    ...List.generate(
-                        4,
-                        (index) => FittedBox(
-                                child: DisheshWidget(
-                              index: index,
-                              chimney: chimney2[index],
-                              // Use individual chimney property
-                              onToggleChimney: (newChimneyValue) {
-                                setState(() {
-                                  chimney2[index] =
-                                      newChimneyValue; // Update the list with the new value
-                                });
-                              },
-                            )))
-                  ],
-                ),
-              ],
-            ),
-          ),
-        ],
+      body: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+        child: Column(
+          children: [
+            ...List.generate(
+                6,
+                (index) => CountWidget(
+                      hasdishes: index >= 4 ? true : false,
+                      dishwidgetLength: index == 5 ? 4 : 3,
+                    ))
+          ],
+        ),
       ),
       bottom: Container(
         width: double.infinity,
@@ -1195,8 +1132,13 @@ class _BasicCleaningScreenState extends State<BasicCleaningScreen>
 }
 
 class CountWidget extends StatefulWidget {
+  final bool hasdishes;
+  final int dishwidgetLength;
+
   const CountWidget({
     super.key,
+    this.hasdishes = false,
+    required this.dishwidgetLength,
   });
 
   @override
@@ -1212,6 +1154,7 @@ class _CountWidgetState extends State<CountWidget> {
   double countTogglePosition = 33;
   double startDragPosition = 0;
   Offset? _overlayPosition;
+  List<bool> chimney = [false, false, false, false];
 
   @override
   void initState() {
@@ -1225,115 +1168,145 @@ class _CountWidgetState extends State<CountWidget> {
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 12.0),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      child: Column(
         children: [
           Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              const Text(
-                'How many bedroom?',
-                style: AppTheme.textStyleSemiBoldBlack16,
-              ),
-              GestureDetector(
-                onTap: () {
-                  showOverlay(context);
-                  _overlayPosition = _getButtonPosition(context);
-                },
-                child: Image.asset(
-                  AssetsConstant.info_icon,
-                  height: 12,
-                ),
-              ),
-            ],
-          ),
-          Container(
-            width: 98,
-            height: 35,
-            // padding: const EdgeInsets.symmetric(horizontal: 12),
-            decoration: BoxDecoration(
-                color: Colors.white,
-                borderRadius: BorderRadius.circular(33),
-                boxShadow: [
-                  BoxShadow(blurRadius: 6, color: Colors.black.withOpacity(.15))
-                ]),
-            child: Stack(
-              children: [
-                Positioned(
-                  left: 8,
-                  top: 5,
-                  bottom: 5,
-                  child: Image.asset(
-                    AssetsConstant.minimize_icon,
-                    height: 15,
-                    width: 15,
+              Row(
+                children: [
+                  const Text(
+                    'How many bedroom?',
+                    style: AppTheme.textStyleSemiBoldBlack16,
                   ),
-                ),
-                Positioned(
-                  right: 8,
-                  top: 5,
-                  bottom: 5,
-                  child: Image.asset(
-                    AssetsConstant.add_icon,
-                    height: 15,
-                    width: 15,
-                  ),
-                ),
-                Positioned(
-                  left: countTogglePosition,
-                  child: GestureDetector(
-                    onHorizontalDragUpdate: (DragUpdateDetails details) {
-                      globalLogger.d(details.localPosition, 'Update');
-                      if (countTogglePosition <= 63 &&
-                          countTogglePosition >= 0) {
-                        countTogglePosition =
-                            33 + (details.localPosition.dx - 16);
-                        addOn = 0;
-                      }
-                      if (countTogglePosition <= 0) {
-                        countTogglePosition = 0;
-                        if (value != 0) {
-                          addOn = -1;
-                        }
-                      }
-                      if (countTogglePosition >= 63) {
-                        countTogglePosition = 63;
-                        addOn = 1;
-                      }
-                      setState(() {});
+                  GestureDetector(
+                    onTap: () {
+                      showOverlay(context);
+                      _overlayPosition = _getButtonPosition(context);
                     },
-                    onHorizontalDragStart: (DragStartDetails details) {
-                      globalLogger.d(details.localPosition, 'Start');
-                      startDragPosition = details.localPosition.dx;
-                      setState(() {});
-                    },
-                    onHorizontalDragEnd: (DragEndDetails details) {
-                      if (details.primaryVelocity != null) {
-                        countTogglePosition = 33;
-                        setState(() {
-                          value += addOn;
-                        });
-                      }
-                      globalLogger.d(details.primaryVelocity, 'End');
-                    },
-                    child: Container(
-                      width: 35.0,
-                      height: 35.0,
-                      alignment: Alignment.center,
-                      decoration: BoxDecoration(
-                        color: AppColors.kPrimaryColor,
-                        borderRadius: BorderRadius.circular(180),
-                      ),
-                      child: Text(
-                        '$value',
-                        textAlign: TextAlign.center,
-                        style: AppTheme.textStyleSemiBoldWhite14,
-                      ),
+                    child: Image.asset(
+                      AssetsConstant.info_icon,
+                      height: 12,
                     ),
                   ),
-                )
-              ],
-            ),
+                ],
+              ),
+              !widget.hasdishes
+                  ? Container(
+                      width: 98,
+                      height: 35,
+                      // padding: const EdgeInsets.symmetric(horizontal: 12),
+                      decoration: BoxDecoration(
+                          color: Colors.white,
+                          borderRadius: BorderRadius.circular(33),
+                          boxShadow: [
+                            BoxShadow(
+                                blurRadius: 6,
+                                color: Colors.black.withOpacity(.15))
+                          ]),
+                      child: Stack(
+                        children: [
+                          Positioned(
+                            left: 8,
+                            top: 5,
+                            bottom: 5,
+                            child: Image.asset(
+                              AssetsConstant.minimize_icon,
+                              height: 15,
+                              width: 15,
+                            ),
+                          ),
+                          Positioned(
+                            right: 8,
+                            top: 5,
+                            bottom: 5,
+                            child: Image.asset(
+                              AssetsConstant.add_icon,
+                              height: 15,
+                              width: 15,
+                            ),
+                          ),
+                          Positioned(
+                            left: countTogglePosition,
+                            child: GestureDetector(
+                              onHorizontalDragUpdate:
+                                  (DragUpdateDetails details) {
+                                globalLogger.d(details.localPosition, 'Update');
+                                if (countTogglePosition <= 63 &&
+                                    countTogglePosition >= 0) {
+                                  countTogglePosition =
+                                      33 + (details.localPosition.dx - 16);
+                                  addOn = 0;
+                                }
+                                if (countTogglePosition <= 0) {
+                                  countTogglePosition = 0;
+                                  if (value != 0) {
+                                    addOn = -1;
+                                  }
+                                }
+                                if (countTogglePosition >= 63) {
+                                  countTogglePosition = 63;
+                                  addOn = 1;
+                                }
+                                setState(() {});
+                              },
+                              onHorizontalDragStart:
+                                  (DragStartDetails details) {
+                                globalLogger.d(details.localPosition, 'Start');
+                                startDragPosition = details.localPosition.dx;
+                                setState(() {});
+                              },
+                              onHorizontalDragEnd: (DragEndDetails details) {
+                                if (details.primaryVelocity != null) {
+                                  countTogglePosition = 33;
+                                  setState(() {
+                                    value += addOn;
+                                  });
+                                }
+                                globalLogger.d(details.primaryVelocity, 'End');
+                              },
+                              child: Container(
+                                width: 35.0,
+                                height: 35.0,
+                                alignment: Alignment.center,
+                                decoration: BoxDecoration(
+                                  color: AppColors.kPrimaryColor,
+                                  borderRadius: BorderRadius.circular(180),
+                                ),
+                                child: Text(
+                                  '$value',
+                                  textAlign: TextAlign.center,
+                                  style: AppTheme.textStyleSemiBoldWhite14,
+                                ),
+                              ),
+                            ),
+                          )
+                        ],
+                      ),
+                    )
+                  : const SizedBox.shrink(),
+            ],
           ),
+          widget.hasdishes
+              ? Wrap(
+                  children: [
+                    ...List.generate(
+                        widget.dishwidgetLength,
+                        (index) => FittedBox(
+                                child: DisheshWidget(
+                              index: index,
+                              chimney: chimney[index],
+                              // Use individual chimney property
+                              onToggleChimney: (newChimneyValue) {
+                                setState(() {
+                                  chimney[index] =
+                                      newChimneyValue; // Update the list with the new value
+                                });
+                              },
+                            )))
+                  ],
+                )
+              : SizedBox.shrink(),
         ],
       ),
     );
@@ -1347,23 +1320,19 @@ class _CountWidgetState extends State<CountWidget> {
       builder: (context) {
         // The widget that will be displayed as an overlay
         return Positioned(
-          top: _overlayPosition!.dy + 50, // Adjust as needed
-          left: _overlayPosition!.dx + 50, // Adjust as needed
-          child: Card(
+          top: _overlayPosition!.dy + 20, // Adjust as needed
+          left: _overlayPosition!.dx + 80, // Adjust as needed
+          child: const Card(
             child: Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Text('Hello, this is a tooltip!'),
+              padding: EdgeInsets.all(8.0),
+              child: Text('this is fixican'),
             ),
           ),
         );
       },
     );
-
-    // Insert the overlay into the overlay stack
     Overlay.of(context).insert(_overlayEntry!);
-
-    // Add a delay and then remove the overlay
-    Future.delayed(Duration(milliseconds: 1000), () {
+    Future.delayed(const Duration(milliseconds: 500), () {
       setState(() {
         _overlayEntry?.remove();
       });
@@ -1372,7 +1341,7 @@ class _CountWidgetState extends State<CountWidget> {
 
   Offset _getButtonPosition(BuildContext context) {
     RenderBox renderBox = context.findRenderObject() as RenderBox;
-    return renderBox.localToGlobal(Offset(0, 0));
+    return renderBox.localToGlobal(const Offset(0, 0));
   }
 }
 
@@ -1401,7 +1370,8 @@ class _DisheshWidgetState extends State<DisheshWidget> {
       },
       child: Container(
         alignment: Alignment.center,
-        margin: const EdgeInsets.symmetric(horizontal: 12, vertical: 12),
+        margin: const EdgeInsets.symmetric(horizontal: 12, vertical: 12)
+            .copyWith(bottom: 0),
         height: 42,
         padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 16),
         decoration: BoxDecoration(

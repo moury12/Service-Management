@@ -369,10 +369,6 @@ class _MainHomeScreenState extends State<MainHomeScreen> {
                                                 ],
                                               ))),
                                     ),
-                                    // SizedBox(
-                                    //   width:
-                                    //       MediaQuery.of(context).size.width / 9,
-                                    // ),
                                     Positioned(
                                       right:
                                           (MediaQuery.of(context).size.width *
