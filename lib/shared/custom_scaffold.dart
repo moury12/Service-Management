@@ -13,7 +13,17 @@ import '../constants/color_constant.dart';
 import 'enums.dart';
 
 class CustomScaffold extends StatefulWidget {
-  const CustomScaffold({super.key, this.leading, this.leadingIcon, this.action, this.actionIcon, this.title, this.body, this.bottom, this.appBar, this.floatButton});
+  const CustomScaffold(
+      {super.key,
+      this.leading,
+      this.leadingIcon,
+      this.action,
+      this.actionIcon,
+      this.title,
+      this.body,
+      this.bottom,
+      this.appBar,
+      this.floatButton});
 
   final Widget? leading;
   final String? leadingIcon;
@@ -80,7 +90,12 @@ class _CustomScaffoldState extends State<CustomScaffold> {
                             : const TextSpan(
                                 text: 'Mustafijur Rahman',
                                 style: AppTheme.textStyleSemiBoldWhite18,
-                                children: [TextSpan(text: '\nHome: 52/A, Kalabagan, Dhaka.', style: AppTheme.textStyleSemiBoldWhite12)])),
+                                children: [
+                                    TextSpan(
+                                        text: '\nHome: 52/A, Kalabagan, Dhaka.',
+                                        style:
+                                            AppTheme.textStyleSemiBoldWhite12)
+                                  ])),
             actions: widget.action ??
                 [
                   Center(
@@ -99,12 +114,19 @@ class _CustomScaffoldState extends State<CustomScaffold> {
         clipBehavior: Clip.none,
         alignment: Alignment.bottomCenter,
         children: [
-          Container(
-            height: MediaQuery.of(context).size.height - (kToolbarHeight + 30),
-            clipBehavior: Clip.none,
-            decoration: const BoxDecoration(color: Colors.white, borderRadius: BorderRadius.vertical(top: Radius.circular(20))),
-            child: SingleChildScrollView(
-              child: widget.body,
+          ClipRRect(
+            borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
+            child: Container(
+              height:
+                  MediaQuery.of(context).size.height - (kToolbarHeight + 30),
+              clipBehavior: Clip.none,
+              decoration: const BoxDecoration(
+                  color: Colors.white,
+                  borderRadius:
+                      BorderRadius.vertical(top: Radius.circular(20))),
+              child: SingleChildScrollView(
+                child: widget.body,
+              ),
             ),
           ),
           widget.bottom ?? const SizedBox.shrink(),
@@ -124,7 +146,8 @@ class _CustomScaffoldState extends State<CustomScaffold> {
                             title: const Column(
                               mainAxisSize: MainAxisSize.min,
                               children: [
-                                Text('2 Running Services', style: AppTheme.textStyleSemiBoldBlack14),
+                                Text('2 Running Services',
+                                    style: AppTheme.textStyleSemiBoldBlack14),
                                 CustomSizedBox.space12H,
                                 Divider(
                                   thickness: 2,
@@ -144,7 +167,8 @@ class _CustomScaffoldState extends State<CustomScaffold> {
                                   alignment: Alignment.centerLeft,
                                   child: Text(
                                     'Maid Info',
-                                    style: AppTheme.textStyleSemiBoldFadeBlack14,
+                                    style:
+                                        AppTheme.textStyleSemiBoldFadeBlack14,
                                   ),
                                 ),
                                 CustomSizedBox.space16H,
@@ -154,7 +178,8 @@ class _CustomScaffoldState extends State<CustomScaffold> {
                                     child: Row(
                                       children: [
                                         ClipRRect(
-                                          borderRadius: BorderRadius.circular(8),
+                                          borderRadius:
+                                              BorderRadius.circular(8),
                                           child: Image.asset(
                                             AssetsConstant.dummy_service,
                                             height: 64,
@@ -164,21 +189,25 @@ class _CustomScaffoldState extends State<CustomScaffold> {
                                         ),
                                         CustomSizedBox.space12W,
                                         const Column(
-                                          crossAxisAlignment: CrossAxisAlignment.start,
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.start,
                                           children: [
                                             Text(
                                               'Shahida Parvin',
-                                              style: AppTheme.textStyleSemiBoldBlack18,
+                                              style: AppTheme
+                                                  .textStyleSemiBoldBlack18,
                                             ),
                                             CustomSizedBox.space4H,
                                             Text(
                                               'User Id: CAE43456',
-                                              style: AppTheme.textStyleSemiBoldBlack12,
+                                              style: AppTheme
+                                                  .textStyleSemiBoldBlack12,
                                             ),
                                             CustomSizedBox.space4H,
                                             Text(
                                               'Has been assigned for your service.',
-                                              style: AppTheme.textStyleMediumFadeBlack12,
+                                              style: AppTheme
+                                                  .textStyleMediumFadeBlack12,
                                             ),
                                           ],
                                         )
@@ -191,7 +220,8 @@ class _CustomScaffoldState extends State<CustomScaffold> {
                                     alignment: Alignment.centerLeft,
                                     child: Text(
                                       'Location Info',
-                                      style: AppTheme.textStyleSemiBoldFadeBlack14,
+                                      style:
+                                          AppTheme.textStyleSemiBoldFadeBlack14,
                                     )),
                                 CustomSizedBox.space12H,
                                 Row(
@@ -210,11 +240,17 @@ class _CustomScaffoldState extends State<CustomScaffold> {
                                     CustomSizedBox.space8W,
                                     Text(
                                       '52/A, Kalabagan, Dhanmondi-32',
-                                      style: AppTheme.textStyleSemiBoldFadeBlack14,
+                                      style:
+                                          AppTheme.textStyleSemiBoldFadeBlack14,
                                     ),
                                   ],
                                 ),
-                                CustomButton(onPressed: () {}, marginVertical: 24, marginHorizontal: 0, borderRadiusAll: 22, label: 'Scan Maid ID'),
+                                CustomButton(
+                                    onPressed: () {},
+                                    marginVertical: 24,
+                                    marginHorizontal: 0,
+                                    borderRadiusAll: 22,
+                                    label: 'Scan Maid ID'),
                               ],
                             ),
                           );
@@ -229,7 +265,11 @@ class _CustomScaffoldState extends State<CustomScaffold> {
                       decoration: BoxDecoration(
                           color: AppColors.kPrimaryColor,
                           borderRadius: BorderRadius.circular(90),
-                          boxShadow: [BoxShadow(blurRadius: 8, color: Colors.black.withOpacity(.2))],
+                          boxShadow: [
+                            BoxShadow(
+                                blurRadius: 8,
+                                color: Colors.black.withOpacity(.2))
+                          ],
                           border: Border.all(width: 3, color: Colors.white)),
                       child: Image.asset(
                         AssetsConstant.scan_icon,

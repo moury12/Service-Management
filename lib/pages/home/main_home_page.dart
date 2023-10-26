@@ -183,16 +183,22 @@ class _MainHomeScreenState extends State<MainHomeScreen> {
             clipBehavior: Clip.none,
             alignment: Alignment.bottomCenter,
             children: [
-              Container(
-                height:
-                    MediaQuery.of(context).size.height - (kToolbarHeight + 30),
-                clipBehavior: Clip.none,
-                decoration: const BoxDecoration(
-                    color: Colors.white,
-                    borderRadius:
-                        BorderRadius.vertical(top: Radius.circular(20))),
-                child: SingleChildScrollView(
-                  child: _body,
+              ClipRRect(
+                borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
+                child: Container(
+                  height: MediaQuery.of(context).size.height -
+                      (kToolbarHeight + 30),
+                  decoration: const BoxDecoration(
+                      color: Colors.white,
+                      borderRadius:
+                          BorderRadius.vertical(top: Radius.circular(20))),
+                  child: SingleChildScrollView(
+                    child: ClipRRect(
+                        clipBehavior: Clip.none,
+                        borderRadius:
+                            BorderRadius.vertical(top: Radius.circular(20)),
+                        child: _body),
+                  ),
                 ),
               ),
               widget.bottom ??

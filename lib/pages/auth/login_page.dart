@@ -87,7 +87,10 @@ class _LoginScreenState extends State<LoginScreen>
 
   @override
   Widget build(BuildContext context) {
-    globalLogger.d(MediaQuery.of(context).size.width / 8);
+    globalLogger.d(MediaQuery
+        .of(context)
+        .size
+        .width / 8);
     return Scaffold(
       body: SingleChildScrollView(
         child: Column(
@@ -99,7 +102,7 @@ class _LoginScreenState extends State<LoginScreen>
               padding: EdgeInsets.symmetric(vertical: 36),
               decoration: BoxDecoration(
                 borderRadius:
-                    const BorderRadius.vertical(bottom: Radius.circular(50)),
+                const BorderRadius.vertical(bottom: Radius.circular(50)),
                 color: AppColors.kPrimaryColor.withOpacity(.07),
               ),
               child: Image.asset(
@@ -116,7 +119,10 @@ class _LoginScreenState extends State<LoginScreen>
                 children: [
                   SizedBox(
                     height: 160,
-                    width: MediaQuery.of(context).size.width,
+                    width: MediaQuery
+                        .of(context)
+                        .size
+                        .width,
                   ),
                   AnimatedPositioned(
                     top: _otpVisible ? 60 : 25,
@@ -127,14 +133,18 @@ class _LoginScreenState extends State<LoginScreen>
                         children: [
                           ...List.generate(
                             6,
-                            (index) => Container(
-                              margin: EdgeInsets.symmetric(
-                                  horizontal:
-                                      MediaQuery.of(context).size.width / 13.7),
-                              color: Colors.red,
-                              width: _otpVisible ? 2 : 0,
-                              height: _otpVisible ? 53.5 : 0,
-                            ),
+                                (index) =>
+                                Container(
+                                  margin: EdgeInsets.symmetric(
+                                      horizontal:
+                                      MediaQuery
+                                          .of(context)
+                                          .size
+                                          .width / 13.7),
+                                  color: Colors.red,
+                                  width: _otpVisible ? 2 : 0,
+                                  height: _otpVisible ? 53.5 : 0,
+                                ),
                           )
                         ],
                       ),
@@ -142,61 +152,7 @@ class _LoginScreenState extends State<LoginScreen>
                     duration: Duration(milliseconds: 550),
                     curve: Curves.easeInOut,
                   ),
-                  // AnimatedPositioned(
-                  //   top: _otpVisible ? 60 : 25,
-                  //   left: 97,
-                  //   child: Container(
-                  //     color: Colors.red,
-                  //     width: _otpVisible ? 2 : 0,
-                  //     height: _otpVisible ? 53.5 : 0,
-                  //   ),
-                  //   duration: Duration(milliseconds: 550),
-                  //   curve: Curves.easeInOut,
-                  // ),
-                  // AnimatedPositioned(
-                  //   top: _otpVisible ? 60 : 25,
-                  //   left: 150,
-                  //   child: Container(
-                  //     color: Colors.red,
-                  //     width: _otpVisible ? 2 : 0,
-                  //     height: _otpVisible ? 53.5 : 0,
-                  //   ),
-                  //   duration: Duration(milliseconds: 550),
-                  //   curve: Curves.easeInOut,
-                  // ),
-                  // AnimatedPositioned(
-                  //   top: _otpVisible ? 60 : 25,
-                  //   right: 150,
-                  //   child: Container(
-                  //     color: Colors.red,
-                  //     width: _otpVisible ? 2 : 0,
-                  //     height: _otpVisible ? 53.5 : 0,
-                  //   ),
-                  //   duration: Duration(milliseconds: 550),
-                  //   curve: Curves.easeInOut,
-                  // ),
-                  // AnimatedPositioned(
-                  //   top: _otpVisible ? 60 : 25,
-                  //   right: 97,
-                  //   child: Container(
-                  //     color: Colors.red,
-                  //     width: _otpVisible ? 2 : 0,
-                  //     height: _otpVisible ? 53.5 : 0,
-                  //   ),
-                  //   duration: Duration(milliseconds: 550),
-                  //   curve: Curves.easeInOut,
-                  // ),
-                  // AnimatedPositioned(
-                  //   top: _otpVisible ? 60 : 25,
-                  //   right: 40,
-                  //   child: Container(
-                  //     color: Colors.red,
-                  //     width: _otpVisible ? 2 : 0,
-                  //     height: _otpVisible ? 53.5 : 0,
-                  //   ),
-                  //   duration: Duration(milliseconds: 550),
-                  //   curve: Curves.easeInOut,
-                  // ),
+
                   Positioned(
                     top: 0,
                     left: 0,
@@ -213,14 +169,17 @@ class _LoginScreenState extends State<LoginScreen>
                           return SlideTransition(
                             position: _offsetAnimation,
                             child: SizedBox(
-                              width: MediaQuery.of(context).size.width,
+                              width: MediaQuery
+                                  .of(context)
+                                  .size
+                                  .width,
                               height: 40,
                               child: Padding(
                                 padding: const EdgeInsets.symmetric(
                                     horizontal: 16.0),
                                 child: Row(
                                   mainAxisAlignment:
-                                      MainAxisAlignment.spaceAround,
+                                  MainAxisAlignment.spaceAround,
                                   children: [
                                     OtpContainer(
                                         controller: firstOtpController,
@@ -262,6 +221,7 @@ class _LoginScreenState extends State<LoginScreen>
                           enterNumber = true;
                         });
                       },
+                      focusColor: AppColors.kPrimaryColor,
                       labelFontWeight: FontWeight.w500,
                       labelSize: 16,
                       labelColor: Colors.black.withOpacity(.7),
@@ -275,38 +235,38 @@ class _LoginScreenState extends State<LoginScreen>
               ),
             ),
             firstOtpController.text.isNotEmpty &&
-                        secondOtpController.text.isNotEmpty &&
-                        thirdOtpController.text.isNotEmpty &&
-                        forthOtpController.text.isNotEmpty &&
-                        fifthOtpController.text.isNotEmpty &&
-                        sixthOtpController.text.isNotEmpty ||
-                    !_otpVisible
+                secondOtpController.text.isNotEmpty &&
+                thirdOtpController.text.isNotEmpty &&
+                forthOtpController.text.isNotEmpty &&
+                fifthOtpController.text.isNotEmpty &&
+                sixthOtpController.text.isNotEmpty ||
+                !_otpVisible
                 ? SizedBox.shrink()
                 : Align(
-                    alignment: Alignment.topLeft,
-                    child: Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 16.0),
-                      child: Text.rich(TextSpan(
-                          text: '15',
-                          style: AppTheme.textStyleSemiBoldBlack16,
-                          children: [
-                            TextSpan(
-                                text: ' Sec Left',
-                                style: AppTheme.textStyleMediumBlack10)
-                          ])),
-                    ),
-                  ),
+              alignment: Alignment.topLeft,
+              child: Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 16.0),
+                child: Text.rich(TextSpan(
+                    text: '15',
+                    style: AppTheme.textStyleSemiBoldBlack16,
+                    children: [
+                      TextSpan(
+                          text: ' Sec Left',
+                          style: AppTheme.textStyleMediumBlack10)
+                    ])),
+              ),
+            ),
             CustomSizedBox.space12H,
             CustomSizedBox.space12H,
             CustomButton(
               marginVertical: 16,
               loading: firstOtpController.text.isNotEmpty &&
-                          secondOtpController.text.isNotEmpty &&
-                          thirdOtpController.text.isNotEmpty &&
-                          forthOtpController.text.isNotEmpty &&
-                          fifthOtpController.text.isNotEmpty &&
-                          sixthOtpController.text.isNotEmpty ||
-                      !_otpVisible
+                  secondOtpController.text.isNotEmpty &&
+                  thirdOtpController.text.isNotEmpty &&
+                  forthOtpController.text.isNotEmpty &&
+                  fifthOtpController.text.isNotEmpty &&
+                  sixthOtpController.text.isNotEmpty ||
+                  !_otpVisible
                   ? false
                   : true,
               // loadingStrokeWidth: 2,
@@ -318,11 +278,11 @@ class _LoginScreenState extends State<LoginScreen>
                   ? AppColors.kButtonDisableColor
                   : AppColors.kPrimaryColor,
               label: firstOtpController.text.isNotEmpty &&
-                      secondOtpController.text.isNotEmpty &&
-                      thirdOtpController.text.isNotEmpty &&
-                      forthOtpController.text.isNotEmpty &&
-                      fifthOtpController.text.isNotEmpty &&
-                      sixthOtpController.text.isNotEmpty
+                  secondOtpController.text.isNotEmpty &&
+                  thirdOtpController.text.isNotEmpty &&
+                  forthOtpController.text.isNotEmpty &&
+                  fifthOtpController.text.isNotEmpty &&
+                  sixthOtpController.text.isNotEmpty
                   ? 'Login'
                   : 'Continue',
               onPressed: () {
@@ -354,7 +314,8 @@ class _LoginScreenState extends State<LoginScreen>
                 style: AppTheme.textStyleSemiBoldBlack12,
                 children: [
                   TextSpan(
-                      recognizer: TapGestureRecognizer()..onTap = () {},
+                      recognizer: TapGestureRecognizer()
+                        ..onTap = () {},
                       text: 'Resend again',
                       style: AppTheme.textStyleMediumRed12)
                 ])),

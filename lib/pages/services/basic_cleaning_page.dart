@@ -28,7 +28,6 @@ class _BasicCleaningScreenState extends State<BasicCleaningScreen>
   double cartHeight = 50;
   List<bool> chimney = [false, false, false, false];
   List<bool> chimney2 = [false, false, false, false];
-
   String groupValueMonthly = 'With Instalment';
 
   void onTapButton() {
@@ -76,8 +75,7 @@ class _BasicCleaningScreenState extends State<BasicCleaningScreen>
                   children: [
                     ...List.generate(
                         3,
-                            (index) =>
-                            FittedBox(
+                        (index) => FittedBox(
                               child: DisheshWidget(
                                 index: index,
                                 chimney: chimney[index],
@@ -108,19 +106,18 @@ class _BasicCleaningScreenState extends State<BasicCleaningScreen>
                   children: [
                     ...List.generate(
                         4,
-                            (index) =>
-                            FittedBox(
+                        (index) => FittedBox(
                                 child: DisheshWidget(
-                                  index: index,
-                                  chimney: chimney2[index],
-                                  // Use individual chimney property
-                                  onToggleChimney: (newChimneyValue) {
-                                    setState(() {
-                                      chimney2[index] =
-                                          newChimneyValue; // Update the list with the new value
-                                    });
-                                  },
-                                )))
+                              index: index,
+                              chimney: chimney2[index],
+                              // Use individual chimney property
+                              onToggleChimney: (newChimneyValue) {
+                                setState(() {
+                                  chimney2[index] =
+                                      newChimneyValue; // Update the list with the new value
+                                });
+                              },
+                            )))
                   ],
                 ),
               ],
@@ -208,7 +205,7 @@ class _BasicCleaningScreenState extends State<BasicCleaningScreen>
                     height: /*tapped ? 44 :*/ cartHeight,
                     decoration: BoxDecoration(
                       color:
-                      tapped ? AppColors.kPrimaryColor : Colors.transparent,
+                          tapped ? AppColors.kPrimaryColor : Colors.transparent,
                       borderRadius: BorderRadius.circular(30),
                       border: Border.all(
                         color: AppColors.kPrimaryColor,
@@ -279,7 +276,7 @@ class _BasicCleaningScreenState extends State<BasicCleaningScreen>
                                             horizontal: 16),
                                         child: Column(
                                           crossAxisAlignment:
-                                          CrossAxisAlignment.start,
+                                              CrossAxisAlignment.start,
                                           children: [
                                             Row(
                                               children: [
@@ -296,11 +293,11 @@ class _BasicCleaningScreenState extends State<BasicCleaningScreen>
                                                 ),
                                                 Radio(
                                                   activeColor:
-                                                  AppColors.kPrimaryColor,
+                                                      AppColors.kPrimaryColor,
                                                   fillColor: MaterialStateColor
                                                       .resolveWith(
-                                                        (Set<MaterialState>
-                                                    states) {
+                                                    (Set<MaterialState>
+                                                        states) {
                                                       if (states.contains(
                                                           MaterialState
                                                               .selected)) {
@@ -327,41 +324,40 @@ class _BasicCleaningScreenState extends State<BasicCleaningScreen>
                                             ),
                                             Padding(
                                               padding:
-                                              const EdgeInsets.symmetric(
-                                                  vertical: 8.0),
+                                                  const EdgeInsets.symmetric(
+                                                      vertical: 8.0),
                                               child: Column(
                                                 crossAxisAlignment:
-                                                CrossAxisAlignment.start,
+                                                    CrossAxisAlignment.start,
                                                 children: [
                                                   ...List.generate(
                                                       3,
-                                                          (index) =>
-                                                      const Padding(
-                                                        padding:
-                                                        EdgeInsets.all(
-                                                            2.0),
-                                                        child: Wrap(
-                                                          crossAxisAlignment:
-                                                          WrapCrossAlignment
-                                                              .center,
-                                                          alignment:
-                                                          WrapAlignment
-                                                              .start,
-                                                          children: [
-                                                            Icon(
-                                                              Icons.circle,
-                                                              size: 5,
-                                                              color: AppColors
-                                                                  .kAppbarColor,
+                                                      (index) => const Padding(
+                                                            padding:
+                                                                EdgeInsets.all(
+                                                                    2.0),
+                                                            child: Wrap(
+                                                              crossAxisAlignment:
+                                                                  WrapCrossAlignment
+                                                                      .center,
+                                                              alignment:
+                                                                  WrapAlignment
+                                                                      .start,
+                                                              children: [
+                                                                Icon(
+                                                                  Icons.circle,
+                                                                  size: 5,
+                                                                  color: AppColors
+                                                                      .kAppbarColor,
+                                                                ),
+                                                                Text(
+                                                                  'The same professional will join you every week.',
+                                                                  style: AppTheme
+                                                                      .textStyleNormalBlack12,
+                                                                )
+                                                              ],
                                                             ),
-                                                            Text(
-                                                              'The same professional will join you every week.',
-                                                              style: AppTheme
-                                                                  .textStyleNormalBlack12,
-                                                            )
-                                                          ],
-                                                        ),
-                                                      ))
+                                                          ))
                                                 ],
                                               ),
                                             )
@@ -389,13 +385,13 @@ class _BasicCleaningScreenState extends State<BasicCleaningScreen>
                                             horizontal: 16, vertical: 12),
                                         child: Column(
                                           crossAxisAlignment:
-                                          CrossAxisAlignment.start,
+                                              CrossAxisAlignment.start,
                                           children: [
                                             Row(
                                               children: [
                                                 Column(
                                                   crossAxisAlignment:
-                                                  CrossAxisAlignment.start,
+                                                      CrossAxisAlignment.start,
                                                   children: [
                                                     const Text(
                                                       'Weekly',
@@ -408,8 +404,8 @@ class _BasicCleaningScreenState extends State<BasicCleaningScreen>
                                                         color: AppColors
                                                             .kPrimaryColor,
                                                         borderRadius:
-                                                        BorderRadius
-                                                            .circular(3),
+                                                            BorderRadius
+                                                                .circular(3),
                                                       ),
                                                       padding: const EdgeInsets
                                                           .symmetric(
@@ -431,11 +427,11 @@ class _BasicCleaningScreenState extends State<BasicCleaningScreen>
                                                 ),
                                                 Radio(
                                                   activeColor:
-                                                  AppColors.kPrimaryColor,
+                                                      AppColors.kPrimaryColor,
                                                   fillColor: MaterialStateColor
                                                       .resolveWith(
-                                                        (Set<MaterialState>
-                                                    states) {
+                                                    (Set<MaterialState>
+                                                        states) {
                                                       if (states.contains(
                                                           MaterialState
                                                               .selected)) {
@@ -467,41 +463,40 @@ class _BasicCleaningScreenState extends State<BasicCleaningScreen>
                                             ),
                                             Padding(
                                               padding:
-                                              const EdgeInsets.symmetric(
-                                                  vertical: 8.0),
+                                                  const EdgeInsets.symmetric(
+                                                      vertical: 8.0),
                                               child: Column(
                                                 crossAxisAlignment:
-                                                CrossAxisAlignment.start,
+                                                    CrossAxisAlignment.start,
                                                 children: [
                                                   ...List.generate(
                                                       3,
-                                                          (index) =>
-                                                      const Padding(
-                                                        padding:
-                                                        EdgeInsets.all(
-                                                            2.0),
-                                                        child: Wrap(
-                                                          crossAxisAlignment:
-                                                          WrapCrossAlignment
-                                                              .center,
-                                                          alignment:
-                                                          WrapAlignment
-                                                              .start,
-                                                          children: [
-                                                            Icon(
-                                                              Icons.circle,
-                                                              size: 5,
-                                                              color: AppColors
-                                                                  .kAppbarColor,
+                                                      (index) => const Padding(
+                                                            padding:
+                                                                EdgeInsets.all(
+                                                                    2.0),
+                                                            child: Wrap(
+                                                              crossAxisAlignment:
+                                                                  WrapCrossAlignment
+                                                                      .center,
+                                                              alignment:
+                                                                  WrapAlignment
+                                                                      .start,
+                                                              children: [
+                                                                Icon(
+                                                                  Icons.circle,
+                                                                  size: 5,
+                                                                  color: AppColors
+                                                                      .kAppbarColor,
+                                                                ),
+                                                                Text(
+                                                                  'The same professional will join you every week.',
+                                                                  style: AppTheme
+                                                                      .textStyleNormalBlack12,
+                                                                )
+                                                              ],
                                                             ),
-                                                            Text(
-                                                              'The same professional will join you every week.',
-                                                              style: AppTheme
-                                                                  .textStyleNormalBlack12,
-                                                            )
-                                                          ],
-                                                        ),
-                                                      ))
+                                                          ))
                                                 ],
                                               ),
                                             )
@@ -540,7 +535,7 @@ class _BasicCleaningScreenState extends State<BasicCleaningScreen>
                                             horizontal: 16),
                                         child: Column(
                                           crossAxisAlignment:
-                                          CrossAxisAlignment.start,
+                                              CrossAxisAlignment.start,
                                           children: [
                                             Row(
                                               children: [
@@ -553,11 +548,11 @@ class _BasicCleaningScreenState extends State<BasicCleaningScreen>
                                                 const Spacer(),
                                                 Radio(
                                                   activeColor:
-                                                  AppColors.kPrimaryColor,
+                                                      AppColors.kPrimaryColor,
                                                   fillColor: MaterialStateColor
                                                       .resolveWith(
-                                                        (Set<MaterialState>
-                                                    states) {
+                                                    (Set<MaterialState>
+                                                        states) {
                                                       if (states.contains(
                                                           MaterialState
                                                               .selected)) {
@@ -584,41 +579,40 @@ class _BasicCleaningScreenState extends State<BasicCleaningScreen>
                                             ),
                                             Padding(
                                               padding:
-                                              const EdgeInsets.symmetric(
-                                                  vertical: 8.0),
+                                                  const EdgeInsets.symmetric(
+                                                      vertical: 8.0),
                                               child: Column(
                                                 crossAxisAlignment:
-                                                CrossAxisAlignment.start,
+                                                    CrossAxisAlignment.start,
                                                 children: [
                                                   ...List.generate(
                                                       2,
-                                                          (index) =>
-                                                      const Padding(
-                                                        padding:
-                                                        EdgeInsets.all(
-                                                            2.0),
-                                                        child: Wrap(
-                                                          crossAxisAlignment:
-                                                          WrapCrossAlignment
-                                                              .center,
-                                                          alignment:
-                                                          WrapAlignment
-                                                              .start,
-                                                          children: [
-                                                            Icon(
-                                                              Icons.circle,
-                                                              size: 5,
-                                                              color: AppColors
-                                                                  .kAppbarColor,
+                                                      (index) => const Padding(
+                                                            padding:
+                                                                EdgeInsets.all(
+                                                                    2.0),
+                                                            child: Wrap(
+                                                              crossAxisAlignment:
+                                                                  WrapCrossAlignment
+                                                                      .center,
+                                                              alignment:
+                                                                  WrapAlignment
+                                                                      .start,
+                                                              children: [
+                                                                Icon(
+                                                                  Icons.circle,
+                                                                  size: 5,
+                                                                  color: AppColors
+                                                                      .kAppbarColor,
+                                                                ),
+                                                                Text(
+                                                                  'The same professional will join you every week.',
+                                                                  style: AppTheme
+                                                                      .textStyleNormalBlack12,
+                                                                )
+                                                              ],
                                                             ),
-                                                            Text(
-                                                              'The same professional will join you every week.',
-                                                              style: AppTheme
-                                                                  .textStyleNormalBlack12,
-                                                            )
-                                                          ],
-                                                        ),
-                                                      ))
+                                                          ))
                                                 ],
                                               ),
                                             )
@@ -651,7 +645,7 @@ class _BasicCleaningScreenState extends State<BasicCleaningScreen>
                                             horizontal: 16),
                                         child: Column(
                                           crossAxisAlignment:
-                                          CrossAxisAlignment.start,
+                                              CrossAxisAlignment.start,
                                           children: [
                                             Row(
                                               children: [
@@ -664,11 +658,11 @@ class _BasicCleaningScreenState extends State<BasicCleaningScreen>
                                                 const Spacer(),
                                                 Radio(
                                                   activeColor:
-                                                  AppColors.kPrimaryColor,
+                                                      AppColors.kPrimaryColor,
                                                   fillColor: MaterialStateColor
                                                       .resolveWith(
-                                                        (Set<MaterialState>
-                                                    states) {
+                                                    (Set<MaterialState>
+                                                        states) {
                                                       if (states.contains(
                                                           MaterialState
                                                               .selected)) {
@@ -695,41 +689,40 @@ class _BasicCleaningScreenState extends State<BasicCleaningScreen>
                                             ),
                                             Padding(
                                               padding:
-                                              const EdgeInsets.symmetric(
-                                                  vertical: 8.0),
+                                                  const EdgeInsets.symmetric(
+                                                      vertical: 8.0),
                                               child: Column(
                                                 crossAxisAlignment:
-                                                CrossAxisAlignment.start,
+                                                    CrossAxisAlignment.start,
                                                 children: [
                                                   ...List.generate(
                                                       1,
-                                                          (index) =>
-                                                      const Padding(
-                                                        padding:
-                                                        EdgeInsets.all(
-                                                            2.0),
-                                                        child: Wrap(
-                                                          crossAxisAlignment:
-                                                          WrapCrossAlignment
-                                                              .center,
-                                                          alignment:
-                                                          WrapAlignment
-                                                              .start,
-                                                          children: [
-                                                            Icon(
-                                                              Icons.circle,
-                                                              size: 5,
-                                                              color: AppColors
-                                                                  .kAppbarColor,
+                                                      (index) => const Padding(
+                                                            padding:
+                                                                EdgeInsets.all(
+                                                                    2.0),
+                                                            child: Wrap(
+                                                              crossAxisAlignment:
+                                                                  WrapCrossAlignment
+                                                                      .center,
+                                                              alignment:
+                                                                  WrapAlignment
+                                                                      .start,
+                                                              children: [
+                                                                Icon(
+                                                                  Icons.circle,
+                                                                  size: 5,
+                                                                  color: AppColors
+                                                                      .kAppbarColor,
+                                                                ),
+                                                                Text(
+                                                                  'The same professional will join you every week.',
+                                                                  style: AppTheme
+                                                                      .textStyleNormalBlack12,
+                                                                )
+                                                              ],
                                                             ),
-                                                            Text(
-                                                              'The same professional will join you every week.',
-                                                              style: AppTheme
-                                                                  .textStyleNormalBlack12,
-                                                            )
-                                                          ],
-                                                        ),
-                                                      ))
+                                                          ))
                                                 ],
                                               ),
                                             )
@@ -744,567 +737,433 @@ class _BasicCleaningScreenState extends State<BasicCleaningScreen>
                                       Navigator.pop(context);
                                       groupValue == 'Weekly'
                                           ? Get.toNamed(AllCleaningProcessScreen
-                                          .routeName)
+                                              .routeName)
                                           : groupValue == 'One Time'
-                                          ? Navigator.push(context,
-                                          MaterialPageRoute(
-                                            builder: (context) {
-                                              return const AllCleaningProcessScreen(
-                                                title: 'One Time',
-                                                isCustom: false,
-                                              );
-                                            },
-                                          ))
-                                          : groupValue == 'Custom'
-                                          ? Navigator.push(context,
-                                          MaterialPageRoute(
-                                            builder: (context) {
-                                              return const AllCleaningProcessScreen(
-                                                title: 'Custom',
-                                                isCustom: true,
-                                              );
-                                            },
-                                          ))
-                                          : showModalBottomSheet(
-                                        context: context,
-                                        enableDrag: true,
-                                        isScrollControlled: true,
-                                        shape:
-                                        const RoundedRectangleBorder(
-                                          borderRadius:
-                                          BorderRadius.only(
-                                            topLeft:
-                                            Radius.circular(
-                                                20.0),
-                                            topRight:
-                                            Radius.circular(
-                                                20.0),
-                                          ),
-                                        ),
-                                        builder: (BuildContext
-                                        context) {
-                                          return StatefulBuilder(
-                                            builder: (context,
-                                                setState) =>
-                                                SingleChildScrollView(
-                                                  child: Column(
-                                                    crossAxisAlignment:
-                                                    CrossAxisAlignment
-                                                        .start,
-                                                    children: [
-                                                      Container(
-                                                        margin: const EdgeInsets
-                                                            .symmetric(
-                                                            horizontal:
-                                                            16,
-                                                            vertical:
-                                                            12),
-                                                        padding: const EdgeInsets
-                                                            .symmetric(
-                                                            horizontal:
-                                                            16,
-                                                            vertical:
-                                                            12),
-                                                        decoration: BoxDecoration(
-                                                            color: const Color(
-                                                                0xffFFE5E5),
-                                                            borderRadius:
-                                                            BorderRadius
-                                                                .circular(
-                                                                10)),
-                                                        child: Row(
-                                                          mainAxisAlignment:
-                                                          MainAxisAlignment
-                                                              .spaceBetween,
-                                                          children: [
-                                                            const Column(
+                                              ? Navigator.push(context,
+                                                  MaterialPageRoute(
+                                                  builder: (context) {
+                                                    return const AllCleaningProcessScreen(
+                                                      title: 'One Time',
+                                                      isCustom: false,
+                                                    );
+                                                  },
+                                                ))
+                                              : groupValue == 'Custom'
+                                                  ? Navigator.push(context,
+                                                      MaterialPageRoute(
+                                                      builder: (context) {
+                                                        return const AllCleaningProcessScreen(
+                                                          title: 'Custom',
+                                                          isCustom: true,
+                                                        );
+                                                      },
+                                                    ))
+                                                  : showModalBottomSheet(
+                                                      context: context,
+                                                      enableDrag: true,
+                                                      isScrollControlled: true,
+                                                      shape:
+                                                          const RoundedRectangleBorder(
+                                                        borderRadius:
+                                                            BorderRadius.only(
+                                                          topLeft:
+                                                              Radius.circular(
+                                                                  20.0),
+                                                          topRight:
+                                                              Radius.circular(
+                                                                  20.0),
+                                                        ),
+                                                      ),
+                                                      builder: (BuildContext
+                                                          context) {
+                                                        return StatefulBuilder(
+                                                          builder: (context,
+                                                                  setState) =>
+                                                              SingleChildScrollView(
+                                                            child: Column(
                                                               crossAxisAlignment:
-                                                              CrossAxisAlignment
-                                                                  .start,
+                                                                  CrossAxisAlignment
+                                                                      .start,
                                                               children: [
-                                                                Text(
-                                                                  'Frequency',
-                                                                  style:
-                                                                  AppTheme
-                                                                      .textStyleSemiBoldBlack18,
-                                                                ),
-                                                                CustomSizedBox
-                                                                    .space4H,
-                                                                Text(
-                                                                  'Change',
-                                                                  style:
-                                                                  TextStyle(
-                                                                      color: AppColors
-                                                                          .kPrimaryColor,
-                                                                      fontSize: 13),
-                                                                )
-                                                              ],
-                                                            ),
-                                                            Container(
-                                                              // margin: EdgeInsets.symmetric(horizontal: 16, vertical: 12),
-                                                              padding: const EdgeInsets
-                                                                  .symmetric(
-                                                                  horizontal:
-                                                                  16,
-                                                                  vertical:
-                                                                  12),
-                                                              decoration: BoxDecoration(
-                                                                  color:
-                                                                  const Color(
-                                                                      0xffFFF9F9),
-                                                                  borderRadius: BorderRadius
-                                                                      .circular(
-                                                                      5)),
-                                                              child:
-                                                              const Text(
-                                                                'Monthly',
-                                                                style: TextStyle(
-                                                                    color: AppColors
-                                                                        .kPrimaryColor,
-                                                                    fontSize: 16,
-                                                                    fontWeight: FontWeight
-                                                                        .w600),
-                                                              ),
-                                                            ),
-                                                          ],
-                                                        ),
-                                                      ),
-                                                      Container(
-                                                        decoration: BoxDecoration(
-                                                            border: Border.all(
-                                                                color: const Color(
-                                                                    0xffFC8E99),
-                                                                width:
-                                                                .5),
-                                                            borderRadius:
-                                                            BorderRadius
-                                                                .circular(
-                                                                6)),
-                                                        padding: const EdgeInsets
-                                                            .symmetric(
-                                                            horizontal:
-                                                            16),
-                                                        margin: const EdgeInsets
-                                                            .symmetric(
-                                                            horizontal:
-                                                            16,
-                                                            vertical:
-                                                            6),
-                                                        child: Column(
-                                                          crossAxisAlignment:
-                                                          CrossAxisAlignment
-                                                              .start,
-                                                          children: [
-                                                            Row(
-                                                              children: [
-                                                                const Text(
-                                                                  'With Instalment',
-                                                                  style:
-                                                                  AppTheme
-                                                                      .textStyleSemiBoldBlack16,
-                                                                ),
-                                                                const Spacer(),
-                                                                Text(
-                                                                  '10% Off',
-                                                                  style: TextStyle(
-                                                                      fontSize: 10,
-                                                                      fontWeight: FontWeight
-                                                                          .w600,
+                                                                Container(
+                                                                  margin: const EdgeInsets
+                                                                      .symmetric(
+                                                                      horizontal:
+                                                                          16,
+                                                                      vertical:
+                                                                          12),
+                                                                  padding: const EdgeInsets
+                                                                      .symmetric(
+                                                                      horizontal:
+                                                                          16,
+                                                                      vertical:
+                                                                          12),
+                                                                  decoration: BoxDecoration(
                                                                       color: const Color(
-                                                                          0xff09AB4A)
-                                                                          .withOpacity(
-                                                                          .4),
-                                                                      decoration: TextDecoration
-                                                                          .lineThrough),
-                                                                ),
-                                                                const Text(
-                                                                  '10% Off',
-                                                                  style:
-                                                                  AppTheme
-                                                                      .textStyleSemiBoldGreen16,
-                                                                ),
-                                                                Radio(
-                                                                  activeColor:
-                                                                  AppColors
-                                                                      .kPrimaryColor,
-                                                                  fillColor:
-                                                                  MaterialStateColor
-                                                                      .resolveWith(
-                                                                        (Set<
-                                                                        MaterialState> states) {
-                                                                      if (states
-                                                                          .contains(
-                                                                          MaterialState
-                                                                              .selected)) {
-                                                                        return AppColors
-                                                                            .kPrimaryColor;
-                                                                      }
-                                                                      return AppColors
-                                                                          .kPrimaryColor;
-                                                                    },
+                                                                          0xffFFE5E5),
+                                                                      borderRadius:
+                                                                          BorderRadius.circular(
+                                                                              10)),
+                                                                  child: Row(
+                                                                    mainAxisAlignment:
+                                                                        MainAxisAlignment
+                                                                            .spaceBetween,
+                                                                    children: [
+                                                                      const Column(
+                                                                        crossAxisAlignment:
+                                                                            CrossAxisAlignment.start,
+                                                                        children: [
+                                                                          Text(
+                                                                            'Frequency',
+                                                                            style:
+                                                                                AppTheme.textStyleSemiBoldBlack18,
+                                                                          ),
+                                                                          CustomSizedBox
+                                                                              .space4H,
+                                                                          Text(
+                                                                            'Change',
+                                                                            style:
+                                                                                TextStyle(color: AppColors.kPrimaryColor, fontSize: 13),
+                                                                          )
+                                                                        ],
+                                                                      ),
+                                                                      Container(
+                                                                        // margin: EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+                                                                        padding: const EdgeInsets
+                                                                            .symmetric(
+                                                                            horizontal:
+                                                                                16,
+                                                                            vertical:
+                                                                                12),
+                                                                        decoration: BoxDecoration(
+                                                                            color:
+                                                                                const Color(0xffFFF9F9),
+                                                                            borderRadius: BorderRadius.circular(5)),
+                                                                        child:
+                                                                            const Text(
+                                                                          'Monthly',
+                                                                          style: TextStyle(
+                                                                              color: AppColors.kPrimaryColor,
+                                                                              fontSize: 16,
+                                                                              fontWeight: FontWeight.w600),
+                                                                        ),
+                                                                      ),
+                                                                    ],
                                                                   ),
-                                                                  value:
-                                                                  'With Instalment',
-                                                                  groupValue:
-                                                                  groupValueMonthly,
-                                                                  onChanged:
-                                                                      (value) {
-                                                                    setState(() {
-                                                                      groupValueMonthly =
-                                                                      value!;
-                                                                    });
-                                                                  },
-                                                                )
-                                                              ],
-                                                            ),
-                                                            const Divider(
-                                                              thickness:
-                                                              0.5,
-                                                              color: Color(
-                                                                  0xffF1B2BF),
-                                                            ),
-                                                            Padding(
-                                                              padding: const EdgeInsets
-                                                                  .symmetric(
-                                                                  vertical:
-                                                                  8.0),
-                                                              child:
-                                                              Column(
-                                                                crossAxisAlignment:
-                                                                CrossAxisAlignment
-                                                                    .start,
-                                                                children: [
-                                                                  ...List
-                                                                      .generate(
-                                                                      1,
-                                                                          (
-                                                                          index) =>
-                                                                      const Padding(
-                                                                        padding: EdgeInsets
-                                                                            .all(
-                                                                            2.0),
-                                                                        child: Wrap(
-                                                                          crossAxisAlignment: WrapCrossAlignment
-                                                                              .center,
-                                                                          alignment: WrapAlignment
-                                                                              .start,
-                                                                          children: [
-                                                                            Icon(
-                                                                              Icons
-                                                                                  .circle,
-                                                                              size: 5,
-                                                                              color: AppColors
-                                                                                  .kAppbarColor,
+                                                                ),
+                                                                Container(
+                                                                  decoration: BoxDecoration(
+                                                                      border: Border.all(
+                                                                          color: const Color(
+                                                                              0xffFC8E99),
+                                                                          width:
+                                                                              .5),
+                                                                      borderRadius:
+                                                                          BorderRadius.circular(
+                                                                              6)),
+                                                                  padding: const EdgeInsets
+                                                                      .symmetric(
+                                                                      horizontal:
+                                                                          16),
+                                                                  margin: const EdgeInsets
+                                                                      .symmetric(
+                                                                      horizontal:
+                                                                          16,
+                                                                      vertical:
+                                                                          6),
+                                                                  child: Column(
+                                                                    crossAxisAlignment:
+                                                                        CrossAxisAlignment
+                                                                            .start,
+                                                                    children: [
+                                                                      Row(
+                                                                        children: [
+                                                                          const Text(
+                                                                            'With Instalment',
+                                                                            style:
+                                                                                AppTheme.textStyleSemiBoldBlack16,
+                                                                          ),
+                                                                          const Spacer(),
+                                                                          Text(
+                                                                            '10% Off',
+                                                                            style: TextStyle(
+                                                                                fontSize: 10,
+                                                                                fontWeight: FontWeight.w600,
+                                                                                color: const Color(0xff09AB4A).withOpacity(.4),
+                                                                                decoration: TextDecoration.lineThrough),
+                                                                          ),
+                                                                          const Text(
+                                                                            '10% Off',
+                                                                            style:
+                                                                                AppTheme.textStyleSemiBoldGreen16,
+                                                                          ),
+                                                                          Radio(
+                                                                            activeColor:
+                                                                                AppColors.kPrimaryColor,
+                                                                            fillColor:
+                                                                                MaterialStateColor.resolveWith(
+                                                                              (Set<MaterialState> states) {
+                                                                                if (states.contains(MaterialState.selected)) {
+                                                                                  return AppColors.kPrimaryColor;
+                                                                                }
+                                                                                return AppColors.kPrimaryColor;
+                                                                              },
                                                                             ),
-                                                                            CustomSizedBox
-                                                                                .space4W,
-                                                                            Text(
-                                                                              'Pay total payment in 3 instalment phase',
-                                                                              style: AppTheme
-                                                                                  .textStyleNormalBlack12,
-                                                                            )
+                                                                            value:
+                                                                                'With Instalment',
+                                                                            groupValue:
+                                                                                groupValueMonthly,
+                                                                            onChanged:
+                                                                                (value) {
+                                                                              setState(() {
+                                                                                groupValueMonthly = value!;
+                                                                              });
+                                                                            },
+                                                                          )
+                                                                        ],
+                                                                      ),
+                                                                      const Divider(
+                                                                        thickness:
+                                                                            0.5,
+                                                                        color: Color(
+                                                                            0xffF1B2BF),
+                                                                      ),
+                                                                      Padding(
+                                                                        padding: const EdgeInsets
+                                                                            .symmetric(
+                                                                            vertical:
+                                                                                8.0),
+                                                                        child:
+                                                                            Column(
+                                                                          crossAxisAlignment:
+                                                                              CrossAxisAlignment.start,
+                                                                          children: [
+                                                                            ...List.generate(
+                                                                                1,
+                                                                                (index) => const Padding(
+                                                                                      padding: EdgeInsets.all(2.0),
+                                                                                      child: Wrap(
+                                                                                        crossAxisAlignment: WrapCrossAlignment.center,
+                                                                                        alignment: WrapAlignment.start,
+                                                                                        children: [
+                                                                                          Icon(
+                                                                                            Icons.circle,
+                                                                                            size: 5,
+                                                                                            color: AppColors.kAppbarColor,
+                                                                                          ),
+                                                                                          CustomSizedBox.space4W,
+                                                                                          Text(
+                                                                                            'Pay total payment in 3 instalment phase',
+                                                                                            style: AppTheme.textStyleNormalBlack12,
+                                                                                          )
+                                                                                        ],
+                                                                                      ),
+                                                                                    )),
+                                                                            Container(
+                                                                              margin: const EdgeInsets.symmetric(vertical: 6),
+                                                                              width: double.infinity,
+                                                                              padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+                                                                              decoration: BoxDecoration(border: Border.all(color: const Color(0xffFC8E99), width: .5), color: const Color(0xffFFE5E5), borderRadius: BorderRadius.circular(5)),
+                                                                              child: const Column(
+                                                                                crossAxisAlignment: CrossAxisAlignment.start,
+                                                                                children: [
+                                                                                  Text(
+                                                                                    'First Instalment',
+                                                                                    style: AppTheme.textStyleSemiBoldBlack14,
+                                                                                  ),
+                                                                                  CustomSizedBox.space4H,
+                                                                                  Text(
+                                                                                    'You have to pay the first Instalment first',
+                                                                                    style: TextStyle(color: Colors.black87, fontSize: 12),
+                                                                                  )
+                                                                                ],
+                                                                              ),
+                                                                            ),
+                                                                            Container(
+                                                                              margin: const EdgeInsets.symmetric(vertical: 6),
+                                                                              width: double.infinity,
+                                                                              padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+                                                                              decoration: BoxDecoration(border: Border.all(color: const Color(0xffFC8E99), width: .5), color: const Color(0xffFFE5E5), borderRadius: BorderRadius.circular(5)),
+                                                                              child: const Column(
+                                                                                crossAxisAlignment: CrossAxisAlignment.start,
+                                                                                children: [
+                                                                                  Text(
+                                                                                    'Second Instalment',
+                                                                                    style: AppTheme.textStyleSemiBoldBlack14,
+                                                                                  ),
+                                                                                  CustomSizedBox.space4H,
+                                                                                  Text(
+                                                                                    'Second instalment should be pay within 10 July 2023',
+                                                                                    style: TextStyle(color: Colors.black87, fontSize: 12),
+                                                                                  )
+                                                                                ],
+                                                                              ),
+                                                                            ),
+                                                                            Container(
+                                                                              margin: const EdgeInsets.symmetric(vertical: 6),
+                                                                              width: double.infinity,
+                                                                              padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+                                                                              decoration: BoxDecoration(border: Border.all(color: const Color(0xffFC8E99), width: .5), color: const Color(0xffFFE5E5), borderRadius: BorderRadius.circular(5)),
+                                                                              child: const Column(
+                                                                                crossAxisAlignment: CrossAxisAlignment.start,
+                                                                                children: [
+                                                                                  Text(
+                                                                                    'Third Instalment',
+                                                                                    style: AppTheme.textStyleSemiBoldBlack14,
+                                                                                  ),
+                                                                                  CustomSizedBox.space4H,
+                                                                                  Text(
+                                                                                    'Third instalment should be pay within 20 July 2023',
+                                                                                    style: TextStyle(color: Colors.black87, fontSize: 12),
+                                                                                  )
+                                                                                ],
+                                                                              ),
+                                                                            ),
                                                                           ],
                                                                         ),
-                                                                      )),
-                                                                  Container(
-                                                                    margin: const EdgeInsets
-                                                                        .symmetric(
-                                                                        vertical: 6),
-                                                                    width: double
-                                                                        .infinity,
-                                                                    padding: const EdgeInsets
-                                                                        .symmetric(
-                                                                        horizontal: 16,
-                                                                        vertical: 12),
-                                                                    decoration: BoxDecoration(
-                                                                        border: Border
-                                                                            .all(
-                                                                            color: const Color(
-                                                                                0xffFC8E99),
-                                                                            width: .5),
-                                                                        color: const Color(
-                                                                            0xffFFE5E5),
-                                                                        borderRadius: BorderRadius
-                                                                            .circular(
-                                                                            5)),
-                                                                    child: const Column(
-                                                                      crossAxisAlignment: CrossAxisAlignment
-                                                                          .start,
-                                                                      children: [
-                                                                        Text(
-                                                                          'First Instalment',
-                                                                          style: AppTheme
-                                                                              .textStyleSemiBoldBlack14,
-                                                                        ),
-                                                                        CustomSizedBox
-                                                                            .space4H,
-                                                                        Text(
-                                                                          'You have to pay the first Instalment first',
-                                                                          style: TextStyle(
-                                                                              color: Colors
-                                                                                  .black87,
-                                                                              fontSize: 12),
-                                                                        )
-                                                                      ],
-                                                                    ),
+                                                                      )
+                                                                    ],
                                                                   ),
-                                                                  Container(
-                                                                    margin: const EdgeInsets
-                                                                        .symmetric(
-                                                                        vertical: 6),
-                                                                    width: double
-                                                                        .infinity,
-                                                                    padding: const EdgeInsets
-                                                                        .symmetric(
-                                                                        horizontal: 16,
-                                                                        vertical: 12),
-                                                                    decoration: BoxDecoration(
-                                                                        border: Border
-                                                                            .all(
-                                                                            color: const Color(
-                                                                                0xffFC8E99),
-                                                                            width: .5),
-                                                                        color: const Color(
-                                                                            0xffFFE5E5),
-                                                                        borderRadius: BorderRadius
-                                                                            .circular(
-                                                                            5)),
-                                                                    child: const Column(
-                                                                      crossAxisAlignment: CrossAxisAlignment
-                                                                          .start,
-                                                                      children: [
-                                                                        Text(
-                                                                          'Second Instalment',
-                                                                          style: AppTheme
-                                                                              .textStyleSemiBoldBlack14,
-                                                                        ),
-                                                                        CustomSizedBox
-                                                                            .space4H,
-                                                                        Text(
-                                                                          'Second instalment should be pay within 10 July 2023',
-                                                                          style: TextStyle(
-                                                                              color: Colors
-                                                                                  .black87,
-                                                                              fontSize: 12),
-                                                                        )
-                                                                      ],
-                                                                    ),
-                                                                  ),
-                                                                  Container(
-                                                                    margin: const EdgeInsets
-                                                                        .symmetric(
-                                                                        vertical: 6),
-                                                                    width: double
-                                                                        .infinity,
-                                                                    padding: const EdgeInsets
-                                                                        .symmetric(
-                                                                        horizontal: 16,
-                                                                        vertical: 12),
-                                                                    decoration: BoxDecoration(
-                                                                        border: Border
-                                                                            .all(
-                                                                            color: const Color(
-                                                                                0xffFC8E99),
-                                                                            width: .5),
-                                                                        color: const Color(
-                                                                            0xffFFE5E5),
-                                                                        borderRadius: BorderRadius
-                                                                            .circular(
-                                                                            5)),
-                                                                    child: const Column(
-                                                                      crossAxisAlignment: CrossAxisAlignment
-                                                                          .start,
-                                                                      children: [
-                                                                        Text(
-                                                                          'Third Instalment',
-                                                                          style: AppTheme
-                                                                              .textStyleSemiBoldBlack14,
-                                                                        ),
-                                                                        CustomSizedBox
-                                                                            .space4H,
-                                                                        Text(
-                                                                          'Third instalment should be pay within 20 July 2023',
-                                                                          style: TextStyle(
-                                                                              color: Colors
-                                                                                  .black87,
-                                                                              fontSize: 12),
-                                                                        )
-                                                                      ],
-                                                                    ),
-                                                                  ),
-                                                                ],
-                                                              ),
-                                                            )
-                                                          ],
-                                                        ),
-                                                      ),
-                                                      Container(
-                                                        decoration: BoxDecoration(
-                                                            border: Border.all(
-                                                                color: const Color(
-                                                                    0xffFC8E99),
-                                                                width:
-                                                                .5),
-                                                            borderRadius:
-                                                            BorderRadius
-                                                                .circular(
-                                                                6)),
-                                                        padding: const EdgeInsets
-                                                            .symmetric(
-                                                            horizontal:
-                                                            16),
-                                                        margin: const EdgeInsets
-                                                            .symmetric(
-                                                            horizontal:
-                                                            16,
-                                                            vertical:
-                                                            6),
-                                                        child: Column(
-                                                          crossAxisAlignment:
-                                                          CrossAxisAlignment
-                                                              .start,
-                                                          children: [
-                                                            Row(
-                                                              children: [
-                                                                const Text(
-                                                                  'Without Instalment',
-                                                                  style:
-                                                                  AppTheme
-                                                                      .textStyleSemiBoldBlack16,
                                                                 ),
-                                                                const Spacer(),
-                                                                Radio(
-                                                                  activeColor:
-                                                                  AppColors
-                                                                      .kPrimaryColor,
-                                                                  fillColor:
-                                                                  MaterialStateColor
-                                                                      .resolveWith(
-                                                                        (Set<
-                                                                        MaterialState> states) {
-                                                                      if (states
-                                                                          .contains(
-                                                                          MaterialState
-                                                                              .selected)) {
-                                                                        return AppColors
-                                                                            .kPrimaryColor;
-                                                                      }
-                                                                      return AppColors
-                                                                          .kPrimaryColor;
-                                                                    },
-                                                                  ),
-                                                                  value:
-                                                                  'Without Instalment',
-                                                                  groupValue:
-                                                                  groupValueMonthly,
-                                                                  onChanged:
-                                                                      (value) {
-                                                                    setState(() {
-                                                                      groupValueMonthly =
-                                                                      value!;
-                                                                    });
-                                                                  },
-                                                                )
-                                                              ],
-                                                            ),
-                                                            const Divider(
-                                                              thickness:
-                                                              0.5,
-                                                              color: Color(
-                                                                  0xffF1B2BF),
-                                                            ),
-                                                            Padding(
-                                                              padding: const EdgeInsets
-                                                                  .symmetric(
-                                                                  vertical:
-                                                                  8.0),
-                                                              child:
-                                                              Column(
-                                                                crossAxisAlignment:
-                                                                CrossAxisAlignment
-                                                                    .start,
-                                                                children: [
-                                                                  ...List
-                                                                      .generate(
-                                                                      1,
-                                                                          (
-                                                                          index) =>
-                                                                      const Padding(
-                                                                        padding: EdgeInsets
-                                                                            .all(
-                                                                            2.0),
-                                                                        child: Wrap(
-                                                                          crossAxisAlignment: WrapCrossAlignment
-                                                                              .center,
-                                                                          alignment: WrapAlignment
-                                                                              .start,
-                                                                          children: [
-                                                                            Icon(
-                                                                              Icons
-                                                                                  .circle,
-                                                                              size: 5,
-                                                                              color: AppColors
-                                                                                  .kAppbarColor,
+                                                                Container(
+                                                                  decoration: BoxDecoration(
+                                                                      border: Border.all(
+                                                                          color: const Color(
+                                                                              0xffFC8E99),
+                                                                          width:
+                                                                              .5),
+                                                                      borderRadius:
+                                                                          BorderRadius.circular(
+                                                                              6)),
+                                                                  padding: const EdgeInsets
+                                                                      .symmetric(
+                                                                      horizontal:
+                                                                          16),
+                                                                  margin: const EdgeInsets
+                                                                      .symmetric(
+                                                                      horizontal:
+                                                                          16,
+                                                                      vertical:
+                                                                          6),
+                                                                  child: Column(
+                                                                    crossAxisAlignment:
+                                                                        CrossAxisAlignment
+                                                                            .start,
+                                                                    children: [
+                                                                      Row(
+                                                                        children: [
+                                                                          const Text(
+                                                                            'Without Instalment',
+                                                                            style:
+                                                                                AppTheme.textStyleSemiBoldBlack16,
+                                                                          ),
+                                                                          const Spacer(),
+                                                                          Radio(
+                                                                            activeColor:
+                                                                                AppColors.kPrimaryColor,
+                                                                            fillColor:
+                                                                                MaterialStateColor.resolveWith(
+                                                                              (Set<MaterialState> states) {
+                                                                                if (states.contains(MaterialState.selected)) {
+                                                                                  return AppColors.kPrimaryColor;
+                                                                                }
+                                                                                return AppColors.kPrimaryColor;
+                                                                              },
                                                                             ),
-                                                                            CustomSizedBox
-                                                                                .space4W,
-                                                                            Text(
-                                                                              'Pay total payment in 3 instalment phase',
-                                                                              style: AppTheme
-                                                                                  .textStyleNormalBlack12,
-                                                                            )
+                                                                            value:
+                                                                                'Without Instalment',
+                                                                            groupValue:
+                                                                                groupValueMonthly,
+                                                                            onChanged:
+                                                                                (value) {
+                                                                              setState(() {
+                                                                                groupValueMonthly = value!;
+                                                                              });
+                                                                            },
+                                                                          )
+                                                                        ],
+                                                                      ),
+                                                                      const Divider(
+                                                                        thickness:
+                                                                            0.5,
+                                                                        color: Color(
+                                                                            0xffF1B2BF),
+                                                                      ),
+                                                                      Padding(
+                                                                        padding: const EdgeInsets
+                                                                            .symmetric(
+                                                                            vertical:
+                                                                                8.0),
+                                                                        child:
+                                                                            Column(
+                                                                          crossAxisAlignment:
+                                                                              CrossAxisAlignment.start,
+                                                                          children: [
+                                                                            ...List.generate(
+                                                                                1,
+                                                                                (index) => const Padding(
+                                                                                      padding: EdgeInsets.all(2.0),
+                                                                                      child: Wrap(
+                                                                                        crossAxisAlignment: WrapCrossAlignment.center,
+                                                                                        alignment: WrapAlignment.start,
+                                                                                        children: [
+                                                                                          Icon(
+                                                                                            Icons.circle,
+                                                                                            size: 5,
+                                                                                            color: AppColors.kAppbarColor,
+                                                                                          ),
+                                                                                          CustomSizedBox.space4W,
+                                                                                          Text(
+                                                                                            'Pay total payment in 3 instalment phase',
+                                                                                            style: AppTheme.textStyleNormalBlack12,
+                                                                                          )
+                                                                                        ],
+                                                                                      ),
+                                                                                    )),
                                                                           ],
                                                                         ),
-                                                                      )),
-                                                                ],
-                                                              ),
-                                                            )
-                                                          ],
-                                                        ),
-                                                      ),
-                                                      CustomButton(
-                                                        label:
-                                                        'Continue',
-                                                        onPressed:
-                                                        groupValueMonthly ==
-                                                            'With Instalment'
-                                                            ? () {
-                                                          Navigator.pop(
-                                                              context);
-                                                          Navigator.push(
-                                                              context,
-                                                              MaterialPageRoute(
-                                                                builder: (
-                                                                    context) {
-                                                                  return const AllCleaningProcessScreen(
-                                                                    title: 'Monthly',
-                                                                    isCustom: false,
-                                                                  );
-                                                                },
-                                                              ));
-                                                        }
-                                                            : () {
-                                                          Navigator.pop(
-                                                              context);
-                                                        },
-                                                        marginHorizontal:
-                                                        16,
-                                                        marginVertical:
-                                                        12,
-                                                        suffixImage:
-                                                        AssetsConstant
-                                                            .arrow_icon,
-                                                        suffixImageHeight:
-                                                        11,
-                                                        borderRadiusAll:
-                                                        22,
-                                                      ),
-                                                    ],
-                                                  ),
-                                                ),
-                                          );
-                                        },
-                                      );
+                                                                      )
+                                                                    ],
+                                                                  ),
+                                                                ),
+                                                                CustomButton(
+                                                                  label:
+                                                                      'Continue',
+                                                                  onPressed:
+                                                                      groupValueMonthly ==
+                                                                              'With Instalment'
+                                                                          ? () {
+                                                                              Navigator.pop(context);
+                                                                              Navigator.push(context, MaterialPageRoute(
+                                                                                builder: (context) {
+                                                                                  return const AllCleaningProcessScreen(
+                                                                                    title: 'Monthly',
+                                                                                    isCustom: false,
+                                                                                  );
+                                                                                },
+                                                                              ));
+                                                                            }
+                                                                          : () {
+                                                                              Navigator.pop(context);
+                                                                            },
+                                                                  marginHorizontal:
+                                                                      16,
+                                                                  marginVertical:
+                                                                      12,
+                                                                  suffixImage:
+                                                                      AssetsConstant
+                                                                          .arrow_icon,
+                                                                  suffixImageHeight:
+                                                                      11,
+                                                                  borderRadiusAll:
+                                                                      22,
+                                                                ),
+                                                              ],
+                                                            ),
+                                                          ),
+                                                        );
+                                                      },
+                                                    );
                                     },
                                     marginHorizontal: 16,
                                     marginVertical: 12,
@@ -1346,11 +1205,13 @@ class CountWidget extends StatefulWidget {
 
 class _CountWidgetState extends State<CountWidget> {
   int value = 5;
+  OverlayEntry? _overlayEntry;
   bool hasIncremented = false; // Track if increment has occurred
   bool hasDecremented = false;
   int addOn = 0;
   double countTogglePosition = 33;
   double startDragPosition = 0;
+  Offset? _overlayPosition;
 
   @override
   void initState() {
@@ -1373,9 +1234,15 @@ class _CountWidgetState extends State<CountWidget> {
                 'How many bedroom?',
                 style: AppTheme.textStyleSemiBoldBlack16,
               ),
-              Image.asset(
-                AssetsConstant.info_icon,
-                height: 12,
+              GestureDetector(
+                onTap: () {
+                  showOverlay(context);
+                  _overlayPosition = _getButtonPosition(context);
+                },
+                child: Image.asset(
+                  AssetsConstant.info_icon,
+                  height: 12,
+                ),
               ),
             ],
           ),
@@ -1411,72 +1278,6 @@ class _CountWidgetState extends State<CountWidget> {
                     width: 15,
                   ),
                 ),
-                // AnimatedPositioned(
-                //   duration: Duration(milliseconds: 200),
-                //   left: !isinc && !isdec
-                //       ? 25
-                //       : isinc
-                //       ? 53.0
-                //       : (isdec ? -6 : 25.0),
-                //   child: GestureDetector(
-                //     onHorizontalDragUpdate: (details) {
-                //       if (details.localPosition.dx >= -6 &&
-                //           details.localPosition.dx <= 56.0) {
-                //         setState(() {
-                //           if (details.localPosition.dx <= 25.0) {
-                //             isinc = false;
-                //             isdec = true;
-                //             if (!hasIncremented && value != 0) {
-                //               value--;
-                //               hasIncremented = true;
-                //               hasDecremented = false;
-                //             }
-                //           } else {
-                //             isinc = true;
-                //             isdec = false;
-                //
-                //             if (!hasDecremented) {
-                //               value++;
-                //               hasDecremented = true;
-                //               hasIncremented = false;
-                //             }
-                //           }
-                //         });
-                //       }
-                //     },
-                //     onHorizontalDragStart: (details) {
-                //       hasIncremented = false;
-                //       isinc = false;
-                //       isdec = false;
-                //       hasDecremented = false;
-                //       value = 5;
-                //     },
-                //     onHorizontalDragEnd: (details) {
-                //       hasIncremented = false;
-                //       isinc = false;
-                //       isdec = false;
-                //       hasDecremented = false;
-                //       value = 5;
-                //     },
-                //     child: Container(
-                //       width: 35.0,
-                //       height: 35.0,
-                //       alignment: Alignment.center,
-                //       margin: const EdgeInsets.symmetric(horizontal: 8),
-                //       decoration: BoxDecoration(
-                //         color: AppColors.kPrimaryColor,
-                //         borderRadius: BorderRadius.circular(180),
-                //       ),
-                //       // padding: const EdgeInsets.symmetric(
-                //       //     vertical: 10, horizontal: 16),
-                //       child: Text(
-                //         '$value',
-                //         textAlign: TextAlign.center,
-                //         style: AppTheme.textStyleSemiBoldWhite14,
-                //       ),
-                //     ),
-                //   ),
-                // ),
                 Positioned(
                   left: countTogglePosition,
                   child: GestureDetector(
@@ -1533,123 +1334,45 @@ class _CountWidgetState extends State<CountWidget> {
               ],
             ),
           ),
-          //*******************************************************************
-          // Container(
-          //   padding: const EdgeInsets.symmetric(horizontal: 12),
-          //   decoration: BoxDecoration(
-          //       color: Colors.white,
-          //       borderRadius: BorderRadius.circular(33),
-          //       boxShadow: [
-          //         BoxShadow(blurRadius: 6, color: Colors.black.withOpacity(.15))
-          //       ]),
-          //   child: Row(
-          //     mainAxisAlignment: MainAxisAlignment.center,
-          //     crossAxisAlignment: CrossAxisAlignment.center,
-          //     children: [
-          //       DragTarget<int>(builder: (
-          //         BuildContext context,
-          //         List<dynamic> accepted,
-          //         List<dynamic> rejected,
-          //       ) {
-          //         return Padding(
-          //           padding: const EdgeInsets.all(6.0),
-          //           child: Image.asset(
-          //             AssetsConstant.minimize_icon,
-          //             color: acceptedData < 1 ? null : AppColors.kPrimaryColor,
-          //             height: 15,
-          //             width: 15,
-          //           ),
-          //         );
-          //       }, onAccept: (int data) {
-          //         if (acceptedData >= 1) {
-          //           setState(() {
-          //             acceptedData -= data;
-          //           });
-          //         } else {}
-          //       }),
-          //       Draggable<int>(
-          //         hitTestBehavior: HitTestBehavior.translucent,
-          //         axis: Axis.horizontal,
-          //         affinity: Axis.horizontal,
-          //         dragAnchorStrategy: (draggable, context, position) {
-          //           final RenderBox render =
-          //               context.findRenderObject()! as RenderBox;
-          //           return Offset(
-          //               render.size.width / 2, render.size.height / 2);
-          //         },
-          //         data: 1,
-          //         feedback: Material(
-          //           type: MaterialType.transparency,
-          //           child: Container(
-          //             margin: const EdgeInsets.symmetric(horizontal: 8),
-          //             decoration: BoxDecoration(
-          //               color: AppColors.kPrimaryColor,
-          //               borderRadius: BorderRadius.circular(180),
-          //             ),
-          //             padding: const EdgeInsets.symmetric(
-          //                 vertical: 10, horizontal: 16),
-          //             child: Text(
-          //               '$acceptedData',
-          //               style: AppTheme.textStyleSemiBoldWhite14,
-          //             ),
-          //           ),
-          //         ),
-          //         childWhenDragging: Container(
-          //           margin: const EdgeInsets.symmetric(horizontal: 8),
-          //           decoration: BoxDecoration(
-          //             color: Colors.transparent,
-          //             borderRadius: BorderRadius.circular(180),
-          //           ),
-          //           padding: const EdgeInsets.symmetric(
-          //               vertical: 10, horizontal: 16),
-          //           child: Text(
-          //             '$acceptedData',
-          //             style: AppTheme.textStyleSemiBoldWhite14,
-          //           ),
-          //         ),
-          //         child: Material(
-          //           child: Container(
-          //             margin: const EdgeInsets.symmetric(horizontal: 8),
-          //             decoration: BoxDecoration(
-          //               color: AppColors.kPrimaryColor,
-          //               borderRadius: BorderRadius.circular(180),
-          //             ),
-          //             padding: const EdgeInsets.symmetric(
-          //                 vertical: 10, horizontal: 16),
-          //             child: Text(
-          //               acceptedData.toString(),
-          //               style: AppTheme.textStyleSemiBoldWhite14,
-          //             ),
-          //           ),
-          //         ),
-          //       ),
-          //       DragTarget<int>(
-          //         builder: (
-          //           BuildContext context,
-          //           List<dynamic> accepted,
-          //           List<dynamic> rejected,
-          //         ) {
-          //           return Padding(
-          //             padding: const EdgeInsets.all(6),
-          //             child: Image.asset(
-          //               AssetsConstant.add_icon,
-          //               height: 15,
-          //               width: 15,
-          //             ),
-          //           );
-          //         },
-          //         onAccept: (int data) {
-          //           setState(() {
-          //             acceptedData += data;
-          //           });
-          //         },
-          //       ),
-          //     ],
-          //   ),
-          // )
         ],
       ),
     );
+  }
+
+  void showOverlay(BuildContext context) {
+    if (_overlayPosition == null) return;
+
+    // Create an OverlayEntry
+    _overlayEntry = OverlayEntry(
+      builder: (context) {
+        // The widget that will be displayed as an overlay
+        return Positioned(
+          top: _overlayPosition!.dy + 50, // Adjust as needed
+          left: _overlayPosition!.dx + 50, // Adjust as needed
+          child: Card(
+            child: Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Text('Hello, this is a tooltip!'),
+            ),
+          ),
+        );
+      },
+    );
+
+    // Insert the overlay into the overlay stack
+    Overlay.of(context).insert(_overlayEntry!);
+
+    // Add a delay and then remove the overlay
+    Future.delayed(Duration(milliseconds: 1000), () {
+      setState(() {
+        _overlayEntry?.remove();
+      });
+    });
+  }
+
+  Offset _getButtonPosition(BuildContext context) {
+    RenderBox renderBox = context.findRenderObject() as RenderBox;
+    return renderBox.localToGlobal(Offset(0, 0));
   }
 }
 

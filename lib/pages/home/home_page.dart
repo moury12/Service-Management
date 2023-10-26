@@ -67,8 +67,8 @@ class _HomeScreenState extends State<HomeScreen>
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   CustomSizedBox.space12H,
-                  const Padding(
-                    padding: EdgeInsets.symmetric(horizontal: 16.0),
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 16),
                     child: Text(
                       'Service Category',
                       style: AppTheme.textStyleSemiBoldBlack16,
@@ -81,7 +81,7 @@ class _HomeScreenState extends State<HomeScreen>
                         return Container(
                           child: GridView.builder(
                             padding: const EdgeInsets.symmetric(
-                                horizontal: 8, vertical: 12),
+                                vertical: 12, horizontal: 16),
                             gridDelegate:
                                 const SliverGridDelegateWithFixedCrossAxisCount(
                                     crossAxisCount: 4,
@@ -118,7 +118,7 @@ class _HomeScreenState extends State<HomeScreen>
                   setState(() {});
                 }
               },
-              top: 32 +
+              top: 30 +
                   (showMore
                       ? (90.0 * (gridItem / 4.0).ceil())
                       : gridItem > 4
@@ -294,7 +294,7 @@ class _HomeScreenState extends State<HomeScreen>
           ),
         ),
         SizedBox(
-          height: MediaQuery.of(context).size.width / 2,
+          height: MediaQuery.of(context).size.width * .5,
           child: ListView.builder(
             scrollDirection: Axis.horizontal,
             itemCount: 3,
@@ -475,7 +475,7 @@ class HomeServiceItemWidget extends StatelessWidget {
                       color: AppColors.kPrimaryColor.withOpacity(.5),
                       blurRadius: 2)
                 ]),
-            margin: const EdgeInsets.all(8),
+            margin: const EdgeInsets.all(8).copyWith(left: 0, right: 0),
             child: Stack(
               alignment: Alignment.bottomCenter,
               children: [
@@ -484,7 +484,7 @@ class HomeServiceItemWidget extends StatelessWidget {
                     AssetsConstant.service_item_shade,
                   ),
                   bottom: 0,
-                  left: 0,
+                  left: -1.5,
                   right: 0,
                 ),
                 Padding(
