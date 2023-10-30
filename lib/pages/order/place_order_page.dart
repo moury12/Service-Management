@@ -203,7 +203,7 @@ class _PlaceOrderScreenState extends State<PlaceOrderScreen> {
                           boxShadow: [
                             BoxShadow(
                                 blurRadius: 10,
-                                color: Colors.black.withOpacity(.15))
+                                color: Colors.black.withOpacity(.1))
                           ],
                           borderRadius: BorderRadius.circular(10)),
                       child: Row(
@@ -241,7 +241,7 @@ class _PlaceOrderScreenState extends State<PlaceOrderScreen> {
                           boxShadow: [
                             BoxShadow(
                                 blurRadius: 10,
-                                color: Colors.black.withOpacity(.15))
+                                color: Colors.black.withOpacity(.1))
                           ],
                           borderRadius: BorderRadius.circular(10)),
                       child: Column(
@@ -319,7 +319,7 @@ class _PlaceOrderScreenState extends State<PlaceOrderScreen> {
                           boxShadow: [
                             BoxShadow(
                                 blurRadius: 10,
-                                color: Colors.black.withOpacity(.15))
+                                color: Colors.black.withOpacity(.1))
                           ],
                           borderRadius: BorderRadius.circular(10)),
                       child: Column(
@@ -387,7 +387,7 @@ class _PlaceOrderScreenState extends State<PlaceOrderScreen> {
                           boxShadow: [
                             BoxShadow(
                                 blurRadius: 10,
-                                color: Colors.black.withOpacity(.15))
+                                color: Colors.black.withOpacity(.1))
                           ],
                           borderRadius: BorderRadius.circular(10)),
                       child: Column(
@@ -508,7 +508,7 @@ class _PlaceOrderScreenState extends State<PlaceOrderScreen> {
                                     boxShadow: [
                                       BoxShadow(
                                           blurRadius: 8,
-                                          color: Colors.black.withOpacity(.15))
+                                          color: Colors.black.withOpacity(.1))
                                     ],
                                     borderRadius: BorderRadius.circular(90)),
                                 child: Image.asset(
@@ -531,7 +531,7 @@ class _PlaceOrderScreenState extends State<PlaceOrderScreen> {
                         boxShadow: [
                           BoxShadow(
                               blurRadius: 10,
-                              color: Colors.black.withOpacity(.15))
+                              color: Colors.black.withOpacity(.1))
                         ],
                         borderRadius: BorderRadius.circular(10)),
                     child: Row(

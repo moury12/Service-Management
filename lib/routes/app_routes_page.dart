@@ -1,6 +1,7 @@
 import 'package:fix_ican/pages/auth/login_page.dart';
 import 'package:fix_ican/pages/home/all_services_offers.dart';
 import 'package:fix_ican/pages/home/home_page.dart';
+import 'package:fix_ican/pages/order/delivery_details_edit_page.dart';
 import 'package:fix_ican/pages/order/delivery_details_page.dart';
 import 'package:fix_ican/pages/order/payment_method_page.dart';
 import 'package:fix_ican/pages/order/place_order_page.dart';
@@ -20,7 +21,8 @@ import '../pages/home/main_home_page.dart';
 import '../pages/splash/splash_page.dart';
 
 class AppRoutes {
-  static routes() => [
+  static routes() =>
+      [
         GetPage(
           name: MainHomeScreen.routeName,
           page: () => const MainHomeScreen(),
@@ -29,10 +31,14 @@ class AppRoutes {
         //   name: '/',
         //   page: () => const SplashScreen(),
         // ),
+
         GetPage(
           name: LanguageSelectionScreen.routeName,
           page: () => const LanguageSelectionScreen(),
-        ),
+        ), GetPage(
+        name: DeliveryDetailsEditScreen.routeName,
+        page: () => const DeliveryDetailsEditScreen(),
+      ),
         GetPage(
           name: OnboardingScreen.routeName,
           page: () => const OnboardingScreen(),

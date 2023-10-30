@@ -1,5 +1,6 @@
 import 'package:fix_ican/constants/assets_constant.dart';
 import 'package:fix_ican/constants/color_constant.dart';
+import 'package:fix_ican/pages/order/delivery_details_edit_page.dart';
 import 'package:fix_ican/shared/custom_scaffold.dart';
 import 'package:fix_ican/shared/custom_sized_box.dart';
 import 'package:fix_ican/theme/theme_data.dart';
@@ -39,14 +40,16 @@ class _DeliveryDetailsScreenState extends State<DeliveryDetailsScreen> {
         crossAxisAlignment: CrossAxisAlignment.start,
         mainAxisAlignment: MainAxisAlignment.end,
         children: [
+          SizedBox(
+            height: 16,
+          ),
           Container(
             margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
             padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
             decoration: BoxDecoration(
                 color: Colors.white,
                 boxShadow: [
-                  BoxShadow(
-                      blurRadius: 10, color: Colors.black.withOpacity(.15))
+                  BoxShadow(blurRadius: 10, color: Colors.black.withOpacity(.1))
                 ],
                 borderRadius: BorderRadius.circular(10)),
             child: Column(
@@ -71,9 +74,13 @@ class _DeliveryDetailsScreenState extends State<DeliveryDetailsScreen> {
                       style: AppTheme.textStyleSemiBoldFadeBlack14,
                     ),
                     const Spacer(),
-                    Image.asset(
-                      AssetsConstant.edit_icon2,
-                      height: 18,
+                    GestureDetector(
+                      onTap: () =>
+                          Get.toNamed(DeliveryDetailsEditScreen.routeName),
+                      child: Image.asset(
+                        AssetsConstant.edit_icon2,
+                        height: 18,
+                      ),
                     )
                   ],
                 ),
