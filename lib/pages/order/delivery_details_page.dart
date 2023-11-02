@@ -5,6 +5,7 @@ import 'package:fix_ican/shared/custom_scaffold.dart';
 import 'package:fix_ican/shared/custom_sized_box.dart';
 import 'package:fix_ican/theme/theme_data.dart';
 import 'package:flutter/material.dart';
+import 'package:geolocator/geolocator.dart';
 import 'package:get/get.dart';
 import 'package:mh_core/widgets/button/custom_button.dart';
 import 'package:mh_core/widgets/textfield/custom_textfield.dart';
@@ -75,8 +76,9 @@ class _DeliveryDetailsScreenState extends State<DeliveryDetailsScreen> {
                     ),
                     const Spacer(),
                     GestureDetector(
-                      onTap: () =>
-                          Get.toNamed(DeliveryDetailsEditScreen.routeName),
+                      onTap: () {
+                        Get.toNamed(DeliveryDetailsEditScreen.routeName);
+                      },
                       child: Image.asset(
                         AssetsConstant.edit_icon2,
                         height: 18,
@@ -215,9 +217,9 @@ class _DeliveryDetailsScreenState extends State<DeliveryDetailsScreen> {
                         borderRadius: BorderRadius.circular(3)),
                     child: isChecked
                         ? Image.asset(
-                            AssetsConstant.check_icon,
-                            height: 12,
-                          )
+                      AssetsConstant.check_icon,
+                      height: 12,
+                    )
                         : SizedBox.shrink(),
                   ),
                 ),
@@ -240,5 +242,26 @@ class _DeliveryDetailsScreenState extends State<DeliveryDetailsScreen> {
         ],
       ),
     );
+  }
+
+  Future<Position> determinedPosition() async {
+    bool serviceEnabled;
+    LocationPermission permission;
+    serviceEnabled = await Geolocator.isLocationServiceEnabled();
+    if (!serviceEnabled) {
+      return Future.error('error');
+    }
+    permission = await Geolocator.checkPermission();
+    if (permission == LocationPermission.denied) {
+      permission = await Geolocator.requestPermission();
+      if (permission == LocationPermission.denied) {
+        return Future.error('Denied');
+      }
+    }
+    if (permission == LocationPermission.deniedForever) {
+      return Future.error('Forever Denied');
+    }
+    Position position = await Geolocator.getCurrentPosition();
+    return position;
   }
 }

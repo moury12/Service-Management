@@ -35,10 +35,11 @@ class AppRoutes {
         GetPage(
           name: LanguageSelectionScreen.routeName,
           page: () => const LanguageSelectionScreen(),
-        ), GetPage(
-        name: DeliveryDetailsEditScreen.routeName,
-        page: () => const DeliveryDetailsEditScreen(),
-      ),
+        ),
+        //   GetPage(
+        //   name: DeliveryDetailsEditScreen.routeName,
+        //   page: () => const DeliveryDetailsEditScreen(),
+        // ),
         GetPage(
           name: OnboardingScreen.routeName,
           page: () => const OnboardingScreen(),

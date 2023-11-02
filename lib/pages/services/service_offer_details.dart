@@ -22,7 +22,7 @@ class _ServiceOfferDetailsState extends State<ServiceOfferDetails> {
 
   @override
   Widget build(BuildContext context) {
-    String argument = Get.arguments as String;
+    String argument = Get.arguments ?? '_' as String;
     return CustomScaffold(
       leading: InkWell(
         onTap: () {

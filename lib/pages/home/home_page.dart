@@ -1,5 +1,6 @@
 import 'package:fix_ican/constants/assets_constant.dart';
 import 'package:fix_ican/constants/color_constant.dart';
+import 'package:fix_ican/pages/home/all_deals_page.dart';
 import 'package:fix_ican/pages/home/all_services_offers.dart';
 import 'package:fix_ican/pages/services/service_offer_details.dart';
 import 'package:fix_ican/shared/custom_sized_box.dart';
@@ -57,6 +58,7 @@ class _HomeScreenState extends State<HomeScreen>
   @override
   Widget build(BuildContext context) {
     return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Stack(
           clipBehavior: Clip.none,
@@ -238,7 +240,7 @@ class _HomeScreenState extends State<HomeScreen>
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               const Text(
-                'Popular Services',
+                'Recently Viewed',
                 style: AppTheme.textStyleSemiBoldBlack16,
               ),
               TextButton(
@@ -274,41 +276,109 @@ class _HomeScreenState extends State<HomeScreen>
         Padding(
           padding:
               const EdgeInsets.symmetric(horizontal: 16.0).copyWith(right: 6),
+          child: const Text(
+            'Fixican Deals',
+            style: AppTheme.textStyleSemiBoldBlack16,
+          ),
+        ),
+        SizedBox(
+          height: 100,
+          child: ListView.builder(
+            padding: EdgeInsets.symmetric(horizontal: 8),
+            scrollDirection: Axis.horizontal,
+            itemBuilder: (context, index) {
+              return Padding(
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 8.0, vertical: 12),
+                child: ClipOval(
+                  child: index == 3
+                      ? Container(
+                          height: 80,
+                          width: 80,
+                          decoration: BoxDecoration(
+                              shape: BoxShape.circle,
+                              border: Border.all(
+                                  color:
+                                      AppColors.kPrimaryColor.withOpacity(.5),
+                                  width: .3),
+                              color: AppColors.kPrimaryColor.withOpacity(.05)),
+                          child: InkWell(
+                            onTap: () => Get.to(AllDealsScreen()),
+                            child: Icon(
+                              Icons.arrow_forward,
+                              color: AppColors.kPrimaryColor,
+                            ),
+                          ),
+                        )
+                      : Image.asset(
+                          AssetsConstant.dummy_service,
+                          height: 80,
+                          width: 80,
+                          fit: BoxFit.cover,
+                        ),
+                ),
+              );
+            },
+            itemCount: 4,
+          ),
+        ),
+        Padding(
+          padding:
+              const EdgeInsets.symmetric(horizontal: 16.0).copyWith(right: 6),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               const Text(
-                'Offers',
+                'Popular Services',
                 style: AppTheme.textStyleSemiBoldBlack16,
               ),
-              TextButton(
-                  onPressed: () {
-                    Get.toNamed(AllServicesOffers.routeName,
-                        arguments: 'offer');
-                  },
-                  child: const Text(
-                    'See All',
-                    style: AppTheme.textStyleSemiBoldPrimary12,
-                  ))
+              // TextButton(
+              //     onPressed: () {
+              //       Get.toNamed(AllServicesOffers.routeName,
+              //           arguments: 'offer');
+              //     },
+              //     child: const Text(
+              //       'See All',
+              //       style: AppTheme.textStyleSemiBoldPrimary12,
+              //     ))
             ],
           ),
         ),
-        SizedBox(
-          height: MediaQuery.of(context).size.width * .5,
-          child: ListView.builder(
-            scrollDirection: Axis.horizontal,
-            itemCount: 3,
-            padding: EdgeInsets.symmetric(horizontal: 8),
-            itemBuilder: (context, index) {
-              return InkWell(
-                  onTap: () {
-                    Get.toNamed(ServiceOfferDetails.routeName,
-                        arguments: 'offer');
-                  },
-                  child: OfferAndServicesWidget());
-            },
-          ),
+        GridView.builder(
+          shrinkWrap: true,
+          primary: false,
+          padding: EdgeInsets.symmetric(vertical: 12, horizontal: 8),
+          gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+              crossAxisCount: 2,
+              mainAxisSpacing: 8,
+              crossAxisSpacing: 5,
+              childAspectRatio: .95),
+          itemCount: 5,
+          itemBuilder: (context, index) {
+            return GestureDetector(
+                onTap: () {
+                  Get.toNamed(ServiceOfferDetails.routeName,
+                      arguments: 'offer');
+                },
+                child: OfferAndServicesWidget());
+          },
         ),
+        // SizedBox(
+        //   height: MediaQuery.of(context).size.width * .5,
+        //   child: ListView.builder(
+        //     scrollDirection: Axis.horizontal,
+        //     itemCount: 3,
+        //     padding: EdgeInsets.symmetric(horizontal: 8),
+        //     itemBuilder: (context, index) {
+        //       return InkWell(
+        //           onTap: () {
+        //             Get.toNamed(ServiceOfferDetails.routeName,
+        //                 arguments: 'offer');
+        //           },
+        //           child: OfferAndServicesWidget());
+        //     },
+        //   ),
+        // ),
         SizedBox(
           height: 80,
         )
@@ -340,9 +410,47 @@ class OfferAndServicesWidget extends StatelessWidget {
         children: [
           ClipRRect(
             borderRadius: BorderRadius.vertical(top: Radius.circular(8)),
-            child: Image.asset(
-              AssetsConstant.dummy_service,
-              fit: BoxFit.cover,
+            child: Stack(
+              children: [
+                Image.asset(
+                  AssetsConstant.dummy_service,
+                  fit: BoxFit.cover,
+                ),
+                Positioned(
+                  bottom: 0,
+                  left: 0,
+                  right: 0,
+                  child: Container(
+                    decoration:
+                        BoxDecoration(color: Colors.white.withOpacity(.5)),
+                    padding: EdgeInsets.all(8),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Row(
+                          children: [
+                            Icon(
+                              Icons.camera_alt_outlined,
+                              size: 17,
+                              color: Colors.white,
+                            ),
+                            CustomSizedBox.space4W,
+                            Text(
+                              '12',
+                              style: AppTheme.textStyleSemiBoldWhite12,
+                            )
+                          ],
+                        ),
+                        Icon(
+                          Icons.favorite_outline_rounded,
+                          size: 17,
+                          color: Colors.white,
+                        ),
+                      ],
+                    ),
+                  ),
+                )
+              ],
             ),
           ),
           Padding(
