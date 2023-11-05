@@ -8,7 +8,6 @@ import 'package:fix_ican/theme/theme_data.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:mh_core/utils/constant.dart';
 import 'package:mh_core/utils/global.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -30,6 +29,14 @@ class _HomeScreenState extends State<HomeScreen>
 
   AnimationController? _controller;
   Animation<double>? _animation;
+
+  String selectedCategory = '';
+  List<Map<String, dynamic>> categoryList = [
+    {'category': 'All', 'isSelected': true},
+    {'category': 'Cleaning', 'isSelected': false},
+    {'category': 'Repairing', 'isSelected': false},
+    {'category': 'Painting', 'isSelected': false}
+  ];
 
   void _up() {
     setState(() {
@@ -234,8 +241,8 @@ class _HomeScreenState extends State<HomeScreen>
                   )),
         ),
         Padding(
-          padding:
-              const EdgeInsets.symmetric(horizontal: 16.0).copyWith(right: 6),
+          padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 12)
+              .copyWith(right: 6),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
@@ -243,15 +250,15 @@ class _HomeScreenState extends State<HomeScreen>
                 'Recently Viewed',
                 style: AppTheme.textStyleSemiBoldBlack16,
               ),
-              TextButton(
-                  onPressed: () {
-                    Get.toNamed(AllServicesOffers.routeName,
-                        arguments: 'service');
-                  },
-                  child: const Text(
-                    'See All',
-                    style: AppTheme.textStyleSemiBoldPrimary12,
-                  ))
+              // TextButton(
+              //     onPressed: () {
+              //       Get.toNamed(AllServicesOffers.routeName,
+              //           arguments: 'service');
+              //     },
+              //     child: const Text(
+              //       'See All',
+              //       style: AppTheme.textStyleSemiBoldPrimary12,
+              //     ))
             ],
           ),
         ),
@@ -276,9 +283,22 @@ class _HomeScreenState extends State<HomeScreen>
         Padding(
           padding:
               const EdgeInsets.symmetric(horizontal: 16.0).copyWith(right: 6),
-          child: const Text(
-            'Fixican Deals',
-            style: AppTheme.textStyleSemiBoldBlack16,
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              const Text(
+                'Fixican Deals',
+                style: AppTheme.textStyleSemiBoldBlack16,
+              ),
+              TextButton(
+                  onPressed: () {
+                    Get.to(AllDealsScreen());
+                  },
+                  child: const Text(
+                    'See All',
+                    style: AppTheme.textStyleSemiBoldPrimary12,
+                  ))
+            ],
           ),
         ),
         SizedBox(
@@ -291,40 +311,42 @@ class _HomeScreenState extends State<HomeScreen>
                 padding:
                     const EdgeInsets.symmetric(horizontal: 8.0, vertical: 12),
                 child: ClipOval(
-                  child: index == 3
-                      ? Container(
-                          height: 80,
-                          width: 80,
-                          decoration: BoxDecoration(
-                              shape: BoxShape.circle,
-                              border: Border.all(
-                                  color:
-                                      AppColors.kPrimaryColor.withOpacity(.5),
-                                  width: .3),
-                              color: AppColors.kPrimaryColor.withOpacity(.05)),
-                          child: InkWell(
-                            onTap: () => Get.to(AllDealsScreen()),
-                            child: Icon(
-                              Icons.arrow_forward,
-                              color: AppColors.kPrimaryColor,
-                            ),
-                          ),
-                        )
-                      : Image.asset(
-                          AssetsConstant.dummy_service,
-                          height: 80,
-                          width: 80,
-                          fit: BoxFit.cover,
-                        ),
+                  child:
+                      // index == 3
+                      //     ? Container(
+                      //         height: 80,
+                      //         width: 80,
+                      //         decoration: BoxDecoration(
+                      //             shape: BoxShape.circle,
+                      //             border: Border.all(
+                      //                 color:
+                      //                     AppColors.kPrimaryColor.withOpacity(.5),
+                      //                 width: .3),
+                      //             color: AppColors.kPrimaryColor.withOpacity(.05)),
+                      //         child: InkWell(
+                      //           onTap: () => Get.to(AllDealsScreen()),
+                      //           child: Icon(
+                      //             Icons.arrow_forward,
+                      //             color: AppColors.kPrimaryColor,
+                      //           ),
+                      //         ),
+                      //       )
+                      //     :
+                      Image.asset(
+                    AssetsConstant.dummy_service,
+                    height: 80,
+                    width: 80,
+                    fit: BoxFit.cover,
+                  ),
                 ),
               );
             },
-            itemCount: 4,
+            itemCount: 5,
           ),
         ),
         Padding(
-          padding:
-              const EdgeInsets.symmetric(horizontal: 16.0).copyWith(right: 6),
+          padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 12)
+              .copyWith(right: 6),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
@@ -344,45 +366,119 @@ class _HomeScreenState extends State<HomeScreen>
             ],
           ),
         ),
-        GridView.builder(
-          shrinkWrap: true,
-          primary: false,
-          padding: EdgeInsets.symmetric(vertical: 12, horizontal: 8),
-          gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-              crossAxisCount: 2,
-              mainAxisSpacing: 8,
-              crossAxisSpacing: 5,
-              childAspectRatio: .95),
-          itemCount: 5,
-          itemBuilder: (context, index) {
-            return GestureDetector(
-                onTap: () {
-                  Get.toNamed(ServiceOfferDetails.routeName,
-                      arguments: 'offer');
+        Container(
+          height: 40,
+          width: double.infinity,
+          child: ListView.builder(
+            scrollDirection: Axis.horizontal,
+            itemCount: categoryList.length,
+            itemBuilder: (context, index) {
+              var cat = categoryList[index];
+              return CategoryListWidget(
+                isSelected: cat['isSelected'],
+                categoryItem: cat['category'],
+                onToggleChimney: (category) {
+                  setState(() {
+                    cat['isSelected'] =
+                        category; // Update the list with the new value
+                  });
                 },
-                child: OfferAndServicesWidget());
-          },
+              );
+            },
+          ),
         ),
-        // SizedBox(
-        //   height: MediaQuery.of(context).size.width * .5,
-        //   child: ListView.builder(
-        //     scrollDirection: Axis.horizontal,
-        //     itemCount: 3,
-        //     padding: EdgeInsets.symmetric(horizontal: 8),
-        //     itemBuilder: (context, index) {
-        //       return InkWell(
-        //           onTap: () {
-        //             Get.toNamed(ServiceOfferDetails.routeName,
-        //                 arguments: 'offer');
-        //           },
-        //           child: OfferAndServicesWidget());
-        //     },
-        //   ),
-        // ),
+        CustomSizedBox.space8H,
+        SizedBox(
+          height: 350,
+          child: ListView.builder(
+            scrollDirection: Axis.horizontal,
+            itemCount: 3,
+            padding: EdgeInsets.symmetric(horizontal: 8),
+            itemBuilder: (context, index) {
+              return Column(
+                children: [
+                  ...List.generate(
+                      2,
+                      (index) => Row(
+                            children: [
+                              ...List.generate(
+                                  2,
+                                  (index) => GestureDetector(
+                                      onTap: () {
+                                        Get.toNamed(
+                                            ServiceOfferDetails.routeName,
+                                            arguments: 'offer');
+                                      },
+                                      child: OfferAndServicesWidget()))
+                            ],
+                          ))
+                ],
+              );
+
+              // GridView.builder(
+              //   shrinkWrap: true,
+              //   primary: false,
+              //   padding: EdgeInsets.symmetric(vertical: 12, horizontal: 8),
+              //   gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+              //       crossAxisCount: 2,
+              //       mainAxisSpacing: 8,
+              //       crossAxisSpacing: 5,
+              //       childAspectRatio: .95),
+              //   itemCount: 4,
+              //   itemBuilder: (context, index) {
+              //     return GestureDetector(
+              //         onTap: () {
+              //           Get.toNamed(ServiceOfferDetails.routeName,
+              //               arguments: 'offer');
+              //         },
+              //         child: OfferAndServicesWidget());
+              //   },
+              // );
+            },
+          ),
+        ),
         SizedBox(
           height: 80,
         )
       ],
+    );
+  }
+}
+
+class CategoryListWidget extends StatelessWidget {
+  const CategoryListWidget({
+    super.key,
+    this.isSelected = false,
+    required this.onToggleChimney,
+    required this.categoryItem,
+  });
+
+  final String categoryItem;
+  final bool isSelected;
+  final Function(bool) onToggleChimney;
+
+  @override
+  Widget build(BuildContext context) {
+    return InkWell(
+      onTap: () {
+        onToggleChimney(!isSelected);
+      },
+      child: Container(
+          margin: EdgeInsets.symmetric(horizontal: 6),
+          decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(30),
+              border: Border.all(width: 1, color: AppColors.kPrimaryColor),
+              color: isSelected ? AppColors.kPrimaryColor : Colors.transparent),
+          child: Padding(
+            padding: const EdgeInsets.symmetric(vertical: 8.0, horizontal: 21),
+            child: Text(
+              categoryItem,
+              style: GoogleFonts.adamina(
+                  color: isSelected ? Colors.white : AppColors.kPrimaryColor,
+                  fontSize: 14,
+                  fontWeight: FontWeight.w500),
+            ),
+          )),
     );
   }
 }

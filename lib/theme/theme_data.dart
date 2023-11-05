@@ -5,6 +5,9 @@ class AppTheme {
   final lightTheme = ThemeData(
     backgroundColor: AppColors.kBackgroundColor,
     primaryColor: AppColors.kPrimaryColor,
+    bottomNavigationBarTheme: BottomNavigationBarThemeData(
+      backgroundColor: Colors.transparent,
+    ),
     colorScheme:
         ColorScheme.fromSwatch().copyWith(secondary: AppColors.kAccentColor),
     floatingActionButtonTheme: const FloatingActionButtonThemeData(

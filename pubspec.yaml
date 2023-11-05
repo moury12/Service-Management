@@ -17,7 +17,7 @@ dependencies:
   cupertino_icons: ^1.0.2
   get: ^4.6.5
   fl_chart: ^0.63.0
-
+  url_launcher: ^6.0.13
   get_storage: ^2.0.3
 
   intl: ^0.18.0

@@ -5,7 +5,53 @@
     <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
     <uses-permission android:name="android.permission.ACCESS_BACKGROUND_LOCATION" />
 
+    <uses-permission android:name="android.permission.INTERNET" />
 
+    <queries>
+        <!-- If your app opens https URLs -->
+        <intent>
+            <action android:name="android.intent.action.VIEW" />
+            <data android:scheme="https" />
+        </intent>
+        <!-- If your app makes calls -->
+        <intent>
+            <action android:name="android.intent.action.DIAL" />
+            <data android:scheme="tel" />
+        </intent>
+        <!-- If your app emails -->
+        <intent>
+            <action android:name="android.intent.action.SEND" />
+            <data android:mimeType="*/*" />
+        </intent>
+        <intent>
+            <action android:name="android.intent.action.VIEW" />
+            <data android:scheme="tel" />
+        </intent>
+    </queries>
+    <!--    <queries>-->
+    <!--        &lt;!&ndash; If your app checks for SMS support &ndash;&gt;-->
+    <!--        <intent>-->
+    <!--            <action android:name="android.intent.action.VIEW" />-->
+    <!--            <data android:scheme="sms" />-->
+    <!--        </intent>-->
+    <!--        &lt;!&ndash; If your app checks for call support &ndash;&gt;-->
+    <!--        <intent>-->
+    <!--            <action android:name="android.intent.action.VIEW" />-->
+    <!--            <data android:scheme="tel" />-->
+    <!--        </intent>-->
+    <!--        &lt;!&ndash; If your application checks for inAppBrowserView launch mode support &ndash;&gt;-->
+    <!--        <intent>-->
+    <!--            <action android:name="android.support.customtabs.action.CustomTabsService" />-->
+    <!--        </intent>-->
+    <!--        &lt;!&ndash;#enddocregion android-queries&ndash;&gt;-->
+    <!--        &lt;!&ndash; The "https" scheme is only required for integration tests of this package.-->
+    <!--             It shouldn't be needed in most actual apps, or show up in the README! &ndash;&gt;-->
+    <!--        <intent>-->
+    <!--            <action android:name="android.intent.action.VIEW" />-->
+    <!--            <data android:scheme="https" />-->
+    <!--        </intent>-->
+    <!--        &lt;!&ndash;#docregion android-queries&ndash;&gt;-->
+    <!--    </queries>-->
     <application
         android:label="fix_ican"
         android:name="${applicationName}"
@@ -38,5 +84,7 @@
         <meta-data
             android:name="com.google.android.geo.API_KEY"
             android:value="AIzaSyAv0H2CtxyD8Uk0_wcC21HwKP4RDoi0-mg" />
+        <!-- Provide required visibility configuration for API level 30 and above -->
+
     </application>
 </manifest>
