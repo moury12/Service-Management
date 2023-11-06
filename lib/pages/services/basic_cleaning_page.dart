@@ -1146,7 +1146,7 @@ class CountWidget extends StatefulWidget {
 }
 
 class _CountWidgetState extends State<CountWidget> {
-  int value = 5;
+  int value = 0;
   OverlayEntry? _overlayEntry;
   bool hasIncremented = false; // Track if increment has occurred
   bool hasDecremented = false;
@@ -1212,6 +1212,8 @@ class _CountWidgetState extends State<CountWidget> {
                             bottom: 5,
                             child: Image.asset(
                               AssetsConstant.minimize_icon,
+                              color:
+                                  value >= 1 ? AppColors.kPrimaryColor : null,
                               height: 15,
                               width: 15,
                             ),

@@ -17,6 +17,7 @@ class AssetsConstant {
   static const String splash_image_full = "assets/images/splash_image_full.png";
   static const String visa_card = "assets/images/visa_card.png";
   static const String order_stack = "assets/images/order_stack.png";
+  static const String banner = "assets/images/banner.png";
   static const String service_item_shade =
       "assets/images/service_item_shade.png";
 

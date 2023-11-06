@@ -1,5 +1,6 @@
 import 'package:fix_ican/constants/color_constant.dart';
 import 'package:fix_ican/pages/home/home_page.dart';
+import 'package:fix_ican/pages/order/review_page.dart';
 import 'package:fix_ican/pages/services/service_offer_details.dart';
 import 'package:fix_ican/shared/custom_sized_box.dart';
 import 'package:fix_ican/shared/enums.dart';
@@ -486,59 +487,26 @@ class _DealsDetailsScreenState extends State<DealsDetailsScreen> {
                 ),
               )
                   : dealType == deals.More
-                  ? SizedBox(
-                height: 520,
-                child: ListView.builder(
-                  scrollDirection: Axis.horizontal,
-                  itemCount: 3,
-                  padding: EdgeInsets.symmetric(horizontal: 8),
-                  itemBuilder: (context, index) {
-                    return Column(
-                      children: [
-                        ...List.generate(
-                            3,
-                                (index) =>
-                                Row(
-                                  children: [
-                                    ...List.generate(
-                                        2,
-                                            (index) =>
-                                            GestureDetector(
-                                                onTap: () {
-                                                  Get.toNamed(
-                                                      ServiceOfferDetails
-                                                          .routeName,
-                                                      arguments:
-                                                      'service');
-                                                },
-                                                child:
-                                                OfferAndServicesWidget()))
-                                  ],
-                                ))
-                      ],
-                    );
-
-                    // GridView.builder(
-                    //   shrinkWrap: true,
-                    //   primary: false,
-                    //   padding: EdgeInsets.symmetric(vertical: 12, horizontal: 8),
-                    //   gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                    //       crossAxisCount: 2,
-                    //       mainAxisSpacing: 8,
-                    //       crossAxisSpacing: 5,
-                    //       childAspectRatio: .95),
-                    //   itemCount: 4,
-                    //   itemBuilder: (context, index) {
-                    //     return GestureDetector(
-                    //         onTap: () {
-                    //           Get.toNamed(ServiceOfferDetails.routeName,
-                    //               arguments: 'offer');
-                    //         },
-                    //         child: OfferAndServicesWidget());
-                    //   },
-                    // );
-                  },
-                ),
+                  ? GridView.builder(
+                shrinkWrap: true,
+                primary: false,
+                padding:
+                EdgeInsets.symmetric(vertical: 12, horizontal: 8),
+                gridDelegate:
+                const SliverGridDelegateWithFixedCrossAxisCount(
+                    crossAxisCount: 3,
+                    mainAxisSpacing: 8,
+                    crossAxisSpacing: 5,
+                    childAspectRatio: .95),
+                itemCount: 10,
+                itemBuilder: (context, index) {
+                  return GestureDetector(
+                      onTap: () {
+                        Get.toNamed(ServiceOfferDetails.routeName,
+                            arguments: 'service');
+                      },
+                      child: OfferAndServicesWidget());
+                },
               )
                   : Padding(
                 padding: const EdgeInsets.symmetric(
@@ -615,7 +583,6 @@ class _DealsDetailsScreenState extends State<DealsDetailsScreen> {
                       horizontalTitleGap: 4,
                       contentPadding: EdgeInsets.zero,
                       minVerticalPadding: 0,
-
                       leading: ClipOval(
                         child: Image.network(
                           'https://www.gravatar.com/avatar/2c7d99fe281ecd3bcd65ab915bac6dd5?s=250',
@@ -665,60 +632,7 @@ class _DealsDetailsScreenState extends State<DealsDetailsScreen> {
               )
             ]),
           ),
-          // SliverFillRemaining(
-          //   hasScrollBody: false,
-          //   child: Align(
-          //     alignment: Alignment.bottomCenter,
-          //     child: Container(
-          //       width: double.infinity,
-          //       padding: const EdgeInsets.all(16),
-          //       decoration: BoxDecoration(
-          //           color: Colors.white,
-          //           borderRadius:
-          //               const BorderRadius.vertical(top: Radius.circular(22)),
-          //           boxShadow: [
-          //             BoxShadow(
-          //                 blurRadius: 10, color: Colors.black.withOpacity(.1))
-          //           ]),
-          //       child: Row(
-          //         crossAxisAlignment: CrossAxisAlignment.start,
-          //         mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          //         children: [
-          //           Text.rich(
-          //             TextSpan(
-          //               text: 'Total Price',
-          //               style: TextStyle(
-          //                 color: Colors.grey,
-          //                 fontSize: 12,
-          //                 fontWeight: FontWeight.w500,
-          //               ),
-          //               children: <TextSpan>[
-          //                 TextSpan(
-          //                   text: '\nTk. 2988',
-          //                   style: TextStyle(
-          //                     color: AppColors.kPrimaryColor,
-          //                     fontSize: 18,
-          //                     fontWeight: FontWeight.w600,
-          //                   ),
-          //                 ),
-          //               ],
-          //             ),
-          //           ),
-          //           CustomSizedBox.space12W,
-          //           Expanded(
-          //             child: CustomButton(
-          //               label: 'Book Now',
-          //               onPressed: () {},
-          //               marginHorizontal: 0,
-          //               marginVertical: 0,
-          //               borderRadiusAll: 22,
-          //             ),
-          //           )
-          //         ],
-          //       ),
-          //     ),
-          //   ),
-          // )
+
         ],
       ),
       bottomNavigationBar: dealType == deals.About
@@ -853,31 +767,33 @@ class _DealsDetailsScreenState extends State<DealsDetailsScreen> {
           crossAxisAlignment: CrossAxisAlignment.start,
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            Text.rich(
-              TextSpan(
-                text: 'Total Price',
-                style: TextStyle(
-                  color: Colors.grey,
-                  fontSize: 12,
-                  fontWeight: FontWeight.w500,
-                ),
-                children: <TextSpan>[
-                  TextSpan(
-                    text: '\nTk. 2988',
-                    style: TextStyle(
-                      color: AppColors.kPrimaryColor,
-                      fontSize: 18,
-                      fontWeight: FontWeight.w600,
-                    ),
-                  ),
-                ],
-              ),
-            ),
-            CustomSizedBox.space12W,
+            // Text.rich(
+            //   TextSpan(
+            //     text: 'Total Price',
+            //     style: TextStyle(
+            //       color: Colors.grey,
+            //       fontSize: 12,
+            //       fontWeight: FontWeight.w500,
+            //     ),
+            //     children: <TextSpan>[
+            //       TextSpan(
+            //         text: '\nTk. 2988',
+            //         style: TextStyle(
+            //           color: AppColors.kPrimaryColor,
+            //           fontSize: 18,
+            //           fontWeight: FontWeight.w600,
+            //         ),
+            //       ),
+            //     ],
+            //   ),
+            // ),
+            // CustomSizedBox.space12W,
             Expanded(
               child: CustomButton(
-                label: 'Book Now',
-                onPressed: () {},
+                label: 'Write Review',
+                onPressed: () {
+                  Get.to(ReviewScreen());
+                },
                 marginHorizontal: 0,
                 marginVertical: 0,
                 borderRadiusAll: 22,

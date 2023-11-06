@@ -357,6 +357,84 @@ class _HomeScreenState extends State<HomeScreen>
               // TextButton(
               //     onPressed: () {
               //       Get.toNamed(AllServicesOffers.routeName,
+              //           arguments: 'service');
+              //     },
+              //     child: const Text(
+              //       'See All',
+              //       style: AppTheme.textStyleSemiBoldPrimary12,
+              //     ))
+            ],
+          ),
+        ),
+        SizedBox(
+          height: MediaQuery.of(context).size.width / 2,
+          child: ListView.builder(
+            scrollDirection: Axis.horizontal,
+            itemCount: 3,
+            padding: EdgeInsets.symmetric(horizontal: 8),
+            itemBuilder: (context, index) {
+              currentIndex = index;
+
+              return InkWell(
+                  onTap: () {
+                    Get.toNamed(ServiceOfferDetails.routeName,
+                        arguments: 'offer');
+                  },
+                  child: OfferAndServicesWidget());
+            },
+          ),
+        ),
+        SizedBox(
+          height: 130,
+          child: ListView.builder(
+            scrollDirection: Axis.horizontal,
+            itemCount: 3,
+            padding: const EdgeInsets.symmetric(horizontal: 8),
+            itemBuilder: (context, index) {
+              currentIndex = index;
+
+              return Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                child: Image.asset(
+                  AssetsConstant.banner,
+                  errorBuilder: (context, error, stackTrace) => Icon(
+                    Icons.image,
+                  ),
+                  height: 125,
+                ),
+              );
+            },
+          ),
+        ),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: List.generate(
+              3,
+              (index) => Container(
+                    margin: const EdgeInsets.all(4),
+                    width: currentIndex == index ? 20 : 10,
+                    decoration: BoxDecoration(
+                        border: Border.all(
+                            width: 3,
+                            color: currentIndex == index
+                                ? AppColors.kPrimaryColor
+                                : AppColors.kPrimaryColor.withOpacity(.5)),
+                        borderRadius: BorderRadius.circular(20)),
+                  )),
+        ),
+        Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 12)
+              .copyWith(right: 6),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              const Text(
+                'Services',
+                style: AppTheme.textStyleSemiBoldBlack16,
+              ),
+              // TextButton(
+              //     onPressed: () {
+              //       Get.toNamed(AllServicesOffers.routeName,
               //           arguments: 'offer');
               //     },
               //     child: const Text(
@@ -367,7 +445,7 @@ class _HomeScreenState extends State<HomeScreen>
           ),
         ),
         Container(
-          height: 40,
+          height: 35,
           width: double.infinity,
           child: ListView.builder(
             scrollDirection: Axis.horizontal,
@@ -388,6 +466,68 @@ class _HomeScreenState extends State<HomeScreen>
           ),
         ),
         CustomSizedBox.space8H,
+        Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 4),
+          child: Text(
+            'Cleaning',
+            style: AppTheme.textStyleSemiBoldBlack16,
+          ),
+        ),
+        SizedBox(
+          height: 350,
+          child: ListView.builder(
+            scrollDirection: Axis.horizontal,
+            itemCount: 3,
+            padding: EdgeInsets.symmetric(horizontal: 8),
+            itemBuilder: (context, index) {
+              return Column(
+                children: [
+                  ...List.generate(
+                      2,
+                      (index) => Row(
+                            children: [
+                              ...List.generate(
+                                  2,
+                                  (index) => GestureDetector(
+                                      onTap: () {
+                                        Get.toNamed(
+                                            ServiceOfferDetails.routeName,
+                                            arguments: 'offer');
+                                      },
+                                      child: OfferAndServicesWidget()))
+                            ],
+                          ))
+                ],
+              );
+
+              // GridView.builder(
+              //   shrinkWrap: true,
+              //   primary: false,
+              //   padding: EdgeInsets.symmetric(vertical: 12, horizontal: 8),
+              //   gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+              //       crossAxisCount: 2,
+              //       mainAxisSpacing: 8,
+              //       crossAxisSpacing: 5,
+              //       childAspectRatio: .95),
+              //   itemCount: 4,
+              //   itemBuilder: (context, index) {
+              //     return GestureDetector(
+              //         onTap: () {
+              //           Get.toNamed(ServiceOfferDetails.routeName,
+              //               arguments: 'offer');
+              //         },
+              //         child: OfferAndServicesWidget());
+              //   },
+              // );
+            },
+          ),
+        ),
+        Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 4),
+            child: Text(
+              'Cleaning',
+              style: AppTheme.textStyleSemiBoldBlack16,
+            )),
         SizedBox(
           height: 350,
           child: ListView.builder(
@@ -464,16 +604,17 @@ class CategoryListWidget extends StatelessWidget {
         onToggleChimney(!isSelected);
       },
       child: Container(
+          alignment: Alignment.center,
           margin: EdgeInsets.symmetric(horizontal: 6),
           decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(30),
               border: Border.all(width: 1, color: AppColors.kPrimaryColor),
               color: isSelected ? AppColors.kPrimaryColor : Colors.transparent),
           child: Padding(
-            padding: const EdgeInsets.symmetric(vertical: 8.0, horizontal: 21),
+            padding: const EdgeInsets.symmetric(vertical: 4.0, horizontal: 21),
             child: Text(
               categoryItem,
-              style: GoogleFonts.adamina(
+              style: TextStyle(
                   color: isSelected ? Colors.white : AppColors.kPrimaryColor,
                   fontSize: 14,
                   fontWeight: FontWeight.w500),
@@ -491,7 +632,6 @@ class OfferAndServicesWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: MediaQuery.of(context).size.width * .4,
       margin: EdgeInsets.symmetric(
         horizontal: 8,
         vertical: 8,
@@ -511,6 +651,7 @@ class OfferAndServicesWidget extends StatelessWidget {
                 Image.asset(
                   AssetsConstant.dummy_service,
                   fit: BoxFit.cover,
+                  height: 120,
                 ),
                 Positioned(
                   bottom: 0,
