@@ -627,7 +627,14 @@ class CategoryListWidget extends StatelessWidget {
 class OfferAndServicesWidget extends StatelessWidget {
   const OfferAndServicesWidget({
     super.key,
+    this.height,
+    this.iconVisible = true,
+    this.subtitle,
   });
+
+  final double? height;
+  final bool iconVisible;
+  final Widget? subtitle;
 
   @override
   Widget build(BuildContext context) {
@@ -651,52 +658,55 @@ class OfferAndServicesWidget extends StatelessWidget {
                 Image.asset(
                   AssetsConstant.dummy_service,
                   fit: BoxFit.cover,
-                  height: 120,
+                  height: height ?? 120,
                 ),
-                Positioned(
-                  bottom: 0,
-                  left: 0,
-                  right: 0,
-                  child: Container(
-                    decoration:
-                        BoxDecoration(color: Colors.white.withOpacity(.5)),
-                    padding: EdgeInsets.all(8),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Row(
-                          children: [
-                            Icon(
-                              Icons.camera_alt_outlined,
-                              size: 17,
-                              color: Colors.white,
-                            ),
-                            CustomSizedBox.space4W,
-                            Text(
-                              '12',
-                              style: AppTheme.textStyleSemiBoldWhite12,
-                            )
-                          ],
+                iconVisible
+                    ? Positioned(
+                        bottom: 0,
+                        left: 0,
+                        right: 0,
+                        child: Container(
+                          decoration: BoxDecoration(
+                              color: Colors.white.withOpacity(.5)),
+                          padding: EdgeInsets.all(8),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Row(
+                                children: [
+                                  Icon(
+                                    Icons.camera_alt_outlined,
+                                    size: 17,
+                                    color: Colors.white,
+                                  ),
+                                  CustomSizedBox.space4W,
+                                  Text(
+                                    '12',
+                                    style: AppTheme.textStyleSemiBoldWhite12,
+                                  )
+                                ],
+                              ),
+                              Icon(
+                                Icons.favorite_outline_rounded,
+                                size: 17,
+                                color: Colors.white,
+                              ),
+                            ],
+                          ),
                         ),
-                        Icon(
-                          Icons.favorite_outline_rounded,
-                          size: 17,
-                          color: Colors.white,
-                        ),
-                      ],
-                    ),
-                  ),
-                )
+                      )
+                    : SizedBox.shrink()
               ],
             ),
           ),
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Text(
-              'Basic Cleaning Service',
-              style: AppTheme.textStyleSemiBoldBlack16,
-            ),
-          )
+          subtitle ??
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Text(
+                  'Basic Cleaning Service',
+                  style: AppTheme.textStyleSemiBoldBlack16,
+                ),
+              )
         ],
       ),
     );

@@ -53,7 +53,7 @@ class _DealsDetailsScreenState extends State<DealsDetailsScreen> {
             leading: Container(
               margin: EdgeInsets.all(8),
               decoration:
-              BoxDecoration(shape: BoxShape.circle, color: Colors.white),
+                  BoxDecoration(shape: BoxShape.circle, color: Colors.white),
               child: InkWell(
                 onTap: () {
                   Get.back();
@@ -69,7 +69,7 @@ class _DealsDetailsScreenState extends State<DealsDetailsScreen> {
             actions: [
               Container(
                 decoration:
-                BoxDecoration(shape: BoxShape.circle, color: Colors.white),
+                    BoxDecoration(shape: BoxShape.circle, color: Colors.white),
                 child: InkWell(
                   onTap: () {},
                   borderRadius: BorderRadius.circular(90),
@@ -86,7 +86,7 @@ class _DealsDetailsScreenState extends State<DealsDetailsScreen> {
               Container(
                 margin: EdgeInsets.all(8),
                 decoration:
-                BoxDecoration(shape: BoxShape.circle, color: Colors.white),
+                    BoxDecoration(shape: BoxShape.circle, color: Colors.white),
                 child: InkWell(
                   onTap: () {},
                   borderRadius: BorderRadius.circular(90),
@@ -105,133 +105,131 @@ class _DealsDetailsScreenState extends State<DealsDetailsScreen> {
             pinned: true,
             flexibleSpace: FlexibleSpaceBar(
                 background: Stack(
-                  alignment: Alignment.center,
-                  fit: StackFit.expand,
-                  children: [
-                    Positioned.fill(
-                      child: Container(
-                        child: Image.network(
-                          'https://images.pexels.com/photos/518244/pexels-photo-518244.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
-                          fit: BoxFit.cover,
-                          height: 200,
-                        ),
-                      ),
+              alignment: Alignment.center,
+              fit: StackFit.expand,
+              children: [
+                Positioned.fill(
+                  child: Container(
+                    child: Image.network(
+                      'https://images.pexels.com/photos/518244/pexels-photo-518244.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
+                      fit: BoxFit.cover,
+                      height: 200,
                     ),
-                    Positioned(
-                      top: 115,
-                      child: Container(
-                        decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(12),
-                            color: Colors.grey.withOpacity(.8)),
-                        child: Row(
-                          children: [
-                            Container(
-                              margin: EdgeInsets.all(8),
-                              decoration: BoxDecoration(
-                                  shape: BoxShape.circle, color: Colors.white),
-                              child: InkWell(
-                                onTap: () {},
-                                borderRadius: BorderRadius.circular(90),
-                                child: Padding(
-                                  padding: const EdgeInsets.all(4.0),
-                                  child: Icon(
-                                    Icons.play_arrow_rounded,
-                                    size: 20,
-                                    color: Colors.grey,
-                                  ),
-                                ),
+                  ),
+                ),
+                Positioned(
+                  top: 115,
+                  child: Container(
+                    decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(12),
+                        color: Colors.grey.withOpacity(.8)),
+                    child: Row(
+                      children: [
+                        Container(
+                          margin: EdgeInsets.all(8),
+                          decoration: BoxDecoration(
+                              shape: BoxShape.circle, color: Colors.white),
+                          child: InkWell(
+                            onTap: () {},
+                            borderRadius: BorderRadius.circular(90),
+                            child: Padding(
+                              padding: const EdgeInsets.all(4.0),
+                              child: Icon(
+                                Icons.play_arrow_rounded,
+                                size: 20,
+                                color: Colors.grey,
                               ),
                             ),
-                            Text(
-                              'Demo Video',
-                              style: AppTheme.textStyleSemiBoldWhite12,
-                            ),
-                            CustomSizedBox.space8W
-                          ],
+                          ),
                         ),
-                      ),
+                        Text(
+                          'Demo Video',
+                          style: AppTheme.textStyleSemiBoldWhite12,
+                        ),
+                        CustomSizedBox.space8W
+                      ],
                     ),
-                    Positioned(
-                        bottom: 30,
-                        child: Container(
-                          padding: EdgeInsets.symmetric(
-                              horizontal: 3, vertical: 5),
-                          decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(8),
-                              color: Colors.white),
-                          child: Wrap(
-                            children: [
-                              ...List.generate(
-                                  imageUrls.length > 6 ? 6 : imageUrls.length,
-                                      (index) =>
-                                      Padding(
-                                        padding: const EdgeInsets.symmetric(
-                                            horizontal: 3),
-                                        child: Stack(
-                                          children: [
-                                            GestureDetector(
-                                              child: ClipRRect(
-                                                borderRadius:
+                  ),
+                ),
+                Positioned(
+                    bottom: 30,
+                    child: Container(
+                      padding: EdgeInsets.symmetric(horizontal: 3, vertical: 5),
+                      decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(8),
+                          color: Colors.white),
+                      child: Wrap(
+                        children: [
+                          ...List.generate(
+                              imageUrls.length > 6 ? 6 : imageUrls.length,
+                              (index) => Padding(
+                                    padding: const EdgeInsets.symmetric(
+                                        horizontal: 3),
+                                    child: Stack(
+                                      children: [
+                                        GestureDetector(
+                                          child: ClipRRect(
+                                            borderRadius:
                                                 BorderRadius.circular(6),
-                                                child: Image.network(
-                                                  imageUrls[index],
-                                                  fit: BoxFit.cover,
-                                                  height: 50,
-                                                  width: 50,
-                                                ),
-                                              ),
-                                              onTap: () =>
-                                                  Get.to(FullScreenImageScreen(
-                                                    imageUrl: imageUrls[index],
-                                                  )),
+                                            child: Image.network(
+                                              imageUrls[index],
+                                              fit: BoxFit.cover,
+                                              height: 50,
+                                              width: 50,
                                             ),
-                                            index == 5
-                                                ? Positioned(
-                                              left: 0,
-                                              right: 0,
-                                              top: 0,
-                                              bottom: 0,
-                                              child: GestureDetector(
-                                                onTap: () =>
-                                                    Get.to(ImageGalleryScreen(
-                                                      imageUrls: imageUrls,
-                                                    )),
-                                                child: Container(
-                                                  height: 50,
-                                                  width: 50,
-                                                  alignment: Alignment.center,
-                                                  decoration: BoxDecoration(
-                                                      color: Colors.black12
-                                                          .withOpacity(.5),
-                                                      borderRadius:
-                                                      BorderRadius
-                                                          .circular(6)),
-                                                  child: Text(
-                                                    '+${imageUrls.length - 5}',
-                                                    textAlign:
-                                                    TextAlign.center,
-                                                    style: AppTheme
-                                                        .textStyleMediumWhite12,
+                                          ),
+                                          onTap: () =>
+                                              Get.to(FullScreenImageScreen(
+                                            imageUrl: imageUrls[index],
+                                          )),
+                                        ),
+                                        index == 5
+                                            ? Positioned(
+                                                left: 0,
+                                                right: 0,
+                                                top: 0,
+                                                bottom: 0,
+                                                child: GestureDetector(
+                                                  onTap: () =>
+                                                      Get.to(ImageGalleryScreen(
+                                                    imageUrls: imageUrls,
+                                                  )),
+                                                  child: Container(
+                                                    height: 50,
+                                                    width: 50,
+                                                    alignment: Alignment.center,
+                                                    decoration: BoxDecoration(
+                                                        color: Colors.black12
+                                                            .withOpacity(.5),
+                                                        borderRadius:
+                                                            BorderRadius
+                                                                .circular(6)),
+                                                    child: Text(
+                                                      '+${imageUrls.length - 5}',
+                                                      textAlign:
+                                                          TextAlign.center,
+                                                      style: AppTheme
+                                                          .textStyleMediumWhite12,
+                                                    ),
                                                   ),
                                                 ),
-                                              ),
-                                            )
-                                                : SizedBox.shrink()
-                                          ],
-                                        ),
-                                      ))
-                            ],
-                          ),
-                        ))
-                  ],
-                )),
+                                              )
+                                            : SizedBox.shrink()
+                                      ],
+                                    ),
+                                  ))
+                        ],
+                      ),
+                    ))
+              ],
+            )),
           ),
           SliverList(
             delegate: SliverChildListDelegate([
               CustomSizedBox.space12H,
               Padding(
                 padding:
-                const EdgeInsets.symmetric(horizontal: 16.0, vertical: 12),
+                    const EdgeInsets.symmetric(horizontal: 16.0, vertical: 12),
                 child: Row(
                   children: [
                     Container(
@@ -312,10 +310,7 @@ class _DealsDetailsScreenState extends State<DealsDetailsScreen> {
                           color: AppColors.kPrimaryColor,
                           height: dealType == deals.About ? 3 : 0,
                           width: dealType == deals.About
-                              ? MediaQuery
-                              .of(context)
-                              .size
-                              .width / 4.5
+                              ? MediaQuery.of(context).size.width / 4.5
                               : 0,
                         )
                       ],
@@ -349,10 +344,7 @@ class _DealsDetailsScreenState extends State<DealsDetailsScreen> {
                           color: AppColors.kPrimaryColor,
                           height: dealType == deals.More ? 3 : 0,
                           width: dealType == deals.More
-                              ? MediaQuery
-                              .of(context)
-                              .size
-                              .width / 3.5
+                              ? MediaQuery.of(context).size.width / 3.5
                               : 0,
                         )
                       ],
@@ -382,10 +374,7 @@ class _DealsDetailsScreenState extends State<DealsDetailsScreen> {
                           color: AppColors.kPrimaryColor,
                           height: dealType == deals.Review ? 3 : 0,
                           width: dealType == deals.Review
-                              ? MediaQuery
-                              .of(context)
-                              .size
-                              .width / 4.5
+                              ? MediaQuery.of(context).size.width / 4.5
                               : 0,
                         )
                       ],
@@ -401,407 +390,419 @@ class _DealsDetailsScreenState extends State<DealsDetailsScreen> {
               ),
               dealType == deals.About
                   ? Padding(
-                padding: const EdgeInsets.symmetric(
-                    horizontal: 16.0, vertical: 12),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      'About Service',
-                      style: AppTheme.textStyleSemiBoldBlack14,
-                    ),
-                    CustomSizedBox.space12H,
-                    Text(
-                      'Entertainers called ventriloquists can make dummies appear to talk. The automobile industry uses dummies in cars to study how safe cars are during a crash.',
-                      style: TextStyle(
-                          fontWeight: FontWeight.w500,
-                          color: Colors.grey,
-                          fontSize: 12),
-                    ),
-                    CustomSizedBox.space12H,
-                    Text(
-                      'Service Provider',
-                      style: AppTheme.textStyleSemiBoldBlack14,
-                    ),
-                    ListTile(
-                      contentPadding: EdgeInsets.zero,
-                      minVerticalPadding: 12,
-                      leading: ClipOval(
-                        child: Image.network(
-                            'https://www.gravatar.com/avatar/2c7d99fe281ecd3bcd65ab915bac6dd5?s=250'),
-                      ),
-                      title: Text(
-                        'jenny willson',
-                        style: AppTheme.textStyleSemiBoldBlack16,
-                      ),
-                      subtitle: Text(
-                        'Service Provider',
-                        style: AppTheme.textStyleMediumFadeBlack12,
-                      ),
-                      trailing: Row(
-                        mainAxisSize: MainAxisSize.min,
-                        children: [
-                          Container(
-                            //margin: EdgeInsets.all(8),
-                            padding: EdgeInsets.all(8),
-                            decoration: BoxDecoration(
-                                shape: BoxShape.circle,
-                                color: AppColors.kAccentColor
-                                    .withOpacity(.7)),
-                            child: InkWell(
-                              onTap: () {
-                                Get.back();
-                              },
-                              borderRadius: BorderRadius.circular(90),
-                              child: Icon(
-                                Icons.textsms_rounded,
-                                size: 20,
-                                color: AppColors.kPrimaryColor,
-                              ),
-                            ),
-                          ),
-                          CustomSizedBox.space8W,
-                          Container(
-                            //margin: EdgeInsets.all(8),
-                            padding: EdgeInsets.all(8),
-                            decoration: BoxDecoration(
-                                shape: BoxShape.circle,
-                                color: AppColors.kAccentColor
-                                    .withOpacity(.7)),
-                            child: InkWell(
-                              onTap: () {
-                                Get.back();
-                              },
-                              borderRadius: BorderRadius.circular(90),
-                              child: Icon(
-                                Icons.call,
-                                size: 20,
-                                color: AppColors.kPrimaryColor,
-                              ),
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                  ],
-                ),
-              )
-                  : dealType == deals.More
-                  ? GridView.builder(
-                shrinkWrap: true,
-                primary: false,
-                padding:
-                EdgeInsets.symmetric(vertical: 12, horizontal: 8),
-                gridDelegate:
-                const SliverGridDelegateWithFixedCrossAxisCount(
-                    crossAxisCount: 3,
-                    mainAxisSpacing: 8,
-                    crossAxisSpacing: 5,
-                    childAspectRatio: .95),
-                itemCount: 10,
-                itemBuilder: (context, index) {
-                  return GestureDetector(
-                      onTap: () {
-                        Get.toNamed(ServiceOfferDetails.routeName,
-                            arguments: 'service');
-                      },
-                      child: OfferAndServicesWidget());
-                },
-              )
-                  : Padding(
-                padding: const EdgeInsets.symmetric(
-                    vertical: 12.0, horizontal: 16),
-                child: Column(
-                  children: [
-                    Row(
-                      children: [
-                        Text(
-                          '4.0',
-                          style: AppTheme.textStyleSemiBoldBlack20,
-                        ),
-                        CustomSizedBox.space8W,
-                        ...List.generate(
-                            5,
-                                (index) =>
-                                Icon(
-                                  Icons.star_rate_rounded,
-                                  color: index == 4
-                                      ? Colors.grey.shade300
-                                      : Colors.orangeAccent,
-                                )),
-                        CustomSizedBox.space4W,
-                        Text(
-                          '23 reviews',
-                          style: TextStyle(
-                              fontWeight: FontWeight.w500,
-                              color: Colors.grey.shade400,
-                              fontSize: 12),
-                        )
-                      ],
-                    ),
-                    CustomSizedBox.space12H,
-                    ...List.generate(
-                        3,
-                            (index) =>
-                            Row(
-                              children: [
-                                Container(
-                                  child: Text(
-                                    'Cozy Place (12)',
-                                    style: TextStyle(
-                                        fontWeight: FontWeight.w500,
-                                        color: Colors.grey,
-                                        fontSize: 12),
-                                  ),
-                                  padding: EdgeInsets.all(12),
-                                  margin: EdgeInsets.symmetric(
-                                      horizontal: 4, vertical: 4),
-                                  decoration: BoxDecoration(
-                                      color: Colors.grey.shade100,
-                                      borderRadius:
-                                      BorderRadius.circular(30)),
-                                ),
-                                Container(
-                                  child: Text(
-                                    'Not very crowded (18)',
-                                    style: TextStyle(
-                                        fontWeight: FontWeight.w500,
-                                        color: Colors.grey,
-                                        fontSize: 12),
-                                  ),
-                                  padding: EdgeInsets.all(12),
-                                  margin: EdgeInsets.symmetric(
-                                      horizontal: 8, vertical: 4),
-                                  decoration: BoxDecoration(
-                                      color: Colors.grey.shade100,
-                                      borderRadius:
-                                      BorderRadius.circular(30)),
-                                ),
-                              ],
-                            )),
-                    ListTile(
-                      horizontalTitleGap: 4,
-                      contentPadding: EdgeInsets.zero,
-                      minVerticalPadding: 0,
-                      leading: ClipOval(
-                        child: Image.network(
-                          'https://www.gravatar.com/avatar/2c7d99fe281ecd3bcd65ab915bac6dd5?s=250',
-                          height: 30,
-                        ),
-                      ),
-                      title: Column(
+                      padding: const EdgeInsets.symmetric(
+                          horizontal: 16.0, vertical: 12),
+                      child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
-                            'jenny willson',
+                            'About Service',
                             style: AppTheme.textStyleSemiBoldBlack14,
                           ),
-                          Row(
-                            children: [
-                              Icon(
-                                Icons.star_rate_rounded,
-                                size: 12,
-                                color: Colors.orangeAccent,
-                              ),
-                              Text(
-                                ' 5.0',
-                                style:
-                                AppTheme.textStyleMediumBlack10,
-                              ),
-                            ],
+                          CustomSizedBox.space12H,
+                          Text(
+                            'Entertainers called ventriloquists can make dummies appear to talk. The automobile industry uses dummies in cars to study how safe cars are during a crash.',
+                            style: TextStyle(
+                                fontWeight: FontWeight.w500,
+                                color: Colors.grey,
+                                fontSize: 12),
+                          ),
+                          CustomSizedBox.space12H,
+                          Text(
+                            'Service Provider',
+                            style: AppTheme.textStyleSemiBoldBlack14,
+                          ),
+                          ListTile(
+                            contentPadding: EdgeInsets.zero,
+                            minVerticalPadding: 12,
+                            leading: ClipOval(
+                              child: Image.network(
+                                  'https://www.gravatar.com/avatar/2c7d99fe281ecd3bcd65ab915bac6dd5?s=250'),
+                            ),
+                            title: Text(
+                              'jenny willson',
+                              style: AppTheme.textStyleSemiBoldBlack16,
+                            ),
+                            subtitle: Text(
+                              'Service Provider',
+                              style: AppTheme.textStyleMediumFadeBlack12,
+                            ),
+                            trailing: Row(
+                              mainAxisSize: MainAxisSize.min,
+                              children: [
+                                Container(
+                                  //margin: EdgeInsets.all(8),
+                                  padding: EdgeInsets.all(8),
+                                  decoration: BoxDecoration(
+                                      shape: BoxShape.circle,
+                                      color: AppColors.kAccentColor
+                                          .withOpacity(.7)),
+                                  child: InkWell(
+                                    onTap: () {
+                                      Get.back();
+                                    },
+                                    borderRadius: BorderRadius.circular(90),
+                                    child: Icon(
+                                      Icons.textsms_rounded,
+                                      size: 20,
+                                      color: AppColors.kPrimaryColor,
+                                    ),
+                                  ),
+                                ),
+                                CustomSizedBox.space8W,
+                                Container(
+                                  //margin: EdgeInsets.all(8),
+                                  padding: EdgeInsets.all(8),
+                                  decoration: BoxDecoration(
+                                      shape: BoxShape.circle,
+                                      color: AppColors.kAccentColor
+                                          .withOpacity(.7)),
+                                  child: InkWell(
+                                    onTap: () {
+                                      Get.back();
+                                    },
+                                    borderRadius: BorderRadius.circular(90),
+                                    child: Icon(
+                                      Icons.call,
+                                      size: 20,
+                                      color: AppColors.kPrimaryColor,
+                                    ),
+                                  ),
+                                ),
+                              ],
+                            ),
                           ),
                         ],
                       ),
-                      trailing: Text(
-                        '11/3/2023',
-                        style: TextStyle(
-                            fontWeight: FontWeight.w500,
-                            color: Colors.grey.shade400,
-                            fontSize: 12),
-                      ),
-                    ),
-                    Text(
-                      'Entertainers called ventriloquists can make dummies appear to talk. The automobile industry uses dummies in cars to study how safe cars are during a crash.',
-                      style: TextStyle(
-                          fontWeight: FontWeight.w500,
-                          color: Colors.grey,
-                          fontSize: 12),
-                    ),
-                  ],
-                ),
-              )
+                    )
+                  : dealType == deals.More
+                      ? GridView.builder(
+                          shrinkWrap: true,
+                          primary: false,
+                          padding:
+                              EdgeInsets.symmetric(vertical: 12, horizontal: 8),
+                          gridDelegate:
+                              const SliverGridDelegateWithFixedCrossAxisCount(
+                                  crossAxisCount: 3,
+                                  mainAxisSpacing: 8,
+                                  crossAxisSpacing: 5,
+                                  childAspectRatio: .95),
+                          itemCount: 10,
+                          itemBuilder: (context, index) {
+                            return GestureDetector(
+                                onTap: () {
+                                  Get.toNamed(ServiceOfferDetails.routeName,
+                                      arguments: 'service');
+                                },
+                                child: OfferAndServicesWidget(
+                                  height: 70,
+                                  iconVisible: false,
+                                  subtitle: Padding(
+                                    padding: const EdgeInsets.symmetric(
+                                        horizontal: 6.0),
+                                    child: Text(
+                                      'basic cleaning service',
+                                      style: AppTheme.textStyleMediumBlack12,
+                                      maxLines: 2,
+                                      overflow: TextOverflow.ellipsis,
+                                    ),
+                                  ),
+                                ));
+                          },
+                        )
+                      : Padding(
+                          padding: const EdgeInsets.symmetric(
+                              vertical: 12.0, horizontal: 16),
+                          child: Column(
+                            children: [
+                              Row(
+                                children: [
+                                  Text(
+                                    '4.0',
+                                    style: AppTheme.textStyleSemiBoldBlack20,
+                                  ),
+                                  CustomSizedBox.space8W,
+                                  ...List.generate(
+                                      5,
+                                      (index) => Icon(
+                                            Icons.star_rate_rounded,
+                                            color: index == 4
+                                                ? Colors.grey.shade300
+                                                : Colors.orangeAccent,
+                                          )),
+                                  CustomSizedBox.space4W,
+                                  Text(
+                                    '23 reviews',
+                                    style: TextStyle(
+                                        fontWeight: FontWeight.w500,
+                                        color: Colors.grey.shade400,
+                                        fontSize: 12),
+                                  )
+                                ],
+                              ),
+                              CustomSizedBox.space12H,
+                              ...List.generate(
+                                  3,
+                                  (index) => Row(
+                                        children: [
+                                          Container(
+                                            child: Text(
+                                              'Cozy Place (12)',
+                                              style: TextStyle(
+                                                  fontWeight: FontWeight.w500,
+                                                  color: Colors.grey,
+                                                  fontSize: 12),
+                                            ),
+                                            padding: EdgeInsets.all(12),
+                                            margin: EdgeInsets.symmetric(
+                                                horizontal: 4, vertical: 4),
+                                            decoration: BoxDecoration(
+                                                color: Colors.grey.shade100,
+                                                borderRadius:
+                                                    BorderRadius.circular(30)),
+                                          ),
+                                          Container(
+                                            child: Text(
+                                              'Not very crowded (18)',
+                                              style: TextStyle(
+                                                  fontWeight: FontWeight.w500,
+                                                  color: Colors.grey,
+                                                  fontSize: 12),
+                                            ),
+                                            padding: EdgeInsets.all(12),
+                                            margin: EdgeInsets.symmetric(
+                                                horizontal: 8, vertical: 4),
+                                            decoration: BoxDecoration(
+                                                color: Colors.grey.shade100,
+                                                borderRadius:
+                                                    BorderRadius.circular(30)),
+                                          ),
+                                        ],
+                                      )),
+                              ListTile(
+                                horizontalTitleGap: 4,
+                                contentPadding: EdgeInsets.zero,
+                                minVerticalPadding: 0,
+                                leading: ClipOval(
+                                  child: Image.network(
+                                    'https://www.gravatar.com/avatar/2c7d99fe281ecd3bcd65ab915bac6dd5?s=250',
+                                    height: 30,
+                                  ),
+                                ),
+                                title: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Text(
+                                      'jenny willson',
+                                      style: AppTheme.textStyleSemiBoldBlack14,
+                                    ),
+                                    Row(
+                                      children: [
+                                        Icon(
+                                          Icons.star_rate_rounded,
+                                          size: 12,
+                                          color: Colors.orangeAccent,
+                                        ),
+                                        Text(
+                                          ' 5.0',
+                                          style:
+                                              AppTheme.textStyleMediumBlack10,
+                                        ),
+                                      ],
+                                    ),
+                                  ],
+                                ),
+                                trailing: Text(
+                                  '11/3/2023',
+                                  style: TextStyle(
+                                      fontWeight: FontWeight.w500,
+                                      color: Colors.grey.shade400,
+                                      fontSize: 12),
+                                ),
+                              ),
+                              Text(
+                                'Entertainers called ventriloquists can make dummies appear to talk. The automobile industry uses dummies in cars to study how safe cars are during a crash.',
+                                style: TextStyle(
+                                    fontWeight: FontWeight.w500,
+                                    color: Colors.grey,
+                                    fontSize: 12),
+                              ),
+                            ],
+                          ),
+                        )
             ]),
           ),
-
         ],
       ),
       bottomNavigationBar: dealType == deals.About
           ? Stack(
-        alignment: Alignment.center,
-        clipBehavior: Clip.none,
-        children: [
-          Container(
-            width: double.infinity,
-            height: 50,
-            padding: const EdgeInsets.all(16),
-            decoration: BoxDecoration(color: Colors.grey.shade100),
-          ),
-          Positioned(
-            top: -25,
-            child: Container(
-              decoration: BoxDecoration(
-                shape: BoxShape.circle,
-                color: Colors.grey.shade100,
-              ),
-              padding: EdgeInsets.all(16),
-              child: Container(
-                decoration: BoxDecoration(
-                    shape: BoxShape.circle,
-                    color: Colors.red,
-                    boxShadow: [
-                      BoxShadow(
-                          color: Colors.black.withOpacity(.2),
-                          blurRadius: 5)
-                    ]),
-                child: InkWell(
-                  onTap: () {
-                    _makePhoneCall(
-                      'message',
-                    );
-                  },
-                  borderRadius: BorderRadius.circular(90),
-                  child: Padding(
-                    padding: const EdgeInsets.all(12.0),
-                    child: Icon(
-                      Icons.phone_android,
-                      size: 20,
-                      color: Colors.white,
+              alignment: Alignment.center,
+              clipBehavior: Clip.none,
+              children: [
+                Container(
+                  width: double.infinity,
+                  height: 50,
+                  padding: const EdgeInsets.all(16),
+                  decoration: BoxDecoration(color: Colors.grey.shade100),
+                ),
+                Positioned(
+                  top: -25,
+                  child: Container(
+                    decoration: BoxDecoration(
+                      shape: BoxShape.circle,
+                      color: Colors.grey.shade100,
+                    ),
+                    padding: EdgeInsets.all(16),
+                    child: Container(
+                      decoration: BoxDecoration(
+                          shape: BoxShape.circle,
+                          color: Colors.red,
+                          boxShadow: [
+                            BoxShadow(
+                                color: Colors.black.withOpacity(.2),
+                                blurRadius: 5)
+                          ]),
+                      child: InkWell(
+                        onTap: () {
+                          _makePhoneCall(
+                            'message',
+                          );
+                        },
+                        borderRadius: BorderRadius.circular(90),
+                        child: Padding(
+                          padding: const EdgeInsets.all(12.0),
+                          child: Icon(
+                            Icons.phone_android,
+                            size: 20,
+                            color: Colors.white,
+                          ),
+                        ),
+                      ),
                     ),
                   ),
                 ),
-              ),
-            ),
-          ),
-          Positioned(
-            top: -25,
-            left: 30,
-            child: Container(
-              decoration: BoxDecoration(
-                shape: BoxShape.circle,
-                color: Colors.grey.shade100,
-              ),
-              padding: EdgeInsets.all(16),
-              child: Container(
-                decoration: BoxDecoration(
-                    shape: BoxShape.circle,
-                    color: Colors.red,
-                    boxShadow: [
-                      BoxShadow(
-                          color: Colors.black.withOpacity(.2),
-                          blurRadius: 5)
-                    ]),
-                child: InkWell(
-                  onTap: () {
-                    _openWhatsApp();
-                  },
-                  borderRadius: BorderRadius.circular(90),
-                  child: Padding(
-                      padding: const EdgeInsets.all(12.0),
-                      child: Image.asset(
-                        'assets/icons/whatsapp.png',
-                        height: 20,
-                      )),
-                ),
-              ),
-            ),
-          ),
-          Positioned(
-            top: -25,
-            right: 30,
-            child: Container(
-              decoration: BoxDecoration(
-                shape: BoxShape.circle,
-                color: Colors.grey.shade100,
-              ),
-              padding: EdgeInsets.all(16),
-              child: Container(
-                decoration: BoxDecoration(
-                    shape: BoxShape.circle,
-                    color: Colors.red,
-                    boxShadow: [
-                      BoxShadow(
-                          color: Colors.black.withOpacity(.2),
-                          blurRadius: 5)
-                    ]),
-                child: InkWell(
-                  onTap: () {
-                    _launchUrl();
-                  },
-                  borderRadius: BorderRadius.circular(90),
-                  child: Padding(
-                    padding: const EdgeInsets.all(12.0),
-                    child: Icon(
-                      Icons.sms,
-                      size: 20,
-                      color: Colors.white,
+                Positioned(
+                  top: -25,
+                  left: 30,
+                  child: Container(
+                    decoration: BoxDecoration(
+                      shape: BoxShape.circle,
+                      color: Colors.grey.shade100,
+                    ),
+                    padding: EdgeInsets.all(16),
+                    child: Container(
+                      decoration: BoxDecoration(
+                          shape: BoxShape.circle,
+                          color: Colors.red,
+                          boxShadow: [
+                            BoxShadow(
+                                color: Colors.black.withOpacity(.2),
+                                blurRadius: 5)
+                          ]),
+                      child: InkWell(
+                        onTap: () {
+                          _openWhatsApp();
+                        },
+                        borderRadius: BorderRadius.circular(90),
+                        child: Padding(
+                            padding: const EdgeInsets.all(12.0),
+                            child: Image.asset(
+                              'assets/icons/whatsapp.png',
+                              height: 20,
+                            )),
+                      ),
                     ),
                   ),
                 ),
-              ),
-            ),
-          ),
-        ],
-      )
-          : Container(
-        width: double.infinity,
-        padding: const EdgeInsets.all(16),
-        decoration: BoxDecoration(
-            color: Colors.white,
-            borderRadius:
-            const BorderRadius.vertical(top: Radius.circular(22)),
-            boxShadow: [
-              BoxShadow(
-                  blurRadius: 10, color: Colors.black.withOpacity(.1))
-            ]),
-        child: Row(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            // Text.rich(
-            //   TextSpan(
-            //     text: 'Total Price',
-            //     style: TextStyle(
-            //       color: Colors.grey,
-            //       fontSize: 12,
-            //       fontWeight: FontWeight.w500,
-            //     ),
-            //     children: <TextSpan>[
-            //       TextSpan(
-            //         text: '\nTk. 2988',
-            //         style: TextStyle(
-            //           color: AppColors.kPrimaryColor,
-            //           fontSize: 18,
-            //           fontWeight: FontWeight.w600,
-            //         ),
-            //       ),
-            //     ],
-            //   ),
-            // ),
-            // CustomSizedBox.space12W,
-            Expanded(
-              child: CustomButton(
-                label: 'Write Review',
-                onPressed: () {
-                  Get.to(ReviewScreen());
-                },
-                marginHorizontal: 0,
-                marginVertical: 0,
-                borderRadiusAll: 22,
-              ),
+                Positioned(
+                  top: -25,
+                  right: 30,
+                  child: Container(
+                    decoration: BoxDecoration(
+                      shape: BoxShape.circle,
+                      color: Colors.grey.shade100,
+                    ),
+                    padding: EdgeInsets.all(16),
+                    child: Container(
+                      decoration: BoxDecoration(
+                          shape: BoxShape.circle,
+                          color: Colors.red,
+                          boxShadow: [
+                            BoxShadow(
+                                color: Colors.black.withOpacity(.2),
+                                blurRadius: 5)
+                          ]),
+                      child: InkWell(
+                        onTap: () {
+                          _launchUrl();
+                        },
+                        borderRadius: BorderRadius.circular(90),
+                        child: Padding(
+                          padding: const EdgeInsets.all(12.0),
+                          child: Icon(
+                            Icons.sms,
+                            size: 20,
+                            color: Colors.white,
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
+                ),
+              ],
             )
-          ],
-        ),
-      ),
+          : dealType == deals.Review
+              ? Container(
+                  width: double.infinity,
+                  padding: const EdgeInsets.all(16),
+                  decoration: BoxDecoration(
+                      color: Colors.white,
+                      borderRadius:
+                          const BorderRadius.vertical(top: Radius.circular(22)),
+                      boxShadow: [
+                        BoxShadow(
+                            blurRadius: 10, color: Colors.black.withOpacity(.1))
+                      ]),
+                  child: Row(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      // Text.rich(
+                      //   TextSpan(
+                      //     text: 'Total Price',
+                      //     style: TextStyle(
+                      //       color: Colors.grey,
+                      //       fontSize: 12,
+                      //       fontWeight: FontWeight.w500,
+                      //     ),
+                      //     children: <TextSpan>[
+                      //       TextSpan(
+                      //         text: '\nTk. 2988',
+                      //         style: TextStyle(
+                      //           color: AppColors.kPrimaryColor,
+                      //           fontSize: 18,
+                      //           fontWeight: FontWeight.w600,
+                      //         ),
+                      //       ),
+                      //     ],
+                      //   ),
+                      // ),
+                      // CustomSizedBox.space12W,
+                      Expanded(
+                        child: CustomButton(
+                          label: 'Write Review',
+                          onPressed: () {
+                            Get.to(ReviewScreen());
+                          },
+                          marginHorizontal: 0,
+                          marginVertical: 0,
+                          borderRadiusAll: 22,
+                        ),
+                      )
+                    ],
+                  ),
+                )
+              : SizedBox.shrink(),
     );
   }
 
