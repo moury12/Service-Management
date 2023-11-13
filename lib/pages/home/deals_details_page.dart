@@ -20,7 +20,6 @@ class DealsDetailsScreen extends StatefulWidget {
 
 class _DealsDetailsScreenState extends State<DealsDetailsScreen>
     with SingleTickerProviderStateMixin {
-  deals dealType = deals.About;
   late TabController tabController;
   String? displayUrl;
 
@@ -131,133 +130,135 @@ class _DealsDetailsScreenState extends State<DealsDetailsScreen>
             pinned: true,
             flexibleSpace: FlexibleSpaceBar(
                 background: Stack(
-              alignment: Alignment.center,
-              fit: StackFit.expand,
-              children: [
-                Positioned.fill(
-                  child: Container(
-                    child: Image.network(
-                      displayUrl ??
-                          'https://images.pexels.com/photos/518244/pexels-photo-518244.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
-                      fit: BoxFit.cover,
-                      height: 200,
+                  alignment: Alignment.center,
+                  fit: StackFit.expand,
+                  children: [
+                    Positioned.fill(
+                      child: Container(
+                        child: Image.network(
+                          displayUrl ??
+                              'https://images.pexels.com/photos/518244/pexels-photo-518244.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
+                          fit: BoxFit.cover,
+                          height: 200,
+                        ),
+                      ),
                     ),
-                  ),
-                ),
-                Positioned(
-                  top: 115,
-                  child: Container(
-                    decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(12),
-                        color: Colors.grey.withOpacity(.8)),
-                    child: Row(
-                      children: [
-                        Container(
-                          margin: const EdgeInsets.all(8),
-                          decoration: const BoxDecoration(
-                              shape: BoxShape.circle, color: Colors.white),
-                          child: InkWell(
-                            onTap: () {},
-                            borderRadius: BorderRadius.circular(90),
-                            child: const Padding(
-                              padding: EdgeInsets.all(4.0),
-                              child: Icon(
-                                Icons.play_arrow_rounded,
-                                size: 20,
-                                color: Colors.grey,
+                    Positioned(
+                      top: 115,
+                      child: Container(
+                        decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(12),
+                            color: Colors.grey.withOpacity(.8)),
+                        child: Row(
+                          children: [
+                            Container(
+                              margin: const EdgeInsets.all(8),
+                              decoration: const BoxDecoration(
+                                  shape: BoxShape.circle, color: Colors.white),
+                              child: InkWell(
+                                onTap: () {},
+                                borderRadius: BorderRadius.circular(90),
+                                child: const Padding(
+                                  padding: EdgeInsets.all(4.0),
+                                  child: Icon(
+                                    Icons.play_arrow_rounded,
+                                    size: 20,
+                                    color: Colors.grey,
+                                  ),
+                                ),
                               ),
                             ),
-                          ),
+                            const Text(
+                              'Demo Video',
+                              style: AppTheme.textStyleSemiBoldWhite12,
+                            ),
+                            CustomSizedBox.space8W
+                          ],
                         ),
-                        const Text(
-                          'Demo Video',
-                          style: AppTheme.textStyleSemiBoldWhite12,
-                        ),
-                        CustomSizedBox.space8W
-                      ],
+                      ),
                     ),
-                  ),
-                ),
-                Positioned(
-                    bottom: 30,
-                    child: Container(
-                      padding: const EdgeInsets.symmetric(
-                          horizontal: 3, vertical: 5),
-                      decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(8),
-                          color: Colors.white),
-                      child: Wrap(
-                        children: [
-                          ...List.generate(
-                              imageUrls.length > 6 ? 6 : imageUrls.length,
-                              (index) => Padding(
-                                    padding: const EdgeInsets.symmetric(
-                                        horizontal: 3),
-                                    child: Stack(
-                                      children: [
-                                        GestureDetector(
-                                            child: ClipRRect(
-                                              borderRadius:
+                    Positioned(
+                        bottom: 30,
+                        child: Container(
+                          padding: const EdgeInsets.symmetric(
+                              horizontal: 3, vertical: 5),
+                          decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(8),
+                              color: Colors.white),
+                          child: Wrap(
+                            children: [
+                              ...List.generate(
+                                  imageUrls.length > 6 ? 6 : imageUrls.length,
+                                      (index) =>
+                                      Padding(
+                                        padding: const EdgeInsets.symmetric(
+                                            horizontal: 3),
+                                        child: Stack(
+                                          children: [
+                                            GestureDetector(
+                                                child: ClipRRect(
+                                                  borderRadius:
                                                   BorderRadius.circular(6),
-                                              child: Image.network(
-                                                imageUrls[index],
-                                                fit: BoxFit.cover,
-                                                height: 50,
-                                                width: 50,
-                                              ),
-                                            ),
-                                            onTap: () {
-                                              setState(() {
-                                                displayUrl = imageUrls[index];
-                                              });
-                                            }),
-                                        index == 5
-                                            ? Positioned(
-                                                left: 0,
-                                                right: 0,
-                                                top: 0,
-                                                bottom: 0,
-                                                child: GestureDetector(
-                                                  onTap: () =>
-                                                      Get.to(ImageGalleryScreen(
-                                                    imageUrls: imageUrls,
-                                                  )),
-                                                  child: Container(
+                                                  child: Image.network(
+                                                    imageUrls[index],
+                                                    fit: BoxFit.cover,
                                                     height: 50,
                                                     width: 50,
-                                                    alignment: Alignment.center,
-                                                    decoration: BoxDecoration(
-                                                        color: Colors.black12
-                                                            .withOpacity(.5),
-                                                        borderRadius:
-                                                            BorderRadius
-                                                                .circular(6)),
-                                                    child: Text(
-                                                      '+${imageUrls.length - 5}',
-                                                      textAlign:
-                                                          TextAlign.center,
-                                                      style: AppTheme
-                                                          .textStyleMediumWhite12,
-                                                    ),
                                                   ),
                                                 ),
-                                              )
-                                            : const SizedBox.shrink()
-                                      ],
-                                    ),
-                                  ))
-                        ],
-                      ),
-                    ))
-              ],
-            )),
+                                                onTap: () {
+                                                  setState(() {
+                                                    displayUrl =
+                                                    imageUrls[index];
+                                                  });
+                                                }),
+                                            index == 5
+                                                ? Positioned(
+                                              left: 0,
+                                              right: 0,
+                                              top: 0,
+                                              bottom: 0,
+                                              child: GestureDetector(
+                                                onTap: () =>
+                                                    Get.to(ImageGalleryScreen(
+                                                      imageUrls: imageUrls,
+                                                    )),
+                                                child: Container(
+                                                  height: 50,
+                                                  width: 50,
+                                                  alignment: Alignment.center,
+                                                  decoration: BoxDecoration(
+                                                      color: Colors.black12
+                                                          .withOpacity(.5),
+                                                      borderRadius:
+                                                      BorderRadius
+                                                          .circular(6)),
+                                                  child: Text(
+                                                    '+${imageUrls.length - 5}',
+                                                    textAlign:
+                                                    TextAlign.center,
+                                                    style: AppTheme
+                                                        .textStyleMediumWhite12,
+                                                  ),
+                                                ),
+                                              ),
+                                            )
+                                                : const SizedBox.shrink()
+                                          ],
+                                        ),
+                                      ))
+                            ],
+                          ),
+                        ))
+                  ],
+                )),
           ),
           SliverList(
             delegate: SliverChildListDelegate([
               CustomSizedBox.space12H,
               Padding(
                 padding:
-                    const EdgeInsets.symmetric(horizontal: 16.0, vertical: 12),
+                const EdgeInsets.symmetric(horizontal: 16.0, vertical: 12),
                 child: Row(
                   children: [
                     Container(
@@ -326,6 +327,7 @@ class _DealsDetailsScreenState extends State<DealsDetailsScreen>
               ),
               TabBar(
                   labelColor: AppColors.kPrimaryColor,
+
                   indicatorColor: AppColors.kPrimaryColor,
                   dividerColor: AppColors.kPrimaryColor,
                   controller: tabController,
@@ -347,173 +349,173 @@ class _DealsDetailsScreenState extends State<DealsDetailsScreen>
       ),
       bottomNavigationBar: currentIndex == 0
           ? Stack(
-              alignment: Alignment.center,
-              clipBehavior: Clip.none,
-              children: [
-                Container(
-                  width: double.infinity,
-                  height: 50,
-                  padding: const EdgeInsets.all(16),
-                  decoration: BoxDecoration(color: Colors.grey.shade100),
-                ),
-                Positioned(
-                  top: -25,
-                  child: Container(
-                    decoration: BoxDecoration(
-                      shape: BoxShape.circle,
-                      color: Colors.grey.shade100,
-                    ),
-                    padding: const EdgeInsets.all(16),
-                    child: Container(
-                      decoration: BoxDecoration(
-                          shape: BoxShape.circle,
-                          color: Colors.red,
-                          boxShadow: [
-                            BoxShadow(
-                                color: Colors.black.withOpacity(.2),
-                                blurRadius: 5)
-                          ]),
-                      child: InkWell(
-                        onTap: () {
-                          _makePhoneCall(
-                            'message',
-                          );
-                        },
-                        borderRadius: BorderRadius.circular(90),
-                        child: const Padding(
-                          padding: EdgeInsets.all(12.0),
-                          child: Icon(
-                            Icons.phone_android,
-                            size: 20,
-                            color: Colors.white,
-                          ),
-                        ),
-                      ),
-                    ),
-                  ),
-                ),
-                Positioned(
-                  top: -25,
-                  left: 30,
-                  child: Container(
-                    decoration: BoxDecoration(
-                      shape: BoxShape.circle,
-                      color: Colors.grey.shade100,
-                    ),
-                    padding: const EdgeInsets.all(16),
-                    child: Container(
-                      decoration: BoxDecoration(
-                          shape: BoxShape.circle,
-                          color: Colors.red,
-                          boxShadow: [
-                            BoxShadow(
-                                color: Colors.black.withOpacity(.2),
-                                blurRadius: 5)
-                          ]),
-                      child: InkWell(
-                        onTap: () {
-                          _openWhatsApp();
-                        },
-                        borderRadius: BorderRadius.circular(90),
-                        child: Padding(
-                            padding: const EdgeInsets.all(12.0),
-                            child: Image.asset(
-                              'assets/icons/whatsapp.png',
-                              height: 20,
-                            )),
-                      ),
-                    ),
-                  ),
-                ),
-                Positioned(
-                  top: -25,
-                  right: 30,
-                  child: Container(
-                    decoration: BoxDecoration(
-                      shape: BoxShape.circle,
-                      color: Colors.grey.shade100,
-                    ),
-                    padding: const EdgeInsets.all(16),
-                    child: Container(
-                      decoration: BoxDecoration(
-                          shape: BoxShape.circle,
-                          color: Colors.red,
-                          boxShadow: [
-                            BoxShadow(
-                                color: Colors.black.withOpacity(.2),
-                                blurRadius: 5)
-                          ]),
-                      child: InkWell(
-                        onTap: () {
-                          _launchUrl();
-                        },
-                        borderRadius: BorderRadius.circular(90),
-                        child: const Padding(
-                          padding: EdgeInsets.all(12.0),
-                          child: Icon(
-                            Icons.sms,
-                            size: 20,
-                            color: Colors.white,
-                          ),
-                        ),
-                      ),
-                    ),
-                  ),
-                ),
-              ],
-            )
-          : currentIndex == 2
-              ? Container(
-                  width: double.infinity,
-                  padding: const EdgeInsets.all(16),
-                  decoration: BoxDecoration(
+        alignment: Alignment.center,
+        clipBehavior: Clip.none,
+        children: [
+          Container(
+            width: double.infinity,
+            height: 50,
+            padding: const EdgeInsets.all(16),
+            decoration: BoxDecoration(color: Colors.grey.shade100),
+          ),
+          Positioned(
+            top: -25,
+            child: Container(
+              decoration: BoxDecoration(
+                shape: BoxShape.circle,
+                color: Colors.grey.shade100,
+              ),
+              padding: const EdgeInsets.all(16),
+              child: Container(
+                decoration: BoxDecoration(
+                    shape: BoxShape.circle,
+                    color: Colors.red,
+                    boxShadow: [
+                      BoxShadow(
+                          color: Colors.black.withOpacity(.2),
+                          blurRadius: 5)
+                    ]),
+                child: InkWell(
+                  onTap: () {
+                    _makePhoneCall(
+                      'message',
+                    );
+                  },
+                  borderRadius: BorderRadius.circular(90),
+                  child: const Padding(
+                    padding: EdgeInsets.all(12.0),
+                    child: Icon(
+                      Icons.phone_android,
+                      size: 20,
                       color: Colors.white,
-                      borderRadius:
-                          const BorderRadius.vertical(top: Radius.circular(22)),
-                      boxShadow: [
-                        BoxShadow(
-                            blurRadius: 10, color: Colors.black.withOpacity(.1))
-                      ]),
-                  child: Row(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      // Text.rich(
-                      //   TextSpan(
-                      //     text: 'Total Price',
-                      //     style: TextStyle(
-                      //       color: Colors.grey,
-                      //       fontSize: 12,
-                      //       fontWeight: FontWeight.w500,
-                      //     ),
-                      //     children: <TextSpan>[
-                      //       TextSpan(
-                      //         text: '\nTk. 2988',
-                      //         style: TextStyle(
-                      //           color: AppColors.kPrimaryColor,
-                      //           fontSize: 18,
-                      //           fontWeight: FontWeight.w600,
-                      //         ),
-                      //       ),
-                      //     ],
-                      //   ),
-                      // ),
-                      // CustomSizedBox.space12W,
-                      Expanded(
-                        child: CustomButton(
-                          label: 'Write Review',
-                          onPressed: () {
-                            Get.to(const ReviewScreen());
-                          },
-                          marginHorizontal: 0,
-                          marginVertical: 0,
-                          borderRadiusAll: 22,
-                        ),
-                      )
-                    ],
+                    ),
                   ),
-                )
-              : const SizedBox.shrink(),
+                ),
+              ),
+            ),
+          ),
+          Positioned(
+            top: -25,
+            left: 30,
+            child: Container(
+              decoration: BoxDecoration(
+                shape: BoxShape.circle,
+                color: Colors.grey.shade100,
+              ),
+              padding: const EdgeInsets.all(16),
+              child: Container(
+                decoration: BoxDecoration(
+                    shape: BoxShape.circle,
+                    color: Colors.red,
+                    boxShadow: [
+                      BoxShadow(
+                          color: Colors.black.withOpacity(.2),
+                          blurRadius: 5)
+                    ]),
+                child: InkWell(
+                  onTap: () {
+                    _openWhatsApp();
+                  },
+                  borderRadius: BorderRadius.circular(90),
+                  child: Padding(
+                      padding: const EdgeInsets.all(12.0),
+                      child: Image.asset(
+                        'assets/icons/whatsapp.png',
+                        height: 20,
+                      )),
+                ),
+              ),
+            ),
+          ),
+          Positioned(
+            top: -25,
+            right: 30,
+            child: Container(
+              decoration: BoxDecoration(
+                shape: BoxShape.circle,
+                color: Colors.grey.shade100,
+              ),
+              padding: const EdgeInsets.all(16),
+              child: Container(
+                decoration: BoxDecoration(
+                    shape: BoxShape.circle,
+                    color: Colors.red,
+                    boxShadow: [
+                      BoxShadow(
+                          color: Colors.black.withOpacity(.2),
+                          blurRadius: 5)
+                    ]),
+                child: InkWell(
+                  onTap: () {
+                    _launchUrl();
+                  },
+                  borderRadius: BorderRadius.circular(90),
+                  child: const Padding(
+                    padding: EdgeInsets.all(12.0),
+                    child: Icon(
+                      Icons.sms,
+                      size: 20,
+                      color: Colors.white,
+                    ),
+                  ),
+                ),
+              ),
+            ),
+          ),
+        ],
+      )
+          : currentIndex == 2
+          ? Container(
+        width: double.infinity,
+        padding: const EdgeInsets.all(16),
+        decoration: BoxDecoration(
+            color: Colors.white,
+            borderRadius:
+            const BorderRadius.vertical(top: Radius.circular(22)),
+            boxShadow: [
+              BoxShadow(
+                  blurRadius: 10, color: Colors.black.withOpacity(.1))
+            ]),
+        child: Row(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            // Text.rich(
+            //   TextSpan(
+            //     text: 'Total Price',
+            //     style: TextStyle(
+            //       color: Colors.grey,
+            //       fontSize: 12,
+            //       fontWeight: FontWeight.w500,
+            //     ),
+            //     children: <TextSpan>[
+            //       TextSpan(
+            //         text: '\nTk. 2988',
+            //         style: TextStyle(
+            //           color: AppColors.kPrimaryColor,
+            //           fontSize: 18,
+            //           fontWeight: FontWeight.w600,
+            //         ),
+            //       ),
+            //     ],
+            //   ),
+            // ),
+            // CustomSizedBox.space12W,
+            Expanded(
+              child: CustomButton(
+                label: 'Write Review',
+                onPressed: () {
+                  Get.to(const ReviewScreen());
+                },
+                marginHorizontal: 0,
+                marginVertical: 0,
+                borderRadiusAll: 22,
+              ),
+            )
+          ],
+        ),
+      )
+          : const SizedBox.shrink(),
     );
   }
 
@@ -652,7 +654,8 @@ class _DealsDetailsScreenState extends State<DealsDetailsScreen>
                   CustomSizedBox.space8W,
                   ...List.generate(
                       5,
-                      (index) => Icon(
+                          (index) =>
+                          Icon(
                             Icons.star_rate_rounded,
                             color: index == 4
                                 ? Colors.grey.shade300
@@ -671,7 +674,8 @@ class _DealsDetailsScreenState extends State<DealsDetailsScreen>
               CustomSizedBox.space12H,
               ...List.generate(
                   3,
-                  (index) => Row(
+                      (index) =>
+                      Row(
                         children: [
                           Container(
                             child: const Text(

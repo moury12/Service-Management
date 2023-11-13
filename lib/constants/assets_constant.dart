@@ -32,6 +32,8 @@ class AssetsConstant {
   static const String edit_icon2 = "assets/icons/edit_icon2.png";
   static const String nagad_icon = "assets/icons/nagad_icon.png";
   static const String wallet_icon = "assets/icons/wallet_icon.png";
+  static const String minus_icon = "assets/icons/minus.png";
+  static const String cart_bag_icon = "assets/icons/cart_bag.png";
   static const String forward_icon = "assets/icons/forward_icon.png";
   static const String otpContainer_icon = "assets/icons/otpContainer_icon.png";
   static const String backward_icon = "assets/icons/backWard_icon.png";
