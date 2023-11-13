@@ -151,7 +151,46 @@ class _ReviewScreenState extends State<ReviewScreen> {
       bottomNavigationBar: CustomButton(
         label: 'Submit Review',
         onPressed: () {
-          //Get.to(ReviewScreen());
+          showDialog(
+            context: context,
+            builder: (context) => AlertDialog(
+              shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(20)),
+              actions: [
+                Center(
+                  child: Column(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      CustomSizedBox.space24H,
+                      Container(
+                        decoration: BoxDecoration(
+                            shape: BoxShape.circle,
+                            border: Border.all(
+                                color: AppColors.kPrimaryColor, width: 5)),
+                        child: Icon(
+                          Icons.check_rounded,
+                          color: AppColors.kPrimaryColor,
+                          size: 60,
+                        ),
+                      ),
+                      CustomSizedBox.space12H,
+                      Text(
+                        'Thank you!',
+                        style: AppTheme.textStyleBoldBlack20,
+                      ),
+                      CustomSizedBox.space12H,
+                      Text(
+                        'your review means a lot for the cafes improvment for the future.',
+                        style: AppTheme.textStyleMediumFadeBlack14,
+                        textAlign: TextAlign.center,
+                      ),
+                      CustomSizedBox.space24H,
+                    ],
+                  ),
+                )
+              ],
+            ),
+          );
         },
         marginHorizontal: 16,
         marginVertical: 16,

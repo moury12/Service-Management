@@ -3,6 +3,7 @@ import 'package:fix_ican/pages/home/all_services_offers.dart';
 import 'package:fix_ican/pages/home/home_page.dart';
 import 'package:fix_ican/pages/order/delivery_details_edit_page.dart';
 import 'package:fix_ican/pages/order/delivery_details_page.dart';
+import 'package:fix_ican/pages/order/e_commerce_panel_Screen.dart';
 import 'package:fix_ican/pages/order/payment_method_page.dart';
 import 'package:fix_ican/pages/order/place_order_page.dart';
 import 'package:fix_ican/pages/profile/edit_profile_page.dart';
@@ -38,7 +39,7 @@ class AppRoutes {
         ),
         //   GetPage(
         //   name: DeliveryDetailsEditScreen.routeName,
-        //   page: () => const DeliveryDetailsEditScreen(),
+        //   page: () =>  DeliveryDetailsEditScreen(),
         // ),
         GetPage(
           name: OnboardingScreen.routeName,
@@ -100,5 +101,10 @@ class AppRoutes {
           name: EditProfileScreen.routeName,
           page: () => const EditProfileScreen(),
         ),
+        GetPage(
+          name: EcommercepanelScreen.routeName,
+          page: () => const EcommercepanelScreen(),
+        ),
+
       ];
 }

@@ -1,5 +1,6 @@
 import 'package:fix_ican/constants/color_constant.dart';
 import 'package:fix_ican/pages/home/home_page.dart';
+import 'package:fix_ican/pages/order/e_commerce_panel_Screen.dart';
 import 'package:fix_ican/pages/order/review_page.dart';
 import 'package:fix_ican/pages/services/service_offer_details.dart';
 import 'package:fix_ican/shared/custom_sized_box.dart';
@@ -17,8 +18,14 @@ class DealsDetailsScreen extends StatefulWidget {
   State<DealsDetailsScreen> createState() => _DealsDetailsScreenState();
 }
 
-class _DealsDetailsScreenState extends State<DealsDetailsScreen> {
+class _DealsDetailsScreenState extends State<DealsDetailsScreen>
+    with SingleTickerProviderStateMixin {
   deals dealType = deals.About;
+  late TabController tabController;
+  String? displayUrl;
+
+  List<String> tabTiles = ['About', 'More Service', 'Review'];
+  int currentIndex = 0;
   List<String> imageUrls = [
     'https://media.istockphoto.com/id/1473162545/photo/senior-care-hug-and-portrait-of-nurse-with-patient-for-medical-help-healthcare-or.webp?b=1&s=170667a&w=0&k=20&c=utvVFt8ggaYLkaKo7Bm2rtPvXWWUf0m_1n-hZURpjJI=',
     'https://images.pexels.com/photos/518244/pexels-photo-518244.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
@@ -42,6 +49,24 @@ class _DealsDetailsScreenState extends State<DealsDetailsScreen> {
   );
 
   @override
+  void initState() {
+    tabController = TabController(length: 3, vsync: this);
+    tabController.addListener(() {
+      setState(() {
+        currentIndex = tabController.index;
+      });
+      print("Current Tab Index: $currentIndex");
+    });
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    tabController.dispose();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
@@ -51,15 +76,15 @@ class _DealsDetailsScreenState extends State<DealsDetailsScreen> {
             elevation: 0,
             backgroundColor: Colors.white,
             leading: Container(
-              margin: EdgeInsets.all(8),
-              decoration:
-                  BoxDecoration(shape: BoxShape.circle, color: Colors.white),
+              margin: const EdgeInsets.all(8),
+              decoration: const BoxDecoration(
+                  shape: BoxShape.circle, color: Colors.white),
               child: InkWell(
                 onTap: () {
                   Get.back();
                 },
                 borderRadius: BorderRadius.circular(90),
-                child: Icon(
+                child: const Icon(
                   Icons.arrow_back,
                   size: 20,
                   color: AppColors.kPrimaryColor,
@@ -68,13 +93,14 @@ class _DealsDetailsScreenState extends State<DealsDetailsScreen> {
             ),
             actions: [
               Container(
-                decoration:
-                    BoxDecoration(shape: BoxShape.circle, color: Colors.white),
-                child: InkWell(
-                  onTap: () {},
-                  borderRadius: BorderRadius.circular(90),
-                  child: Padding(
-                    padding: const EdgeInsets.all(8.0),
+                decoration: const BoxDecoration(
+                    shape: BoxShape.circle, color: Colors.white),
+                child: GestureDetector(
+                  onTap: () {
+                    Get.toNamed(EcommercepanelScreen.routeName);
+                  },
+                  child: const Padding(
+                    padding: EdgeInsets.all(8.0),
                     child: Icon(
                       Icons.share,
                       size: 20,
@@ -84,14 +110,14 @@ class _DealsDetailsScreenState extends State<DealsDetailsScreen> {
                 ),
               ),
               Container(
-                margin: EdgeInsets.all(8),
-                decoration:
-                    BoxDecoration(shape: BoxShape.circle, color: Colors.white),
+                margin: const EdgeInsets.all(8),
+                decoration: const BoxDecoration(
+                    shape: BoxShape.circle, color: Colors.white),
                 child: InkWell(
                   onTap: () {},
                   borderRadius: BorderRadius.circular(90),
-                  child: Padding(
-                    padding: const EdgeInsets.all(8.0),
+                  child: const Padding(
+                    padding: EdgeInsets.all(8.0),
                     child: Icon(
                       Icons.favorite_outline_rounded,
                       size: 20,
@@ -111,7 +137,8 @@ class _DealsDetailsScreenState extends State<DealsDetailsScreen> {
                 Positioned.fill(
                   child: Container(
                     child: Image.network(
-                      'https://images.pexels.com/photos/518244/pexels-photo-518244.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
+                      displayUrl ??
+                          'https://images.pexels.com/photos/518244/pexels-photo-518244.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
                       fit: BoxFit.cover,
                       height: 200,
                     ),
@@ -126,14 +153,14 @@ class _DealsDetailsScreenState extends State<DealsDetailsScreen> {
                     child: Row(
                       children: [
                         Container(
-                          margin: EdgeInsets.all(8),
-                          decoration: BoxDecoration(
+                          margin: const EdgeInsets.all(8),
+                          decoration: const BoxDecoration(
                               shape: BoxShape.circle, color: Colors.white),
                           child: InkWell(
                             onTap: () {},
                             borderRadius: BorderRadius.circular(90),
-                            child: Padding(
-                              padding: const EdgeInsets.all(4.0),
+                            child: const Padding(
+                              padding: EdgeInsets.all(4.0),
                               child: Icon(
                                 Icons.play_arrow_rounded,
                                 size: 20,
@@ -142,7 +169,7 @@ class _DealsDetailsScreenState extends State<DealsDetailsScreen> {
                             ),
                           ),
                         ),
-                        Text(
+                        const Text(
                           'Demo Video',
                           style: AppTheme.textStyleSemiBoldWhite12,
                         ),
@@ -154,7 +181,8 @@ class _DealsDetailsScreenState extends State<DealsDetailsScreen> {
                 Positioned(
                     bottom: 30,
                     child: Container(
-                      padding: EdgeInsets.symmetric(horizontal: 3, vertical: 5),
+                      padding: const EdgeInsets.symmetric(
+                          horizontal: 3, vertical: 5),
                       decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(8),
                           color: Colors.white),
@@ -168,21 +196,21 @@ class _DealsDetailsScreenState extends State<DealsDetailsScreen> {
                                     child: Stack(
                                       children: [
                                         GestureDetector(
-                                          child: ClipRRect(
-                                            borderRadius:
-                                                BorderRadius.circular(6),
-                                            child: Image.network(
-                                              imageUrls[index],
-                                              fit: BoxFit.cover,
-                                              height: 50,
-                                              width: 50,
+                                            child: ClipRRect(
+                                              borderRadius:
+                                                  BorderRadius.circular(6),
+                                              child: Image.network(
+                                                imageUrls[index],
+                                                fit: BoxFit.cover,
+                                                height: 50,
+                                                width: 50,
+                                              ),
                                             ),
-                                          ),
-                                          onTap: () =>
-                                              Get.to(FullScreenImageScreen(
-                                            imageUrl: imageUrls[index],
-                                          )),
-                                        ),
+                                            onTap: () {
+                                              setState(() {
+                                                displayUrl = imageUrls[index];
+                                              });
+                                            }),
                                         index == 5
                                             ? Positioned(
                                                 left: 0,
@@ -214,7 +242,7 @@ class _DealsDetailsScreenState extends State<DealsDetailsScreen> {
                                                   ),
                                                 ),
                                               )
-                                            : SizedBox.shrink()
+                                            : const SizedBox.shrink()
                                       ],
                                     ),
                                   ))
@@ -233,17 +261,17 @@ class _DealsDetailsScreenState extends State<DealsDetailsScreen> {
                 child: Row(
                   children: [
                     Container(
-                      child: Text(
+                      child: const Text(
                         'Home cleaning',
                         style: AppTheme.textStyleMediumPrimary12,
                       ),
-                      padding: EdgeInsets.all(6),
+                      padding: const EdgeInsets.all(6),
                       decoration: BoxDecoration(
                         color: AppColors.kAccentColor.withOpacity(.5),
                         borderRadius: BorderRadius.circular(20),
                       ),
                     ),
-                    Row(
+                    const Row(
                       crossAxisAlignment: CrossAxisAlignment.end,
                       children: [
                         Icon(
@@ -264,8 +292,8 @@ class _DealsDetailsScreenState extends State<DealsDetailsScreen> {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 ),
               ),
-              Padding(
-                padding: const EdgeInsets.symmetric(
+              const Padding(
+                padding: EdgeInsets.symmetric(
                   horizontal: 16.0,
                 ),
                 child: Text(
@@ -274,8 +302,8 @@ class _DealsDetailsScreenState extends State<DealsDetailsScreen> {
                 ),
               ),
               CustomSizedBox.space8H,
-              Padding(
-                padding: const EdgeInsets.symmetric(
+              const Padding(
+                padding: EdgeInsets.symmetric(
                   horizontal: 16.0,
                 ),
                 child: Text(
@@ -286,355 +314,38 @@ class _DealsDetailsScreenState extends State<DealsDetailsScreen> {
                       fontSize: 12),
                 ),
               ),
+              Padding(
+                padding: EdgeInsets.symmetric(horizontal: 16.0, vertical: 8),
+                child: Text(
+                  '2000 BDT/ month',
+                  style: TextStyle(
+                      fontWeight: FontWeight.w500,
+                      color: AppColors.kPrimaryColor,
+                      fontSize: 12),
+                ),
+              ),
+              TabBar(
+                  labelColor: AppColors.kPrimaryColor,
+                  indicatorColor: AppColors.kPrimaryColor,
+                  dividerColor: AppColors.kPrimaryColor,
+                  controller: tabController,
+                  tabs: tabTiles.map((String title) {
+                    return Tab(
+                      text: title,
+                    );
+                  }).toList()),
               CustomSizedBox.space12H,
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceAround,
-                children: [
-                  InkWell(
-                    child: Column(
-                      children: [
-                        Padding(
-                          padding: const EdgeInsets.symmetric(vertical: 12.0),
-                          child: Text(
-                            'About',
-                            style: TextStyle(
-                                fontSize: 16,
-                                fontWeight: FontWeight.w500,
-                                color: dealType == deals.About
-                                    ? AppColors.kPrimaryColor
-                                    : const Color(0xffFC8E99)),
-                          ),
-                        ),
-                        AnimatedContainer(
-                          duration: const Duration(milliseconds: 500),
-                          color: AppColors.kPrimaryColor,
-                          height: dealType == deals.About ? 3 : 0,
-                          width: dealType == deals.About
-                              ? MediaQuery.of(context).size.width / 4.5
-                              : 0,
-                        )
-                      ],
-                    ),
-                    onTap: () {
-                      dealType = deals.About;
-                      setState(() {});
-                    },
-                  ),
-                  InkWell(
-                    onTap: () {
-                      dealType = deals.More;
-                      setState(() {});
-                    },
-                    child: Column(
-                      children: [
-                        Padding(
-                          padding: const EdgeInsets.symmetric(vertical: 12.0),
-                          child: Text(
-                            'More Service',
-                            style: TextStyle(
-                                fontSize: 16,
-                                fontWeight: FontWeight.w500,
-                                color: dealType == deals.More
-                                    ? AppColors.kPrimaryColor
-                                    : const Color(0xffFC8E99)),
-                          ),
-                        ),
-                        AnimatedContainer(
-                          duration: const Duration(milliseconds: 500),
-                          color: AppColors.kPrimaryColor,
-                          height: dealType == deals.More ? 3 : 0,
-                          width: dealType == deals.More
-                              ? MediaQuery.of(context).size.width / 3.5
-                              : 0,
-                        )
-                      ],
-                    ),
-                  ),
-                  InkWell(
-                    onTap: () {
-                      dealType = deals.Review;
-                      setState(() {});
-                    },
-                    child: Column(
-                      children: [
-                        Padding(
-                          padding: const EdgeInsets.symmetric(vertical: 12.0),
-                          child: Text(
-                            'Review',
-                            style: TextStyle(
-                                fontSize: 16,
-                                fontWeight: FontWeight.w500,
-                                color: dealType == deals.Review
-                                    ? AppColors.kPrimaryColor
-                                    : const Color(0xffFC8E99)),
-                          ),
-                        ),
-                        AnimatedContainer(
-                          duration: const Duration(milliseconds: 500),
-                          color: AppColors.kPrimaryColor,
-                          height: dealType == deals.Review ? 3 : 0,
-                          width: dealType == deals.Review
-                              ? MediaQuery.of(context).size.width / 4.5
-                              : 0,
-                        )
-                      ],
-                    ),
-                  ),
-                ],
+              SizedBox(
+                height: 300,
+                child: TabBarView(
+                    controller: tabController,
+                    children: List.generate(3, (index) => buildwidget(index))),
               ),
-              Divider(
-                thickness: 0.5,
-                height: 0,
-                indent: 0,
-                color: Color(0xffF1B2BF),
-              ),
-              dealType == deals.About
-                  ? Padding(
-                      padding: const EdgeInsets.symmetric(
-                          horizontal: 16.0, vertical: 12),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(
-                            'About Service',
-                            style: AppTheme.textStyleSemiBoldBlack14,
-                          ),
-                          CustomSizedBox.space12H,
-                          Text(
-                            'Entertainers called ventriloquists can make dummies appear to talk. The automobile industry uses dummies in cars to study how safe cars are during a crash.',
-                            style: TextStyle(
-                                fontWeight: FontWeight.w500,
-                                color: Colors.grey,
-                                fontSize: 12),
-                          ),
-                          CustomSizedBox.space12H,
-                          Text(
-                            'Service Provider',
-                            style: AppTheme.textStyleSemiBoldBlack14,
-                          ),
-                          ListTile(
-                            contentPadding: EdgeInsets.zero,
-                            minVerticalPadding: 12,
-                            leading: ClipOval(
-                              child: Image.network(
-                                  'https://www.gravatar.com/avatar/2c7d99fe281ecd3bcd65ab915bac6dd5?s=250'),
-                            ),
-                            title: Text(
-                              'jenny willson',
-                              style: AppTheme.textStyleSemiBoldBlack16,
-                            ),
-                            subtitle: Text(
-                              'Service Provider',
-                              style: AppTheme.textStyleMediumFadeBlack12,
-                            ),
-                            trailing: Row(
-                              mainAxisSize: MainAxisSize.min,
-                              children: [
-                                Container(
-                                  //margin: EdgeInsets.all(8),
-                                  padding: EdgeInsets.all(8),
-                                  decoration: BoxDecoration(
-                                      shape: BoxShape.circle,
-                                      color: AppColors.kAccentColor
-                                          .withOpacity(.7)),
-                                  child: InkWell(
-                                    onTap: () {
-                                      Get.back();
-                                    },
-                                    borderRadius: BorderRadius.circular(90),
-                                    child: Icon(
-                                      Icons.textsms_rounded,
-                                      size: 20,
-                                      color: AppColors.kPrimaryColor,
-                                    ),
-                                  ),
-                                ),
-                                CustomSizedBox.space8W,
-                                Container(
-                                  //margin: EdgeInsets.all(8),
-                                  padding: EdgeInsets.all(8),
-                                  decoration: BoxDecoration(
-                                      shape: BoxShape.circle,
-                                      color: AppColors.kAccentColor
-                                          .withOpacity(.7)),
-                                  child: InkWell(
-                                    onTap: () {
-                                      Get.back();
-                                    },
-                                    borderRadius: BorderRadius.circular(90),
-                                    child: Icon(
-                                      Icons.call,
-                                      size: 20,
-                                      color: AppColors.kPrimaryColor,
-                                    ),
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ),
-                        ],
-                      ),
-                    )
-                  : dealType == deals.More
-                      ? GridView.builder(
-                          shrinkWrap: true,
-                          primary: false,
-                          padding:
-                              EdgeInsets.symmetric(vertical: 12, horizontal: 8),
-                          gridDelegate:
-                              const SliverGridDelegateWithFixedCrossAxisCount(
-                                  crossAxisCount: 3,
-                                  mainAxisSpacing: 8,
-                                  crossAxisSpacing: 5,
-                                  childAspectRatio: .95),
-                          itemCount: 10,
-                          itemBuilder: (context, index) {
-                            return GestureDetector(
-                                onTap: () {
-                                  Get.toNamed(ServiceOfferDetails.routeName,
-                                      arguments: 'service');
-                                },
-                                child: OfferAndServicesWidget(
-                                  height: 70,
-                                  iconVisible: false,
-                                  subtitle: Padding(
-                                    padding: const EdgeInsets.symmetric(
-                                        horizontal: 6.0),
-                                    child: Text(
-                                      'basic cleaning service',
-                                      style: AppTheme.textStyleMediumBlack12,
-                                      maxLines: 2,
-                                      overflow: TextOverflow.ellipsis,
-                                    ),
-                                  ),
-                                ));
-                          },
-                        )
-                      : Padding(
-                          padding: const EdgeInsets.symmetric(
-                              vertical: 12.0, horizontal: 16),
-                          child: Column(
-                            children: [
-                              Row(
-                                children: [
-                                  Text(
-                                    '4.0',
-                                    style: AppTheme.textStyleSemiBoldBlack20,
-                                  ),
-                                  CustomSizedBox.space8W,
-                                  ...List.generate(
-                                      5,
-                                      (index) => Icon(
-                                            Icons.star_rate_rounded,
-                                            color: index == 4
-                                                ? Colors.grey.shade300
-                                                : Colors.orangeAccent,
-                                          )),
-                                  CustomSizedBox.space4W,
-                                  Text(
-                                    '23 reviews',
-                                    style: TextStyle(
-                                        fontWeight: FontWeight.w500,
-                                        color: Colors.grey.shade400,
-                                        fontSize: 12),
-                                  )
-                                ],
-                              ),
-                              CustomSizedBox.space12H,
-                              ...List.generate(
-                                  3,
-                                  (index) => Row(
-                                        children: [
-                                          Container(
-                                            child: Text(
-                                              'Cozy Place (12)',
-                                              style: TextStyle(
-                                                  fontWeight: FontWeight.w500,
-                                                  color: Colors.grey,
-                                                  fontSize: 12),
-                                            ),
-                                            padding: EdgeInsets.all(12),
-                                            margin: EdgeInsets.symmetric(
-                                                horizontal: 4, vertical: 4),
-                                            decoration: BoxDecoration(
-                                                color: Colors.grey.shade100,
-                                                borderRadius:
-                                                    BorderRadius.circular(30)),
-                                          ),
-                                          Container(
-                                            child: Text(
-                                              'Not very crowded (18)',
-                                              style: TextStyle(
-                                                  fontWeight: FontWeight.w500,
-                                                  color: Colors.grey,
-                                                  fontSize: 12),
-                                            ),
-                                            padding: EdgeInsets.all(12),
-                                            margin: EdgeInsets.symmetric(
-                                                horizontal: 8, vertical: 4),
-                                            decoration: BoxDecoration(
-                                                color: Colors.grey.shade100,
-                                                borderRadius:
-                                                    BorderRadius.circular(30)),
-                                          ),
-                                        ],
-                                      )),
-                              ListTile(
-                                horizontalTitleGap: 4,
-                                contentPadding: EdgeInsets.zero,
-                                minVerticalPadding: 0,
-                                leading: ClipOval(
-                                  child: Image.network(
-                                    'https://www.gravatar.com/avatar/2c7d99fe281ecd3bcd65ab915bac6dd5?s=250',
-                                    height: 30,
-                                  ),
-                                ),
-                                title: Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Text(
-                                      'jenny willson',
-                                      style: AppTheme.textStyleSemiBoldBlack14,
-                                    ),
-                                    Row(
-                                      children: [
-                                        Icon(
-                                          Icons.star_rate_rounded,
-                                          size: 12,
-                                          color: Colors.orangeAccent,
-                                        ),
-                                        Text(
-                                          ' 5.0',
-                                          style:
-                                              AppTheme.textStyleMediumBlack10,
-                                        ),
-                                      ],
-                                    ),
-                                  ],
-                                ),
-                                trailing: Text(
-                                  '11/3/2023',
-                                  style: TextStyle(
-                                      fontWeight: FontWeight.w500,
-                                      color: Colors.grey.shade400,
-                                      fontSize: 12),
-                                ),
-                              ),
-                              Text(
-                                'Entertainers called ventriloquists can make dummies appear to talk. The automobile industry uses dummies in cars to study how safe cars are during a crash.',
-                                style: TextStyle(
-                                    fontWeight: FontWeight.w500,
-                                    color: Colors.grey,
-                                    fontSize: 12),
-                              ),
-                            ],
-                          ),
-                        )
             ]),
           ),
         ],
       ),
-      bottomNavigationBar: dealType == deals.About
+      bottomNavigationBar: currentIndex == 0
           ? Stack(
               alignment: Alignment.center,
               clipBehavior: Clip.none,
@@ -652,7 +363,7 @@ class _DealsDetailsScreenState extends State<DealsDetailsScreen> {
                       shape: BoxShape.circle,
                       color: Colors.grey.shade100,
                     ),
-                    padding: EdgeInsets.all(16),
+                    padding: const EdgeInsets.all(16),
                     child: Container(
                       decoration: BoxDecoration(
                           shape: BoxShape.circle,
@@ -669,8 +380,8 @@ class _DealsDetailsScreenState extends State<DealsDetailsScreen> {
                           );
                         },
                         borderRadius: BorderRadius.circular(90),
-                        child: Padding(
-                          padding: const EdgeInsets.all(12.0),
+                        child: const Padding(
+                          padding: EdgeInsets.all(12.0),
                           child: Icon(
                             Icons.phone_android,
                             size: 20,
@@ -689,7 +400,7 @@ class _DealsDetailsScreenState extends State<DealsDetailsScreen> {
                       shape: BoxShape.circle,
                       color: Colors.grey.shade100,
                     ),
-                    padding: EdgeInsets.all(16),
+                    padding: const EdgeInsets.all(16),
                     child: Container(
                       decoration: BoxDecoration(
                           shape: BoxShape.circle,
@@ -722,7 +433,7 @@ class _DealsDetailsScreenState extends State<DealsDetailsScreen> {
                       shape: BoxShape.circle,
                       color: Colors.grey.shade100,
                     ),
-                    padding: EdgeInsets.all(16),
+                    padding: const EdgeInsets.all(16),
                     child: Container(
                       decoration: BoxDecoration(
                           shape: BoxShape.circle,
@@ -737,8 +448,8 @@ class _DealsDetailsScreenState extends State<DealsDetailsScreen> {
                           _launchUrl();
                         },
                         borderRadius: BorderRadius.circular(90),
-                        child: Padding(
-                          padding: const EdgeInsets.all(12.0),
+                        child: const Padding(
+                          padding: EdgeInsets.all(12.0),
                           child: Icon(
                             Icons.sms,
                             size: 20,
@@ -751,7 +462,7 @@ class _DealsDetailsScreenState extends State<DealsDetailsScreen> {
                 ),
               ],
             )
-          : dealType == deals.Review
+          : currentIndex == 2
               ? Container(
                   width: double.infinity,
                   padding: const EdgeInsets.all(16),
@@ -792,7 +503,7 @@ class _DealsDetailsScreenState extends State<DealsDetailsScreen> {
                         child: CustomButton(
                           label: 'Write Review',
                           onPressed: () {
-                            Get.to(ReviewScreen());
+                            Get.to(const ReviewScreen());
                           },
                           marginHorizontal: 0,
                           marginVertical: 0,
@@ -802,8 +513,256 @@ class _DealsDetailsScreenState extends State<DealsDetailsScreen> {
                     ],
                   ),
                 )
-              : SizedBox.shrink(),
+              : const SizedBox.shrink(),
     );
+  }
+
+  // Widget bottomWidget(){}
+
+  Widget buildwidget(int tabIndex) {
+    switch (tabIndex) {
+      case 0:
+        return Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 12),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              const Text(
+                'About Service',
+                style: AppTheme.textStyleSemiBoldBlack14,
+              ),
+              CustomSizedBox.space12H,
+              const Text(
+                'Entertainers called ventriloquists can make dummies appear to talk. The automobile industry uses dummies in cars to study how safe cars are during a crash.',
+                style: TextStyle(
+                    fontWeight: FontWeight.w500,
+                    color: Colors.grey,
+                    fontSize: 12),
+              ),
+              CustomSizedBox.space12H,
+              const Text(
+                'Service Provider',
+                style: AppTheme.textStyleSemiBoldBlack14,
+              ),
+              ListTile(
+                contentPadding: EdgeInsets.zero,
+                minVerticalPadding: 12,
+                leading: ClipOval(
+                  child: Image.network(
+                      'https://www.gravatar.com/avatar/2c7d99fe281ecd3bcd65ab915bac6dd5?s=250'),
+                ),
+                title: const Text(
+                  'jenny willson',
+                  style: AppTheme.textStyleSemiBoldBlack16,
+                ),
+                subtitle: const Text(
+                  'Service Provider',
+                  style: AppTheme.textStyleMediumFadeBlack12,
+                ),
+                trailing: Row(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    Container(
+                      //margin: EdgeInsets.all(8),
+                      padding: const EdgeInsets.all(8),
+                      decoration: BoxDecoration(
+                          shape: BoxShape.circle,
+                          color: AppColors.kAccentColor.withOpacity(.7)),
+                      child: InkWell(
+                        onTap: () {
+                          Get.back();
+                        },
+                        borderRadius: BorderRadius.circular(90),
+                        child: const Icon(
+                          Icons.textsms_rounded,
+                          size: 20,
+                          color: AppColors.kPrimaryColor,
+                        ),
+                      ),
+                    ),
+                    CustomSizedBox.space8W,
+                    Container(
+                      //margin: EdgeInsets.all(8),
+                      padding: const EdgeInsets.all(8),
+                      decoration: BoxDecoration(
+                          shape: BoxShape.circle,
+                          color: AppColors.kAccentColor.withOpacity(.7)),
+                      child: InkWell(
+                        onTap: () {
+                          Get.back();
+                        },
+                        borderRadius: BorderRadius.circular(90),
+                        child: const Icon(
+                          Icons.call,
+                          size: 20,
+                          color: AppColors.kPrimaryColor,
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ],
+          ),
+        );
+
+      case 1:
+        return GridView.builder(
+          shrinkWrap: true,
+          primary: false,
+          padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 8),
+          gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+              crossAxisCount: 3,
+              mainAxisSpacing: 8,
+              crossAxisSpacing: 5,
+              childAspectRatio: .95),
+          itemCount: 10,
+          itemBuilder: (context, index) {
+            return GestureDetector(
+                onTap: () {
+                  Get.toNamed(ServiceOfferDetails.routeName,
+                      arguments: 'service');
+                },
+                child: const OfferAndServicesWidget(
+                  height: 70,
+                  iconVisible: false,
+                  subtitle: Padding(
+                    padding: EdgeInsets.symmetric(horizontal: 6.0),
+                    child: Text(
+                      'basic cleaning service',
+                      style: AppTheme.textStyleMediumBlack12,
+                      maxLines: 2,
+                      overflow: TextOverflow.ellipsis,
+                    ),
+                  ),
+                ));
+          },
+        );
+      case 2:
+        return Padding(
+          padding: const EdgeInsets.symmetric(vertical: 12.0, horizontal: 16),
+          child: Column(
+            children: [
+              Row(
+                children: [
+                  const Text(
+                    '4.0',
+                    style: AppTheme.textStyleSemiBoldBlack20,
+                  ),
+                  CustomSizedBox.space8W,
+                  ...List.generate(
+                      5,
+                      (index) => Icon(
+                            Icons.star_rate_rounded,
+                            color: index == 4
+                                ? Colors.grey.shade300
+                                : Colors.orangeAccent,
+                          )),
+                  CustomSizedBox.space4W,
+                  Text(
+                    '23 reviews',
+                    style: TextStyle(
+                        fontWeight: FontWeight.w500,
+                        color: Colors.grey.shade400,
+                        fontSize: 12),
+                  )
+                ],
+              ),
+              CustomSizedBox.space12H,
+              ...List.generate(
+                  3,
+                  (index) => Row(
+                        children: [
+                          Container(
+                            child: const Text(
+                              'Cozy Place (12)',
+                              style: TextStyle(
+                                  fontWeight: FontWeight.w500,
+                                  color: Colors.grey,
+                                  fontSize: 12),
+                            ),
+                            padding: const EdgeInsets.all(12),
+                            margin: const EdgeInsets.symmetric(
+                                horizontal: 4, vertical: 4),
+                            decoration: BoxDecoration(
+                                color: Colors.grey.shade100,
+                                borderRadius: BorderRadius.circular(30)),
+                          ),
+                          Container(
+                            child: const Text(
+                              'Not very crowded (18)',
+                              style: TextStyle(
+                                  fontWeight: FontWeight.w500,
+                                  color: Colors.grey,
+                                  fontSize: 12),
+                            ),
+                            padding: const EdgeInsets.all(12),
+                            margin: const EdgeInsets.symmetric(
+                                horizontal: 8, vertical: 4),
+                            decoration: BoxDecoration(
+                                color: Colors.grey.shade100,
+                                borderRadius: BorderRadius.circular(30)),
+                          ),
+                        ],
+                      )),
+              ListTile(
+                horizontalTitleGap: 4,
+                contentPadding: EdgeInsets.zero,
+                minVerticalPadding: 0,
+                leading: ClipOval(
+                  child: Image.network(
+                    'https://www.gravatar.com/avatar/2c7d99fe281ecd3bcd65ab915bac6dd5?s=250',
+                    height: 30,
+                  ),
+                ),
+                title: const Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      'jenny willson',
+                      style: AppTheme.textStyleSemiBoldBlack14,
+                    ),
+                    Row(
+                      children: [
+                        Icon(
+                          Icons.star_rate_rounded,
+                          size: 12,
+                          color: Colors.orangeAccent,
+                        ),
+                        Text(
+                          ' 5.0',
+                          style: AppTheme.textStyleMediumBlack10,
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
+                trailing: Text(
+                  '11/3/2023',
+                  style: TextStyle(
+                      fontWeight: FontWeight.w500,
+                      color: Colors.grey.shade400,
+                      fontSize: 12),
+                ),
+              ),
+              const Text(
+                'Entertainers called ventriloquists can make dummies appear to talk. The automobile industry uses dummies in cars to study how safe cars are during a crash.',
+                style: TextStyle(
+                    fontWeight: FontWeight.w500,
+                    color: Colors.grey,
+                    fontSize: 12),
+              ),
+            ],
+          ),
+        );
+      default:
+        return Center(
+          child: Text(
+            'Unknown Tab',
+            style: TextStyle(fontSize: 10),
+          ),
+        );
+    }
   }
 
   Future<void> _launchUrl() async {

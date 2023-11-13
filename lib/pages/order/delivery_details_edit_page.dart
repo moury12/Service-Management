@@ -4,9 +4,12 @@ import 'package:google_maps_flutter/google_maps_flutter.dart';
 
 class DeliveryDetailsEditScreen extends StatefulWidget {
   static const String routeName = '/deliveryDetailsedit';
-  final Position position;
 
-  const DeliveryDetailsEditScreen({super.key, required this.position});
+  // final Position position;
+
+  const DeliveryDetailsEditScreen({
+    super.key,
+  });
 
   @override
   State<DeliveryDetailsEditScreen> createState() =>

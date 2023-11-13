@@ -76,8 +76,9 @@ class _DeliveryDetailsScreenState extends State<DeliveryDetailsScreen> {
                     ),
                     const Spacer(),
                     GestureDetector(
+
                       onTap: () {
-                        Get.toNamed(DeliveryDetailsEditScreen.routeName);
+                        Get.to(DeliveryDetailsEditScreen());
                       },
                       child: Image.asset(
                         AssetsConstant.edit_icon2,

@@ -22,7 +22,11 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen>
     with SingleTickerProviderStateMixin {
   bool showMore = false;
-  int currentIndex = 0;
+  int currentIndexBanner1 = 0;
+  PageController bannerController1 = PageController();
+  int currentIndexBanner2 = 0;
+  PageController bannerController2 = PageController();
+
   int gridItem = 16;
 
   Color? containerColor = Colors.white.withOpacity(.6);
@@ -31,6 +35,16 @@ class _HomeScreenState extends State<HomeScreen>
   Animation<double>? _animation;
 
   String selectedCategory = '';
+  List<String> bannerContent1 = [
+    AssetsConstant.banner,
+    AssetsConstant.banner,
+    AssetsConstant.banner
+  ];
+  List<String> bannerContent2 = [
+    AssetsConstant.banner,
+    AssetsConstant.banner,
+    AssetsConstant.banner
+  ];
   List<Map<String, dynamic>> categoryList = [
     {'category': 'All', 'isSelected': true},
     {'category': 'Cleaning', 'isSelected': false},
@@ -50,6 +64,9 @@ class _HomeScreenState extends State<HomeScreen>
 
   @override
   void initState() {
+    bannerController1 = PageController(initialPage: 0);
+    bannerController2 = PageController(initialPage: 0);
+
     _controller = AnimationController(
       vsync: this,
       duration: const Duration(milliseconds: 300),
@@ -212,29 +229,44 @@ class _HomeScreenState extends State<HomeScreen>
         ),
         SizedBox(
           height: 130,
-          child: ListView.builder(
+          child: PageView.builder(
             scrollDirection: Axis.horizontal,
-            itemCount: 3,
-            padding: const EdgeInsets.symmetric(horizontal: 8),
+            controller: bannerController2,
+            onPageChanged: (value) {
+              setState(() {
+                currentIndexBanner2 = value;
+              });
+            },
+            itemCount: bannerContent2.length,
             itemBuilder: (context, index) {
-              currentIndex = index;
-
-              return const OfferItemWidget();
+              currentIndexBanner2 = index;
+              String data = bannerContent2[index];
+              return Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                child: Image.asset(
+                  data,
+                  errorBuilder: (context, error, stackTrace) => Icon(
+                    Icons.image,
+                  ),
+                  height: 125,
+                ),
+              );
             },
           ),
         ),
-        CustomSizedBox.space4H,
         Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: List.generate(
               3,
-              (index) => Container(
+              (index) => AnimatedContainer(
+                    duration: Duration(milliseconds: 500),
+                    curve: Curves.linear,
                     margin: const EdgeInsets.all(4),
-                    width: currentIndex == index ? 20 : 10,
+                    width: currentIndexBanner2 == index ? 20 : 10,
                     decoration: BoxDecoration(
                         border: Border.all(
                             width: 3,
-                            color: currentIndex == index
+                            color: currentIndexBanner2 == index
                                 ? AppColors.kPrimaryColor
                                 : AppColors.kPrimaryColor.withOpacity(.5)),
                         borderRadius: BorderRadius.circular(20)),
@@ -269,7 +301,7 @@ class _HomeScreenState extends State<HomeScreen>
             itemCount: 3,
             padding: EdgeInsets.symmetric(horizontal: 8),
             itemBuilder: (context, index) {
-              currentIndex = index;
+              currentIndexBanner1 = index;
 
               return InkWell(
                   onTap: () {
@@ -373,7 +405,7 @@ class _HomeScreenState extends State<HomeScreen>
             itemCount: 3,
             padding: EdgeInsets.symmetric(horizontal: 8),
             itemBuilder: (context, index) {
-              currentIndex = index;
+              currentIndexBanner1 = index;
 
               return InkWell(
                   onTap: () {
@@ -386,17 +418,22 @@ class _HomeScreenState extends State<HomeScreen>
         ),
         SizedBox(
           height: 130,
-          child: ListView.builder(
+          child: PageView.builder(
             scrollDirection: Axis.horizontal,
-            itemCount: 3,
-            padding: const EdgeInsets.symmetric(horizontal: 8),
+            controller: bannerController1,
+            onPageChanged: (value) {
+              setState(() {
+                currentIndexBanner1 = value;
+              });
+            },
+            itemCount: bannerContent1.length,
             itemBuilder: (context, index) {
-              currentIndex = index;
-
+              currentIndexBanner1 = index;
+              String data = bannerContent1[index];
               return Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 8.0),
                 child: Image.asset(
-                  AssetsConstant.banner,
+                  data,
                   errorBuilder: (context, error, stackTrace) => Icon(
                     Icons.image,
                   ),
@@ -410,13 +447,15 @@ class _HomeScreenState extends State<HomeScreen>
           mainAxisAlignment: MainAxisAlignment.center,
           children: List.generate(
               3,
-              (index) => Container(
+              (index) => AnimatedContainer(
+                    duration: Duration(milliseconds: 500),
+                    curve: Curves.linear,
                     margin: const EdgeInsets.all(4),
-                    width: currentIndex == index ? 20 : 10,
+                    width: currentIndexBanner1 == index ? 20 : 10,
                     decoration: BoxDecoration(
                         border: Border.all(
                             width: 3,
-                            color: currentIndex == index
+                            color: currentIndexBanner1 == index
                                 ? AppColors.kPrimaryColor
                                 : AppColors.kPrimaryColor.withOpacity(.5)),
                         borderRadius: BorderRadius.circular(20)),
@@ -448,6 +487,7 @@ class _HomeScreenState extends State<HomeScreen>
           height: 35,
           width: double.infinity,
           child: ListView.builder(
+            padding: EdgeInsets.symmetric(horizontal: 12),
             scrollDirection: Axis.horizontal,
             itemCount: categoryList.length,
             itemBuilder: (context, index) {

@@ -1,5 +1,6 @@
 import 'package:fix_ican/constants/color_constant.dart';
 import 'package:fix_ican/pages/auth/login_page.dart';
+import 'package:fix_ican/pages/home/main_home_page.dart';
 import 'package:fix_ican/pages/splash/splash_page.dart';
 import 'package:flutter/material.dart';
 import 'package:mh_core/utils/color/custom_color.dart';
@@ -22,9 +23,8 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       theme: ThemeData.light(),
       getPages: AppRoutes.routes(),
-      initialRoute:
-          // MainHomeScreen.routeName,
-          LoginScreen.routeName,
+      initialRoute: MainHomeScreen.routeName,
+
       //initialBinding: AuthBinding(),
     );
     ;
