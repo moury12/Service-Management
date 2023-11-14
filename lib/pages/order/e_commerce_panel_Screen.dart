@@ -23,30 +23,7 @@ class _EcommercepanelScreenState extends State<EcommercepanelScreen>
     with SingleTickerProviderStateMixin {
   PageController pageController = PageController(initialPage: 0);
   int currentPage = 0;
-  List<Map<String, dynamic>> productItem = [
-    {
-      'name': 'Chess Salad with Boiled Egg',
-      'price': 280.45,
-      'img':
-          'https://www.bhg.com/thmb/cX9GeFKdow2d4mNqEbMRTXjpoZQ=/750x0/filters:no_upscale():max_bytes(150000):strip_icc():format(webp)/difference-between-fruits-vegetables-01-5f92e7ec706b463287bcfb46985698f9.jpg',
-      'addtocart': false
-    },
-    {
-      'name': 'Chess Salad with Boiled Egg',
-      'price': 280.45,
-      'img':
-          'https://www.bhg.com/thmb/cX9GeFKdow2d4mNqEbMRTXjpoZQ=/750x0/filters:no_upscale():max_bytes(150000):strip_icc():format(webp)/difference-between-fruits-vegetables-01-5f92e7ec706b463287bcfb46985698f9.jpg',
-      'addtocart': true
-    },
-    {
-      'name': 'Chess Salad with Boiled Egg',
-      'price': 280.45,
-      'img':
-          'https://www.bhg.com/thmb/cX9GeFKdow2d4mNqEbMRTXjpoZQ=/750x0/filters:no_upscale():max_bytes(150000):strip_icc():format(webp)/difference-between-fruits-vegetables-01-5f92e7ec706b463287bcfb46985698f9.jpg',
-      'addtocart': false
-    },
-  ];
-
+  final dataKey = new GlobalKey();
   List<String> bannerContent = [
     'https://media.istockphoto.com/id/1473162545/photo/senior-care-hug-and-portrait-of-nurse-with-patient-for-medical-help-healthcare-or.webp?b=1&s=170667a&w=0&k=20&c=utvVFt8ggaYLkaKo7Bm2rtPvXWWUf0m_1n-hZURpjJI=',
     'https://images.pexels.com/photos/518244/pexels-photo-518244.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
@@ -61,10 +38,11 @@ class _EcommercepanelScreenState extends State<EcommercepanelScreen>
   int currentIndex = 0;
 
   bool _isTopPositionArrive = false;
+  ScrollController _categoryScrollController = ScrollController();
 
   @override
   void initState() {
-    tabController = TabController(length: tabTiles.length, vsync: this);
+    tabController = TabController(length: tabtiles.length, vsync: this);
     tabController.addListener(() {
       setState(() {
         currentIndex = tabController.index;
@@ -101,6 +79,9 @@ class _EcommercepanelScreenState extends State<EcommercepanelScreen>
       //   // Perform your task
       // }
     });
+    _keyList = List<GlobalKey>.generate(
+        tabtiles.length, (index) => GlobalKey(debugLabel: 'key_$index'),
+        growable: false);
     super.initState();
   }
 
@@ -114,265 +95,195 @@ class _EcommercepanelScreenState extends State<EcommercepanelScreen>
     super.dispose();
   }
 
+  List<GlobalKey> _keyList = [];
+
   late TabController tabController;
-  List<String> tabTiles = [
-    'Cookies',
-    'Dress',
-    'Cake',
-    'Veg',
-    'Meat',
-    'drinks',
-    'Perfume',
-    'Cloths'
+  List<Map<String, dynamic>> tabtiles = [
+    {
+      'title': 'Cookies',
+      'key': GlobalKey(),
+    },
+    {
+      'title': 'Dress',
+      'key': GlobalKey(),
+    },
+    {
+      'title': 'Cake',
+      'key': GlobalKey(),
+    },
+    {
+      'title': 'Veg',
+      'key': GlobalKey(),
+    },
+    {
+      'title': 'Meat',
+      'key': GlobalKey(),
+    },
+    {
+      'title': 'drinks',
+      'key': GlobalKey(),
+    },
+    {
+      'title': 'Perfume',
+      'key': GlobalKey(),
+    },
+    {
+      'title': 'Cloths',
+      'key': GlobalKey(),
+    },
   ];
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Stack(
-        children: [
-          SingleChildScrollView(
-            controller: _scrollController,
-            child: Column(
-              children: [
-                SizedBox(
-                  height: MediaQuery.of(context).viewPadding.top,
-                ),
-                CustomSizedBox.space12H,
-                CustomTextField(
-                  hintText: 'Search a product',
-                  marginVertical: 0,
-                  marginHorizontal: 16,
-                  enableBorderColor: AppColors.kAccentColor,
-                  focusColor: AppColors.kPrimaryColor,
-                  prefixWidget: Icon(
-                    Icons.search_rounded,
-                    color: AppColors.kPrimaryColor,
+      body: SafeArea(
+        child: Stack(
+          children: [
+            SingleChildScrollView(
+              controller: _scrollController,
+              child: Column(
+                children: [
+                  // SizedBox(
+                  //   height: MediaQuery.of(context).viewPadding.top,
+                  // ),
+                  CustomSizedBox.space12H,
+                  CustomTextField(
+                    hintText: 'Search a product',
+                    marginVertical: 0,
+                    marginHorizontal: 16,
+                    enableBorderColor: AppColors.kAccentColor,
+                    focusColor: AppColors.kPrimaryColor,
+                    prefixWidget: Icon(
+                      Icons.search_rounded,
+                      color: AppColors.kPrimaryColor,
+                    ),
+                    borderRadius: 20,
                   ),
-                  borderRadius: 20,
-                ),
-                Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 8.0),
-                  child: SizedBox(
-                    height: 164,
-                    child: PageView.builder(
-                      scrollDirection: Axis.horizontal,
-                      controller: pageController,
-                      onPageChanged: (value) {
-                        setState(() {
-                          currentPage = value;
-                        });
-                      },
-                      itemCount: bannerContent.length,
-                      itemBuilder: (context, index) {
-                        currentPage = index;
-                        String data = bannerContent[index];
-                        return Padding(
-                          padding: const EdgeInsets.symmetric(
-                              horizontal: 8.0, vertical: 12),
-                          child: ClipRRect(
-                            borderRadius: BorderRadius.circular(10),
-                            child: Image.network(
-                              data,
-                              fit: BoxFit.cover,
-                              errorBuilder: (context, error, stackTrace) =>
-                                  Icon(
-                                Icons.error,
-                                color: Colors.red,
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                    child: SizedBox(
+                      height: 164,
+                      child: PageView.builder(
+                        scrollDirection: Axis.horizontal,
+                        controller: pageController,
+                        onPageChanged: (value) {
+                          setState(() {
+                            currentPage = value;
+                          });
+                        },
+                        itemCount: bannerContent.length,
+                        itemBuilder: (context, index) {
+                          currentPage = index;
+                          String data = bannerContent[index];
+                          return Padding(
+                            padding: const EdgeInsets.symmetric(
+                                horizontal: 8.0, vertical: 12),
+                            child: ClipRRect(
+                              borderRadius: BorderRadius.circular(10),
+                              child: Image.network(
+                                data,
+                                fit: BoxFit.cover,
+                                errorBuilder: (context, error, stackTrace) =>
+                                    Icon(
+                                  Icons.error,
+                                  color: Colors.red,
+                                ),
+                                height: 135,
                               ),
-                              height: 135,
                             ),
-                          ),
-                        );
-                      },
+                          );
+                        },
+                      ),
                     ),
                   ),
-                ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: List.generate(bannerContent.length, (index) {
-                    return Container(
-                      margin: EdgeInsets.all(4),
-                      width: 7,
-                      height: 7,
-                      decoration: BoxDecoration(
-                        shape: BoxShape.circle,
-                        color: currentPage == index
-                            ? AppColors.kPrimaryColor
-                            : AppColors.kAccentColor,
-                      ),
-                    );
-                  }),
-                ),
-                CustomSizedBox.space12H,
-                Padding(
-                  padding:
-                      const EdgeInsets.symmetric(horizontal: 16.0, vertical: 6),
-                  child: Row(
-                    children: [
-                      Text(
-                        'Shop Name:',
-                        style: AppTheme.textStyleBoldBlack16,
-                      ),
-                      CustomSizedBox.space16W,
-                      Text(
-                        'perfecto.fgkdfgidfgg',
-                        style: AppTheme.textStyleNormalBlack14,
-                      ),
-                      Spacer(),
-                      Row(
-                        children: [
-                          Icon(
-                            Icons.star_rate_rounded,
-                            color: Colors.orangeAccent,
-                            size: 20,
-                          ),
-                          CustomSizedBox.space4W,
-                          Text(
-                            '2.3',
-                            style: AppTheme.textStyleMediumBlack14,
-                          )
-                        ],
-                      )
-                    ],
-                  ),
-                ),
-                Padding(
-                  padding:
-                      const EdgeInsets.symmetric(horizontal: 16.0, vertical: 6),
-                  child: Row(
-                    children: [
-                      Text(
-                        'Location:',
-                        style: AppTheme.textStyleBoldBlack16,
-                      ),
-                      CustomSizedBox.space16W,
-                      Text(
-                        'perfecto.fgkdfgidfgg',
-                        style: AppTheme.textStyleNormalBlack14,
-                      )
-                    ],
-                  ),
-                ),
-                Padding(
-                  padding:
-                      const EdgeInsets.symmetric(horizontal: 16.0, vertical: 6),
-                  child: Row(
-                    children: [
-                      Text(
-                        'Products:',
-                        style: AppTheme.textStyleBoldBlack16,
-                      ),
-                      CustomSizedBox.space16W,
-                      // Text(
-                      //   'perfecto.fgkdfgidfgg',
-                      //   style: AppTheme.textStyleNormalBlack14,
-                      // )
-                    ],
-                  ),
-                ),
-                TabBar(
-                    key: containerKey,
-                    isScrollable: true,
-                    labelColor: AppColors.kPrimaryColor,
-                    labelStyle:
-                        TextStyle(fontWeight: FontWeight.bold, fontSize: 14),
-                    unselectedLabelStyle:
-                        TextStyle(fontWeight: FontWeight.normal, fontSize: 12),
-                    indicatorColor: Colors.transparent,
-                    dividerColor: Colors.transparent,
-                    controller: tabController,
-                    tabs: tabTiles.map((String title) {
-                      return Tab(
-                        text: title,
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: List.generate(bannerContent.length, (index) {
+                      return Container(
+                        margin: EdgeInsets.all(4),
+                        width: 7,
+                        height: 7,
+                        decoration: BoxDecoration(
+                          shape: BoxShape.circle,
+                          color: currentPage == index
+                              ? AppColors.kPrimaryColor
+                              : AppColors.kAccentColor,
+                        ),
                       );
-                    }).toList()),
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 16),
-                      child: Text(
-                        'Cookies',
-                        style: AppTheme.textStyleSemiBoldBlack16,
-                      ),
+                    }),
+                  ),
+                  CustomSizedBox.space12H,
+                  Padding(
+                    padding: const EdgeInsets.symmetric(
+                        horizontal: 16.0, vertical: 6),
+                    child: Row(
+                      children: [
+                        Text(
+                          'Shop Name:',
+                          style: AppTheme.textStyleBoldBlack16,
+                        ),
+                        CustomSizedBox.space16W,
+                        Text(
+                          'perfecto.fgkdfgidfgg',
+                          style: AppTheme.textStyleNormalBlack14,
+                        ),
+                        Spacer(),
+                        Row(
+                          children: [
+                            Icon(
+                              Icons.star_rate_rounded,
+                              color: Colors.orangeAccent,
+                              size: 20,
+                            ),
+                            CustomSizedBox.space4W,
+                            Text(
+                              '2.3',
+                              style: AppTheme.textStyleMediumBlack14,
+                            )
+                          ],
+                        )
+                      ],
                     ),
-                    GridView.builder(
-                      padding: const EdgeInsets.symmetric(
-                          horizontal: 16, vertical: 16),
-                      shrinkWrap: true,
-                      physics: const ScrollPhysics(),
-                      gridDelegate:
-                          const SliverGridDelegateWithMaxCrossAxisExtent(
-                              mainAxisExtent: 210,
-                              maxCrossAxisExtent: 200,
-                              crossAxisSpacing: 20,
-                              mainAxisSpacing: 20),
-                      itemCount: productItem.length,
-                      itemBuilder: (BuildContext ctx, index) {
-                        Map<String, dynamic> data = productItem[index];
-                        return ProductItem(
-                          onTap: () {},
-                          cartTap: () {
-                            setState(() {
-                              data['addtocart'] = !data['addtocart'];
-                            });
-                          },
-                          productName: data['name'],
-                          productImage: data['img'],
-                          price: data['price'],
-                          addtocart: data['addtocart'],
-                        );
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.symmetric(
+                        horizontal: 16.0, vertical: 6),
+                    child: Row(
+                      children: [
+                        Text(
+                          'Location:',
+                          style: AppTheme.textStyleBoldBlack16,
+                        ),
+                        CustomSizedBox.space16W,
+                        Text(
+                          'perfecto.fgkdfgidfgg',
+                          style: AppTheme.textStyleNormalBlack14,
+                        )
+                      ],
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.symmetric(
+                        horizontal: 16.0, vertical: 6),
+                    child: Row(
+                      children: [
+                        Text(
+                          'Products:',
+                          style: AppTheme.textStyleBoldBlack16,
+                        ),
+                        CustomSizedBox.space16W,
+                        // Text(
+                        //   'perfecto.fgkdfgidfgg',
+                        //   style: AppTheme.textStyleNormalBlack14,
+                        // )
+                      ],
+                    ),
+                  ),
+                  TabBar(
+                      onTap: (index) {
+                        scrollToItem(index);
                       },
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 16),
-                      child: Text(
-                        'Cookies',
-                        style: AppTheme.textStyleSemiBoldBlack16,
-                      ),
-                    ),
-                    GridView.builder(
-                      padding: const EdgeInsets.symmetric(
-                          horizontal: 16, vertical: 16),
-                      shrinkWrap: true,
-                      physics: const ScrollPhysics(),
-                      gridDelegate:
-                          const SliverGridDelegateWithMaxCrossAxisExtent(
-                              mainAxisExtent: 210,
-                              maxCrossAxisExtent: 200,
-                              crossAxisSpacing: 20,
-                              mainAxisSpacing: 20),
-                      itemCount: productItem.length,
-                      itemBuilder: (BuildContext ctx, index) {
-                        Map<String, dynamic> data = productItem[index];
-                        return ProductItem(
-                          onTap: () {},
-                          cartTap: () {
-                            setState(() {
-                              data['addtocart'] = !data['addtocart'];
-                            });
-                          },
-                          productName: data['name'],
-                          productImage: data['img'],
-                          price: data['price'],
-                          addtocart: data['addtocart'],
-                        );
-                      },
-                    ),
-                  ],
-                ),
-              ],
-            ),
-          ),
-          if (_isTopPositionArrive)
-            Positioned(
-                top: MediaQuery.of(context).viewPadding.top,
-                left: 0,
-                right: 0,
-                child: Container(
-                  color: Colors.white,
-                  child: TabBar(
+                      key: containerKey,
                       isScrollable: true,
                       labelColor: AppColors.kPrimaryColor,
                       labelStyle:
@@ -382,13 +293,47 @@ class _EcommercepanelScreenState extends State<EcommercepanelScreen>
                       indicatorColor: Colors.transparent,
                       dividerColor: Colors.transparent,
                       controller: tabController,
-                      tabs: tabTiles.map((String title) {
+                      tabs: tabtiles.map((e) {
                         return Tab(
-                          text: title,
+                          text: e['title'],
                         );
                       }).toList()),
-                ))
-        ],
+                  for (int i = 0; i < tabtiles.length; i++)
+                    productCategoryWidget(
+                        categoryName: tabtiles[i]['title'],
+                        controller: _categoryScrollController,
+                        key: _keyList[i])
+                ],
+              ),
+            ),
+            if (_isTopPositionArrive)
+              Positioned(
+                  top: 0,
+                  left: 0,
+                  right: 0,
+                  child: Container(
+                    color: Colors.white,
+                    child: TabBar(
+                        onTap: (index) {
+                          scrollToItem(index);
+                        },
+                        isScrollable: true,
+                        labelColor: AppColors.kPrimaryColor,
+                        labelStyle: TextStyle(
+                            fontWeight: FontWeight.bold, fontSize: 14),
+                        unselectedLabelStyle: TextStyle(
+                            fontWeight: FontWeight.normal, fontSize: 12),
+                        indicatorColor: Colors.transparent,
+                        dividerColor: Colors.transparent,
+                        controller: tabController,
+                        tabs: tabtiles.map((e) {
+                          return Tab(
+                            text: e['title'],
+                          );
+                        }).toList()),
+                  ))
+          ],
+        ),
       ),
       bottomNavigationBar: Container(
         height: 120,
@@ -468,6 +413,104 @@ class _EcommercepanelScreenState extends State<EcommercepanelScreen>
             )
           ],
         ),
+      ),
+    );
+  }
+
+  void scrollToItem(int index) {
+    globalLogger.d(tabtiles[index], _keyList[index]);
+
+    Scrollable.ensureVisible(_keyList[index].currentContext!,
+        duration: Duration(milliseconds: 300));
+  }
+// void scrollToItem(int index) {
+//   _scrollController.jumpTo(
+//     index * 200.0, // Adjust based on the size of your items
+//   );
+// }
+}
+
+class productCategoryWidget extends StatefulWidget {
+  final String categoryName;
+  final ScrollController controller;
+
+  const productCategoryWidget({
+    required this.categoryName,
+    required this.controller,
+    Key? key,
+  }) : super(key: key);
+
+  @override
+  State<productCategoryWidget> createState() => _productCategoryWidgetState();
+}
+
+class _productCategoryWidgetState extends State<productCategoryWidget> {
+  List<Map<String, dynamic>> productItem = [
+    {
+      'name': 'Chess Salad with Boiled Egg',
+      'price': 280.45,
+      'img':
+          'https://www.bhg.com/thmb/cX9GeFKdow2d4mNqEbMRTXjpoZQ=/750x0/filters:no_upscale():max_bytes(150000):strip_icc():format(webp)/difference-between-fruits-vegetables-01-5f92e7ec706b463287bcfb46985698f9.jpg',
+      'addtocart': false
+    },
+    {
+      'name': 'Chess Salad with Boiled Egg',
+      'price': 280.45,
+      'img':
+          'https://www.bhg.com/thmb/cX9GeFKdow2d4mNqEbMRTXjpoZQ=/750x0/filters:no_upscale():max_bytes(150000):strip_icc():format(webp)/difference-between-fruits-vegetables-01-5f92e7ec706b463287bcfb46985698f9.jpg',
+      'addtocart': true
+    },
+    {
+      'name': 'Chess Salad with Boiled Egg',
+      'price': 280.45,
+      'img':
+          'https://www.bhg.com/thmb/cX9GeFKdow2d4mNqEbMRTXjpoZQ=/750x0/filters:no_upscale():max_bytes(150000):strip_icc():format(webp)/difference-between-fruits-vegetables-01-5f92e7ec706b463287bcfb46985698f9.jpg',
+      'addtocart': false
+    },
+  ];
+
+  @override
+  Widget build(BuildContext context) {
+    return SingleChildScrollView(
+      key: widget.key,
+      controller: widget.controller,
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 16),
+            child: Text(
+              widget.categoryName,
+              style: AppTheme.textStyleSemiBoldBlack16,
+            ),
+          ),
+          GridView.builder(
+            padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 16),
+            shrinkWrap: true,
+            primary: false,
+            gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
+                mainAxisExtent: 210,
+                maxCrossAxisExtent: 200,
+                crossAxisSpacing: 20,
+                mainAxisSpacing: 20),
+            itemCount: productItem.length,
+            itemBuilder: (BuildContext ctx, index) {
+              Map<String, dynamic> data = productItem[index];
+              return ProductItem(
+                onTap: () {},
+                cartTap: () {
+                  setState(() {
+                    data['addtocart'] = !data['addtocart'];
+                  });
+                },
+                productName: data['name'],
+                productImage: data['img'],
+                price: data['price'],
+                addtocart: data['addtocart'],
+              );
+            },
+          ),
+        ],
       ),
     );
   }
