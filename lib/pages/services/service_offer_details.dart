@@ -39,8 +39,8 @@ class _ServiceOfferDetailsState extends State<ServiceOfferDetails> {
         label: argument == 'service' ? 'Continue' : 'Okay',
         onPressed: argument == 'service'
             ? () {
-                Get.toNamed(BasicCleaningScreen.routeName);
-              }
+          Get.toNamed(BasicCleaningScreen.routeName);
+        }
             : () {},
         marginHorizontal: 16,
         marginVertical: 12,
@@ -74,105 +74,107 @@ class _ServiceOfferDetailsState extends State<ServiceOfferDetails> {
             ),
             argument == 'service'
                 ? Padding(
-                    padding: const EdgeInsets.symmetric(vertical: 12.0),
-                    child: Text(
-                      'Services',
-                      style: AppTheme.textStyleSemiBoldBlack20,
-                    ),
-                  )
+              padding: const EdgeInsets.symmetric(vertical: 12.0),
+              child: Text(
+                'Services',
+                style: AppTheme.textStyleSemiBoldBlack20,
+              ),
+            )
                 : SizedBox.shrink(),
             argument == 'service'
                 ? StatefulBuilder(builder: (context, setState) {
-                    return Column(
-                      children: [
-                        ...List.generate(
-                            2,
-                            (index) => Row(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceBetween,
+              return Column(
+                children: [
+                  ...List.generate(
+                      2,
+                          (index) =>
+                          GestureDetector(
+                            onTap: () {
+                              print('object');
+                              print(isChecked);
+                              setState(() {
+                                isChecked = !isChecked;
+                              });
+                              print(isChecked);
+                            },
+                            child: Row(
+                              mainAxisAlignment:
+                              MainAxisAlignment.spaceBetween,
+                              children: [
+                                Container(
+                                  padding: EdgeInsets.all(2),
+                                  height: 20,
+                                  width: 20,
+                                  decoration: BoxDecoration(
+                                      color: isChecked
+                                          ? AppColors.kPrimaryColor
+                                          : Colors.transparent,
+                                      border: Border.all(
+                                        color: Color(0xffFFD9D9),
+                                        width: 1.4,
+                                      ),
+                                      borderRadius:
+                                      BorderRadius.circular(3)),
+                                  child: isChecked
+                                      ? Image.asset(
+                                    AssetsConstant.check_icon,
+                                    height: 12,
+                                  )
+                                      : SizedBox.shrink(),
+                                ),
+
+                                Padding(
+                                  padding: const EdgeInsets.symmetric(
+                                      horizontal: 16.0),
+                                  child: HomeServiceItemWidget(
+                                    label: SizedBox.shrink(),
+                                    height: 33,
+                                  ),
+                                ),
+                                Column(
+                                  crossAxisAlignment:
+                                  CrossAxisAlignment.start,
                                   children: [
-                                    GestureDetector(
-                                      onTap: () {
-                                        print('object');
-                                        print(isChecked);
-                                        setState(() {
-                                          isChecked = !isChecked;
-                                        });
-                                        print(isChecked);
-                                      },
-                                      child: Container(
-                                        padding: EdgeInsets.all(2),
-                                        height: 20,
-                                        width: 20,
-                                        decoration: BoxDecoration(
-                                            color: isChecked
-                                                ? AppColors.kPrimaryColor
-                                                : Colors.transparent,
-                                            border: Border.all(
-                                              color: Color(0xffFFD9D9),
-                                              width: 1.4,
-                                            ),
-                                            borderRadius:
-                                                BorderRadius.circular(3)),
-                                        child: isChecked
-                                            ? Image.asset(
-                                                AssetsConstant.check_icon,
-                                                height: 12,
-                                              )
-                                            : SizedBox.shrink(),
-                                      ),
+                                    Text(
+                                      'Breakfast, Lunch, Dinner',
+                                      style:
+                                      AppTheme.textStyleSemiBoldBlack12,
                                     ),
-                                    Padding(
-                                      padding: const EdgeInsets.symmetric(
-                                          horizontal: 16.0),
-                                      child: HomeServiceItemWidget(
-                                        label: SizedBox.shrink(),
-                                        height: 33,
-                                      ),
-                                    ),
-                                    Column(
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.start,
-                                      children: [
-                                        Text(
-                                          'Breakfast, Lunch, Dinner',
-                                          style:
-                                              AppTheme.textStyleSemiBoldBlack12,
-                                        ),
-                                        CustomSizedBox.space4H,
-                                        Text.rich(
-                                          TextSpan(
-                                              text: 'Estimated time:',
-                                              style: AppTheme
-                                                  .textStyleMediumBlack10,
-                                              children: [
-                                                TextSpan(
-                                                  text: ' 2:30 hrs',
-                                                )
-                                              ]),
+                                    CustomSizedBox.space4H,
+                                    Text.rich(
+                                      TextSpan(
+                                          text: 'Estimated time:',
                                           style: AppTheme
-                                              .textStyleNormalFadeBlack10,
-                                        )
-                                      ],
-                                    ),
-                                    Spacer(),
-                                    Padding(
-                                      padding: const EdgeInsets.symmetric(
-                                          horizontal: 8.0),
-                                      child: Text(
-                                        'Tk.1299',
-                                        style:
-                                            AppTheme.textStyleSemiBoldBlack12,
-                                      ),
+                                              .textStyleMediumBlack10,
+                                          children: [
+                                            TextSpan(
+                                              text: ' 2:30 hrs',
+                                            )
+                                          ]),
+                                      style: AppTheme
+                                          .textStyleNormalFadeBlack10,
                                     )
                                   ],
-                                )),
-                        SizedBox(
-                          height: 40,
-                        ),
-                      ],
-                    );
-                  })
+                                ),
+                                Spacer(),
+                                Padding(
+                                  padding: const EdgeInsets.symmetric(
+                                      horizontal: 8.0),
+                                  child: Text(
+                                    'Tk.1299',
+                                    style:
+                                    AppTheme.textStyleSemiBoldBlack12,
+                                  ),
+                                )
+                              ],
+                            ),
+                          )),
+                  SizedBox(
+                    height: 40,
+                  ),
+                ],
+              );
+            })
                 : SizedBox.shrink(),
           ],
         ),

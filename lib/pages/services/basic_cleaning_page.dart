@@ -186,10 +186,14 @@ class _BasicCleaningScreenState extends State<BasicCleaningScreen>
                                       style: AppTheme.textStyleSemiBoldBlack16,
                                     ),
                                   ),
-                                  const Divider(
-                                    thickness: 0.5,
-                                    color: Color(0xffF1B2BF),
+                                  DividerTheme(
+                                    child: const Divider(
+                                      thickness: 0.5,
+                                      color: Color(0xffF1B2BF),
+                                    ),
+                                    data: DividerThemeData(space: 0),
                                   ),
+                                  CustomSizedBox.space8H,
                                   Container(
                                     decoration: BoxDecoration(
                                         color: groupValue == 'Monthly'
@@ -255,9 +259,12 @@ class _BasicCleaningScreenState extends State<BasicCleaningScreen>
                                                 )
                                               ],
                                             ),
-                                            const Divider(
-                                              thickness: 0.5,
-                                              color: Color(0xffF1B2BF),
+                                            DividerTheme(
+                                              child: const Divider(
+                                                thickness: 0.5,
+                                                color: Color(0xffF1B2BF),
+                                              ),
+                                              data: DividerThemeData(space: 0),
                                             ),
                                             Padding(
                                               padding:
@@ -510,9 +517,12 @@ class _BasicCleaningScreenState extends State<BasicCleaningScreen>
                                                 )
                                               ],
                                             ),
-                                            const Divider(
-                                              thickness: 0.5,
-                                              color: Color(0xffF1B2BF),
+                                            DividerTheme(
+                                              child: const Divider(
+                                                thickness: 0.5,
+                                                color: Color(0xffF1B2BF),
+                                              ),
+                                              data: DividerThemeData(space: 0),
                                             ),
                                             Padding(
                                               padding:
@@ -620,9 +630,12 @@ class _BasicCleaningScreenState extends State<BasicCleaningScreen>
                                                 )
                                               ],
                                             ),
-                                            const Divider(
-                                              thickness: 0.5,
-                                              color: Color(0xffF1B2BF),
+                                            DividerTheme(
+                                              child: const Divider(
+                                                thickness: 0.5,
+                                                color: Color(0xffF1B2BF),
+                                              ),
+                                              data: DividerThemeData(space: 0),
                                             ),
                                             Padding(
                                               padding:
@@ -859,11 +872,17 @@ class _BasicCleaningScreenState extends State<BasicCleaningScreen>
                                                                           )
                                                                         ],
                                                                       ),
-                                                                      const Divider(
-                                                                        thickness:
-                                                                            0.5,
-                                                                        color: Color(
-                                                                            0xffF1B2BF),
+                                                                      DividerTheme(
+                                                                        child:
+                                                                            const Divider(
+                                                                          thickness:
+                                                                              0.5,
+                                                                          color:
+                                                                              Color(0xffF1B2BF),
+                                                                        ),
+                                                                        data: DividerThemeData(
+                                                                            space:
+                                                                                0),
                                                                       ),
                                                                       Padding(
                                                                         padding: const EdgeInsets
@@ -1020,11 +1039,17 @@ class _BasicCleaningScreenState extends State<BasicCleaningScreen>
                                                                           )
                                                                         ],
                                                                       ),
-                                                                      const Divider(
-                                                                        thickness:
-                                                                            0.5,
-                                                                        color: Color(
-                                                                            0xffF1B2BF),
+                                                                      DividerTheme(
+                                                                        child:
+                                                                            const Divider(
+                                                                          thickness:
+                                                                              0.5,
+                                                                          color:
+                                                                              Color(0xffF1B2BF),
+                                                                        ),
+                                                                        data: DividerThemeData(
+                                                                            space:
+                                                                                0),
                                                                       ),
                                                                       Padding(
                                                                         padding: const EdgeInsets
