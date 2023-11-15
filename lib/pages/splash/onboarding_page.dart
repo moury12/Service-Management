@@ -155,7 +155,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                     ? Text('')
                     : GestureDetector(
                         onTap: () {
-                          if (currentIndex < contents.length - 1) {
+                          if (currentIndex <= contents.length - 1) {
                             pageController.previousPage(
                                 duration: Duration(milliseconds: 500),
                                 curve: Curves.easeIn);

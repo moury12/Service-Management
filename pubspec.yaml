@@ -28,9 +28,10 @@ dependencies:
   geolocator: ^10.1.0
 
   mh_core:
-    git:
-      url: https://github.com/mh-sarkar/mh-core.git
-      ref: alpha
+    #    git:
+    ##      url: https://github.com/mh-sarkar/mh-core.git
+    ##      ref: alpha
+    path: ../mh_core
 
 dev_dependencies:
   flutter_test:

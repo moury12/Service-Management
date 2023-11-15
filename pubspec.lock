@@ -483,11 +483,9 @@ packages:
   mh_core:
     dependency: "direct main"
     description:
-      path: "."
-      ref: alpha
-      resolved-ref: "04dbaa462146d2b0a4d8e92f2140743598a369d5"
-      url: "https://github.com/mh-sarkar/mh-core.git"
-    source: git
+      path: "../mh_core"
+      relative: true
+    source: path
     version: "0.0.1"
   mime:
     dependency: transitive

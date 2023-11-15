@@ -19,16 +19,15 @@ class SplashWidget extends StatelessWidget {
             padding: EdgeInsets.all(45),
             decoration: BoxDecoration(
                 color: AppColors.kPrimaryColor.withOpacity(.2),
-                borderRadius: BorderRadius.circular(360)),
+                shape: BoxShape.circle),
             child: Container(
               decoration: BoxDecoration(
                   color: AppColors.kPrimaryColor.withOpacity(.2),
-                  borderRadius: BorderRadius.circular(360)),
+                  shape: BoxShape.circle),
               padding: EdgeInsets.all(45),
               child: Container(
                 decoration: BoxDecoration(
-                    color: AppColors.kBackgroundColor,
-                    borderRadius: BorderRadius.circular(360)),
+                    color: AppColors.kBackgroundColor, shape: BoxShape.circle),
                 alignment: Alignment.center,
                 height: 196,
                 //padding: EdgeInsets.symmetric(horizontal: 20),

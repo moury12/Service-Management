@@ -7,10 +7,18 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:mh_core/widgets/button/custom_button.dart';
 
-class LanguageSelectionScreen extends StatelessWidget {
+class LanguageSelectionScreen extends StatefulWidget {
   static const String routeName = '/languageSelection';
 
   const LanguageSelectionScreen({super.key});
+
+  @override
+  State<LanguageSelectionScreen> createState() =>
+      _LanguageSelectionScreenState();
+}
+
+class _LanguageSelectionScreenState extends State<LanguageSelectionScreen> {
+  String groupValue = 'English';
 
   @override
   Widget build(BuildContext context) {
@@ -56,8 +64,12 @@ class LanguageSelectionScreen extends StatelessWidget {
                         Radio(
                           value: 'বাংলা',
                           activeColor: AppColors.kPrimaryColor,
-                          groupValue: 'English',
-                          onChanged: (value) {},
+                          groupValue: groupValue,
+                          onChanged: (value) {
+                            setState(() {
+                              groupValue = value!;
+                            });
+                          },
                         ),
                       ],
                     ),
@@ -82,8 +94,12 @@ class LanguageSelectionScreen extends StatelessWidget {
                         Radio(
                           value: 'English',
                           activeColor: AppColors.kPrimaryColor,
-                          groupValue: 'English',
-                          onChanged: (value) {},
+                          groupValue: groupValue,
+                          onChanged: (value) {
+                            setState(() {
+                              groupValue = value!;
+                            });
+                          },
                         ),
                       ],
                     ),

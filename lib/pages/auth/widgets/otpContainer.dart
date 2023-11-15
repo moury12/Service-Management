@@ -39,6 +39,8 @@ class _OtpContainerState extends State<OtpContainer> {
               keyboardType: TextInputType.number,
               width: 40,
               height: 40,
+              textAlign: TextAlign.center,
+              textColor: AppColors.kPrimaryColor,
               onChanged: (value) {
                 if (value.length == 1) {
                   FocusScope.of(context).nextFocus();
@@ -70,10 +72,11 @@ class _OtpContainerState extends State<OtpContainer> {
               right: 1.2,
               child: Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 1.2),
-                child: Image.asset(AssetsConstant.otpContainer_icon,),
+                child: Image.asset(
+                  AssetsConstant.otpContainer_icon,
+                ),
               ),
             ),
-
           ],
         ),
       ),
