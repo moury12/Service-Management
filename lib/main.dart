@@ -23,7 +23,7 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       theme: ThemeData.light(),
       getPages: AppRoutes.routes(),
-      initialRoute: SplashScreen.routeName,
+      initialRoute: MainHomeScreen.routeName,
 
       //initialBinding: AuthBinding(),
     );

@@ -22,14 +22,11 @@ import '../pages/home/main_home_page.dart';
 import '../pages/splash/splash_page.dart';
 
 class AppRoutes {
-  static routes() => [
+  static routes() =>
+      [
         GetPage(
           name: MainHomeScreen.routeName,
           page: () => const MainHomeScreen(),
-        ),
-        GetPage(
-          name: '/',
-          page: () => const SplashScreen(),
         ),
 
         GetPage(

@@ -3,6 +3,7 @@ import 'package:fix_ican/constants/color_constant.dart';
 import 'package:fix_ican/pages/home/home_page.dart';
 import 'package:fix_ican/pages/services/basic_cleaning_page.dart';
 import 'package:fix_ican/shared/custom_scaffold.dart';
+import 'package:fix_ican/shared/custom_sized_box.dart';
 import 'package:fix_ican/theme/theme_data.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -52,9 +53,14 @@ class _ServiceOfferDetailsState extends State<ServiceOfferDetails> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
+            CustomSizedBox.space8H,
             ClipRRect(
                 borderRadius: BorderRadius.circular(6),
-                child: Image.asset(AssetsConstant.dummy_service)),
+                child: Image.asset(
+                  AssetsConstant.dummy_service,
+                  width: Get.width,
+                  fit: BoxFit.fitWidth,
+                )),
             Padding(
               padding: const EdgeInsets.symmetric(vertical: 12.0),
               child: Text(
@@ -117,7 +123,8 @@ class _ServiceOfferDetailsState extends State<ServiceOfferDetails> {
                                       ),
                                     ),
                                     Padding(
-                                      padding: const EdgeInsets.all(6.0),
+                                      padding: const EdgeInsets.symmetric(
+                                          horizontal: 16.0),
                                       child: HomeServiceItemWidget(
                                         label: SizedBox.shrink(),
                                         height: 33,
@@ -132,6 +139,7 @@ class _ServiceOfferDetailsState extends State<ServiceOfferDetails> {
                                           style:
                                               AppTheme.textStyleSemiBoldBlack12,
                                         ),
+                                        CustomSizedBox.space4H,
                                         Text.rich(
                                           TextSpan(
                                               text: 'Estimated time:',
@@ -148,12 +156,20 @@ class _ServiceOfferDetailsState extends State<ServiceOfferDetails> {
                                       ],
                                     ),
                                     Spacer(),
-                                    Text(
-                                      'Tk.1299',
-                                      style: AppTheme.textStyleSemiBoldBlack12,
+                                    Padding(
+                                      padding: const EdgeInsets.symmetric(
+                                          horizontal: 8.0),
+                                      child: Text(
+                                        'Tk.1299',
+                                        style:
+                                            AppTheme.textStyleSemiBoldBlack12,
+                                      ),
                                     )
                                   ],
-                                ))
+                                )),
+                        SizedBox(
+                          height: 40,
+                        ),
                       ],
                     );
                   })

@@ -1179,6 +1179,7 @@ class _CountWidgetState extends State<CountWidget> {
                     'How many bedroom?',
                     style: AppTheme.textStyleSemiBoldBlack16,
                   ),
+                  CustomSizedBox.space8W,
                   GestureDetector(
                     onTap: () {
                       showOverlay(context);

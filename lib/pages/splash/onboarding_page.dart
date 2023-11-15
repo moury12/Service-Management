@@ -60,21 +60,34 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
         backgroundColor: AppColors.kBackgroundColor,
         elevation: 0,
         leading: SizedBox.shrink(),
-        actions: [
-          TextButton(
-              onPressed: () {
-                Get.offAndToNamed(LoginScreen.routeName);
-              },
-              child: Text(
-                'Skip',
-                style: AppTheme.textStyleMediumPrimary12,
-              ))
-        ],
+        actions: [],
       ),
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.center,
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
+          Padding(
+            padding: const EdgeInsets.only(right: 28.0),
+            child: Align(
+              alignment: Alignment.topRight,
+              child: Material(
+                type: MaterialType.transparency,
+                child: InkWell(
+                  onTap: () {
+                    Get.offAndToNamed(LoginScreen.routeName);
+                  },
+                  borderRadius: BorderRadius.circular(20),
+                  child: Padding(
+                    padding: const EdgeInsets.all(8),
+                    child: Text(
+                      'Skip',
+                      style: AppTheme.textStyleMediumPrimary12,
+                    ),
+                  ),
+                ),
+              ),
+            ),
+          ),
           Expanded(
             child: PageView.builder(
                 controller: pageController,

@@ -472,6 +472,7 @@ class CenterDialogWidget extends StatelessWidget {
     return StatefulBuilder(
       builder: (context, setState) {
         return AlertDialog(
+          scrollable: true,
           shape:
               RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
           contentPadding: const EdgeInsets.all(16),

@@ -29,7 +29,7 @@ class _HomeScreenState extends State<HomeScreen>
   double dynamicHeight = 0.2;
   int gridItem = 16;
 
-  Color? containerColor = Colors.white.withOpacity(.6);
+  Color? containerColor = Colors.white.withOpacity(.75);
 
   AnimationController? _controller;
   Animation<double>? _animation;
@@ -49,7 +49,15 @@ class _HomeScreenState extends State<HomeScreen>
     {'category': 'All', 'isSelected': true},
     {'category': 'Cleaning', 'isSelected': false},
     {'category': 'Repairing', 'isSelected': false},
-    {'category': 'Painting', 'isSelected': false}
+    {'category': 'Painting', 'isSelected': false},
+    {'category': 'fgdgd', 'isSelected': false},
+    {'category': 'Cleaning', 'isSelected': false},
+    {'category': 'Repairing', 'isSelected': false},
+    {'category': 'Painting', 'isSelected': false},
+    {'category': 'dzfbfgv', 'isSelected': false},
+    {'category': 'Cleaning', 'isSelected': false},
+    {'category': 'Repairing', 'isSelected': false},
+    {'category': 'Painting', 'isSelected': false},
   ];
 
   void _up() {
@@ -92,7 +100,7 @@ class _HomeScreenState extends State<HomeScreen>
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  CustomSizedBox.space12H,
+                  CustomSizedBox.space24H,
                   Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 16),
                     child: Text(
@@ -138,93 +146,87 @@ class _HomeScreenState extends State<HomeScreen>
               ),
             ),
             AnimatedPositioned(
-              onEnd: () {
-                if (showMore) {
-                  containerColor = null;
-                  setState(() {});
-                }
-              },
-              top: 30 +
-                  (showMore
-                      ? (90.0 * (gridItem / 4.0).ceil())
-                      : gridItem > 4
-                          ? 105
-                          : 25),
-              left: 0,
-              right: 0,
-              duration: Duration(milliseconds: 300),
-              child: Container(
-                margin: EdgeInsets.symmetric(horizontal: 15, vertical: 2),
-                color: containerColor,
-                width: double.infinity,
-                height: 90,
-                clipBehavior: Clip.none,
-                child: FittedBox(
-                  child: Container(
-                    margin: const EdgeInsets.symmetric(vertical: 20),
-                    decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(20),
-                        boxShadow: [
-                          BoxShadow(
-                              color: Colors.black.withOpacity(.2),
-                              blurRadius: 5)
-                        ],
-                        gradient: const LinearGradient(
-                            colors: [
-                              AppColors.kPrimaryColor,
-                              Color(0xffFFA0A9)
-                            ],
-                            begin: Alignment.centerLeft,
-                            end: Alignment.centerRight),
-                        color: Colors.red),
-                    child: Material(
-                      type: MaterialType.transparency,
-                      borderRadius: BorderRadius.circular(20),
-                      child: InkWell(
-                        borderRadius: BorderRadius.circular(20),
+                onEnd: () {
+                  if (showMore) {
+                    containerColor = null;
+                    setState(() {});
+                  }
+                },
+                top: 35 +
+                    (showMore
+                        ? (93.0 * (gridItem / 4.0).ceil())
+                        : gridItem > 4
+                            ? 110
+                            : 25),
+                left: 0,
+                right: 0,
+                duration: Duration(milliseconds: 300),
+                child: Container(
+                    margin: EdgeInsets.symmetric(horizontal: 15, vertical: 0),
+                    padding: EdgeInsets.all(14),
+                    color: containerColor,
+                    width: double.infinity,
+                    height: 100,
+                    clipBehavior: Clip.none,
+                    child: FittedBox(
+                      child: GestureDetector(
                         onTap: () {
                           if (!showMore) {
                             setState(() {
-                              containerColor = Colors.white.withOpacity(.6);
+                              containerColor = Colors.white.withOpacity(.75);
                               showMore = true;
                             });
                           } else {
                             setState(() {
-                              containerColor = Colors.white.withOpacity(.6);
+                              containerColor = Colors.white.withOpacity(.75);
                               showMore = false;
                             });
                           }
                           _up();
                         },
-                        child: Padding(
-                          padding:
-                              EdgeInsets.symmetric(horizontal: 12, vertical: 8),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              Text(
-                                showMore ? "Show Less" : 'Show More',
-                                style: AppTheme.textStyleMediumWhite12,
-                              ),
-                              Icon(
-                                showMore
-                                    ? Icons.keyboard_arrow_up_rounded
-                                    : Icons.keyboard_arrow_down_rounded,
-                                color: Colors.white,
-                                size: 17,
-                              )
-                            ],
+                        child: Container(
+                          margin: const EdgeInsets.symmetric(vertical: 20),
+                          decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(20),
+                              boxShadow: [
+                                BoxShadow(
+                                    color: Colors.black.withOpacity(.2),
+                                    blurRadius: 5)
+                              ],
+                              gradient: const LinearGradient(
+                                  colors: [
+                                    AppColors.kPrimaryColor,
+                                    Color(0xffFFA0A9)
+                                  ],
+                                  begin: Alignment.centerLeft,
+                                  end: Alignment.centerRight),
+                              color: Colors.red),
+                          child: Padding(
+                            padding: EdgeInsets.symmetric(
+                                horizontal: 12, vertical: 12),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Text(
+                                  showMore ? "Show Less" : 'Show More',
+                                  style: AppTheme.textStyleMediumWhite12,
+                                ),
+                                Icon(
+                                  showMore
+                                      ? Icons.keyboard_arrow_up_rounded
+                                      : Icons.keyboard_arrow_down_rounded,
+                                  color: Colors.white,
+                                  size: 17,
+                                )
+                              ],
+                            ),
                           ),
                         ),
                       ),
-                    ),
-                  ),
-                ),
-              ),
-            )
+                    )))
           ],
         ),
-        CustomSizedBox.space12H,
+        CustomSizedBox.space36H,
         OrientationBuilder(builder: (context, orientation) {
           return SizedBox(
             height: orientation == Orientation.portrait ? 130 : 400,
@@ -241,7 +243,7 @@ class _HomeScreenState extends State<HomeScreen>
                 currentIndexBanner2 = index;
                 String data = bannerContent2[index];
                 return Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                  padding: const EdgeInsets.symmetric(horizontal: 16.0),
                   child: Image.asset(
                     data,
                     width: Get.width,
@@ -300,7 +302,7 @@ class _HomeScreenState extends State<HomeScreen>
           height: 180,
           child: ListView.builder(
             scrollDirection: Axis.horizontal,
-            itemCount: 3,
+            itemCount: 9,
             padding: EdgeInsets.symmetric(horizontal: 8),
             itemBuilder: (context, index) {
               currentIndexBanner1 = index;
@@ -324,14 +326,30 @@ class _HomeScreenState extends State<HomeScreen>
                 'Fixican Deals',
                 style: AppTheme.textStyleSemiBoldBlack16,
               ),
-              TextButton(
-                  onPressed: () {
+              Material(
+                type: MaterialType.transparency,
+                child: InkWell(
+                  onTap: () {
                     Get.to(AllDealsScreen());
                   },
-                  child: const Text(
-                    'See All',
-                    style: AppTheme.textStyleSemiBoldPrimary12,
-                  ))
+                  borderRadius: BorderRadius.circular(20),
+                  child: Padding(
+                    padding: const EdgeInsets.all(8),
+                    child: Text(
+                      'See All',
+                      style: AppTheme.textStyleMediumPrimary12,
+                    ),
+                  ),
+                ),
+              ),
+              // TextButton(
+              //     onPressed: () {
+              //       Get.to(AllDealsScreen());
+              //     },
+              //     child: const Text(
+              //       'See All',
+              //       style: AppTheme.textStyleSemiBoldPrimary12,
+              //     ))
             ],
           ),
         ),
@@ -375,7 +393,7 @@ class _HomeScreenState extends State<HomeScreen>
                 ),
               );
             },
-            itemCount: 5,
+            itemCount: 9,
           ),
         ),
         Padding(
@@ -404,7 +422,7 @@ class _HomeScreenState extends State<HomeScreen>
           height: 180,
           child: ListView.builder(
             scrollDirection: Axis.horizontal,
-            itemCount: 3,
+            itemCount: 9,
             padding: EdgeInsets.symmetric(horizontal: 8),
             itemBuilder: (context, index) {
               currentIndexBanner1 = index;
@@ -524,15 +542,23 @@ class _HomeScreenState extends State<HomeScreen>
                       'Cleaning',
                       style: AppTheme.textStyleSemiBoldBlack16,
                     ),
-                    TextButton(
-                        onPressed: () {
+                    Material(
+                      type: MaterialType.transparency,
+                      child: InkWell(
+                        onTap: () {
                           Get.toNamed(AllServicesOffers.routeName,
                               arguments: 'service');
                         },
-                        child: const Text(
-                          'See All',
-                          style: AppTheme.textStyleSemiBoldPrimary12,
-                        ))
+                        borderRadius: BorderRadius.circular(20),
+                        child: Padding(
+                          padding: const EdgeInsets.all(8),
+                          child: Text(
+                            'See All',
+                            style: AppTheme.textStyleMediumPrimary12,
+                          ),
+                        ),
+                      ),
+                    ),
                   ],
                 ),
               ),
