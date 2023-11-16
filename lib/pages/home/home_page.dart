@@ -117,23 +117,24 @@ class _HomeScreenState extends State<HomeScreen>
                             padding: const EdgeInsets.symmetric(
                                 vertical: 12, horizontal: 16),
                             gridDelegate:
-                                const SliverGridDelegateWithFixedCrossAxisCount(
-                                    crossAxisCount: 4,
-                                    mainAxisSpacing: 30,
-                                    crossAxisSpacing: 30),
+                            const SliverGridDelegateWithFixedCrossAxisCount(
+                                crossAxisCount: 4,
+                                mainAxisSpacing: 30,
+                                crossAxisSpacing: 30),
                             itemCount: /*showMore
                                 ?*/
-                                gridItem >= 8
-                                    ? 8 +
-                                        ((gridItem - 8) ~/
-                                            4 *
-                                            (_animation!.value * 4)
-                                                .floor()
-                                                .toInt()) +
-                                        (_animation!.value == 1
-                                            ? (gridItem % 4)
-                                            : 0)
-                                    : gridItem,
+                            gridItem >= 8
+                                ? 8
+                                +
+                                ((gridItem - 8) ~/
+                                    4 *
+                                    (_animation!.value * 4)
+                                        .floor()
+                                        .toInt()) +
+                                (_animation!.value == 1
+                                    ? (gridItem % 4)
+                                    : 0)
+                                : gridItem,
                             shrinkWrap: true,
                             physics: const NeverScrollableScrollPhysics(),
                             itemBuilder: (context, index) {
@@ -156,8 +157,8 @@ class _HomeScreenState extends State<HomeScreen>
                     (showMore
                         ? (93.0 * (gridItem / 4.0).ceil())
                         : gridItem > 4
-                            ? 110
-                            : 25),
+                        ? 110
+                        : 25),
                 left: 0,
                 right: 0,
                 duration: Duration(milliseconds: 300),
@@ -248,9 +249,10 @@ class _HomeScreenState extends State<HomeScreen>
                     data,
                     width: Get.width,
                     fit: BoxFit.fill,
-                    errorBuilder: (context, error, stackTrace) => Icon(
-                      Icons.image,
-                    ),
+                    errorBuilder: (context, error, stackTrace) =>
+                        Icon(
+                          Icons.image,
+                        ),
                     height: orientation == Orientation.portrait ? 125 : 400,
                   ),
                 );
@@ -262,7 +264,8 @@ class _HomeScreenState extends State<HomeScreen>
           mainAxisAlignment: MainAxisAlignment.center,
           children: List.generate(
               3,
-              (index) => AnimatedContainer(
+                  (index) =>
+                  AnimatedContainer(
                     duration: Duration(milliseconds: 500),
                     curve: Curves.linear,
                     margin: const EdgeInsets.all(4),
@@ -318,7 +321,7 @@ class _HomeScreenState extends State<HomeScreen>
         ),
         Padding(
           padding:
-              const EdgeInsets.symmetric(horizontal: 16.0).copyWith(right: 6),
+          const EdgeInsets.symmetric(horizontal: 16.0).copyWith(right: 6),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
@@ -361,30 +364,30 @@ class _HomeScreenState extends State<HomeScreen>
             itemBuilder: (context, index) {
               return Padding(
                 padding:
-                    const EdgeInsets.symmetric(horizontal: 8.0, vertical: 12),
+                const EdgeInsets.symmetric(horizontal: 8.0, vertical: 12),
                 child: ClipOval(
                   child:
-                      // index == 3
-                      //     ? Container(
-                      //         height: 80,
-                      //         width: 80,
-                      //         decoration: BoxDecoration(
-                      //             shape: BoxShape.circle,
-                      //             border: Border.all(
-                      //                 color:
-                      //                     AppColors.kPrimaryColor.withOpacity(.5),
-                      //                 width: .3),
-                      //             color: AppColors.kPrimaryColor.withOpacity(.05)),
-                      //         child: InkWell(
-                      //           onTap: () => Get.to(AllDealsScreen()),
-                      //           child: Icon(
-                      //             Icons.arrow_forward,
-                      //             color: AppColors.kPrimaryColor,
-                      //           ),
-                      //         ),
-                      //       )
-                      //     :
-                      Image.asset(
+                  // index == 3
+                  //     ? Container(
+                  //         height: 80,
+                  //         width: 80,
+                  //         decoration: BoxDecoration(
+                  //             shape: BoxShape.circle,
+                  //             border: Border.all(
+                  //                 color:
+                  //                     AppColors.kPrimaryColor.withOpacity(.5),
+                  //                 width: .3),
+                  //             color: AppColors.kPrimaryColor.withOpacity(.05)),
+                  //         child: InkWell(
+                  //           onTap: () => Get.to(AllDealsScreen()),
+                  //           child: Icon(
+                  //             Icons.arrow_forward,
+                  //             color: AppColors.kPrimaryColor,
+                  //           ),
+                  //         ),
+                  //       )
+                  //     :
+                  Image.asset(
                     AssetsConstant.dummy_service,
                     height: 80,
                     width: 80,
@@ -456,9 +459,10 @@ class _HomeScreenState extends State<HomeScreen>
                   data,
                   width: Get.width,
                   fit: BoxFit.fill,
-                  errorBuilder: (context, error, stackTrace) => Icon(
-                    Icons.image,
-                  ),
+                  errorBuilder: (context, error, stackTrace) =>
+                      Icon(
+                        Icons.image,
+                      ),
                   height: 125,
                 ),
               );
@@ -469,7 +473,8 @@ class _HomeScreenState extends State<HomeScreen>
           mainAxisAlignment: MainAxisAlignment.center,
           children: List.generate(
               3,
-              (index) => AnimatedContainer(
+                  (index) =>
+                  AnimatedContainer(
                     duration: Duration(milliseconds: 500),
                     curve: Curves.linear,
                     margin: const EdgeInsets.all(4),
@@ -530,89 +535,93 @@ class _HomeScreenState extends State<HomeScreen>
         CustomSizedBox.space8H,
         ...List.generate(
           5,
-          (index) => Column(
-            children: [
-              Padding(
-                padding:
+              (index) =>
+              Column(
+                children: [
+                  Padding(
+                    padding:
                     const EdgeInsets.symmetric(horizontal: 16, vertical: 4),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Text(
-                      'Cleaning',
-                      style: AppTheme.textStyleSemiBoldBlack16,
-                    ),
-                    Material(
-                      type: MaterialType.transparency,
-                      child: InkWell(
-                        onTap: () {
-                          Get.toNamed(AllServicesOffers.routeName,
-                              arguments: 'service');
-                        },
-                        borderRadius: BorderRadius.circular(20),
-                        child: Padding(
-                          padding: const EdgeInsets.all(8),
-                          child: Text(
-                            'See All',
-                            style: AppTheme.textStyleMediumPrimary12,
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text(
+                          'Cleaning',
+                          style: AppTheme.textStyleSemiBoldBlack16,
+                        ),
+                        Material(
+                          type: MaterialType.transparency,
+                          child: InkWell(
+                            onTap: () {
+                              Get.toNamed(AllServicesOffers.routeName,
+                                  arguments: 'service');
+                            },
+                            borderRadius: BorderRadius.circular(20),
+                            child: Padding(
+                              padding: const EdgeInsets.all(8),
+                              child: Text(
+                                'See All',
+                                style: AppTheme.textStyleMediumPrimary12,
+                              ),
+                            ),
                           ),
                         ),
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-              SizedBox(
-                height: 350,
-                child: ListView.builder(
-                  scrollDirection: Axis.horizontal,
-                  itemCount: 3,
-                  padding: EdgeInsets.symmetric(horizontal: 8),
-                  itemBuilder: (context, index) {
-                    return Column(
-                      children: [
-                        ...List.generate(
-                            2,
-                            (index) => Row(
-                                  children: [
-                                    ...List.generate(
-                                        2,
-                                        (index) => GestureDetector(
-                                            onTap: () {
-                                              Get.toNamed(
-                                                  ServiceOfferDetails.routeName,
-                                                  arguments: 'offer');
-                                            },
-                                            child: OfferAndServicesWidget()))
-                                  ],
-                                ))
                       ],
-                    );
+                    ),
+                  ),
+                  SizedBox(
+                    height: 350,
+                    child: ListView.builder(
+                      scrollDirection: Axis.horizontal,
+                      itemCount: 3,
+                      padding: EdgeInsets.symmetric(horizontal: 8),
+                      itemBuilder: (context, index) {
+                        return Column(
+                          children: [
+                            ...List.generate(
+                                2,
+                                    (index) =>
+                                    Row(
+                                      children: [
+                                        ...List.generate(
+                                            2,
+                                                (index) =>
+                                                GestureDetector(
+                                                    onTap: () {
+                                                      Get.toNamed(
+                                                          ServiceOfferDetails
+                                                              .routeName,
+                                                          arguments: 'offer');
+                                                    },
+                                                    child: OfferAndServicesWidget()))
+                                      ],
+                                    ))
+                          ],
+                        );
 
-                    // GridView.builder(
-                    //   shrinkWrap: true,
-                    //   primary: false,
-                    //   padding: EdgeInsets.symmetric(vertical: 12, horizontal: 8),
-                    //   gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                    //       crossAxisCount: 2,
-                    //       mainAxisSpacing: 8,
-                    //       crossAxisSpacing: 5,
-                    //       childAspectRatio: .95),
-                    //   itemCount: 4,
-                    //   itemBuilder: (context, index) {
-                    //     return GestureDetector(
-                    //         onTap: () {
-                    //           Get.toNamed(ServiceOfferDetails.routeName,
-                    //               arguments: 'offer');
-                    //         },
-                    //         child: OfferAndServicesWidget());
-                    //   },
-                    // );
-                  },
-                ),
+                        // GridView.builder(
+                        //   shrinkWrap: true,
+                        //   primary: false,
+                        //   padding: EdgeInsets.symmetric(vertical: 12, horizontal: 8),
+                        //   gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                        //       crossAxisCount: 2,
+                        //       mainAxisSpacing: 8,
+                        //       crossAxisSpacing: 5,
+                        //       childAspectRatio: .95),
+                        //   itemCount: 4,
+                        //   itemBuilder: (context, index) {
+                        //     return GestureDetector(
+                        //         onTap: () {
+                        //           Get.toNamed(ServiceOfferDetails.routeName,
+                        //               arguments: 'offer');
+                        //         },
+                        //         child: OfferAndServicesWidget());
+                        //   },
+                        // );
+                      },
+                    ),
+                  ),
+                ],
               ),
-            ],
-          ),
         ),
         SizedBox(
           height: 80,
@@ -699,39 +708,39 @@ class OfferAndServicesWidget extends StatelessWidget {
                 ),
                 iconVisible
                     ? Positioned(
-                        bottom: 0,
-                        left: 0,
-                        right: 0,
-                        child: Container(
-                          decoration: BoxDecoration(
-                              color: Colors.white.withOpacity(.5)),
-                          padding: EdgeInsets.all(8),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Row(
-                                children: [
-                                  Icon(
-                                    Icons.camera_alt_outlined,
-                                    size: 17,
-                                    color: Colors.white,
-                                  ),
-                                  CustomSizedBox.space4W,
-                                  Text(
-                                    '12',
-                                    style: AppTheme.textStyleSemiBoldWhite12,
-                                  )
-                                ],
-                              ),
-                              Icon(
-                                Icons.favorite_outline_rounded,
-                                size: 17,
-                                color: Colors.white,
-                              ),
-                            ],
-                          ),
+                  bottom: 0,
+                  left: 0,
+                  right: 0,
+                  child: Container(
+                    decoration: BoxDecoration(
+                        color: Colors.white.withOpacity(.5)),
+                    padding: EdgeInsets.all(8),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Row(
+                          children: [
+                            Icon(
+                              Icons.camera_alt_outlined,
+                              size: 17,
+                              color: Colors.white,
+                            ),
+                            CustomSizedBox.space4W,
+                            Text(
+                              '12',
+                              style: AppTheme.textStyleSemiBoldWhite12,
+                            )
+                          ],
                         ),
-                      )
+                        Icon(
+                          Icons.favorite_outline_rounded,
+                          size: 17,
+                          color: Colors.white,
+                        ),
+                      ],
+                    ),
+                  ),
+                )
                     : SizedBox.shrink()
               ],
             ),
@@ -758,7 +767,10 @@ class OfferItemWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: MediaQuery.of(context).size.width * .9,
+      width: MediaQuery
+          .of(context)
+          .size
+          .width * .9,
       margin: const EdgeInsets.symmetric(horizontal: 8),
       decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(6),
@@ -794,7 +806,7 @@ class OfferItemWidget extends StatelessWidget {
             children: [
               Padding(
                 padding:
-                    const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+                const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
