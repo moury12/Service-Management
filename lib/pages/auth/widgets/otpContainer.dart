@@ -5,8 +5,7 @@ import 'package:flutter/services.dart';
 import 'package:mh_core/widgets/textfield/custom_textfield.dart';
 
 class OtpContainer extends StatefulWidget {
-  const OtpContainer(
-      {super.key, required this.controller, required this.focusNode});
+  const OtpContainer({super.key, required this.controller, required this.focusNode});
 
   final TextEditingController controller;
   final FocusNode focusNode;
