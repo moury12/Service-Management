@@ -47,7 +47,7 @@ class _PlaceOrderScreenState extends State<PlaceOrderScreen> {
       body: Column(
         children: [
           Container(
-            padding: EdgeInsets.only(top: 12),
+            padding: EdgeInsets.only(top: 20),
             decoration: BoxDecoration(
                 color: Colors.white,
                 borderRadius: BorderRadius.circular(22),
@@ -119,7 +119,7 @@ class _PlaceOrderScreenState extends State<PlaceOrderScreen> {
                                         style:
                                             AppTheme.textStyleSemiBoldBlack16,
                                       ),
-                                      CustomSizedBox.space8H,
+                                      CustomSizedBox.space4H,
                                       Text.rich(TextSpan(
                                           text: 'Estimated time: ',
                                           style: AppTheme
@@ -134,7 +134,7 @@ class _PlaceOrderScreenState extends State<PlaceOrderScreen> {
                                               ),
                                             )
                                           ])),
-                                      CustomSizedBox.space4H,
+                                      CustomSizedBox.space8H,
                                       Text(
                                         'Tk.1299',
                                         style:
@@ -188,7 +188,8 @@ class _PlaceOrderScreenState extends State<PlaceOrderScreen> {
                             )
                           ],
                         ),
-                      )
+                      ),
+                CustomSizedBox.space8H,
               ],
             ),
           ),

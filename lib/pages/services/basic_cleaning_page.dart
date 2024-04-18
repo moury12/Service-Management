@@ -19,7 +19,8 @@ class BasicCleaningScreen extends StatefulWidget {
   State<BasicCleaningScreen> createState() => _BasicCleaningScreenState();
 }
 
-class _BasicCleaningScreenState extends State<BasicCleaningScreen> with TickerProviderStateMixin {
+class _BasicCleaningScreenState extends State<BasicCleaningScreen>
+    with TickerProviderStateMixin {
   double scale = 1.0; // Initial scale value
   bool tapped = false;
   bool isSelected = false;
@@ -69,7 +70,11 @@ class _BasicCleaningScreenState extends State<BasicCleaningScreen> with TickerPr
           horizontal: 16,
         ).copyWith(top: 16),
         decoration: BoxDecoration(
-            color: Colors.white, borderRadius: const BorderRadius.vertical(top: Radius.circular(22)), boxShadow: [BoxShadow(blurRadius: 10, color: Colors.black.withOpacity(.1))]),
+            color: Colors.white,
+            borderRadius: const BorderRadius.vertical(top: Radius.circular(22)),
+            boxShadow: [
+              BoxShadow(blurRadius: 10, color: Colors.black.withOpacity(.1))
+            ]),
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
@@ -113,7 +118,10 @@ class _BasicCleaningScreenState extends State<BasicCleaningScreen> with TickerPr
                           children: [
                             TextSpan(
                               text: '2988',
-                              style: GoogleFonts.poppins(fontSize: 12, color: Colors.black54, decoration: TextDecoration.lineThrough),
+                              style: GoogleFonts.poppins(
+                                  fontSize: 12,
+                                  color: Colors.black54,
+                                  decoration: TextDecoration.lineThrough),
                             )
                           ]),
                     )
@@ -128,7 +136,8 @@ class _BasicCleaningScreenState extends State<BasicCleaningScreen> with TickerPr
                   onTap: onTapButton,
                   child: AnimatedContainer(
                     duration: const Duration(milliseconds: 500),
-                    padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 12),
+                    padding: const EdgeInsets.symmetric(
+                        horizontal: 24, vertical: 12),
                     curve: Curves.linear,
                     onEnd: () {
                       cartHeight = 50;
@@ -136,7 +145,8 @@ class _BasicCleaningScreenState extends State<BasicCleaningScreen> with TickerPr
                     },
                     height: /*tapped ? 44 :*/ cartHeight,
                     decoration: BoxDecoration(
-                      color: tapped ? AppColors.kPrimaryColor : Colors.transparent,
+                      color:
+                          tapped ? AppColors.kPrimaryColor : Colors.transparent,
                       borderRadius: BorderRadius.circular(30),
                       border: Border.all(
                         color: AppColors.kPrimaryColor,
@@ -195,6 +205,10 @@ class _BasicCleaningScreenState extends State<BasicCleaningScreen> with TickerPr
                                         _frequencyType = val!;
                                         setState(() {});
                                       },
+                                      // onTap: () {
+                                      //   _frequencyType = FrequencyType.monthly;
+                                      //   setState(() {});
+                                      // },
                                       title: 'Monthly',
                                       discount: '15% Off',
                                       listItem: 3),
@@ -205,6 +219,10 @@ class _BasicCleaningScreenState extends State<BasicCleaningScreen> with TickerPr
                                         _frequencyType = val!;
                                         setState(() {});
                                       },
+                                      // onTap: () {
+                                      //   _frequencyType = FrequencyType.weekly;
+                                      //   setState(() {});
+                                      // },
                                       title: 'Weekly',
                                       discount: '10% Off',
                                       isPopular: true,
@@ -216,6 +234,10 @@ class _BasicCleaningScreenState extends State<BasicCleaningScreen> with TickerPr
                                         _frequencyType = val!;
                                         setState(() {});
                                       },
+                                      // onTap: () {
+                                      //   _frequencyType = FrequencyType.oneTime;
+                                      //   setState(() {});
+                                      // },
                                       title: 'One Time',
                                       listItem: 2),
                                   BottomSheetWidgets(
@@ -225,6 +247,10 @@ class _BasicCleaningScreenState extends State<BasicCleaningScreen> with TickerPr
                                         _frequencyType = val!;
                                         setState(() {});
                                       },
+                                      // onTap: () {
+                                      //   _frequencyType = FrequencyType.custom;
+                                      //   setState(() {});
+                                      // },
                                       title: 'Custom',
                                       listItem: 1),
                                   CustomButton(
@@ -232,9 +258,12 @@ class _BasicCleaningScreenState extends State<BasicCleaningScreen> with TickerPr
                                     onPressed: () {
                                       Navigator.pop(context);
                                       _frequencyType == FrequencyType.weekly
-                                          ? Get.toNamed(AllCleaningProcessScreen.routeName)
-                                          : _frequencyType == FrequencyType.oneTime
-                                              ? Navigator.push(context, MaterialPageRoute(
+                                          ? Get.toNamed(AllCleaningProcessScreen
+                                              .routeName)
+                                          : _frequencyType ==
+                                                  FrequencyType.oneTime
+                                              ? Navigator.push(context,
+                                                  MaterialPageRoute(
                                                   builder: (context) {
                                                     return const AllCleaningProcessScreen(
                                                       title: 'One Time',
@@ -242,8 +271,10 @@ class _BasicCleaningScreenState extends State<BasicCleaningScreen> with TickerPr
                                                     );
                                                   },
                                                 ))
-                                              : _frequencyType == FrequencyType.custom
-                                                  ? Navigator.push(context, MaterialPageRoute(
+                                              : _frequencyType ==
+                                                      FrequencyType.custom
+                                                  ? Navigator.push(context,
+                                                      MaterialPageRoute(
                                                       builder: (context) {
                                                         return const AllCleaningProcessScreen(
                                                           title: 'Custom',
@@ -255,46 +286,90 @@ class _BasicCleaningScreenState extends State<BasicCleaningScreen> with TickerPr
                                                       context: context,
                                                       enableDrag: true,
                                                       isScrollControlled: true,
-                                                      shape: const RoundedRectangleBorder(
-                                                        borderRadius: BorderRadius.only(
-                                                          topLeft: Radius.circular(20.0),
-                                                          topRight: Radius.circular(20.0),
+                                                      shape:
+                                                          const RoundedRectangleBorder(
+                                                        borderRadius:
+                                                            BorderRadius.only(
+                                                          topLeft:
+                                                              Radius.circular(
+                                                                  20.0),
+                                                          topRight:
+                                                              Radius.circular(
+                                                                  20.0),
                                                         ),
                                                       ),
-                                                      builder: (BuildContext context) {
+                                                      builder: (BuildContext
+                                                          context) {
                                                         return StatefulBuilder(
-                                                          builder: (context, setState) => SingleChildScrollView(
+                                                          builder: (context,
+                                                                  setState) =>
+                                                              SingleChildScrollView(
                                                             child: Column(
-                                                              crossAxisAlignment: CrossAxisAlignment.start,
+                                                              crossAxisAlignment:
+                                                                  CrossAxisAlignment
+                                                                      .start,
                                                               children: [
                                                                 Container(
-                                                                  margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
-                                                                  padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
-                                                                  decoration: BoxDecoration(color: const Color(0xffFFE5E5), borderRadius: BorderRadius.circular(10)),
+                                                                  margin: const EdgeInsets
+                                                                      .symmetric(
+                                                                      horizontal:
+                                                                          16,
+                                                                      vertical:
+                                                                          12),
+                                                                  padding: const EdgeInsets
+                                                                      .symmetric(
+                                                                      horizontal:
+                                                                          16,
+                                                                      vertical:
+                                                                          12),
+                                                                  decoration: BoxDecoration(
+                                                                      color: const Color(
+                                                                          0xffFFE5E5),
+                                                                      borderRadius:
+                                                                          BorderRadius.circular(
+                                                                              10)),
                                                                   child: Row(
-                                                                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                                                    mainAxisAlignment:
+                                                                        MainAxisAlignment
+                                                                            .spaceBetween,
                                                                     children: [
                                                                       const Column(
-                                                                        crossAxisAlignment: CrossAxisAlignment.start,
+                                                                        crossAxisAlignment:
+                                                                            CrossAxisAlignment.start,
                                                                         children: [
                                                                           Text(
                                                                             'Frequency',
-                                                                            style: AppTheme.textStyleSemiBoldBlack18,
+                                                                            style:
+                                                                                AppTheme.textStyleSemiBoldBlack18,
                                                                           ),
-                                                                          CustomSizedBox.space4H,
+                                                                          CustomSizedBox
+                                                                              .space4H,
                                                                           Text(
                                                                             'Change',
-                                                                            style: TextStyle(color: AppColors.kPrimaryColor, fontSize: 13),
+                                                                            style:
+                                                                                TextStyle(color: AppColors.kPrimaryColor, fontSize: 13),
                                                                           )
                                                                         ],
                                                                       ),
                                                                       Container(
                                                                         // margin: EdgeInsets.symmetric(horizontal: 16, vertical: 12),
-                                                                        padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
-                                                                        decoration: BoxDecoration(color: const Color(0xffFFF9F9), borderRadius: BorderRadius.circular(5)),
-                                                                        child: const Text(
+                                                                        padding: const EdgeInsets
+                                                                            .symmetric(
+                                                                            horizontal:
+                                                                                16,
+                                                                            vertical:
+                                                                                12),
+                                                                        decoration: BoxDecoration(
+                                                                            color:
+                                                                                const Color(0xffFFF9F9),
+                                                                            borderRadius: BorderRadius.circular(5)),
+                                                                        child:
+                                                                            const Text(
                                                                           'Monthly',
-                                                                          style: TextStyle(color: AppColors.kPrimaryColor, fontSize: 16, fontWeight: FontWeight.w600),
+                                                                          style: TextStyle(
+                                                                              color: AppColors.kPrimaryColor,
+                                                                              fontSize: 16,
+                                                                              fontWeight: FontWeight.w600),
                                                                         ),
                                                                       ),
                                                                     ],
@@ -302,17 +377,35 @@ class _BasicCleaningScreenState extends State<BasicCleaningScreen> with TickerPr
                                                                 ),
                                                                 Container(
                                                                   decoration: BoxDecoration(
-                                                                      border: Border.all(color: const Color(0xffFC8E99), width: .5), borderRadius: BorderRadius.circular(6)),
-                                                                  padding: const EdgeInsets.symmetric(horizontal: 16),
-                                                                  margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 6),
+                                                                      border: Border.all(
+                                                                          color: const Color(
+                                                                              0xffFC8E99),
+                                                                          width:
+                                                                              .5),
+                                                                      borderRadius:
+                                                                          BorderRadius.circular(
+                                                                              6)),
+                                                                  padding: const EdgeInsets
+                                                                      .symmetric(
+                                                                      horizontal:
+                                                                          16),
+                                                                  margin: const EdgeInsets
+                                                                      .symmetric(
+                                                                      horizontal:
+                                                                          16,
+                                                                      vertical:
+                                                                          6),
                                                                   child: Column(
-                                                                    crossAxisAlignment: CrossAxisAlignment.start,
+                                                                    crossAxisAlignment:
+                                                                        CrossAxisAlignment
+                                                                            .start,
                                                                     children: [
                                                                       Row(
                                                                         children: [
                                                                           const Text(
                                                                             'With Instalment',
-                                                                            style: AppTheme.textStyleSemiBoldBlack16,
+                                                                            style:
+                                                                                AppTheme.textStyleSemiBoldBlack16,
                                                                           ),
                                                                           const Spacer(),
                                                                           Text(
@@ -325,11 +418,14 @@ class _BasicCleaningScreenState extends State<BasicCleaningScreen> with TickerPr
                                                                           ),
                                                                           const Text(
                                                                             '10% Off',
-                                                                            style: AppTheme.textStyleSemiBoldGreen16,
+                                                                            style:
+                                                                                AppTheme.textStyleSemiBoldGreen16,
                                                                           ),
                                                                           Radio(
-                                                                            activeColor: AppColors.kPrimaryColor,
-                                                                            fillColor: MaterialStateColor.resolveWith(
+                                                                            activeColor:
+                                                                                AppColors.kPrimaryColor,
+                                                                            fillColor:
+                                                                                MaterialStateColor.resolveWith(
                                                                               (Set<MaterialState> states) {
                                                                                 if (states.contains(MaterialState.selected)) {
                                                                                   return AppColors.kPrimaryColor;
@@ -337,9 +433,12 @@ class _BasicCleaningScreenState extends State<BasicCleaningScreen> with TickerPr
                                                                                 return AppColors.kPrimaryColor;
                                                                               },
                                                                             ),
-                                                                            value: 'With Instalment',
-                                                                            groupValue: groupValueMonthly,
-                                                                            onChanged: (value) {
+                                                                            value:
+                                                                                'With Instalment',
+                                                                            groupValue:
+                                                                                groupValueMonthly,
+                                                                            onChanged:
+                                                                                (value) {
                                                                               setState(() {
                                                                                 groupValueMonthly = value!;
                                                                               });
@@ -348,16 +447,26 @@ class _BasicCleaningScreenState extends State<BasicCleaningScreen> with TickerPr
                                                                         ],
                                                                       ),
                                                                       const DividerTheme(
-                                                                        data: DividerThemeData(space: 0),
-                                                                        child: Divider(
-                                                                          thickness: 0.5,
-                                                                          color: Color(0xffF1B2BF),
+                                                                        data: DividerThemeData(
+                                                                            space:
+                                                                                0),
+                                                                        child:
+                                                                            Divider(
+                                                                          thickness:
+                                                                              0.5,
+                                                                          color:
+                                                                              Color(0xffF1B2BF),
                                                                         ),
                                                                       ),
                                                                       Padding(
-                                                                        padding: const EdgeInsets.symmetric(vertical: 8.0),
-                                                                        child: Column(
-                                                                          crossAxisAlignment: CrossAxisAlignment.start,
+                                                                        padding: const EdgeInsets
+                                                                            .symmetric(
+                                                                            vertical:
+                                                                                8.0),
+                                                                        child:
+                                                                            Column(
+                                                                          crossAxisAlignment:
+                                                                              CrossAxisAlignment.start,
                                                                           children: [
                                                                             ...List.generate(
                                                                                 1,
@@ -384,10 +493,7 @@ class _BasicCleaningScreenState extends State<BasicCleaningScreen> with TickerPr
                                                                               margin: const EdgeInsets.symmetric(vertical: 6),
                                                                               width: double.infinity,
                                                                               padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
-                                                                              decoration: BoxDecoration(
-                                                                                  border: Border.all(color: const Color(0xffFC8E99), width: .5),
-                                                                                  color: const Color(0xffFFE5E5),
-                                                                                  borderRadius: BorderRadius.circular(5)),
+                                                                              decoration: BoxDecoration(border: Border.all(color: const Color(0xffFC8E99), width: .5), color: const Color(0xffFFE5E5), borderRadius: BorderRadius.circular(5)),
                                                                               child: const Column(
                                                                                 crossAxisAlignment: CrossAxisAlignment.start,
                                                                                 children: [
@@ -407,10 +513,7 @@ class _BasicCleaningScreenState extends State<BasicCleaningScreen> with TickerPr
                                                                               margin: const EdgeInsets.symmetric(vertical: 6),
                                                                               width: double.infinity,
                                                                               padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
-                                                                              decoration: BoxDecoration(
-                                                                                  border: Border.all(color: const Color(0xffFC8E99), width: .5),
-                                                                                  color: const Color(0xffFFE5E5),
-                                                                                  borderRadius: BorderRadius.circular(5)),
+                                                                              decoration: BoxDecoration(border: Border.all(color: const Color(0xffFC8E99), width: .5), color: const Color(0xffFFE5E5), borderRadius: BorderRadius.circular(5)),
                                                                               child: const Column(
                                                                                 crossAxisAlignment: CrossAxisAlignment.start,
                                                                                 children: [
@@ -430,10 +533,7 @@ class _BasicCleaningScreenState extends State<BasicCleaningScreen> with TickerPr
                                                                               margin: const EdgeInsets.symmetric(vertical: 6),
                                                                               width: double.infinity,
                                                                               padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
-                                                                              decoration: BoxDecoration(
-                                                                                  border: Border.all(color: const Color(0xffFC8E99), width: .5),
-                                                                                  color: const Color(0xffFFE5E5),
-                                                                                  borderRadius: BorderRadius.circular(5)),
+                                                                              decoration: BoxDecoration(border: Border.all(color: const Color(0xffFC8E99), width: .5), color: const Color(0xffFFE5E5), borderRadius: BorderRadius.circular(5)),
                                                                               child: const Column(
                                                                                 crossAxisAlignment: CrossAxisAlignment.start,
                                                                                 children: [
@@ -457,22 +557,42 @@ class _BasicCleaningScreenState extends State<BasicCleaningScreen> with TickerPr
                                                                 ),
                                                                 Container(
                                                                   decoration: BoxDecoration(
-                                                                      border: Border.all(color: const Color(0xffFC8E99), width: .5), borderRadius: BorderRadius.circular(6)),
-                                                                  padding: const EdgeInsets.symmetric(horizontal: 16),
-                                                                  margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 6),
+                                                                      border: Border.all(
+                                                                          color: const Color(
+                                                                              0xffFC8E99),
+                                                                          width:
+                                                                              .5),
+                                                                      borderRadius:
+                                                                          BorderRadius.circular(
+                                                                              6)),
+                                                                  padding: const EdgeInsets
+                                                                      .symmetric(
+                                                                      horizontal:
+                                                                          16),
+                                                                  margin: const EdgeInsets
+                                                                      .symmetric(
+                                                                      horizontal:
+                                                                          16,
+                                                                      vertical:
+                                                                          6),
                                                                   child: Column(
-                                                                    crossAxisAlignment: CrossAxisAlignment.start,
+                                                                    crossAxisAlignment:
+                                                                        CrossAxisAlignment
+                                                                            .start,
                                                                     children: [
                                                                       Row(
                                                                         children: [
                                                                           const Text(
                                                                             'Without Instalment',
-                                                                            style: AppTheme.textStyleSemiBoldBlack16,
+                                                                            style:
+                                                                                AppTheme.textStyleSemiBoldBlack16,
                                                                           ),
                                                                           const Spacer(),
                                                                           Radio(
-                                                                            activeColor: AppColors.kPrimaryColor,
-                                                                            fillColor: MaterialStateColor.resolveWith(
+                                                                            activeColor:
+                                                                                AppColors.kPrimaryColor,
+                                                                            fillColor:
+                                                                                MaterialStateColor.resolveWith(
                                                                               (Set<MaterialState> states) {
                                                                                 if (states.contains(MaterialState.selected)) {
                                                                                   return AppColors.kPrimaryColor;
@@ -480,9 +600,12 @@ class _BasicCleaningScreenState extends State<BasicCleaningScreen> with TickerPr
                                                                                 return AppColors.kPrimaryColor;
                                                                               },
                                                                             ),
-                                                                            value: 'Without Instalment',
-                                                                            groupValue: groupValueMonthly,
-                                                                            onChanged: (value) {
+                                                                            value:
+                                                                                'Without Instalment',
+                                                                            groupValue:
+                                                                                groupValueMonthly,
+                                                                            onChanged:
+                                                                                (value) {
                                                                               setState(() {
                                                                                 groupValueMonthly = value!;
                                                                               });
@@ -491,16 +614,26 @@ class _BasicCleaningScreenState extends State<BasicCleaningScreen> with TickerPr
                                                                         ],
                                                                       ),
                                                                       const DividerTheme(
-                                                                        data: DividerThemeData(space: 0),
-                                                                        child: Divider(
-                                                                          thickness: 0.5,
-                                                                          color: Color(0xffF1B2BF),
+                                                                        data: DividerThemeData(
+                                                                            space:
+                                                                                0),
+                                                                        child:
+                                                                            Divider(
+                                                                          thickness:
+                                                                              0.5,
+                                                                          color:
+                                                                              Color(0xffF1B2BF),
                                                                         ),
                                                                       ),
                                                                       Padding(
-                                                                        padding: const EdgeInsets.symmetric(vertical: 8.0),
-                                                                        child: Column(
-                                                                          crossAxisAlignment: CrossAxisAlignment.start,
+                                                                        padding: const EdgeInsets
+                                                                            .symmetric(
+                                                                            vertical:
+                                                                                8.0),
+                                                                        child:
+                                                                            Column(
+                                                                          crossAxisAlignment:
+                                                                              CrossAxisAlignment.start,
                                                                           children: [
                                                                             ...List.generate(
                                                                                 1,
@@ -530,27 +663,36 @@ class _BasicCleaningScreenState extends State<BasicCleaningScreen> with TickerPr
                                                                   ),
                                                                 ),
                                                                 CustomButton(
-                                                                  label: 'Continue',
-                                                                  onPressed: groupValueMonthly == 'With Instalment'
-                                                                      ? () {
-                                                                          Navigator.pop(context);
-                                                                          Navigator.push(context, MaterialPageRoute(
-                                                                            builder: (context) {
-                                                                              return const AllCleaningProcessScreen(
-                                                                                title: 'Monthly',
-                                                                                isCustom: false,
-                                                                              );
+                                                                  label:
+                                                                      'Continue',
+                                                                  onPressed:
+                                                                      groupValueMonthly ==
+                                                                              'With Instalment'
+                                                                          ? () {
+                                                                              Navigator.pop(context);
+                                                                              Navigator.push(context, MaterialPageRoute(
+                                                                                builder: (context) {
+                                                                                  return const AllCleaningProcessScreen(
+                                                                                    title: 'Monthly',
+                                                                                    isCustom: false,
+                                                                                  );
+                                                                                },
+                                                                              ));
+                                                                            }
+                                                                          : () {
+                                                                              Navigator.pop(context);
                                                                             },
-                                                                          ));
-                                                                        }
-                                                                      : () {
-                                                                          Navigator.pop(context);
-                                                                        },
-                                                                  marginHorizontal: 16,
-                                                                  marginVertical: 12,
-                                                                  suffixImage: AssetsConstant.arrow_icon,
-                                                                  suffixImageHeight: 11,
-                                                                  borderRadiusAll: 22,
+                                                                  marginHorizontal:
+                                                                      16,
+                                                                  marginVertical:
+                                                                      12,
+                                                                  suffixImage:
+                                                                      AssetsConstant
+                                                                          .arrow_icon,
+                                                                  suffixImageHeight:
+                                                                      11,
+                                                                  borderRadiusAll:
+                                                                      22,
                                                                 ),
                                                               ],
                                                             ),
@@ -655,8 +797,14 @@ class _CountWidgetState extends State<CountWidget> {
                       width: 98,
                       height: 35,
                       // padding: const EdgeInsets.symmetric(horizontal: 12),
-                      decoration:
-                          BoxDecoration(color: Colors.white, borderRadius: BorderRadius.circular(33), boxShadow: [BoxShadow(blurRadius: 6, color: Colors.black.withOpacity(.15))]),
+                      decoration: BoxDecoration(
+                          color: Colors.white,
+                          borderRadius: BorderRadius.circular(33),
+                          boxShadow: [
+                            BoxShadow(
+                                blurRadius: 6,
+                                color: Colors.black.withOpacity(.15))
+                          ]),
                       child: Stack(
                         children: [
                           Positioned(
@@ -665,7 +813,8 @@ class _CountWidgetState extends State<CountWidget> {
                             bottom: 5,
                             child: Image.asset(
                               AssetsConstant.minimize_icon,
-                              color: value >= 1 ? AppColors.kPrimaryColor : null,
+                              color:
+                                  value >= 1 ? AppColors.kPrimaryColor : null,
                               height: 15,
                               width: 15,
                             ),
@@ -683,10 +832,13 @@ class _CountWidgetState extends State<CountWidget> {
                           Positioned(
                             left: countTogglePosition,
                             child: GestureDetector(
-                              onHorizontalDragUpdate: (DragUpdateDetails details) {
+                              onHorizontalDragUpdate:
+                                  (DragUpdateDetails details) {
                                 globalLogger.d(details.localPosition, 'Update');
-                                if (countTogglePosition <= 63 && countTogglePosition >= 0) {
-                                  countTogglePosition = 33 + (details.localPosition.dx - 16);
+                                if (countTogglePosition <= 63 &&
+                                    countTogglePosition >= 0) {
+                                  countTogglePosition =
+                                      33 + (details.localPosition.dx - 16);
                                   addOn = 0;
                                 }
                                 if (countTogglePosition <= 0) {
@@ -701,7 +853,8 @@ class _CountWidgetState extends State<CountWidget> {
                                 }
                                 setState(() {});
                               },
-                              onHorizontalDragStart: (DragStartDetails details) {
+                              onHorizontalDragStart:
+                                  (DragStartDetails details) {
                                 globalLogger.d(details.localPosition, 'Start');
                                 startDragPosition = details.localPosition.dx;
                                 setState(() {});
@@ -750,7 +903,8 @@ class _CountWidgetState extends State<CountWidget> {
                               // Use individual chimney property
                               onToggleChimney: (newChimneyValue) {
                                 setState(() {
-                                  chimney[index] = newChimneyValue; // Update the list with the new value
+                                  chimney[index] =
+                                      newChimneyValue; // Update the list with the new value
                                 });
                               },
                             )))
@@ -820,10 +974,15 @@ class _DisheshWidgetState extends State<DisheshWidget> {
       },
       child: Container(
         alignment: Alignment.center,
-        margin: const EdgeInsets.symmetric(horizontal: 12, vertical: 12).copyWith(bottom: 0),
+        margin: const EdgeInsets.symmetric(horizontal: 12, vertical: 12)
+            .copyWith(bottom: 0),
         height: 42,
         padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 16),
-        decoration: BoxDecoration(borderRadius: BorderRadius.circular(6), color: widget.chimney ? AppColors.kPrimaryColor : const Color(0xffFC8E99)),
+        decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(6),
+            color: widget.chimney
+                ? AppColors.kPrimaryColor
+                : const Color(0xffFC8E99)),
         child: Text(
           widget.chimney ? 'Open\nChimney' : 'Chimney',
           textAlign: TextAlign.center,
@@ -862,12 +1021,15 @@ class BottomSheetWidgets extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       decoration: BoxDecoration(
-          color: groupValue == value ? AppColors.kAccentColor : null, border: Border.all(color: const Color(0xffFC8E99), width: .5), borderRadius: BorderRadius.circular(6)),
+          color: groupValue == value ? AppColors.kAccentColor : null,
+          border: Border.all(color: const Color(0xffFC8E99), width: .5),
+          borderRadius: BorderRadius.circular(6)),
       margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 6),
       child: InkWell(
         borderRadius: BorderRadius.circular(6),
         child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+          padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 0)
+              .copyWith(right: 0),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -875,25 +1037,30 @@ class BottomSheetWidgets extends StatelessWidget {
                 children: [
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
+                    mainAxisSize: MainAxisSize.min,
                     children: [
+                      isPopular
+                          ? CustomSizedBox.space12H
+                          : CustomSizedBox.space20H,
                       Text(
                         title,
                         style: AppTheme.textStyleSemiBoldBlack16,
                       ),
-                      CustomSizedBox.space4H,
                       isPopular
                           ? Container(
                               decoration: BoxDecoration(
                                 color: AppColors.kPrimaryColor,
                                 borderRadius: BorderRadius.circular(3),
                               ),
-                              padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
+                              margin: const EdgeInsets.only(top: 6, bottom: 12),
+                              padding: const EdgeInsets.symmetric(
+                                  horizontal: 8, vertical: 4),
                               child: const Text(
                                 'Most Popular',
                                 style: AppTheme.textStyleMediumWhite10,
                               ),
                             )
-                          : SizedBox.shrink()
+                          : CustomSizedBox.space12H
                     ],
                   ),
                   const Spacer(),
@@ -901,28 +1068,38 @@ class BottomSheetWidgets extends StatelessWidget {
                     discount ?? '',
                     style: AppTheme.textStyleSemiBoldGreen16,
                   ),
-                  Radio(
-                    activeColor: AppColors.kPrimaryColor,
-                    fillColor: MaterialStateColor.resolveWith(
-                      (Set<MaterialState> states) {
-                        if (states.contains(MaterialState.selected)) {
+                  Padding(
+                    padding: const EdgeInsets.only(right: 6.0),
+                    child: Radio(
+                      materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
+                      activeColor: AppColors.kPrimaryColor,
+                      fillColor: MaterialStateColor.resolveWith(
+                        (Set<MaterialState> states) {
+                          if (states.contains(MaterialState.selected)) {
+                            return AppColors.kPrimaryColor;
+                          }
                           return AppColors.kPrimaryColor;
-                        }
-                        return AppColors.kPrimaryColor;
-                      },
+                        },
+                      ),
+                      value: value,
+                      groupValue: groupValue,
+                      onChanged: onChanged,
                     ),
-                    value: value,
-                    groupValue: groupValue,
-                    onChanged: onChanged,
                   )
                 ],
               ),
-              const Divider(
-                thickness: 0.5,
-                color: Color(0xffF1B2BF),
+              const Padding(
+                padding: EdgeInsets.only(right: 16.0),
+                child: DividerTheme(
+                  data: DividerThemeData(space: 0),
+                  child: Divider(
+                    thickness: 0.5,
+                    color: Color(0xffF1B2BF),
+                  ),
+                ),
               ),
               Padding(
-                padding: const EdgeInsets.symmetric(vertical: 8.0),
+                padding: const EdgeInsets.symmetric(vertical: 12.0),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
@@ -952,12 +1129,7 @@ class BottomSheetWidgets extends StatelessWidget {
             ],
           ),
         ),
-        // onTap: () {
-        //   setState(() {
-        //     isSelected = true;
-        //     groupValue = 'Weekly';
-        //   });
-        // },
+        // onTap: onTap,
       ),
     );
   }

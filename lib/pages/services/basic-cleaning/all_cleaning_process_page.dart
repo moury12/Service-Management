@@ -57,7 +57,7 @@ class _AllCleaningProcessScreenState extends State<AllCleaningProcessScreen> {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Container(
-            margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+            margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 24),
             padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
             decoration: BoxDecoration(
                 color: const Color(0xffFFE5E5),
@@ -105,6 +105,7 @@ class _AllCleaningProcessScreenState extends State<AllCleaningProcessScreen> {
               style: AppTheme.textStyleSemiBoldBlack16,
             ),
           ),
+          CustomSizedBox.space8H,
           SizedBox(
             height: 180,
             child: ListView.builder(
@@ -215,7 +216,7 @@ class _AllCleaningProcessScreenState extends State<AllCleaningProcessScreen> {
             ),
           ),
           Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 16.0),
+            padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 12),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
@@ -310,6 +311,7 @@ class _AllCleaningProcessScreenState extends State<AllCleaningProcessScreen> {
               },
             ),
           ),
+          CustomSizedBox.space12H,
           const Padding(
             padding: EdgeInsets.symmetric(horizontal: 16.0, vertical: 12),
             child: Text(
